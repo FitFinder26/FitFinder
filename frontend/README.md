@@ -1,6 +1,6 @@
 # FitFinder
 
-This project will use **Next.js** or **React Native** (to be decided).
+This project will use **React.js** for web or **React Native** for mobile apps.
 
 ## Getting Started
 
