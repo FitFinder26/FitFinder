@@ -1,11 +1,33 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-const UserLayout = ()=>{
+import Footer from "../components/Footer";
+import styled from "styled-components";
+
+export default function UserLayout() {
+
+    const toggleRegistrationForm = (form) => {
+        if (form == 'login'){
+            container.classList.remove('sign-up');
+            container.classList.add('sign-in');
+        }
+        else{
+            container.classList.remove('sign-in');
+            container.classList.add('sign-up'); 
+        }
+    }
+
     return (
-        <>
-            <Navbar><p>I am Ibrahim</p></Navbar>
-            <Outlet/>
-        </>
+        <Container>
+            <Navbar toggleRegistrationForm={toggleRegistrationForm} />
+            <Outlet />
+            <Footer />
+        </Container>
     );
 };
-export default UserLayout;
+
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+`;
