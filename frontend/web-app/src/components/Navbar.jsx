@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import cameraIcon from '../assets/camera-icon.png';
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar({ toggleRegistrationForm }) {
+export default function Navbar( { navigationBlocked } ){
     const navigate = useNavigate();
 
     return (
@@ -18,9 +18,12 @@ export default function Navbar({ toggleRegistrationForm }) {
                 </SearchWithImageButton>
             </div>
             <div style={{ gridColumn: '3', textAlign: 'right', gap: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
-                <NavButton>Inspiration</NavButton>
-                <NavButton onClick={() => toggleRegistrationForm('login')}>Login</NavButton>
-                <JoinButton onClick={() => toggleRegistrationForm('signup')}>Join</JoinButton>
+                <NavButton onClick={() => navigate('/inspiration')}
+                    disabled={navigationBlocked}>Inspiration</NavButton>
+                <NavButton onClick={() => navigate('/', { state: { form: 'login' } })}
+                    disabled={navigationBlocked}>Login</NavButton>
+                <JoinButton onClick={() => navigate('/', { state: { form: 'signup' } })}
+                    disabled={navigationBlocked}>Join</JoinButton>
             </div>
         </NavContainer>
     );

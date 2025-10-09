@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 
-export default function Footer() {
+export default function Footer({ navigationBlocked }){
     return (
         <FooterContainer>
             <LinksWrapper>
                 <Logo fontSize={70} scale={0.3} variant={2} />
-                <Link>About us</Link>
-                <Link>Contact</Link>
+                <Link onClick={() => navigate('/about')}
+                    disabled={navigationBlocked}>About us</Link>
+                <Link onClick={() => navigate('/contact')}
+                    disabled={navigationBlocked}>Contact</Link>
             </LinksWrapper>
             <LinksWrapper>
-                <Link>Privacy Policy</Link>
-                <Link>Terms of Service</Link>
+                <Link onClick={() => navigate('/privacy-policy')}
+                    disabled={navigationBlocked}>Privacy Policy</Link>
+                <Link onClick={() => navigate('/terms-of-service')}
+                    disabled={navigationBlocked}>Terms of Service</Link>
                 &copy; 2024 FitFinder. All rights reserved.
             </LinksWrapper>
         </FooterContainer>

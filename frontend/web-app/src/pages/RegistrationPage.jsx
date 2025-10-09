@@ -1,11 +1,19 @@
+import { useLocation, useOutletContext } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function RegistrationPage() {
-    const [usedForm, setUsedForm] = useState('signup');
+    const location = useLocation();
+    const initialForm = location.state?.form || 'signup';
+    const [usedForm, setUsedForm] = useState(initialForm);
+    const {setNavigationBlocked} = useOutletContext();
+    useEffect(() => {
+        setUsedForm(location.state?.form);
+    }, [location.state]);
+    
     return (
         <div>
-            <RegistrationForm usedForm={usedForm} setUsedForm={setUsedForm} />
+            <RegistrationForm usedForm={usedForm} setUsedForm={setUsedForm} setNavigationBlocked={setNavigationBlocked} />
         </div>
     );
 }

@@ -2,25 +2,15 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function UserLayout() {
-
-    const toggleRegistrationForm = (form) => {
-        if (form == 'login'){
-            container.classList.remove('sign-up');
-            container.classList.add('sign-in');
-        }
-        else{
-            container.classList.remove('sign-in');
-            container.classList.add('sign-up'); 
-        }
-    }
-
+    const [navigationBlocked, setNavigationBlocked] = useState(false);
     return (
         <Container>
-            <Navbar toggleRegistrationForm={toggleRegistrationForm} />
-            <Outlet />
-            <Footer />
+            <Navbar navigationBlocked={navigationBlocked} />
+            <Outlet context={{setNavigationBlocked}}/>
+            <Footer navigationBlocked={navigationBlocked}/>
         </Container>
     );
 };
