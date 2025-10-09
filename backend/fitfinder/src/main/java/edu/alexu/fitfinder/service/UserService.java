@@ -23,7 +23,6 @@ public class UserService {
 
   public Map<String, String> SignUP(UserDTO user) throws ValidatorException {
 
-    // validate user information
     Validator userNameValidator = new UserNameValidator();
     Validator passwordValidator = new PasswordValidator();
     Validator emailValidator = new EmailValidator(userRepo);
