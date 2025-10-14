@@ -2,9 +2,16 @@ import Logo from './Logo';
 import styled from 'styled-components';
 import cameraIcon from '../assets/camera-icon.png';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../providers/AuthProvider';
+import { useEffect, useState } from 'react';
 
 export default function Navbar( { navigationBlocked } ){
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuthContext();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        setIsLoggedIn(isAuthenticated());
+    }, [isAuthenticated]);
 
     return (
         <NavContainer>
@@ -20,10 +27,15 @@ export default function Navbar( { navigationBlocked } ){
             <div style={{ gridColumn: '3', textAlign: 'right', gap: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
                 <NavButton onClick={() => navigate('/inspiration')}
                     disabled={navigationBlocked}>Inspiration</NavButton>
+                {isLoggedIn ?
+                <NavButton onClick={()=>alert(isLoggedIn)}>Profile</NavButton>:
+                (<>
                 <NavButton onClick={() => navigate('/', { state: { form: 'login' } })}
                     disabled={navigationBlocked}>Login</NavButton>
                 <JoinButton onClick={() => navigate('/', { state: { form: 'signup' } })}
                     disabled={navigationBlocked}>Join</JoinButton>
+                    </>)}
+                
             </div>
         </NavContainer>
     );

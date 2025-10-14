@@ -1,14 +1,16 @@
-import { use, useEffect, useState } from "react";
-import { Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import './external-styles/RegistrationForm.css'
-import { updateFormVariables, login, signup } from "../../../shared/components/RegistrationFormLogic";
 import {HashLoader} from 'react-spinners';
 import { flushSync } from "react-dom";
+import { useAuthContext } from "../providers/AuthProvider";
 
 export default function RegistrationForm({ usedForm, setUsedForm, setNavigationBlocked }){
     const [signupFormVariables, setSignupFormVariables] = useState({});
     const [loginFormVariables, setLoginFormVariables] = useState({});
     const [disabled, setDisabled] = useState(false);
+    const {login, signup} = useAuthContext();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         let container = document.getElementById('container')
@@ -39,14 +41,17 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
     }
 
     const handleSignupFormVariables = (e) => {
-        setSignupFormVariables((prev) => updateFormVariables(e, prev));
+        const { name, value } = e.target;
+        setSignupFormVariables((prev) => ({...prev, [name]: value}));
     };
 
     const handleLoginFormVariables = (e) => {
-        setLoginFormVariables((prev) => updateFormVariables(e, prev));
+        const { name, value } = e.target;
+        setLoginFormVariables((prev) => ({...prev, [name]: value}));
     };
 
     const handleSignup = async (e) => {
+        e.preventDefault();
         // Block navigation
         flushSync(() => {
             setDisabled(true);
@@ -54,8 +59,14 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
 
         // Perform signup
-        await signup(e, signupFormVariables);
-                
+        try {
+            await signup(signupFormVariables.username, 
+                    signupFormVariables.email, 
+                    signupFormVariables.password);
+            navigate('/home');
+        } catch (error) {
+            console.error("Signup failed:", error);
+        }
         // Release blocker after signup
         flushSync(() => {
             setDisabled(false);
@@ -65,13 +76,20 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
     };
 
     const handleLogin = async(e) => {
+        e.preventDefault();
         // Block navigation
         flushSync(() => {
             setDisabled(true);
             setNavigationBlocked(true);
         });
         // Perform login
-        await login(e, loginFormVariables);
+        try {
+            await login(loginFormVariables.email,
+                loginFormVariables.password);
+            navigate('/home');
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
 
         // Release blocker after login
         flushSync(() => {
