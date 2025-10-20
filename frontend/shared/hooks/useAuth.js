@@ -25,6 +25,15 @@ export const useAuth = () => {
     setToken(null);
     clearTimeout(refreshTimer);
   };
+  const sendCode = async (email) => {
+    const data = await authService.sendCode(email);
+    return data;
+  };
+
+  const updatePassword = async (email, newPassword) => {
+    const data = await authService.updatePassword(email, newPassword);
+    return data;
+  };
 
   const isAuthenticated = () => {
     return !tokenService.isExpired();
@@ -55,5 +64,5 @@ export const useAuth = () => {
     return () => clearTimeout(refreshTimer);
   }, [token]);
 
-  return { signup, login, logout, isAuthenticated };
+  return { signup, login, logout, isAuthenticated, sendCode, updatePassword  };
 };
