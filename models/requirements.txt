@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+celery[redis]
+redis
+pydantic
+python-multipart
+requests
+# add libs for sam/openclip when ready to use them
