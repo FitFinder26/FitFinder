@@ -1,4 +1,3 @@
-/node_modules
-/dist
-/coverage
-/venv
+frontend/web-app/node_modules
+frontend/web-app/dist
+models/venv
