@@ -17,7 +17,8 @@ export default function UserLayout() {
 
 
 const Container = styled.div`
+    position: relative;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 `;
