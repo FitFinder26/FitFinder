@@ -4,6 +4,8 @@ import './external-styles/RegistrationForm.css'
 import {HashLoader} from 'react-spinners';
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode'; 
 
 export default function RegistrationForm({ usedForm, setUsedForm, setNavigationBlocked }){
     const [signupFormVariables, setSignupFormVariables] = useState({});
@@ -151,6 +153,22 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
+                            <div className="google-signin">
+                            <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                const userInfo = jwtDecode(credentialResponse.credential);
+                                console.log("Google user info:", userInfo);
+
+                                // Example: signup/login using Google data
+                                // await signup(userInfo.name, userInfo.email, userInfo.sub);
+                                navigate('/home');
+                                }}
+                                onError={() => {
+                                console.log("Google Sign In Failed");
+                                }}
+                            />
+                            </div>
+
                            
 
                             <p>
