@@ -2,6 +2,8 @@ import {Route, createRoutesFromElements, RouterProvider, createBrowserRouter} fr
 import EmptyPage from './pages/EmptyPage';
 import UserLayout from './layouts/UserLayout';
 import RegistrationPage from './pages/RegistrationPage';
+import { Toaster } from 'react-hot-toast';
+
 function App() {
 
   const router = createBrowserRouter(
@@ -12,7 +14,10 @@ function App() {
       </Route>
   ));
   return (
+    <>
       <RouterProvider router={router}/>
+      <Toaster />
+    </>
   );
 }
 
