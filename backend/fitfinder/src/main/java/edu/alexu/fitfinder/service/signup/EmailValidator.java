@@ -26,7 +26,7 @@ public class EmailValidator extends Validator {
       throw new ValidatorException("Email isn't valid");
     }
 
-    UserEntity existingUser = userRepo.findByEmail(user.getEmail());
+    UserEntity existingUser = userRepo.findByEmail(email);
     if (existingUser != null) {
       throw new ValidatorException("Email already exists.");
     }
