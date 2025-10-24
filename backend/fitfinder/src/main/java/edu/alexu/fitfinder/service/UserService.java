@@ -12,14 +12,18 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.alexu.fitfinder.exception.LogInException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserService {
 
   @Autowired UserRepo userRepo;
+  @Autowired JwtService jwtService;
 
-  public void SignUP(UserDTO user) throws ValidatorException {
+  public Map<String, String> SignUP(UserDTO user) throws ValidatorException {
 
+    // validate user information
     Validator userNameValidator = new UserNameValidator();
     Validator passwordValidator = new PasswordValidator();
     Validator emailValidator = new EmailValidator(userRepo);
@@ -27,11 +31,18 @@ public class UserService {
     passwordValidator.setNext(emailValidator);
     userNameValidator.validate(user);
 
+    // save record in the database
     String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-    userRepo.save(new UserEntity(user.getUserName(), hashedPassword, user.getEmail()));
+    UserEntity databaseRecord = new UserEntity(user.getUserName(), hashedPassword, user.getEmail());
+    userRepo.save(databaseRecord);
+
+    // generate jwt authentication token
+    Map<String, String> jwtToken = new HashMap<>();
+    jwtToken.put("token", jwtService.generateToken(databaseRecord.getUserId() + ""));
+    return jwtToken;
   }
 
-  public void LogIn(UserDTO user) throws LogInException {
+  public Map<String, String> LogIn(UserDTO user) throws LogInException {
     String email = user.getEmail();
     String password = user.getPassword();
     if (email == null || password == null) {
@@ -39,12 +50,13 @@ public class UserService {
     }
 
     UserEntity existingUser = userRepo.findByEmail(email);
-    if (existingUser == null) {
+    if (existingUser == null || !BCrypt.checkpw(password, existingUser.getPassword())) {
       throw new LogInException("Invalid email or password");
     }
 
-    if (!BCrypt.checkpw(password, existingUser.getPassword())) {
-      throw new LogInException("Invalid email or password");
-    }
+    // generate jwt authentication token
+    Map<String, String> jwtToken = new HashMap<>();
+    jwtToken.put("token", jwtService.generateToken(existingUser.getUserId() + ""));
+    return jwtToken;
   }
 }
