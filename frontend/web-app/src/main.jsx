@@ -4,12 +4,11 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from "./providers/AuthProvider";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
-const clientId = "668166958235-qme7mcbk6ab0v0lin94i1b8pvheidba2.apps.googleusercontent.com";
+import { VITE_CLINT_ID } from '../../shared/config/env.js';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={clientId}>
+    <GoogleOAuthProvider clientId={VITE_CLINT_ID}>
       <AuthProvider>
         <App />
       </AuthProvider>

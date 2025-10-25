@@ -264,6 +264,9 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
+                            <div class="divider">
+                                <span>or</span>
+                            </div>
                             <div className="google-signin">
                             <GoogleLogin
                                 onSuccess={credentialResponse => {
@@ -311,9 +314,30 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 Forgot your password?
                             </Link>
                             
+                            
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
                             </button>
+                            
+                            <div class="divider">
+                                <span>or</span>
+                            </div>
+                            <div className="google-signin">
+                            <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                const userInfo = jwtDecode(credentialResponse.credential);
+                                console.log("Google user info:", userInfo);
+
+                                // Example: signup/login using Google data
+                                // await signup(userInfo.name, userInfo.email, userInfo.sub);
+                                navigate('/home');
+                                }}
+                                onError={() => {
+                                console.log("Google Sign In Failed");
+                                }}
+                            />
+                            </div>
+                            
                             <p>
                                 <span>
                                     Don't have an account?
