@@ -4,6 +4,8 @@ import './external-styles/RegistrationForm.css'
 import {HashLoader} from 'react-spinners';
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode'; 
 import showPasswordIcon from '../assets/show-password.png'
 import hidePasswordIcon from '../assets/hide-password.png'
 import { Notifier } from "./Notifier";
@@ -262,6 +264,25 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
+                            <div class="divider">
+                                <span>or</span>
+                            </div>
+                            <div className="google-signin">
+                            <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                const userInfo = jwtDecode(credentialResponse.credential);
+                                console.log("Google user info:", userInfo);
+
+                                // Example: signup/login using Google data
+                                // await signup(userInfo.name, userInfo.email, userInfo.sub);
+                                navigate('/home');
+                                }}
+                                onError={() => {
+                                console.log("Google Sign In Failed");
+                                }}
+                            />
+                            </div>
+
                            
 
                             <p>
@@ -293,9 +314,30 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 Forgot your password?
                             </Link>
                             
+                            
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
                             </button>
+                            
+                            <div class="divider">
+                                <span>or</span>
+                            </div>
+                            <div className="google-signin">
+                            <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                const userInfo = jwtDecode(credentialResponse.credential);
+                                console.log("Google user info:", userInfo);
+
+                                // Example: signup/login using Google data
+                                // await signup(userInfo.name, userInfo.email, userInfo.sub);
+                                navigate('/home');
+                                }}
+                                onError={() => {
+                                console.log("Google Sign In Failed");
+                                }}
+                            />
+                            </div>
+                            
                             <p>
                                 <span>
                                     Don't have an account?
