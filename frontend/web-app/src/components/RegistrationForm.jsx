@@ -201,8 +201,10 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 <input type="text" 
                                     name="text" 
                                     placeholder="Username" 
-                                    pattern="^[A-Za-z0-9._]+$"
-                                    title="Username can only contain letters, numbers, underscores (_), and dots (.)"
+                                    pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
+                                    minLength={3}
+                                    maxLength={30}
+                                    title="Username can only contain letters, numbers, must start with a letter and of length between 3 to 30 characters"
                                     onChange={handleSignupFormVariables}
                                     required/>
                             </div>

@@ -2,10 +2,10 @@ import { apiClient } from "./apiClient";
 import { tokenService } from "./tokenService";
 
 export const authService = {
-  signup: async (username, email, password) => {
+  signup: async (userName, email, password) => {
     const data = await apiClient("/auth/signup", {
       method: "POST",
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ userName, email, password }),
       skipAuth: false,
     });
 
