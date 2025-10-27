@@ -23,7 +23,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         wrongPassword: false,
         wrongCode: false
     });
-    const {login, signup, sendCode, verifyCode, updatePassword} = useAuthContext();
+    const {login, signup, sendCode, updatePassword} = useAuthContext();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -179,14 +179,11 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             setDisabled(true);
             setNavigationBlocked(true);
         });
-        // Perform send code
-        try {
-            await verifyCode(forgotPasswordVariables.code);
+        // Perform verify code
+        if (forgotPasswordVariables.code === code)
             setLoginPhase('updatePassword');
-        } catch (error) {
-            console.error("Sending code failed:", error);
-            Notifier.notifyError("Failed to send verification code.");
-        }
+        else
+            setErrors(prev => ({...prev, [wrongCode]: true}));
 
         // Release blocker after login
         flushSync(() => {
@@ -204,11 +201,15 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform update password
         try {
-            await updatePassword(forgotPasswordVariables.email,
+            const data = await updatePassword(forgotPasswordVariables.email,
                 forgotPasswordVariables.password
             );
-            Notifier.notifySuccess("Password updated successfully. You can now log in with your new password.");
-            setLoginPhase('login');
+            if (data.status == 200){
+                Notifier.notifySuccess("Password updated successfully. You can now log in with your new password.");
+                setLoginPhase('login');
+            }
+            else 
+                throw new Error(data.status);
         } catch (error) {
             console.error("Updating password failed:", error);
             Notifier.notifyError("Failed to update password.");

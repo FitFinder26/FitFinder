@@ -55,15 +55,6 @@ export const authService = {
     return data;
   },
 
-  verifyCode: async (code) => {
-    const data = await apiClient("auth/verify-code", {
-      method: "POST",
-      body: JSON.stringify({ code }),
-      skipAuth: false,
-    });
-    return data;
-  },
-
   updatePassword: async (email, newPassword) => {
     const data = await apiClient("/auth/update-password", {
       method: "POST",
