@@ -17,7 +17,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [loginPhase, setLoginPhase] = useState('login'); // 'login', 'sendCode', 'updatePassword'
-    const {login, signup, sendCode, updatePassword} = useAuthContext();
+    const {login, signup, sendCode, verifyCode, updatePassword} = useAuthContext();
 
     const navigate = useNavigate();
 
@@ -136,6 +136,29 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         try {
             await sendCode(forgotPasswordVariables.email);
             Notifier.notifySuccess("Verification code sent to your email.");
+            setLoginPhase('verifyCode');
+        } catch (error) {
+            console.error("Sending code failed:", error);
+            Notifier.notifyError("Failed to send verification code.");
+        }
+
+        // Release blocker after login
+        flushSync(() => {
+            setDisabled(false);
+            setNavigationBlocked(false);
+        });
+    }
+
+    const handleVerifyCode = async(e) => {
+        e.preventDefault();
+        // Block navigation
+        flushSync(() => {
+            setDisabled(true);
+            setNavigationBlocked(true);
+        });
+        // Perform send code
+        try {
+            await verifyCode(forgotPasswordVariables.code);
             setLoginPhase('updatePassword');
         } catch (error) {
             console.error("Sending code failed:", error);
@@ -355,11 +378,29 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                         <form onSubmit={handleSendCode} className="form sign-in send-code-form" style={{display: loginPhase!='sendCode'&&'none', animation:loginPhase=='sendCode'&&'fadeIn 0.5s'}}>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
-                                <input  name="email" placeholder="Email" required onChange={handleForgotPasswordVariables}/>
+                                <input type="email"  name="email" placeholder="Email" required onChange={handleForgotPasswordVariables}/>
                             </div>
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Send Code"}
                             </button>
+                        </form>
+                        {/* Verify code phase */}
+                        <form onSubmit={handleVerifyCode} className="form sign-in send-code-form" style={{display: loginPhase!='verifyCode'&&'none', animation:loginPhase=='verifyCode'&&'fadeIn 0.5s'}}>
+                            <div className="input-group">
+                                <i className='bx bxs-user'></i>
+                                <input type="text" name="code" placeholder="Code" required onChange={handleForgotPasswordVariables}/>
+                            </div>
+                            <button type="submit" disabled={disabled}>
+                                {disabled ? <HashLoader size={20} color={"#fff"} /> : "Verify Code"}
+                            </button>
+                            <p>
+                                <Link onClick={handleResendCode} className="pointer">
+                                    Resend 
+                                </Link>
+                                <span>
+                                    &nbsp;code.
+                                </span>
+                            </p>
                         </form>
                         {/* Update password phase */}
                         <form onSubmit={handleUpdatePassword} className="form sign-in" style={{display: loginPhase!='updatePassword'&&'none', animation:loginPhase=='updatePassword'&&'fadeIn 0.5s'}}>
@@ -409,14 +450,6 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Update Password"}
                             </button>
-                            <p>
-                                <Link onClick={handleResendCode} className="pointer">
-                                    Resend 
-                                </Link>
-                                <span>
-                                    &nbsp;code.
-                                </span>
-                            </p>
                         </form>
                     </div>
                     <div className="form-wrapper">
