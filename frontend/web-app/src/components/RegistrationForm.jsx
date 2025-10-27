@@ -17,8 +17,13 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [loginPhase, setLoginPhase] = useState('login'); // 'login', 'sendCode', 'updatePassword'
+    const [code, setCode] = useState('');
+    const [errors, setErrors] = useState({
+        emailAlreadyExist: false,
+        wrongPassword: false,
+        wrongCode: false
+    });
     const {login, signup, sendCode, verifyCode, updatePassword} = useAuthContext();
-
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -87,10 +92,16 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
 
         // Perform signup
         try {
-            await signup(signupFormVariables.username, 
+            const data = await signup(signupFormVariables.username, 
                     signupFormVariables.email, 
                     signupFormVariables.password);
-            navigate('/home');
+            // check if email already exists
+            if (data.status == 409)
+                setErrors(prev => ({...prev, [emailAlreadyExist]: true}));
+            if (data.status == 201)
+                navigate('/home');
+            else
+                throw new Error(data.status);
         } catch (error) {
             console.error("Signup failed:", error);
         }
@@ -111,9 +122,15 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform login
         try {
-            await login(loginFormVariables.email,
+            const data = await login(loginFormVariables.email,
                 loginFormVariables.password);
-            navigate('/home');
+            // check of password is wrong
+            if (data.status == 401)
+                setErrors(prev => ({...prev, [wrongPassword]: true}));
+            if (data.status == 200) 
+                navigate('/home');
+            else 
+                throw new Error(data.status);
         } catch (error) {
             console.error("Login failed:", error);
         }
@@ -134,9 +151,15 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform send code
         try {
-            await sendCode(forgotPasswordVariables.email);
-            Notifier.notifySuccess("Verification code sent to your email.");
-            setLoginPhase('verifyCode');
+            const data = await sendCode(forgotPasswordVariables.email);
+            if (data.status == 200){
+                const body = data.json();
+                setCode(body.code);
+                Notifier.notifySuccess("Verification code sent to your email.");
+                setLoginPhase('verifyCode');
+            }
+            else 
+                throw new Error(data.status);
         } catch (error) {
             console.error("Sending code failed:", error);
             Notifier.notifyError("Failed to send verification code.");
@@ -198,18 +221,6 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
     }
 
-    const handleResendCode = async(e) => {
-        e.preventDefault();
-        // Perform login
-        try {
-            await sendCode(forgotPasswordVariables.email);
-            Notifier.notifySuccess("Verification code resent to your email.");
-        } catch (error) {
-            console.error("Sending code failed:", error);
-            Notifier.notifyError("Failed to resend verification code.");
-        }
-        
-    }
 
     return(
         <div id="container" className="container">
@@ -241,7 +252,10 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     title="Please enter a valid email address in the format: username@example.com"
                                     onChange={handleSignupFormVariables}
                                     required/>
+                                {errors.emailAlreadyExist && <p style={{color:"red"}}>Email already exists.</p>}
+
                             </div>
+                            
                        
                             <div className="input-group">
                                 <input
@@ -334,7 +348,10 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <div className="input-group">
                                 <i className='bx bxs-lock-alt'></i>
                                 <input  name="password" placeholder="Password" required onChange={handleLoginFormVariables}/>
+                                {errors.wrongPassword && <p style={{color:"red"}}>Entered password is not correct please try again or press <strong>Forgot your Passord</strong>.</p>}
+                            
                             </div>
+
                             <Link onClick={(e) =>{e.preventDefault(); setLoginPhase('sendCode')}} className="pointer">
                                 Forgot your password?
                             </Link>
@@ -386,15 +403,17 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                         </form>
                         {/* Verify code phase */}
                         <form onSubmit={handleVerifyCode} className="form sign-in send-code-form" style={{display: loginPhase!='verifyCode'&&'none', animation:loginPhase=='verifyCode'&&'fadeIn 0.5s'}}>
+                            <p>Please copy and past the code sent to your email in the field below.</p>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
                                 <input type="text" name="code" placeholder="Code" required onChange={handleForgotPasswordVariables}/>
+                                {errors.wrongCode && <p style={{color:"red"}}>The code doesn't match the one sent to your email, please try again or press resend.</p>}
                             </div>
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Verify Code"}
                             </button>
                             <p>
-                                <Link onClick={handleResendCode} className="pointer">
+                                <Link onClick={handleSendCode} className="pointer">
                                     Resend 
                                 </Link>
                                 <span>
