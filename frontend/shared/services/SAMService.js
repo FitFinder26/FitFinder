@@ -1,8 +1,12 @@
 export const SAMService = {
-    segment: async (formData) => {
+    segment: async (formData, selectedPoints, deselectedPoints) => {
         const data = await fetch("http://localhost:8000/segment", {
             method: "POST",
-            body: formData,
+            body: JSON.stringify({
+                formData,
+                selectedPoints,
+                deselectedPoints
+            }),
             });
         return data;
       },
