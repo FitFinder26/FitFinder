@@ -2,11 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import MagicButton from "./MagicButton";
 import {HashLoader} from 'react-spinners';
 import { SAMService } from "../../../shared/services/SAMService";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ImageSegmenterTester } from "../../../shared/components/ImageSegmenterTester";
+import { Notifier } from "./Notifier";
 
-export default function SAMFrontend({ imageURL, loading, setLoading }) {
-  const [imageObj, setImageObj] = useState(null);
+export default function SAMFrontend({ imageURL, loading, setLoading, imageObj, setImageObj, setSelectedSegments, setIsBeingCustomized }) {
   const [masks, setMasks] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selectedPoints, setSelectedPoints] = useState([]);
@@ -156,6 +156,7 @@ const handleCanvasClick = (e) => {
       // add original type? keep consistent type - we'll add same type as mask.id
       // If you want selected state to keep numbers, use Number(clickedId) instead.
       const newId = typeof clickedMask.id === "number" ? clickedMask.id : clickedId;
+      setSelectedSegments((prevSeg)=>([...prevSeg, clickedMask]))
       return [...prev, newId];
     }
   });
@@ -213,6 +214,9 @@ const handleCanvasUnclick = (e) => {
     const already = prevStrs.includes(clickedId);
 
     if (already) {
+      setSelectedSegments((prevSeg)=>{
+        return prevSeg.filter((seg)=>seg!=clickedMask)
+      })
       // remove
       return prev.filter((id) => String(id) !== clickedId);
     } else {
@@ -435,11 +439,15 @@ const handleCanvasUnclick = (e) => {
 
   // Send selected masks to API
   const sendSelected = async () => {
-    await SAMService.sendSegments(selected);
+    if (selected.length > 1){
+      Notifier.notifyError("You must select just one segment to search for!");
+      return;
+    }
+    setIsBeingCustomized(true);
   };
 
   return (
-    <div style={{ position: "relative", width: "100%", textAlign: "center" }}>
+    <div style={{ position: "relative", width: "100%", textAlign: "center", animation: "fadeIn 0.5s" }}>
 
       <div style={{ position: "relative", display: "inline-block" }}>
         <canvas
@@ -453,7 +461,7 @@ const handleCanvasUnclick = (e) => {
             border: "1px solid #444",
             maxWidth: "100%",
             filter: loading && 'blur(20px)',
-            transition: "all .3s ease-in-out"
+            animation: "fadeIn 1.5s"
           }}
         />
         {loading && (
@@ -485,23 +493,13 @@ const handleCanvasUnclick = (e) => {
       </div>
     </div>
   );
-}
+};
 
-// 🔍 helper
-function pointInPolygon(point, vs) {
-  const [x, y] = point;
-  let inside = false;
-  for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-    const xi = vs[i][0],
-      yi = vs[i][1];
-    const xj = vs[j][0],
-      yj = vs[j][1];
-    const intersect =
-      yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
-    if (intersect) inside = !inside;
-  }
-  return inside;
-}
+const fadeIn = keyframes`
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+`;
+
 
 const Button = styled.button`
     background: ${props => props.bgColor || "white"};
@@ -513,9 +511,9 @@ const Button = styled.button`
     padding: 0.5rem 1rem;
     border: none;
     border-bottom: 2px solid transparent;
-    transition: all 0.3s;
     border-radius: 2rem;
     margin-left: ${props=> props.marginLeft || "0rem"};
+    animation: fadeIn 0.5s;
 
     &:hover {
         background-color: ${props => props.bgColorHover || "#6BCB77"};

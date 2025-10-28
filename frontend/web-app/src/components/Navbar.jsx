@@ -6,6 +6,8 @@ import { useAuthContext } from '../providers/AuthProvider';
 import { useEffect, useState, useRef } from 'react';
 import SAMFrontend from './SAMFrontend';
 import { Sheet } from "react-modal-sheet";
+import CustomizeSegment from './CustomizeSegment';
+import { Toaster } from 'react-hot-toast';
 
 export default function Navbar( { navigationBlocked } ){
     const navigate = useNavigate();
@@ -14,10 +16,17 @@ export default function Navbar( { navigationBlocked } ){
     const [imageUploaded, setImageUploaded] = useState(false);
     const [imageURL, setImageURL] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [isBeingCustomized, setIsBeingCustomized] = useState(false);
+    const [imageObj, setImageObj] = useState(null);
+    const [selectedSegments, setSelectedSegments] = useState([]);
     const inputRef = useRef(null);
     useEffect(() => {
         setIsLoggedIn(isAuthenticated());
     }, [isAuthenticated]);
+
+    useEffect(()=>{
+        setSelectedSegments([]);
+    }, [isBeingCustomized]);
 
     const handleUploadImage = (e) => {
         const file = e.target.files[0];
@@ -25,6 +34,15 @@ export default function Navbar( { navigationBlocked } ){
         setImageURL(URL.createObjectURL(file));
         setImageUploaded(true);
     };
+
+    const handleCloseSegmentationSheet = ()=>{
+        setImageUploaded(false); 
+        setLoading(false);
+        setImageURL(null);
+        setImageObj(null);
+        setSelectedSegments([]);
+        setIsBeingCustomized(false);
+    }
 
     return (
         <>
@@ -59,13 +77,17 @@ export default function Navbar( { navigationBlocked } ){
                 
             </div>
         </NavContainer>
-        <Sheet isOpen={imageUploaded} onClose={() => {setImageUploaded(false); setLoading(false);}}>
+        <Sheet isOpen={imageUploaded} onClose={handleCloseSegmentationSheet}>
         <Sheet.Container style={{width:"50%", marginLeft:"25%"}}>
           <Sheet.Header />
           <Sheet.Content>
 
 
-            <SAMFrontend imageURL={imageURL} loading={loading} setLoading={setLoading}/>
+            {isBeingCustomized?
+                <CustomizeSegment imageObj={imageObj} setIsBeingCustomized={setIsBeingCustomized} selectedSegments={selectedSegments}/>
+                :<SAMFrontend imageURL={imageURL} loading={loading} setLoading={setLoading} imageObj={imageObj} setImageObj={setImageObj} setSelectedSegments={setSelectedSegments} setIsBeingCustomized={setIsBeingCustomized}/>
+            }
+            <Toaster />
             
           </Sheet.Content>
         </Sheet.Container>

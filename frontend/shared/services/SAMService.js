@@ -1,6 +1,8 @@
+import { apiClient } from "./apiClient";
+
 export const SAMService = {
     segment: async (formData, selectedPoints, deselectedPoints) => {
-        const data = await fetch("http://localhost:8000/segment", {
+        const data = await apiClient("/segment", {
             method: "POST",
             body: JSON.stringify({
                 formData,
@@ -10,11 +12,14 @@ export const SAMService = {
             });
         return data;
       },
-    sendSegments: async(selectedSegments) => {
-        const data = await fetch("http://localhost:8000/submit", {
+    search: async(croppedImageURL, prompt) => {
+        const data = await apiClient("/search", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ selectedSegments }),
+            body: JSON.stringify({ 
+                croppedImageURL,
+                prompt
+             }),
             });
         return data;
     }
