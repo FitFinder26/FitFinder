@@ -47,20 +47,18 @@ export const authService = {
   },
 
   sendCode: async (email) => {
-    const data = await apiClient("/auth/send-code", {
+    return await apiClient("/auth/send-code", {
       method: "POST",
       body: JSON.stringify({ email }),
       skipAuth: false,
     });
-    return data;
   },
 
   updatePassword: async (email, newPassword) => {
-    const data = await apiClient("/auth/update-password", {
+    return await apiClient("/auth/update-password", {
       method: "POST",
       body: JSON.stringify({ email, newPassword }),
       skipAuth: false,
     });
-    return data;
-  },
+  }
 };

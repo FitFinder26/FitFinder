@@ -103,7 +103,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else
                 throw new Error(data.status);
         } catch (error) {
-            console.error("Signup failed:", error);
+            Notifier.notifyError("Signup failed: ", error.message);
         }
         // Release blocker after signup
         flushSync(() => {
@@ -132,7 +132,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else 
                 throw new Error(data.status);
         } catch (error) {
-            console.error("Login failed:", error);
+            Notifier.notifyError("Login failed: ", error.message);
         }
 
         // Release blocker after login
@@ -161,8 +161,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else 
                 throw new Error(data.status);
         } catch (error) {
-            console.error("Sending code failed:", error);
-            Notifier.notifyError("Failed to send verification code.");
+            Notifier.notifyError("Sending code failed: ", error.message);
         }
 
         // Release blocker after login
@@ -211,8 +210,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else 
                 throw new Error(data.status);
         } catch (error) {
-            console.error("Updating password failed:", error);
-            Notifier.notifyError("Failed to update password.");
+            Notifier.notifyError("Updating password failed: ", error.message);
         }
 
         // Release blocker after login

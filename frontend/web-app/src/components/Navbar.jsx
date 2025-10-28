@@ -20,6 +20,7 @@ export default function Navbar( { navigationBlocked } ){
     const [imageObj, setImageObj] = useState(null);
     const [selectedSegments, setSelectedSegments] = useState([]);
     const inputRef = useRef(null);
+
     useEffect(() => {
         setIsLoggedIn(isAuthenticated());
     }, [isAuthenticated]);
@@ -84,7 +85,7 @@ export default function Navbar( { navigationBlocked } ){
 
 
             {isBeingCustomized?
-                <CustomizeSegment imageObj={imageObj} setIsBeingCustomized={setIsBeingCustomized} selectedSegments={selectedSegments}/>
+                <CustomizeSegment imageObj={imageObj} setIsBeingCustomized={setIsBeingCustomized} selectedSegments={selectedSegments} setImageUploaded={setImageUploaded}/>
                 :<SAMFrontend imageURL={imageURL} loading={loading} setLoading={setLoading} imageObj={imageObj} setImageObj={setImageObj} setSelectedSegments={setSelectedSegments} setIsBeingCustomized={setIsBeingCustomized}/>
             }
             <Toaster />

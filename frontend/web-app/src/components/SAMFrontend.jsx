@@ -51,7 +51,9 @@ export default function SAMFrontend({ imageURL, loading, setLoading, imageObj, s
     const formData = new FormData();
     formData.append("image", await fetch(imageURL).then((r) => r.blob()));
 
-    // const data = await SAMService.segment(formData, selectedPoints, deselectedPoints).json(); // { masks: [ {id, points:[[x,y], ...]} ] }
+    // await SAMService.segment(formData, selectedPoints, deselectedPoints)
+    // .then((response)=>response.json())
+    // .then((data)=>setMasks(data.masks)) // { masks: [ {id, points:[[x,y], ...]} ] }
     
     // tester
     const data = ImageSegmenterTester(imageObj, 5, 4, 4);

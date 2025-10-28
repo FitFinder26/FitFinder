@@ -2,25 +2,24 @@ import { apiClient } from "./apiClient";
 
 export const SAMService = {
     segment: async (formData, selectedPoints, deselectedPoints) => {
-        const data = await apiClient("/segment", {
+        return await apiClient("/segment", {
             method: "POST",
+            skipAuth: true,
             body: JSON.stringify({
                 formData,
                 selectedPoints,
                 deselectedPoints
             }),
             });
-        return data;
       },
     search: async(croppedImageURL, prompt) => {
-        const data = await apiClient("/search", {
+        return await apiClient("/search", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            skipAuth: true,
             body: JSON.stringify({ 
                 croppedImageURL,
                 prompt
              }),
             });
-        return data;
     }
 }

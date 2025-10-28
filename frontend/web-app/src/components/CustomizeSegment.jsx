@@ -5,7 +5,7 @@ import { SAMService } from "../../../shared/services/SAMService";
 import { useNavigate } from "react-router-dom";
 import { Notifier } from "./Notifier";
 
-export default function CustomizeSegment ({ imageObj, setIsBeingCustomized, selectedSegments }){
+export default function CustomizeSegment ({ imageObj, setIsBeingCustomized, selectedSegments, setImageUploaded }){
     const [segmentedImage, setSegmentedImage] = useState(new Image());
     const [prompt, setPrompt] = useState('');
     const canvasRef = useRef(null);
@@ -26,18 +26,20 @@ export default function CustomizeSegment ({ imageObj, setIsBeingCustomized, sele
     };
 
     const handleSearch = async()=>{
-        try{
-            const data = await SAMService.search(segmentedImage.src, prompt);
-            navigator('/search');
-        }catch(error){
-            Notifier.notifyError(error);
-        }
-        
+        await SAMService.search(segmentedImage.src, prompt)
+        .then((response)=>{
+            if (response.status == 200){
+                setImageUploaded(false);
+                navigator('/search');
+            }
+            else 
+                throw new Error("Failed to search.");
+        })
+        .catch((error) => Notifier.notifyError(error.message));
     }
 
     return(
-        <Container>
-            
+        <Container> 
             <CroppedImagePreview src={segmentedImage.src || ""} alt="cropped"/>
             <Prompt onChange={handlePromptChange} placeholder="Enter any additional details..."/>
             <ButtonsContainer>
