@@ -2,16 +2,20 @@ package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.UserDTO;
 import edu.alexu.fitfinder.entity.UserEntity;
-import edu.alexu.fitfinder.exception.ValidatorException;
+import edu.alexu.fitfinder.exception.InvalidInputException;
+import edu.alexu.fitfinder.exception.UnauthorizedException;
+import edu.alexu.fitfinder.exception.UserAlreadyExistsException;
 import edu.alexu.fitfinder.repository.UserRepo;
 import edu.alexu.fitfinder.service.signup.EmailValidator;
 import edu.alexu.fitfinder.service.signup.PasswordValidator;
 import edu.alexu.fitfinder.service.signup.Validator;
 import edu.alexu.fitfinder.service.signup.UserNameValidator;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import edu.alexu.fitfinder.exception.LogInException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +25,33 @@ public class UserService {
   @Autowired UserRepo userRepo;
   @Autowired JwtService jwtService;
 
-  public Map<String, String> SignUP(UserDTO user) throws ValidatorException {
+  private final int REFRESH_TOKEN_MAX_AGE = 3 * 60 * 60; // 3 hours
+  private final String REFRESH_TOKEN_PATH = "/auth";
+
+  private Cookie GenerateRefreshCookie(long id) {
+    String refreshToken = jwtService.generateRefreshToken(id + "");
+
+    Cookie cookie = new Cookie("refreshToken", refreshToken);
+    cookie.setHttpOnly(true);
+    // cookie.setSecure(true); // only on HTTPS
+    cookie.setPath(REFRESH_TOKEN_PATH);
+    cookie.setMaxAge(REFRESH_TOKEN_MAX_AGE);
+    cookie.setAttribute("SameSite", "Strict");
+    return cookie;
+  }
+
+  private Cookie DeleteRefreshToken() {
+    Cookie cookie = new Cookie("refreshToken", null);
+    cookie.setHttpOnly(true);
+    // cookie.setSecure(true);  // only on https
+    cookie.setPath(REFRESH_TOKEN_PATH);
+    cookie.setMaxAge(0);
+    cookie.setAttribute("SameSite", "Strict");
+    return cookie;
+  }
+
+  public Map<String, String> SignUP(UserDTO user, HttpServletResponse response)
+      throws InvalidInputException, UserAlreadyExistsException {
 
     Validator userNameValidator = new UserNameValidator();
     Validator passwordValidator = new PasswordValidator();
@@ -35,27 +65,73 @@ public class UserService {
     UserEntity databaseRecord = new UserEntity(user.getUserName(), hashedPassword, user.getEmail());
     userRepo.save(databaseRecord);
 
-    // generate jwt authentication token
-    Map<String, String> jwtToken = new HashMap<>();
-    jwtToken.put("token", jwtService.generateToken(databaseRecord.getUserId() + ""));
-    return jwtToken;
+    // generate jwt refresh token
+    response.addCookie(GenerateRefreshCookie(databaseRecord.getUserId()));
+
+    String accessToken = jwtService.generateAccessToken(databaseRecord.getUserId() + "");
+    Map<String, String> jwtAccessToken = new HashMap<>();
+    jwtAccessToken.put("accessToken", accessToken);
+    jwtAccessToken.put("expiresIn", jwtService.extractExpiration(accessToken).toString());
+    return jwtAccessToken;
   }
 
-  public Map<String, String> LogIn(UserDTO user) throws LogInException {
+  public Map<String, String> LogIn(UserDTO user, HttpServletResponse response)
+      throws InvalidInputException {
     String email = user.getEmail();
     String password = user.getPassword();
     if (email == null || password == null) {
-      throw new LogInException("Email and password are required");
+      throw new InvalidInputException("Email and password are required");
     }
 
     UserEntity existingUser = userRepo.findByEmail(email);
     if (existingUser == null || !BCrypt.checkpw(password, existingUser.getPassword())) {
-      throw new LogInException("Invalid email or password");
+      throw new InvalidInputException("Invalid email or password");
     }
 
+    // generate jwt refresh token
+    response.addCookie(GenerateRefreshCookie(existingUser.getUserId()));
+
     // generate jwt authentication token
-    Map<String, String> jwtToken = new HashMap<>();
-    jwtToken.put("token", jwtService.generateToken(existingUser.getUserId() + ""));
-    return jwtToken;
+    Map<String, String> jwtAccessToken = new HashMap<>();
+    String accessToken = jwtService.generateAccessToken(existingUser.getUserId() + "");
+    jwtAccessToken.put("accessToken", accessToken);
+    jwtAccessToken.put("expiresIn", jwtService.extractExpiration(accessToken).toString());
+    return jwtAccessToken;
+  }
+
+  public Map<String, String> RefreshToken(HttpServletRequest request) throws UnauthorizedException {
+    String refreshToken = null;
+    if (request.getCookies() != null) {
+      for (Cookie cookie : request.getCookies()) {
+        if ("refreshToken".equals(cookie.getName())) {
+          refreshToken = cookie.getValue();
+          break;
+        }
+      }
+    }
+
+    if (refreshToken == null) {
+      throw new UnauthorizedException("No refresh Token is found");
+    }
+
+    if (jwtService.isTokenExpired(refreshToken)) {
+      throw new UnauthorizedException("Refresh token is expired");
+    }
+
+    // check that user still exists
+    String userId = jwtService.extractUserId(refreshToken);
+    if (!userRepo.existsById(Long.parseLong(userId)))
+      throw new UnauthorizedException("User doesn't exist");
+
+    // Create new access token
+    String newAccessToken = jwtService.generateAccessToken(userId);
+    Map<String, String> jwtAccessToken = new HashMap<>();
+    jwtAccessToken.put("accessToken", newAccessToken);
+    jwtAccessToken.put("expiresIn", jwtService.extractExpiration(newAccessToken).toString());
+    return jwtAccessToken;
+  }
+
+  public void LogOut(HttpServletResponse response) {
+    response.addCookie(DeleteRefreshToken());
   }
 }

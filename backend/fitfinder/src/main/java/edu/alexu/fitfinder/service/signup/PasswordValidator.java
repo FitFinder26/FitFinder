@@ -1,7 +1,7 @@
 package edu.alexu.fitfinder.service.signup;
 
 import edu.alexu.fitfinder.dto.UserDTO;
-import edu.alexu.fitfinder.exception.ValidatorException;
+import edu.alexu.fitfinder.exception.InvalidInputException;
 
 public class PasswordValidator extends Validator {
 
@@ -18,15 +18,15 @@ public class PasswordValidator extends Validator {
           + ".{8,64}$";
 
   @Override
-  protected void check(UserDTO user) throws ValidatorException {
+  protected void check(UserDTO user) throws InvalidInputException {
 
     String password = user.getPassword();
     if (password == null) {
-      throw new ValidatorException("Password is required.");
+      throw new InvalidInputException("Password is required.");
     }
 
     if (!password.matches(PASSWORD_PATTERN)) {
-      throw new ValidatorException(
+      throw new InvalidInputException(
           "Password must be 8–64 chars long, contain uppercase, lowercase, digit, and special character, and not start/end with spaces.");
     }
   }
