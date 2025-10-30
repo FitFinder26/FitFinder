@@ -20,6 +20,7 @@ transformers = "^4.57.1"
 opencv-python = "^4.12.0.88"
 python-multipart = "^0.0.20"
 requests = "^2.32.5"
+rq = "^2.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
