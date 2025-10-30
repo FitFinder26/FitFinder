@@ -1,6 +1,7 @@
 import json
+from pickle import NONE
 from typing import Optional
-from fastapi import APIRouter, BackgroundTasks, HTTPException, Form
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query
 
 from app.services.simulator import image_resegment_job, image_segment_job
 
@@ -30,8 +31,10 @@ async def create_segment_job(
         image_segment_job,
         job_id=job_id,
         image_url=image_url,
-        callback_url=callback_url
+        callback_url=callback_url,
+        TRUSTED_HOST=TRUSTED_HOST
     )
+
 
     # Return an immediate response
     return {
@@ -70,13 +73,15 @@ async def create_re_segment_job(
             detail="Invalid points_json. Could not decode JSON."
         )
 
+
     # Enqueue the background task
     background_tasks.add_task(
         image_resegment_job,
         job_id=job_id,
         image_url=image_url,
         points=points,
-        callback_url=callback_url
+        callback_url=callback_url,
+        TRUSTED_HOST=TRUSTED_HOST
     )
 
     # Return an immediate response
@@ -90,7 +95,23 @@ async def create_re_segment_job(
     }
 
 
-
-
-
-
+@router.get("/search/", status_code=200) # 200 OK
+async def search_job(
+    # Change Form to Query
+    prompt: str = Query(None, description="The search query string."),
+    # Change Form to Query
+    job_id: str = Query(..., description="Optional job ID to filter results.")
+):
+    results = [
+        'sample_result_1',
+        'sample_result_2',
+        'sample_result_3',
+        'sample_result_4',
+        'sample_result_5'
+    ]
+    return {
+        "job_id": job_id,
+        "results": results,
+        "message": "Search functionality not yet implemented.",
+        "service": "fitfinder-ai"
+    }

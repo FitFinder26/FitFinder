@@ -1,7 +1,7 @@
 import asyncio
 import io
 import random
-from tkinter import Image
+from PIL import Image
 from typing import Any, List, Optional
 import httpx
 import numpy as np

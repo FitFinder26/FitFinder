@@ -4,6 +4,6 @@ route= APIRouter()
 
 @route.get("/")
 async def check_service_health():
-    return {"status": "ok", "service": "fitfinder-ai"}
+    return {"status": "ok", "message": "Service is still alive LOL.", "service": "fitfinder-ai"}
 
 
