@@ -11,4 +11,5 @@ app = FastAPI(
 )
 
 app.include_router(jobs_api, prefix="/api/v1/job")
-app.include_router(test_api, prefix="/api/v1/test")
+app.include_router(health_api, prefix="/api/v1/health")
+app.include_router(test_api, prefix="/api/test")

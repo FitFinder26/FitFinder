@@ -10,7 +10,6 @@ router = APIRouter()
 
 # Define our *trusted* image source
 TRUSTED_HOST = "res.cloudinary.com"
-# /api/v1/job/
 @router.post("/segment/", status_code=202)  # 202 Accepted
 async def create_segment_job(
     background_tasks: BackgroundTasks,
