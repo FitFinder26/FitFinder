@@ -258,7 +258,6 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                        
                             <div className="input-group">
                                 <input
-                                    id="password"
                                     type={passwordVisible ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
@@ -302,7 +301,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <button type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
-                            <div class="divider">
+                            <div className="divider">
                                 <span>or</span>
                             </div>
                             <div className="google-signin">
@@ -360,7 +359,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
                             </button>
                             
-                            <div class="divider">
+                            <div className="divider">
                                 <span>or</span>
                             </div>
                             <div className="google-signin">
@@ -424,7 +423,6 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                         <form onSubmit={handleUpdatePassword} className="form sign-in" style={{display: loginPhase!='updatePassword'&&'none', animation:loginPhase=='updatePassword'&&'fadeIn 0.5s'}}>
                             <div className="input-group">
                                 <input
-                                    id="password"
                                     type={passwordVisible ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
