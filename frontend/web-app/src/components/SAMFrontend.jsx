@@ -5,6 +5,7 @@ import { SAMService } from "../../../shared/services/SAMService";
 import styled, { keyframes } from "styled-components";
 import { ImageSegmenterTester } from "../../../shared/components/ImageSegmenterTester";
 import { Notifier } from "./Notifier";
+import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
 
 export default function SAMFrontend({ imageURL, loading, setLoading, imageObj, setImageObj, setSelectedSegments, setIsBeingCustomized }) {
   const [masks, setMasks] = useState([]);
@@ -12,6 +13,8 @@ export default function SAMFrontend({ imageURL, loading, setLoading, imageObj, s
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [deselectedPoints, setDeselectedPoints] = useState([]);
   const [hovered, setHovered] = useState(null);
+  const [clickMode, setClickMode] = useState("add"); // "add" or "remove"
+
   const canvasRef = useRef(null);
 
   // Draw the image on canvas when imageURL changes
@@ -231,6 +234,7 @@ const handleCanvasUnclick = (e) => {
   useEffect(() => {
   if (!canvasRef.current || !imageObj) return;
 
+  if (selected.length == 0) setClickMode('add');
   const canvas = canvasRef.current;
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
@@ -328,12 +332,9 @@ const handleCanvasUnclick = (e) => {
       ctx.shadowBlur = 30;
       ctx.fill();
       ctx.restore();
-
-      // subtle faint inner edge (optional, uncomment if you want a hint)
-      // ctx.save(); ctx.lineWidth = 1; ctx.strokeStyle = "rgba(255,255,255,0.05)"; ctx.stroke(); ctx.restore();
+ 
     } else if (isSelected) {
-      // Selected: transparent core with a soft pink glow outline
-      // We'll render the glow via an offscreen canvas (softest) with fallback to multi-stroke
+   
 
       // build offscreen halo
       let usedOffscreen = false;
@@ -452,19 +453,14 @@ const handleCanvasUnclick = (e) => {
     <div style={{ position: "relative", width: "100%", textAlign: "center", animation: "fadeIn 0.5s" }}>
 
       <div style={{ position: "relative", display: "inline-block" }}>
-        <canvas
+        <Canvas
           ref={canvasRef}
-          onClick={handleCanvasClick}
-          onContextMenu={handleCanvasUnclick}
+          onClick={clickMode == "add" ? handleCanvasClick : handleCanvasUnclick}
+          onContextMenu={selected != 0 ? handleCanvasUnclick : handleCanvasClick}
           onMouseMove={handleCanvasMove}
           onMouseLeave={() => setHovered(null)}
-          style={{
-            display: imageURL ? "block" : "none",
-            border: "1px solid #444",
-            maxWidth: "100%",
-            filter: loading && 'blur(20px)',
-            animation: "fadeIn 1.5s"
-          }}
+          imageURL={imageURL}
+          loading={loading}
         />
         {loading && (
           <div
@@ -493,6 +489,29 @@ const handleCanvasUnclick = (e) => {
           Send Selected
         </Button>}
       </div>
+
+      <div style={{ marginTop: 10, opacity: masks.length==0?'0':'1', transition:"all 1s" }}>
+        <AddRemoveMaskToggleButton disabled={selected.length==0} mode={clickMode} setMode={setClickMode}/>
+      </div>
+
+      <Guide title="Instructions Guide">
+        {
+          masks.length==0?
+          <p>Click <strong>Segment</strong> to send image for segmentation</p>:
+          (
+            selected.length==0?
+            <p><strong>Hover</strong> over the segmented image to select the desired mask</p>:
+            (
+              clickMode=="add"?
+              <p><strong>Left-Click</strong> on the desired mask to <strong>add</strong> it. Or <strong>Right-Click</strong> on it to <strong>remove</strong> it.</p>:
+              <p><strong>Click</strong> on the desired mask to <strong>remove</strong> it.</p>
+            )
+          )          
+        }
+        {
+          masks.length != 0 && <small style={{fontSize: "0.7rem", color: "#3041f8"}}>Notice that in case of <strong>Re-segment</strong> added and removed points will be sent as clues to improve the next segmentation.</small>
+        }
+      </Guide>
     </div>
   );
 };
@@ -502,6 +521,87 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: scale(1); }
 `;
 
+const gleam = keyframes`
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(150%) rotate(25deg);
+    opacity: 0;
+  }
+`;
+
+const Guide = styled.div`
+  margin-top: 10;
+  opacity: ${({opacity}) => (opacity ? '0' : '1')}; 
+  transition: all 1s;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #f0f8ff72;
+  border-radius: 2rem;
+  animation: ${fadeIn} 1s;
+
+  p{
+    animation: ${fadeIn} 1s;
+    font-family: 'Cinzel', 'MedievalSharp', serif;
+  
+  }
+
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    inset 0 4px 8px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Gleam overlay */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    opacity: 0;
+  }
+
+  &:hover::after {
+    animation: ${gleam} 1s ease forwards;
+  }
+`;
+
+
+
+
+const Canvas = styled.canvas`
+  display: ${({imageURL})=> (imageURL ? 'block' : 'none')};
+  border: none;
+  max-width: 100%;
+  filter: ${({loading}) => (loading ? 'blur(20px)' : 'none')};
+  animation: ${fadeIn} 1.5s; 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: all 1s;
+
+`
 
 const Button = styled.button`
     background: ${props => props.bgColor || "white"};
@@ -515,7 +615,7 @@ const Button = styled.button`
     border-bottom: 2px solid transparent;
     border-radius: 2rem;
     margin-left: ${props=> props.marginLeft || "0rem"};
-    animation: fadeIn 0.5s;
+    animation: ${fadeIn} 0.5s;
 
     &:hover {
         background-color: ${props => props.bgColorHover || "#6BCB77"};

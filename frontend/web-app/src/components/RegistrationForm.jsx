@@ -395,7 +395,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 <i className='bx bxs-user'></i>
                                 <input type="email"  name="email" placeholder="Email" required onChange={handleForgotPasswordVariables}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Send Code"}
                             </button>
                         </form>
@@ -407,7 +407,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 <input type="text" name="code" placeholder="Code" required onChange={handleForgotPasswordVariables}/>
                                 {errors.wrongCode && <p style={{color:"red"}}>The code doesn't match the one sent to your email, please try again or press resend.</p>}
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Verify Code"}
                             </button>
                             <p>
@@ -463,7 +463,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     className="password-toggle-icon"
                                     onClick={() => setPasswordVisible(!passwordVisible)}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Update Password"}
                             </button>
                         </form>
