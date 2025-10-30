@@ -298,7 +298,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     className="password-toggle-icon"
                                     onClick={() => setPasswordVisible(!passwordVisible)}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="signupButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
                             <div className="divider">
@@ -355,7 +355,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             </Link>
                             
                             
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
                             </button>
                             
