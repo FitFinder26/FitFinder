@@ -96,10 +96,14 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                     signupFormVariables.email, 
                     signupFormVariables.password);
             // check if email already exists
-            if (data.status == 409)
-                setErrors(prev => ({...prev, [emailAlreadyExist]: true}));
-            if (data.status == 201)
+            if (data.status == 409){
+                setErrors(prev => ({...prev, ['emailAlreadyExist']: true}));
+                Notifier.notifyError("Email already exists");
+            }
+            else if (data.status == 201){
                 navigate('/home');
+                Notifier.notifySuccess("Welcome to FitFinder");
+            }
             else
                 throw new Error(data.status);
         } catch (error) {
@@ -125,10 +129,14 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             const data = await login(loginFormVariables.email,
                 loginFormVariables.password);
             // check of password is wrong
-            if (data.status == 401)
-                setErrors(prev => ({...prev, [wrongPassword]: true}));
-            if (data.status == 200) 
+            if (data.status == 401){
+                Notifier.notifyError("Password is not correct");
+                setErrors(prev => ({...prev, ['wrongPassword']: true}));
+            }
+            else if (data.status == 200){
+                Notifier.notifySuccess("Welcome back!");
                 navigate('/home');
+            }
             else 
                 throw new Error(data.status);
         } catch (error) {
@@ -182,7 +190,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         if (forgotPasswordVariables.code === code)
             setLoginPhase('updatePassword');
         else
-            setErrors(prev => ({...prev, [wrongCode]: true}));
+            setErrors(prev => ({...prev, ['wrongCode']: true}));
 
         // Release blocker after login
         flushSync(() => {
@@ -232,7 +240,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <div className="input-group">
                                 <i className='bx bxs-lock-alt'></i>
                                 <input type="text" 
-                                    name="text" 
+                                    name="username" 
                                     placeholder="Username" 
                                     pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
                                     minLength={3}
@@ -250,8 +258,9 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$"
                                     title="Please enter a valid email address in the format: username@example.com"
                                     onChange={handleSignupFormVariables}
+                                    style={{border: errors.emailAlreadyExist && "1px solid red"}}
                                     required/>
-                                {errors.emailAlreadyExist && <p style={{color:"red"}}>Email already exists.</p>}
+                                {errors.emailAlreadyExist && <p style={{color:"red", textAlign:"start"}}>Email already exists.</p>}
 
                             </div>
                             
@@ -345,7 +354,12 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             </div>
                             <div className="input-group">
                                 <i className='bx bxs-lock-alt'></i>
-                                <input  name="password" placeholder="Password" required onChange={handleLoginFormVariables}/>
+                                <input  
+                                    name="password" 
+                                    placeholder="Password" 
+                                    style={{border: errors.wrongCode && "1px solid red"}}
+                                    onChange={handleLoginFormVariables}
+                                    required/>
                                 {errors.wrongPassword && <p style={{color:"red"}}>Entered password is not correct please try again or press <strong>Forgot your Passord</strong>.</p>}
                             
                             </div>
@@ -404,7 +418,13 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <p>Please copy and past the code sent to your email in the field below.</p>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
-                                <input type="text" name="code" placeholder="Code" required onChange={handleForgotPasswordVariables}/>
+                                <input 
+                                    type="text" 
+                                    name="code" 
+                                    placeholder="Code" 
+                                    style={{border: errors.wrongCode && "1px solid red"}}    
+                                    onChange={handleForgotPasswordVariables}
+                                    required/>
                                 {errors.wrongCode && <p style={{color:"red"}}>The code doesn't match the one sent to your email, please try again or press resend.</p>}
                             </div>
                             <button className="loginButton" type="submit" disabled={disabled}>
