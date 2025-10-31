@@ -86,7 +86,7 @@ const NavContainer = styled.nav`
   align-items: center;  
   height: 4.5rem;
   position: absolute;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   z-index: 10;
 `;
 
