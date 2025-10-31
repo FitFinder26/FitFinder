@@ -57,9 +57,9 @@ export default function Navbar( { navigationBlocked } ){
                 {isLoggedIn ?
                 <NavButton onClick={()=>alert(isLoggedIn)}>Profile</NavButton>:
                 (<>
-                <NavButton onClick={() => navigate('/', { state: { form: 'login' } })}
+                <NavButton onClick={() => navigate('/registration', { state: { form: 'login' } })}
                     disabled={navigationBlocked}>Login</NavButton>
-                <JoinButton onClick={() => navigate('/', { state: { form: 'signup' } })}
+                <JoinButton onClick={() => navigate('/registration', { state: { form: 'signup' } })}
                     disabled={navigationBlocked}>Join</JoinButton>
                     </>)}
                 
@@ -88,6 +88,7 @@ const NavContainer = styled.nav`
   position: absolute;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   z-index: 10;
+  backdrop-filter: blur(10px);
 `;
 
 const SearchWithImageButton = styled.button`
