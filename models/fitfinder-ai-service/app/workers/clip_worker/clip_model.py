@@ -1,3 +1,4 @@
+# clip_model.py
 import torch
 import torch.nn.functional as F
 from PIL import Image
@@ -5,15 +6,24 @@ import open_clip
 import io
 import base64
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+_device = "cuda" if torch.cuda.is_available() else "cpu"
+_model = None
+_preprocess = None
+_tokenizer = None
 
-model, _, preprocess = open_clip.create_model_and_transforms(
-    'ViT-B-32',
-    pretrained='laion2b_s34b_b79k'
-)
-tokenizer = open_clip.get_tokenizer('ViT-B-32')
-model = model.to(device)
-model.eval()
+def get_model():
+    """Lazy-load the OpenCLIP model."""
+    global _model, _preprocess, _tokenizer
+    if _model is None:
+        print("🔹 Loading OpenCLIP model...")
+        _model, _, _preprocess = open_clip.create_model_and_transforms(
+            'ViT-B-32', 
+            pretrained='laion2b_s34b_b79k'
+        )
+        _tokenizer = open_clip.get_tokenizer('ViT-B-32')
+        _model = _model.to(_device)
+        _model.eval()
+    return _model, _preprocess, _tokenizer
 
 def get_image_embedding(image_data):
     """
@@ -23,8 +33,9 @@ def get_image_embedding(image_data):
     if isinstance(image_data, str):
         image_data = base64.b64decode(image_data)
 
+    model, preprocess, _ = get_model()
     image = Image.open(io.BytesIO(image_data)).convert("RGB")
-    image_tensor = preprocess(image).unsqueeze(0).to(device)
+    image_tensor = preprocess(image).unsqueeze(0).to(_device)
 
     with torch.no_grad():
         embedding = model.encode_image(image_tensor)
@@ -33,7 +44,8 @@ def get_image_embedding(image_data):
     return embedding.cpu().numpy().astype("float32")
 
 def get_text_embedding(texts: list[str]):
-    tokens = tokenizer(texts).to(device)
+    model, _, tokenizer = get_model()
+    tokens = tokenizer(texts).to(_device)
     with torch.no_grad():
         embeddings = model.encode_text(tokens)
         embeddings /= embeddings.norm(dim=-1, keepdim=True)
