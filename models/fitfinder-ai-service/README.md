@@ -1,3 +1,13 @@
+---
+title: FitFinder AI Service
+emoji: 🧠
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_file: app/main.py
+pinned: false
+---
+
 # 🧠 FitFinder AI Service
 
 This service powers the AI layer of the **FitFinder** system — responsible for tasks like object segmentation (SAM) and image embedding generation (OpenCLIP).

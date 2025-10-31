@@ -8,17 +8,19 @@ WORKDIR /app
 RUN pip install poetry
 
 # Copy project definition first (better for caching)
-COPY pyproject.toml poetry.lock* ./
+COPY pyproject.toml poetry.lock* README.md ./
 
 # Install dependencies system-wide (no virtualenv inside container)
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false 
+
+# Install dependencies (no root install)
+RUN poetry install --no-root --no-interaction --no-ansi
 
 # Copy the rest of the app
 COPY ./app ./app
 
 # Expose port
-EXPOSE 8000
+EXPOSE 7860
 
 # Command to run FastAPI
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
