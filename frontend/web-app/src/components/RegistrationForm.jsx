@@ -101,13 +101,13 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                 Notifier.notifyError("Email already exists");
             }
             else if (data.status == 201){
-                navigate('/home');
+                navigate('/');
                 Notifier.notifySuccess("Welcome to FitFinder");
             }
             else
                 throw new Error(data.status);
         } catch (error) {
-            Notifier.notifyError("Signup failed: ", error.message);
+            Notifier.notifyError("Signup failed: ", error);
         }
         // Release blocker after signup
         flushSync(() => {
@@ -129,18 +129,18 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             const data = await login(loginFormVariables.email,
                 loginFormVariables.password);
             // check of password is wrong
-            if (data.status == 401){
+            if (data.status == 422){
                 Notifier.notifyError("Password is not correct");
                 setErrors(prev => ({...prev, ['wrongPassword']: true}));
             }
             else if (data.status == 200){
                 Notifier.notifySuccess("Welcome back!");
-                navigate('/home');
+                navigate('/');
             }
             else 
                 throw new Error(data.status);
         } catch (error) {
-            Notifier.notifyError("Login failed: ", error.message);
+            Notifier.notifyError("Login failed: ", error);
         }
 
         // Release blocker after login
@@ -169,7 +169,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else 
                 throw new Error(data.status);
         } catch (error) {
-            Notifier.notifyError("Sending code failed: ", error.message);
+            Notifier.notifyError("Sending code failed: ", error);
         }
 
         // Release blocker after login
@@ -218,7 +218,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             else 
                 throw new Error(data.status);
         } catch (error) {
-            Notifier.notifyError("Updating password failed: ", error.message);
+            Notifier.notifyError("Updating password failed: ", error);
         }
 
         // Release blocker after login
@@ -321,7 +321,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
 
                                 // Example: signup/login using Google data
                                 // await signup(userInfo.name, userInfo.email, userInfo.sub);
-                                navigate('/home');
+                                navigate('/');
                                 }}
                                 onError={() => {
                                 console.log("Google Sign In Failed");
@@ -353,16 +353,22 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 <input  name="email" placeholder="Email" required onChange={handleLoginFormVariables}/>
                             </div>
                             <div className="input-group">
-                                <i className='bx bxs-lock-alt'></i>
-                                <input  
-                                    name="password" 
-                                    placeholder="Password" 
-                                    style={{border: errors.wrongCode && "1px solid red"}}
+                                <input
+                                    type={passwordVisible ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Password"
                                     onChange={handleLoginFormVariables}
+                                    style={{border: errors.wrongPassword && "1px solid red"}}
                                     required/>
-                                {errors.wrongPassword && <p style={{color:"red"}}>Entered password is not correct please try again or press <strong>Forgot your Passord</strong>.</p>}
+                                <img
+                                    src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
+                                    alt={passwordVisible ? "Show password" : "Hide password"}
+                                    className="password-toggle-icon"
+                                    onClick={() => setPasswordVisible(!passwordVisible)}
+                                />
                             
                             </div>
+                            {errors.wrongPassword && <p style={{color:"red", textAlign:"start"}}>Entered password is not correct please try again or press <br/><strong>Forgot your Passord</strong>.</p>}
 
                             <Link onClick={(e) =>{e.preventDefault(); setLoginPhase('sendCode')}} className="pointer">
                                 Forgot your password?
