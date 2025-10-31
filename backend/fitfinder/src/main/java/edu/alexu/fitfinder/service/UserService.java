@@ -1,7 +1,7 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.UserDTO;
-import edu.alexu.fitfinder.entity.UserEntity;
+import edu.alexu.fitfinder.entity.User;
 import edu.alexu.fitfinder.exception.ValidatorException;
 import edu.alexu.fitfinder.repository.UserRepo;
 import edu.alexu.fitfinder.service.signup.EmailValidator;
@@ -28,7 +28,7 @@ public class UserService {
     userNameValidator.validate(user);
 
     String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-    userRepo.save(new UserEntity(user.getUserName(), hashedPassword, user.getEmail()));
+    userRepo.save(new User(user.getUserName(), hashedPassword, user.getEmail()));
   }
 
   public void LogIn(UserDTO user) throws LogInException {
@@ -38,7 +38,7 @@ public class UserService {
       throw new LogInException("Email and password are required");
     }
 
-    UserEntity existingUser = userRepo.findByEmail(email);
+    User existingUser = userRepo.findByEmail(email);
     if (existingUser == null) {
       throw new LogInException("Invalid email or password");
     }
