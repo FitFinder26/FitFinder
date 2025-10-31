@@ -53,3 +53,48 @@ heels
 women bags
 men bags
 kids bags
+black dress
+white shirt
+floral print top
+striped t-shirt
+plaid shirt
+polka dot dress
+red dress
+blue jeans
+green t-shirt
+pink blouse
+beige coat
+grey hoodie
+navy blazer
+brown jacket
+purple skirt
+yellow top
+checked shirt
+leopard print dress
+floral skirt
+tie dye hoodie
+camouflage pants
+striped blouse
+plaid jacket
+dotted top
+graphic t-shirt
+houndstooth blazer
+silk dress
+cotton t-shirt
+linen pants
+wool sweater
+denim jacket
+leather jacket
+velvet dress
+satin blouse
+corduroy pants
+knit cardigan
+oversized hoodie
+slim fit jeans
+high waisted skirt
+fitted blazer
+loose fit shirt
+pleated dress
+off shoulder top
+button up shirt
+long sleeve t-shirt
