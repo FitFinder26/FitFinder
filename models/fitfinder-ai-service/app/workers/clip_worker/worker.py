@@ -1,6 +1,7 @@
+# worker.py
 import requests
-from app.workers.clip_worker.faiss_manager import add_embedding
 from app.workers.clip_worker.clip_model import get_image_embedding
+from app.workers.clip_worker.faiss_manager import add_embedding
 
 def process_clip_task(task):
     try:
@@ -21,3 +22,4 @@ def process_clip_task(task):
         )
     except requests.RequestException as e:
         print("Callback failed:", e)
+
