@@ -46,7 +46,7 @@ async def create_segment_job(
     }
 
 
-@router.post("re-segment/", status_code=202)  # 202 Accepted
+@router.post("/re-segment/", status_code=202)  # 202 Accepted
 async def create_re_segment_job(
     background_tasks: BackgroundTasks,
     job_id: str = Form(..., description="The unique ID for this job."),
