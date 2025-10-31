@@ -31,16 +31,24 @@ public class SecurityConfig {
                 cors.configurationSource(
                     request -> {
                       var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
-                      corsConfiguration.setAllowedOrigins(List.of("http://localhost:8080"));
+                      corsConfiguration.setAllowedOrigins(List.of("*"));
                       corsConfiguration.setAllowedMethods(
                           List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                       corsConfiguration.setAllowedHeaders(List.of("*"));
-                      corsConfiguration.setAllowCredentials(true);
+                      corsConfiguration.setAllowCredentials(false);
                       return corsConfiguration;
                     }))
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/auth/login", "/auth/signup", "/auth/refresh", "/auth/logout")
+                auth.requestMatchers(
+                        "/auth/login",
+                        "/auth/signup",
+                        "/auth/refresh",
+                        "/auth/logout",
+                        "/segment/upload",
+                        "/re-segment",
+                        "/segmentation/callback",
+                        "/ws")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
