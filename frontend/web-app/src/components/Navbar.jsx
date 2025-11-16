@@ -35,7 +35,7 @@ export default function Navbar( { navigationBlocked } ){
     return (
         <>
         <NavContainer>
-            <div style={{ gridColumn: '1', textAlign: 'left', cursor: 'pointer'}} onClick={() => navigate('/')}>
+            <div style={{ gridColumn: '1', textAlign: 'left', cursor: 'pointer'}} onClick={() => navigate('/', { state: {cameFrom:"navbar"} })}>
                 <Logo fontSize={70} scale={0.4} variant={0} />
             </div>
             <div style={{ gridColumn: '2', textAlign: 'center' }}>

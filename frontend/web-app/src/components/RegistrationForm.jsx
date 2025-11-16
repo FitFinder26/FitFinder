@@ -101,7 +101,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                 Notifier.notifyError("Email already exists");
             }
             else if (data.status == 201){
-                navigate('/');
+                navigate('/', { state: { cameFrom: 'signup' } });
                 Notifier.notifySuccess("Welcome to FitFinder");
             }
             else
@@ -135,7 +135,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
             }
             else if (data.status == 200){
                 Notifier.notifySuccess("Welcome back!");
-                navigate('/');
+                navigate('/', { state: { cameFrom: 'login' } });
             }
             else 
                 throw new Error(data.status);
@@ -321,7 +321,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
 
                                 // Example: signup/login using Google data
                                 // await signup(userInfo.name, userInfo.email, userInfo.sub);
-                                navigate('/');
+                                navigate('/', { state: { cameFrom: 'google-signup' } });
                                 }}
                                 onError={() => {
                                 console.log("Google Sign In Failed");

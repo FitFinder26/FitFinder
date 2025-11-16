@@ -2,17 +2,21 @@ import styled, { keyframes } from 'styled-components';
 import whiteCameraIcon from '../assets/camera-icon-white.png';
 import blackCameraIcon from '../assets/camera-icon.png';
 import ilustratorImage from '../assets/ilustrator.png';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LazyMount from '../components/LazyMount'
 import Logo from '../components/Logo';
 import ImageEditor from '../components/ImageEditor';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Recommendations from '../components/Recommendations';
+import PreferenceSurvey from '../components/PreferenceSurvey';
 
 export default function HomePage (){
     const inputRef = useRef(null);
     const [imageUploaded, setImageUploaded] = useState(false);
     const [imageURL, setImageURL] = useState(null);
+    const [showPreferenceSurvey, setShowPreferenceSurvey] = useState(false);
+    const location = useLocation();
+    const cameFrom = location.state?.cameFrom || null;
     const navigator = useNavigate();
 
     const handleUploadImage = (e) => {
@@ -21,6 +25,12 @@ export default function HomePage (){
         setImageURL(URL.createObjectURL(file));
         setImageUploaded(true);
     };
+
+    useEffect(() => {
+        if (cameFrom === 'signup' || cameFrom === 'google-signup') {
+            setShowPreferenceSurvey(true);
+        }
+    }, [cameFrom]);
 
     return (
         <Container>
@@ -94,6 +104,7 @@ export default function HomePage (){
             </LazyMount>
 
             <ImageEditor imageURL={imageURL} setImageURL={setImageURL} imageUploaded={imageUploaded} setImageUploaded={setImageUploaded}/>
+            {showPreferenceSurvey && <PreferenceSurvey onClose={() => setShowPreferenceSurvey(false)} />}
         </Container>
     );
 };
