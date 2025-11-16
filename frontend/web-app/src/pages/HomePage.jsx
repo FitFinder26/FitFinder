@@ -6,12 +6,14 @@ import { useRef, useState } from 'react';
 import LazyMount from '../components/LazyMount'
 import Logo from '../components/Logo';
 import ImageEditor from '../components/ImageEditor';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Recommendations from '../components/Recommendations';
 
 export default function HomePage (){
     const inputRef = useRef(null);
     const [imageUploaded, setImageUploaded] = useState(false);
     const [imageURL, setImageURL] = useState(null);
+    const navigator = useNavigate();
 
     const handleUploadImage = (e) => {
         const file = e.target.files[0];
@@ -35,21 +37,29 @@ export default function HomePage (){
                         style={{ display: "none" }}
                         onChange={handleUploadImage}
                     />
-                    <SearchWithImageButton 
-                        onClick={() => inputRef.current.click()}
-                        onMouseOver={(e)=> e.currentTarget.children[0].src = blackCameraIcon}
-                        onMouseOut={(e)=> e.currentTarget.children[0].src = whiteCameraIcon}
-                        onFocus={(e)=> e.currentTarget.children[0].src = blackCameraIcon}
-                        onBlur={(e)=> e.currentTarget.children[0].src = whiteCameraIcon}
-                        tabIndex={0}>
-                        <img src={whiteCameraIcon} style={{ width: '24px', height: '24px', cursor: 'pointer' }} alt="Camera Icon" />
-                        <label style={{ marginLeft: '0.5rem', cursor: 'pointer' }}>Search With Image</label>
-                    </SearchWithImageButton>
+                    <div style={{display:"flex", flexDirection:"row", gap:"1rem", justifyContent:"center", alignItems:"center"}}>
+                        <SearchWithImageButton 
+                            onClick={() => inputRef.current.click()}
+                            onMouseOver={(e)=> e.currentTarget.children[0].src = blackCameraIcon}
+                            onMouseOut={(e)=> e.currentTarget.children[0].src = whiteCameraIcon}
+                            onFocus={(e)=> e.currentTarget.children[0].src = blackCameraIcon}
+                            onBlur={(e)=> e.currentTarget.children[0].src = whiteCameraIcon}
+                            tabIndex={0}>
+                            <img src={whiteCameraIcon} style={{ width: '24px', height: '24px', cursor: 'pointer' }} alt="Camera Icon" />
+                            <label style={{ marginLeft: '0.5rem', cursor: 'pointer' }}>Search With Image</label>
+                        </SearchWithImageButton>
+                        <AboutUsButton
+                            onClick={() => navigator('/inspiration')}>
+                            About us
+                        </AboutUsButton>
+                    </div>
                 </LeftHero>
                 <RightHero>
                     <img src={ilustratorImage} alt='illustrator image'/>
                 </RightHero>
             </Hero>
+
+            <Recommendations/>
 
             <LazyMount>
                 <Feedback>
@@ -171,6 +181,24 @@ const SearchWithImageButton = styled.button`
             transform: translateX(-15%);
             font-size: 1.005rem;
         }
+    }
+`;
+
+const AboutUsButton = styled.button`
+    border: 2px solid white;
+    transition: all 0.5s;
+    border-radius: 20px;
+    color: white;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;  
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background-color: white;
+        color: black;
     }
 `;
 

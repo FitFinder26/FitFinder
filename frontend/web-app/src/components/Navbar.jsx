@@ -52,8 +52,8 @@ export default function Navbar( { navigationBlocked } ){
                 </SearchWithImageButton>
             </div>
             <div style={{ gridColumn: '3', textAlign: 'right', gap: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
-                <NavButton onClick={() => navigate('/inspiration')}
-                    disabled={navigationBlocked}>Inspiration</NavButton>
+                {/* <NavButton onClick={() => navigate('/inspiration')}
+                    disabled={navigationBlocked}>Inspiration</NavButton> */}
                 {isLoggedIn ?
                 <NavButton onClick={()=>alert(isLoggedIn)}>Profile</NavButton>:
                 (<>
