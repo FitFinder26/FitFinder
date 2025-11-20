@@ -1,4 +1,4 @@
-# scraper/run_scraper.py
+# scraper/run_ebay_scraper.py
 from scraper.ebay_scraper import scrape_ebay_items
 import json
 import os
