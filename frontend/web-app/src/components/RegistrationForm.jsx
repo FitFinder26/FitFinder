@@ -17,8 +17,13 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [loginPhase, setLoginPhase] = useState('login'); // 'login', 'sendCode', 'updatePassword'
+    const [code, setCode] = useState('');
+    const [errors, setErrors] = useState({
+        emailAlreadyExist: false,
+        wrongPassword: false,
+        wrongCode: false
+    });
     const {login, signup, sendCode, updatePassword} = useAuthContext();
-
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -87,12 +92,22 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
 
         // Perform signup
         try {
-            await signup(signupFormVariables.username, 
+            const data = await signup(signupFormVariables.username, 
                     signupFormVariables.email, 
                     signupFormVariables.password);
-            navigate('/home');
+            // check if email already exists
+            if (data.status == 409){
+                setErrors(prev => ({...prev, ['emailAlreadyExist']: true}));
+                Notifier.notifyError("Email already exists");
+            }
+            else if (data.status == 201){
+                navigate('/', { state: { cameFrom: 'signup' } });
+                Notifier.notifySuccess("Welcome to FitFinder");
+            }
+            else
+                throw new Error(data.status);
         } catch (error) {
-            console.error("Signup failed:", error);
+            Notifier.notifyError("Signup failed: ", error);
         }
         // Release blocker after signup
         flushSync(() => {
@@ -111,11 +126,21 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform login
         try {
-            await login(loginFormVariables.email,
+            const data = await login(loginFormVariables.email,
                 loginFormVariables.password);
-            navigate('/home');
+            // check of password is wrong
+            if (data.status == 422){
+                Notifier.notifyError("Password is not correct");
+                setErrors(prev => ({...prev, ['wrongPassword']: true}));
+            }
+            else if (data.status == 200){
+                Notifier.notifySuccess("Welcome back!");
+                navigate('/', { state: { cameFrom: 'login' } });
+            }
+            else 
+                throw new Error(data.status);
         } catch (error) {
-            console.error("Login failed:", error);
+            Notifier.notifyError("Login failed: ", error);
         }
 
         // Release blocker after login
@@ -134,13 +159,38 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform send code
         try {
-            await sendCode(forgotPasswordVariables.email);
-            Notifier.notifySuccess("Verification code sent to your email.");
-            setLoginPhase('updatePassword');
+            const data = await sendCode(forgotPasswordVariables.email);
+            if (data.status == 200){
+                const body = data.json();
+                setCode(body.code);
+                Notifier.notifySuccess("Verification code sent to your email.");
+                setLoginPhase('verifyCode');
+            }
+            else 
+                throw new Error(data.status);
         } catch (error) {
-            console.error("Sending code failed:", error);
-            Notifier.notifyError("Failed to send verification code.");
+            Notifier.notifyError("Sending code failed: ", error);
         }
+
+        // Release blocker after login
+        flushSync(() => {
+            setDisabled(false);
+            setNavigationBlocked(false);
+        });
+    }
+
+    const handleVerifyCode = async(e) => {
+        e.preventDefault();
+        // Block navigation
+        flushSync(() => {
+            setDisabled(true);
+            setNavigationBlocked(true);
+        });
+        // Perform verify code
+        if (forgotPasswordVariables.code === code)
+            setLoginPhase('updatePassword');
+        else
+            setErrors(prev => ({...prev, ['wrongCode']: true}));
 
         // Release blocker after login
         flushSync(() => {
@@ -158,14 +208,17 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
         // Perform update password
         try {
-            await updatePassword(forgotPasswordVariables.email,
+            const data = await updatePassword(forgotPasswordVariables.email,
                 forgotPasswordVariables.password
             );
-            Notifier.notifySuccess("Password updated successfully. You can now log in with your new password.");
-            setLoginPhase('login');
+            if (data.status == 200){
+                Notifier.notifySuccess("Password updated successfully. You can now log in with your new password.");
+                setLoginPhase('login');
+            }
+            else 
+                throw new Error(data.status);
         } catch (error) {
-            console.error("Updating password failed:", error);
-            Notifier.notifyError("Failed to update password.");
+            Notifier.notifyError("Updating password failed: ", error);
         }
 
         // Release blocker after login
@@ -175,18 +228,6 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
         });
     }
 
-    const handleResendCode = async(e) => {
-        e.preventDefault();
-        // Perform login
-        try {
-            await sendCode(forgotPasswordVariables.email);
-            Notifier.notifySuccess("Verification code resent to your email.");
-        } catch (error) {
-            console.error("Sending code failed:", error);
-            Notifier.notifyError("Failed to resend verification code.");
-        }
-        
-    }
 
     return(
         <div id="container" className="container">
@@ -199,10 +240,12 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                             <div className="input-group">
                                 <i className='bx bxs-lock-alt'></i>
                                 <input type="text" 
-                                    name="text" 
+                                    name="username" 
                                     placeholder="Username" 
-                                    pattern="^[A-Za-z0-9._]+$"
-                                    title="Username can only contain letters, numbers, underscores (_), and dots (.)"
+                                    pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
+                                    minLength={3}
+                                    maxLength={30}
+                                    title="Username can only contain letters, numbers, must start with a letter and of length between 3 to 30 characters"
                                     onChange={handleSignupFormVariables}
                                     required/>
                             </div>
@@ -215,12 +258,15 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$"
                                     title="Please enter a valid email address in the format: username@example.com"
                                     onChange={handleSignupFormVariables}
+                                    style={{border: errors.emailAlreadyExist && "1px solid red"}}
                                     required/>
+                                {errors.emailAlreadyExist && <p style={{color:"red", textAlign:"start"}}>Email already exists.</p>}
+
                             </div>
+                            
                        
                             <div className="input-group">
                                 <input
-                                    id="password"
                                     type={passwordVisible ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
@@ -261,10 +307,10 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     className="password-toggle-icon"
                                     onClick={() => setPasswordVisible(!passwordVisible)}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="signupButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
                             </button>
-                            <div class="divider">
+                            <div className="divider">
                                 <span>or</span>
                             </div>
                             <div className="google-signin">
@@ -275,7 +321,7 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
 
                                 // Example: signup/login using Google data
                                 // await signup(userInfo.name, userInfo.email, userInfo.sub);
-                                navigate('/home');
+                                navigate('/', { state: { cameFrom: 'google-signup' } });
                                 }}
                                 onError={() => {
                                 console.log("Google Sign In Failed");
@@ -307,19 +353,33 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                 <input  name="email" placeholder="Email" required onChange={handleLoginFormVariables}/>
                             </div>
                             <div className="input-group">
-                                <i className='bx bxs-lock-alt'></i>
-                                <input  name="password" placeholder="Password" required onChange={handleLoginFormVariables}/>
+                                <input
+                                    type={passwordVisible ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Password"
+                                    onChange={handleLoginFormVariables}
+                                    style={{border: errors.wrongPassword && "1px solid red"}}
+                                    required/>
+                                <img
+                                    src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
+                                    alt={passwordVisible ? "Show password" : "Hide password"}
+                                    className="password-toggle-icon"
+                                    onClick={() => setPasswordVisible(!passwordVisible)}
+                                />
+                            
                             </div>
+                            {errors.wrongPassword && <p style={{color:"red", textAlign:"start"}}>Entered password is not correct please try again or press <br/><strong>Forgot your Passord</strong>.</p>}
+
                             <Link onClick={(e) =>{e.preventDefault(); setLoginPhase('sendCode')}} className="pointer">
                                 Forgot your password?
                             </Link>
                             
                             
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
                             </button>
                             
-                            <div class="divider">
+                            <div className="divider">
                                 <span>or</span>
                             </div>
                             <div className="google-signin">
@@ -353,17 +413,42 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                         <form onSubmit={handleSendCode} className="form sign-in send-code-form" style={{display: loginPhase!='sendCode'&&'none', animation:loginPhase=='sendCode'&&'fadeIn 0.5s'}}>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
-                                <input  name="email" placeholder="Email" required onChange={handleForgotPasswordVariables}/>
+                                <input type="email"  name="email" placeholder="Email" required onChange={handleForgotPasswordVariables}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Send Code"}
                             </button>
+                        </form>
+                        {/* Verify code phase */}
+                        <form onSubmit={handleVerifyCode} className="form sign-in send-code-form" style={{display: loginPhase!='verifyCode'&&'none', animation:loginPhase=='verifyCode'&&'fadeIn 0.5s'}}>
+                            <p>Please copy and past the code sent to your email in the field below.</p>
+                            <div className="input-group">
+                                <i className='bx bxs-user'></i>
+                                <input 
+                                    type="text" 
+                                    name="code" 
+                                    placeholder="Code" 
+                                    style={{border: errors.wrongCode && "1px solid red"}}    
+                                    onChange={handleForgotPasswordVariables}
+                                    required/>
+                                {errors.wrongCode && <p style={{color:"red"}}>The code doesn't match the one sent to your email, please try again or press resend.</p>}
+                            </div>
+                            <button className="loginButton" type="submit" disabled={disabled}>
+                                {disabled ? <HashLoader size={20} color={"#fff"} /> : "Verify Code"}
+                            </button>
+                            <p>
+                                <Link onClick={handleSendCode} className="pointer">
+                                    Resend 
+                                </Link>
+                                <span>
+                                    &nbsp;code.
+                                </span>
+                            </p>
                         </form>
                         {/* Update password phase */}
                         <form onSubmit={handleUpdatePassword} className="form sign-in" style={{display: loginPhase!='updatePassword'&&'none', animation:loginPhase=='updatePassword'&&'fadeIn 0.5s'}}>
                             <div className="input-group">
                                 <input
-                                    id="password"
                                     type={passwordVisible ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
@@ -404,17 +489,9 @@ export default function RegistrationForm({ usedForm, setUsedForm, setNavigationB
                                     className="password-toggle-icon"
                                     onClick={() => setPasswordVisible(!passwordVisible)}/>
                             </div>
-                            <button type="submit" disabled={disabled}>
+                            <button className="loginButton" type="submit" disabled={disabled}>
                                 {disabled ? <HashLoader size={20} color={"#fff"} /> : "Update Password"}
                             </button>
-                            <p>
-                                <Link onClick={handleResendCode} className="pointer">
-                                    Resend 
-                                </Link>
-                                <span>
-                                    &nbsp;code.
-                                </span>
-                            </p>
                         </form>
                     </div>
                     <div className="form-wrapper">

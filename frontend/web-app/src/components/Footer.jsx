@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 
 export default function Footer({ navigationBlocked }){
@@ -22,12 +22,21 @@ export default function Footer({ navigationBlocked }){
     );
 }
 
+const slideUp = keyframes`
+    from{
+        transform: translateY(10%);
+    }  
+    to{
+        transform: translateY(0%);
+    }
+`;
+
 const FooterContainer = styled.footer`
     background-color: #ffffff;
     padding: 1rem;
     text-align: center;
-    z-index: 1000;
-    position: absolute;
+    /* z-index: 1000; */
+    /* position: absolute; */
     width: 100%;
     bottom: 0;
     height: auto;
@@ -35,6 +44,8 @@ const FooterContainer = styled.footer`
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    animation: ${slideUp} 1s;
+    margin-top: auto; /* pushes footer to bottom */
 `;
 
 const Link = styled.a`
