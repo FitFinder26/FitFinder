@@ -1,7 +1,7 @@
 import json
-from pickle import NONE
 from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query
+from app.api.connection import segment_queue, resegment_queue
 
 from app.services.simulator import image_resegment_job, image_segment_job
 
@@ -10,7 +10,7 @@ router = APIRouter()
 
 # Define our *trusted* image source
 TRUSTED_HOST = "res.cloudinary.com"
-
+# /api/v1/job/
 @router.post("/segment/", status_code=202)  # 202 Accepted
 async def create_segment_job(
     background_tasks: BackgroundTasks,
@@ -27,7 +27,7 @@ async def create_segment_job(
         )
 
     # Enqueue the background task
-    background_tasks.add_task(
+    segment_queue.enqueue(
         image_segment_job,
         job_id=job_id,
         image_url=image_url,
@@ -48,7 +48,6 @@ async def create_segment_job(
 
 @router.post("/re-segment/", status_code=202)  # 202 Accepted
 async def create_re_segment_job(
-    background_tasks: BackgroundTasks,
     job_id: str = Form(..., description="The unique ID for this job."),
     image_url: str = Form(..., description="The public URL of the image (e.g., from Cloudinary)."),
     points_json: str = Form(..., description="A JSON string of points, e.g., '[[10, 20], [30, 40]]' or '[{\"x\": 10, \"y\": 20}]'"),
@@ -75,7 +74,7 @@ async def create_re_segment_job(
 
 
     # Enqueue the background task
-    background_tasks.add_task(
+    resegment_queue.enqueue(
         image_resegment_job,
         job_id=job_id,
         image_url=image_url,
