@@ -1,7 +1,7 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.UserDTO;
-import edu.alexu.fitfinder.entity.UserEntity;
+import edu.alexu.fitfinder.entity.User;
 import edu.alexu.fitfinder.exception.ValidatorException;
 import edu.alexu.fitfinder.repository.UserRepo;
 import edu.alexu.fitfinder.service.signup.EmailValidator;
@@ -33,7 +33,7 @@ public class UserService {
 
     // save record in the database
     String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-    UserEntity databaseRecord = new UserEntity(user.getUserName(), hashedPassword, user.getEmail());
+    User databaseRecord = new UserEntity(user.getUserName(), hashedPassword, user.getEmail());
     userRepo.save(databaseRecord);
 
     // generate jwt authentication token
@@ -49,7 +49,7 @@ public class UserService {
       throw new LogInException("Email and password are required");
     }
 
-    UserEntity existingUser = userRepo.findByEmail(email);
+    User existingUser = userRepo.findByEmail(email);
     if (existingUser == null || !BCrypt.checkpw(password, existingUser.getPassword())) {
       throw new LogInException("Invalid email or password");
     }
@@ -58,5 +58,6 @@ public class UserService {
     Map<String, String> jwtToken = new HashMap<>();
     jwtToken.put("token", jwtService.generateToken(existingUser.getUserId() + ""));
     return jwtToken;
+
   }
 }
