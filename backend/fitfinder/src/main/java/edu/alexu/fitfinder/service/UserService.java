@@ -1,7 +1,7 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.UserDTO;
-import edu.alexu.fitfinder.entity.UserEntity;
+import edu.alexu.fitfinder.entity.User;
 import edu.alexu.fitfinder.exception.InvalidInputException;
 import edu.alexu.fitfinder.exception.UnauthorizedException;
 import edu.alexu.fitfinder.exception.UserAlreadyExistsException;
@@ -50,7 +50,7 @@ public class UserService {
     return cookie;
   }
 
-  public Map<String, String> SignUP(UserDTO user, HttpServletResponse response)
+  public Map<String, String>DTO user, HttpServletResponse response)
       throws InvalidInputException, UserAlreadyExistsException {
 
     Validator userNameValidator = new UserNameValidator();
@@ -62,7 +62,7 @@ public class UserService {
 
     // save record in the database
     String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-    UserEntity databaseRecord = new UserEntity(user.getUserName(), hashedPassword, user.getEmail());
+    User databaseRecord = new User(user.getUserName(), hashedPassword, user.getEmail());
     userRepo.save(databaseRecord);
 
     // generate jwt refresh token
@@ -83,7 +83,7 @@ public class UserService {
       throw new InvalidInputException("Email and password are required");
     }
 
-    UserEntity existingUser = userRepo.findByEmail(email);
+    User existingUser = userRepo.findByEmail(email);
     if (existingUser == null || !BCrypt.checkpw(password, existingUser.getPassword())) {
       throw new InvalidInputException("Invalid email or password");
     }
