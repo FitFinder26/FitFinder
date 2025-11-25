@@ -50,7 +50,7 @@ public class UserService {
     return cookie;
   }
 
-  public Map<String, String>DTO user, HttpServletResponse response)
+  public Map<String, String> SignUP(UserDTO user, HttpServletResponse response)
       throws InvalidInputException, UserAlreadyExistsException {
 
     Validator userNameValidator = new UserNameValidator();
