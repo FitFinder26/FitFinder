@@ -1,12 +1,9 @@
-# test_endpoints.py (or test_endpoint.py)
 from fastapi import APIRouter
 from pydantic import BaseModel
 from app.services.clip_service import enqueue_clip_task
 
-# 1. Define the router
 router = APIRouter()
 
-# 2. Define an endpoint function that uses the router
 @router.get("/")
 async def read_test_root():
     return {"status": "ok", "message": "Service is still alive LOL.", "service": "fitfinder-ai"}
