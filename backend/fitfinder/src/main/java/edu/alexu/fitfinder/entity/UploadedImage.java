@@ -23,12 +23,13 @@ public class UploadedImage {
 
   private Long uploadedFAISSId;
   private String imageURL;
-  private boolean[][] mask;
 
-  public UploadedImage(User user, Long uploadedFAISSId, String imageURL, boolean[][] mask) {
+  //  private boolean[][] mask;
+
+  public UploadedImage(User user, Long uploadedFAISSId, String imageURL /*, boolean[][] mask*/) {
     this.user = user;
     this.uploadedFAISSId = uploadedFAISSId;
     this.imageURL = imageURL;
-    this.mask = mask;
+    //    this.mask = mask;
   }
 }
