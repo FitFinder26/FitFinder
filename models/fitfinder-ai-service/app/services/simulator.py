@@ -23,6 +23,24 @@ async def generate_mock_mask(height: int, width: int):
         "mask_data": mask.tolist()
     }
 
+async def download_image(image_url: str, job_id: str) -> Optional[Image.Image]:
+    print(f"--- [Segment {job_id}] Downloading image from: {image_url} ---")
+    try:
+        response = await http_client.get(image_url)
+
+        response.raise_for_status()
+
+        image_bytes = response.content
+        image = Image.open(io.BytesIO(image_bytes))
+        print(f"--- [Segment {job_id}] Downloaded {len(image_bytes)} bytes. ---")
+        return image
+
+    except httpx.HTTPStatusError as e:
+        print(f"--- [Segment {job_id}] ERROR: HTTP error while downloading: {e} ---")
+    except httpx.RequestError as e:
+        print(f"--- [Segment {job_id}] ERROR: Network error while downloading: {e} ---")
+    return None
+
 
 
 async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, callback_url: Optional[str] = None):

@@ -1,9 +1,12 @@
+import array
+from email.mime import image
 import json
 from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query
 from app.api.connection import segment_queue, resegment_queue
-
-from app.services.simulator import image_resegment_job, image_segment_job
+import io
+from PIL import Image
+from app.services.simulator import image_resegment_job, image_segment_job, download_image
 
 
 router = APIRouter()
@@ -93,56 +96,38 @@ async def create_re_segment_job(
     }
 
 
-# @router.get("/search/", status_code=200) # 200 OK
-# async def search_job(
-#     # Change Form to Query
-#     prompt: str = Query(None, description="The search query string."),
-#     # Change Form to Query
-#     job_id: str = Query(..., description="Optional job ID to filter results.")
-# ):
-#     results = [
-#         'sample_result_1',
-#         'sample_result_2',
-#         'sample_result_3',
-#         'sample_result_4',
-#         'sample_result_5'
-#     ]
-#     return {
-#         "job_id": job_id,
-#         "results": results,
-#         "message": "Search functionality not yet implemented.",
-#         "service": "fitfinder-ai"
-#     }
-
-
-@router.post("/search/", status_code=200)
-async def search_item(
-    job_id: str = Form(...),
-    image_url: str = Form(...)
+@router.post("/search/", status_code=200) # 200 OK
+async def search_job(
+    # Change Form to Query
+    prompt: Optional[str] = Form(None, description="Search prompt or criteria."),
+    # Change Form to Query
+    job_id: str = Form(..., description="Optional job ID to filter results."),
+    image_url: str = Form(..., description="Optional image URL to filter results."),
+    mask: array.array = Form(..., description="Optional mask to filter results.")
 ):
-    """
-    1. Download image from Cloudinary
-    2. Get segmented object
-    3. Get embedding
-    4. Search FAISS for top 10 similar items
-    5. Return indices + distances to Spring Boot
-    """
-
-    from app.services.search_pipeline import run_full_search_pipeline
-
-    try:
-        indices, distances = await run_full_search_pipeline(image_url)
-
-        return {
-            "job_id": job_id,
-            "indices": indices.tolist(),
-            "distances": distances.tolist(),
-            "status": "completed",
-            "service": "fitfinder-ai"
-        }
-
-    except Exception as e:
+    if not image_url.startswith(f"https://{TRUSTED_HOST}"):
         raise HTTPException(
-            status_code=500,
-            detail=f"Search failed: {str(e)}"
+            status_code=400,
+            detail=f"Invalid image_url. Must be a secure URL from {TRUSTED_HOST}"
         )
+
+    image_bytes = await download_image(image_url, job_id=job_id)
+    segmented_images = app.state.sam_service.get_segmented_image(
+        image=Image.open(io.BytesIO(image_bytes)),
+        mask=mask)
+
+    # Placeholder: In a real implementation, this would query a database or index.
+
+    results = [
+        'sample_result_1',
+        'sample_result_2',
+        'sample_result_3',
+        'sample_result_4',
+        'sample_result_5'
+    ]
+    return {
+        "job_id": job_id,
+        "results": results,
+        "message": "Search functionality not yet implemented.",
+        "service": "fitfinder-ai"
+    }
