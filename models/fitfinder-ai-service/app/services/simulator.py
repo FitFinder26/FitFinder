@@ -9,6 +9,7 @@ import numpy as np
 
 http_client = httpx.AsyncClient(timeout=30.0)
 
+sam_instance = app.state.sam_service
 
 async def generate_mock_mask(height: int, width: int):
     # Create a fake 128x128 binary mask (white square in the middle)
@@ -19,7 +20,7 @@ async def generate_mock_mask(height: int, width: int):
     # Return the encoded mask
     return {
         "mask_id": "mock_1",
-        "mask_data": mask
+        "mask_data": mask.tolist()
     }
 
 
@@ -64,17 +65,19 @@ async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, call
     # Here, we would pass 'image_bytes' to ML model,
     # image processing library, etc.
     print(f"--- [Segment {job_id}] Processing image... ---")
-    await asyncio.sleep(5)  # Simulate 5 seconds of work
+
+    masks, scores, logits = sam_instance.segment_image(image, multimask=True)
 
     print(f"--- [Segment Job {job_id}] COMPLETED ---")
 
     if callback_url:
         print(f"--- [Segment {job_id}] Notifying callback URL: {callback_url} ---")
         # Simulate some results
+
         results = {
             "job_id": job_id,
             "status": "segmented",
-            "masks": [generate_mock_mask(image.height, image.width)]
+            "masks": [masks[i].tolist() for i in range(len(masks))]
         }
         try:
             response = await http_client.put(callback_url, json=results)
@@ -138,10 +141,12 @@ async def image_resegment_job(job_id: str, image_url: str, TRUSTED_HOST: str, po
     if callback_url:
         print(f"--- [Re-Segment Job {job_id}] Notifying callback URL: {callback_url} ---")
         # Simulate some results
+
+        mask = await generate_mock_mask(image.height, image.width)
         results = {
             "job_id": job_id,
             "status": "re-segmented",
-            "masks": [generate_mock_mask(image.height, image.width)]
+            "masks": [mask]
         }
         try:
             response = await http_client.put(callback_url, json=results)
