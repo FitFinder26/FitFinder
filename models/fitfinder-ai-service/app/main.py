@@ -30,7 +30,7 @@ def get_default_device():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global sam_service_instance
+
     print("Starting up the FitFinder AI Service...")
 
     device = get_default_device()
@@ -40,6 +40,8 @@ async def lifespan(app: FastAPI):
     print("Loading SAM2 Model...")
     try:
         sam_service_instance =  sam_service(checkpoint_path, config_path, device)
+
+        app.state.sam_service = sam_service_instance
         print("SAM2 Model Loaded Successfully.")
     except Exception as e:
         print(f"Error loading model: {e}")
@@ -47,8 +49,10 @@ async def lifespan(app: FastAPI):
     print("SAM Service initialized.")
 
     yield
-    sam_service_instance = None
     print("Shutting down the FitFinder AI Service...")
+    app.state.sam_service = None
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 
