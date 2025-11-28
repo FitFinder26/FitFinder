@@ -3,13 +3,14 @@ import io
 import random
 from PIL import Image
 from typing import Any, List, Optional
+from app.services.sam_service import SAM_service
 import httpx
 import numpy as np
 
 
 http_client = httpx.AsyncClient(timeout=30.0)
 
-sam_instance = app.state.sam_service
+
 
 async def generate_mock_mask(height: int, width: int):
     # Create a fake 128x128 binary mask (white square in the middle)
@@ -43,7 +44,13 @@ async def download_image(image_url: str, job_id: str) -> Optional[Image.Image]:
 
 
 
-async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, callback_url: Optional[str] = None):
+async def image_segment_job(
+        job_id: str,
+        sam_instance: SAM_service,
+        image_url: str,
+        TRUSTED_HOST: str,
+        callback_url: Optional[str] = None
+        ):
     """
     This is background worker function.
     It runs *after* the API response has been sent.
@@ -109,7 +116,14 @@ async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, call
             print(f"--- [Segment {job_id}] ERROR: Callback notification received non-2xx status: {e.response.status_code} ---")
 
 
-async def image_resegment_job(job_id: str, image_url: str, TRUSTED_HOST: str, points: List[Any], callback_url: Optional[str] = None):
+async def image_resegment_job(
+        job_id: str,
+        sam_instance: SAM_service,
+        image_url: str,
+        TRUSTED_HOST: str,
+        points: List[Any],
+        callback_url: Optional[str] = None
+        ):
     """
     This is  background worker function for re-segment job.
     It runs *after* the API response has been sent.
