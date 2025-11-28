@@ -1,10 +1,12 @@
-from PIL import Image
+import torch
 import numpy as np
+from PIL import Image
 from sam2.build_sam import build_sam2
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 
 class SAM_service():
-    def __init__(self, checkpoint, model_cfg):
+    def __init__(self, checkpoint, model_cfg, device):
+        # Initialize model using the passed device
         self.sam2_model = build_sam2(model_cfg, checkpoint, device=device)
         self.predictor = SAM2ImagePredictor(self.sam2_model)
 
@@ -13,34 +15,35 @@ class SAM_service():
         return np.array(image.convert("RGB"))
 
     def segment_image(self, image: Image.Image, multimask=False):
-        self.predictor.set_image(image)
+        image_np = self._prepare_image(image)
+        self.predictor.set_image(image_np)
 
         masks, scores, logits = self.predictor.predict(
             point_coords=None,
             point_labels=None,
             multimask_output=multimask,
         )
-
         return masks, scores, logits
 
     def resegment(self, image: Image.Image, pos_points, neg_points):
+        # Combine points
         points = pos_points + neg_points
         points = np.array(points)
 
+        # 1 for positive click, 0 for negative click
         positive_labels = np.ones(len(pos_points))
         negative_labels = np.zeros(len(neg_points))
         labels = np.concatenate((positive_labels, negative_labels), axis=0)
 
-        self.predictor.set_image(image)
+        image_np = self._prepare_image(image)
+        self.predictor.set_image(image_np)
 
         masks, scores, logits = self.predictor.predict(
             point_coords=points,
             point_labels=labels,
             multimask_output=False,
         )
-
         return masks, scores, logits
-
 
     def get_segmented_image(self, image: Image.Image, mask):
         """
@@ -64,5 +67,3 @@ class SAM_service():
         rgba_image[..., 3] = np.where(mask > 0, 255, 0)
 
         return Image.fromarray(rgba_image)
-
-
