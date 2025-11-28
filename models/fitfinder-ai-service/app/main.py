@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from .api.test import router as test_api
 from .api.connection import route as health_api
 from .api.jobs import router as jobs_api
-from .services import sam_service
+from .services.sam_service import SAM_service
 import torch
 
 sam_service_instance = None
@@ -39,7 +39,7 @@ async def lifespan(app: FastAPI):
 
     print("Loading SAM2 Model...")
     try:
-        sam_service_instance =  sam_service(checkpoint_path, config_path, device)
+        sam_service_instance =  SAM_service(checkpoint_path, model_cfg=config_path, device=device)
 
         app.state.sam_service = sam_service_instance
         print("SAM2 Model Loaded Successfully.")
