@@ -1,9 +1,12 @@
+import array
+from email.mime import image
 import json
 from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query
 from app.api.connection import segment_queue, resegment_queue
-
-from app.services.simulator import image_resegment_job, image_segment_job
+import io
+from PIL import Image
+from app.services.simulator import image_resegment_job, image_segment_job, download_image
 
 
 router = APIRouter()
@@ -93,13 +96,28 @@ async def create_re_segment_job(
     }
 
 
-@router.get("/search/", status_code=200) # 200 OK
+@router.post("/search/", status_code=200) # 200 OK
 async def search_job(
     # Change Form to Query
-    prompt: str = Query(None, description="The search query string."),
+    prompt: Optional[str] = Form(None, description="Search prompt or criteria."),
     # Change Form to Query
-    job_id: str = Query(..., description="Optional job ID to filter results.")
+    job_id: str = Form(..., description="Optional job ID to filter results."),
+    image_url: str = Form(..., description="Optional image URL to filter results."),
+    mask: array.array = Form(..., description="Optional mask to filter results.")
 ):
+    if not image_url.startswith(f"https://{TRUSTED_HOST}"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid image_url. Must be a secure URL from {TRUSTED_HOST}"
+        )
+
+    image_bytes = await download_image(image_url, job_id=job_id)
+    segmented_images = app.state.sam_service.get_segmented_image(
+        image=Image.open(io.BytesIO(image_bytes)),
+        mask=mask)
+
+    # Placeholder: In a real implementation, this would query a database or index.
+
     results = [
         'sample_result_1',
         'sample_result_2',
