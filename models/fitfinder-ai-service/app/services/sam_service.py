@@ -1,55 +1,68 @@
 from PIL import Image
 import numpy as np
-import torch
-from sam2 import build_sam2_model_from_checkpoint
+from sam2.build_sam import build_sam2
+from sam2.sam2_image_predictor import SAM2ImagePredictor
 
-MODEL_CHECKPOINT = "sam2_hiera_large.pt"
+class SAM_service():
+    def __init__(self, checkpoint, model_cfg):
+        self.sam2_model = build_sam2(model_cfg, checkpoint, device=device)
+        self.predictor = SAM2ImagePredictor(self.sam2_model)
 
-# Initialize device (only once)
-def _init_device():
-    if torch.cuda.is_available():
-        device = torch.device("cuda")
-    elif torch.backends.mps.is_available():
-        device = torch.device("mps")
-    else:
-        device = torch.device("cpu")
-    print(f"Using device: {device}")
-    return device
+    def _prepare_image(self, image: Image.Image):
+        """Helper to convert PIL to Numpy array for SAM"""
+        return np.array(image.convert("RGB"))
 
-# Load SAM model (only once)
-def _load_sam_model(device):
-    sam_model = build_sam2_model_from_checkpoint(MODEL_CHECKPOINT)
-    sam_model.to(device)
-    sam_model.eval()
-    return sam_model
+    def segment_image(self, image: Image.Image, multimask=False):
+        self.predictor.set_image(image)
 
-# Global initialization
-device = _init_device()
-sam_model = _load_sam_model(device)
+        masks, scores, logits = self.predictor.predict(
+            point_coords=None,
+            point_labels=None,
+            multimask_output=multimask,
+        )
 
+        return masks, scores, logits
 
-def segment(image: Image.Image):
-    """
-    Run SAM2 segmentation on the given image.
-    Returns masks or segmented regions.
-    """
-    # TODO: Implement SAM2 inference here
-    pass
+    def resegment(self, image: Image.Image, pos_points, neg_points):
+        points = pos_points + neg_points
+        points = np.array(points)
 
+        positive_labels = np.ones(len(pos_points))
+        negative_labels = np.zeros(len(neg_points))
+        labels = np.concatenate((positive_labels, negative_labels), axis=0)
 
-def resegment(image: Image.Image, clues: dict):
-    """
-    Rerun segmentation with user-provided clues.
-    Clues may include points, boxes, or masks.
-    """
-    # TODO: Implement SAM2 guided inference here
-    pass
+        self.predictor.set_image(image)
+
+        masks, scores, logits = self.predictor.predict(
+            point_coords=points,
+            point_labels=labels,
+            multimask_output=False,
+        )
+
+        return masks, scores, logits
 
 
-def create_segmented_object(image: Image.Image, mask: np.ndarray):
-    """
-    Combine original image and mask to produce final visualization
-    or extracted object.
-    """
-    # TODO: Blend image and mask or crop region
-    pass
+    def get_segmented_image(self, image: Image.Image, mask):
+        """
+        Applies the mask to the image and returns a transparent PNG.
+        """
+        image_np = self._prepare_image(image)
+
+        # Ensure mask is in the correct shape (H, W)
+        # SAM often returns (1, H, W) or (N, H, W), we need the single mask plane
+        if len(mask.shape) == 3:
+            mask = mask[0]
+
+        # Create an RGBA image
+        h, w, c = image_np.shape
+        rgba_image = np.zeros((h, w, 4), dtype=np.uint8)
+
+        # Copy RGB channels
+        rgba_image[..., :3] = image_np
+
+        # Set Alpha channel: 255 (opaque) where mask is True, 0 (transparent) elsewhere
+        rgba_image[..., 3] = np.where(mask > 0, 255, 0)
+
+        return Image.fromarray(rgba_image)
+
+
