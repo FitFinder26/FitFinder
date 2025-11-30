@@ -11,10 +11,12 @@ RUN pip install poetry
 COPY pyproject.toml poetry.lock* README.md ./
 
 # Install dependencies system-wide (no virtualenv inside container)
-RUN poetry config virtualenvs.create false 
+RUN poetry config virtualenvs.create false
 
 # Install dependencies (no root install)
 RUN poetry install --no-root --no-interaction --no-ansi
+
+RUN pip install open_clip_torch
 
 # Copy the rest of the app
 COPY ./app ./app
