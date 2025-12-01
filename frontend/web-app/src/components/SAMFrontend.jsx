@@ -30,10 +30,6 @@ export default function SAMFrontend({
   useEffect(() => {
     if (!imageURL || !canvasRef.current) return;
 
-    const sessionId = segmentationService.connect();
-    setSessionID(sessionId);
-    // console.log("Stored Session ID from SAMFrontend:", sessionId);
-
     const img = new Image();
     img.src = imageURL;
     img.onload = () => {
@@ -52,12 +48,27 @@ export default function SAMFrontend({
 
   // prevent default right click on canvas
   useEffect(() => {
+    const sessionId = segmentationService.connect();
+    setSessionID(sessionId);
+    // console.log("Stored Session ID from SAMFrontend:", sessionId);
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const handleContextMenu = (e) => e.preventDefault();
     canvas.addEventListener("contextmenu", handleContextMenu);
     return () => canvas.removeEventListener("contextmenu", handleContextMenu);
   }, []);
+
+  // receive masks from segmentationService and close the websocket on unmount
+  useEffect(() => {
+    const masksFromService = segmentationService.getMasks();
+    if (masksFromService) {
+      setMasks(masksFromService);
+      console.log("Masks received in SAMFrontend:", masksFromService);
+      setLoading(false);
+      segmentationService.endSession();
+    }
+  }, [segmentationService]);
 
   // Send image to backend SAM API
   const processImage = async () => {
@@ -72,19 +83,10 @@ export default function SAMFrontend({
     const formData = new FormData();
     formData.append("image", file);
 
-    await segmentationService
-      .segment(formData)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setMasks(data.masks);
-      }); // { masks: [ {id, points:[[x,y], ...]} ] }
+    await segmentationService.segment(formData);
 
     // tester
-    const data = ImageSegmenterTester(imageObj, 5, 4, 4);
-
-    setMasks(data.masks);
-    setLoading(false);
+    // const data = ImageSegmenterTester(imageObj, 5, 4, 4);
   };
 
   // Click mask to select/deselect

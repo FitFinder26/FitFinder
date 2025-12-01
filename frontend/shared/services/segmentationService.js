@@ -1,6 +1,7 @@
 import { apiClient } from "./apiClient";
 let sessionId = null;
 let ws = null;
+let masks = null;
 export const segmentationService = {
   connect: () => {
     ws = new WebSocket("ws://localhost:8081/ws");
@@ -19,10 +20,9 @@ export const segmentationService = {
           console.log("Session ID:", data.sessionId);
           // store it properly
           sessionId = data.sessionId;
-          // console.log("Stored Session ID from the service:", sessionId);
-        } else {
-          console.log("Received:", data);
-          // handle masked data or messages
+        } else if (data.mask) {
+          masks = data.mask;
+          console.log("Masks array updated in the service:", masks);
         }
       } catch (error) {
         console.error("Invalid JSON:", event.data);
@@ -52,6 +52,8 @@ export const segmentationService = {
   },
 
   getSessionId: () => sessionId,
+
+  getMasks: () => masks,
 
   segment: async (formData) => {
     formData.append("sessionId", sessionId);
