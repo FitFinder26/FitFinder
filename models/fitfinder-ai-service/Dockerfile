@@ -18,6 +18,8 @@ RUN poetry install --no-root --no-interaction --no-ansi
 
 RUN pip install open_clip_torch
 
+RUN pip install faiss-cpu
+
 # Copy the rest of the app
 COPY ./app ./app
 
