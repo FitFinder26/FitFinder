@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import MagicButton from "./MagicButton";
 import { HashLoader } from "react-spinners";
-import { SAMService } from "../../../shared/services/SAMService";
-import styled, { keyframes } from "styled-components";
-import { ImageSegmenterTester } from "../../../shared/components/ImageSegmenterTester";
 import { Notifier } from "./Notifier";
 import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
+import styled, { keyframes } from "styled-components";
 import { segmentationService } from "../../../shared/services/segmentationService";
+// import { bigArray } from "./masks";
 
 export default function SAMFrontend({
   imageURL,
@@ -17,40 +16,23 @@ export default function SAMFrontend({
   setSelectedSegments,
   setIsBeingCustomized,
 }) {
-  const [masks, setMasks] = useState([]);
+  // const [masks, setMasks] = useState(bigArray); // raw SAM masks
+  const [masks, setMasks] = useState([]); // raw SAM masks
+  const [maskCanvases, setMaskCanvases] = useState([]); // blue overlays
+  const [borderCanvases, setBorderCanvases] = useState([]); // strong pink borders
   const [selected, setSelected] = useState([]);
-  const [selectedPoints, setSelectedPoints] = useState([]);
-  const [deselectedPoints, setDeselectedPoints] = useState([]);
   const [hovered, setHovered] = useState(null);
   const [clickMode, setClickMode] = useState("add"); // "add" or "remove"
-  const [sessionID, setSessionID] = useState(null);
+  const [selectedPoints, setSelectedPoints] = useState([]);
+  const [deselectedPoints, setDeselectedPoints] = useState([]);
+  const [sessionStarted, setSessionStarted] = useState(false);
+  const [segmentationStatus, setSegmentationStatus] = useState("idle");
   const canvasRef = useRef(null);
 
-  // Draw the image on canvas when imageURL changes
-  useEffect(() => {
-    if (!imageURL || !canvasRef.current) return;
-
-    const img = new Image();
-    img.src = imageURL;
-    img.onload = () => {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
-
-      // Make canvas match image size or parent container
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      setImageObj(img);
-    };
-  }, [imageURL]);
-
-  // prevent default right click on canvas
+  // Prevent right-click & start session
   useEffect(() => {
     const sessionId = segmentationService.connect();
-    setSessionID(sessionId);
-    // console.log("Stored Session ID from SAMFrontend:", sessionId);
+    if (sessionId) setSessionStarted(true);
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -61,18 +43,109 @@ export default function SAMFrontend({
 
   // receive masks from segmentationService and close the websocket on unmount
   useEffect(() => {
-    const masksFromService = segmentationService.getMasks();
-    if (masksFromService) {
-      setMasks(masksFromService);
-      console.log("Masks received in SAMFrontend:", masksFromService);
+    // Subscribe to service updates
+    const unsubscribe = segmentationService.subscribeToMasks((newMasks) => {
+      const convertedMasks = convertMasksToPoints(newMasks);
+      console.log(
+        "number of masks received in SAMFrontend:",
+        convertedMasks.length
+      );
+      setMasks(convertedMasks);
+      console.log("Masks received in SAMFrontend:", newMasks);
+      setSegmentationStatus("completed");
       setLoading(false);
-      segmentationService.endSession();
-    }
-  }, [segmentationService]);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Load main image
+  useEffect(() => {
+    if (!imageURL || !canvasRef.current) return;
+    const img = new Image();
+    img.src = imageURL;
+    img.onload = () => {
+      const canvas = canvasRef.current;
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      setImageObj(img);
+    };
+  }, [imageURL]);
+
+  // Pre-render mask canvases and borders
+  useEffect(() => {
+    if (!masks.length) return;
+
+    const blueCanvases = [];
+    const pinkBorderCanvases = [];
+
+    masks.forEach((mask) => {
+      const h = mask.length;
+      const w = mask[0].length;
+
+      // Mask overlay (blue)
+      const maskCanvas = document.createElement("canvas");
+      maskCanvas.width = w;
+      maskCanvas.height = h;
+      const mCtx = maskCanvas.getContext("2d");
+      const imgData = mCtx.createImageData(w, h);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const i = (y * w + x) * 4;
+          if (mask[y][x] === 1) {
+            imgData.data[i] = 0;
+            imgData.data[i + 1] = 150;
+            imgData.data[i + 2] = 255;
+            imgData.data[i + 3] = 100; // semi-transparent blue
+          } else imgData.data[i + 3] = 0;
+        }
+      }
+      mCtx.putImageData(imgData, 0, 0);
+      blueCanvases.push(maskCanvas);
+
+      // Border overlay (strong pink)
+      const borderCanvas = document.createElement("canvas");
+      borderCanvas.width = w;
+      borderCanvas.height = h;
+      const bCtx = borderCanvas.getContext("2d");
+      const bImgData = bCtx.createImageData(w, h);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          if (mask[y][x] === 1) {
+            // Only outline pixels (check neighbors)
+            const neighbors = [
+              mask[y - 1]?.[x] || 0,
+              mask[y + 1]?.[x] || 0,
+              mask[y]?.[x - 1] || 0,
+              mask[y]?.[x + 1] || 0,
+            ];
+            if (neighbors.some((n) => n === 0)) {
+              const i = (y * w + x) * 4;
+              bImgData.data[i] = 255;
+              bImgData.data[i + 1] = 105;
+              bImgData.data[i + 2] = 180;
+              bImgData.data[i + 3] = 255; // full pink
+            }
+          }
+        }
+      }
+      bCtx.putImageData(bImgData, 0, 0);
+      pinkBorderCanvases.push(borderCanvas);
+    });
+
+    setMaskCanvases(blueCanvases);
+    setBorderCanvases(pinkBorderCanvases);
+  }, [masks]);
 
   // Send image to backend SAM API
   const processImage = async () => {
     if (!imageURL) return;
+    setSegmentationStatus("uploading");
     setLoading(true);
 
     const blob = await fetch(imageURL).then((r) => r.blob());
@@ -83,394 +156,175 @@ export default function SAMFrontend({
     const formData = new FormData();
     formData.append("image", file);
 
-    await segmentationService.segment(formData);
-
-    // tester
-    // const data = ImageSegmenterTester(imageObj, 5, 4, 4);
+    await segmentationService
+      .segment(formData)
+      .then((response) => {
+        if (response.ok) {
+          setSegmentationStatus("segmenting");
+        } else {
+          Notifier.notifyError("Segmentation failed. Please try again.");
+          setLoading(false);
+          setSegmentationStatus("idle");
+        }
+      })
+      .catch((error) => {
+        Notifier.notifyError("Segmentation failed. Please try again.");
+        setLoading(false);
+        setSegmentationStatus("idle");
+      });
   };
 
-  // Click mask to select/deselect
-  // Ray-casting point in polygon (works for convex/concave, polygon points [[x,y],...])
-  function pointInPolygon(point, polygon) {
-    const [px, py] = point;
-    let inside = false;
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      const [xi, yi] = polygon[i];
-      const [xj, yj] = polygon[j];
-
-      // Check if point is exactly on a vertex — treat as inside
-      if ((px === xi && py === yi) || (px === xj && py === yj)) return true;
-
-      const intersect =
-        yi > py !== yj > py &&
-        px < ((xj - xi) * (py - yi)) / (yj - yi + 0.00000001) + xi; // avoid /0
-      if (intersect) inside = !inside;
-    }
-    return inside;
-  }
-
+  // Hover detection
   const handleCanvasMove = (e) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !maskCanvases.length) return;
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const x = (e.clientX - rect.left) * scaleX;
-    const y = (e.clientY - rect.top) * scaleY;
+    const x = ((e.clientX - rect.left) / rect.width) * canvas.width;
+    const y = ((e.clientY - rect.top) / rect.height) * canvas.height;
 
-    // Find the first mask the cursor is inside
-    const hoveredMask = masks.find((mask) =>
-      pointInPolygon([x, y], mask.points)
-    );
-
-    // Update state only when it changes to avoid excessive re-renders
-    setHovered((prev) =>
-      prev?.id === hoveredMask?.id ? prev : hoveredMask || null
-    );
-  };
-
-  // Left click
-  const handleCanvasClick = (e) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // getBoundingClientRect in CSS pixels
-    const rect = canvas.getBoundingClientRect();
-
-    // Convert client coords → canvas pixel coordinates (account for CSS scaling & devicePixelRatio)
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-
-    // CSS size:
-    const cssWidth = rect.width;
-    const cssHeight = rect.height;
-
-    // Canvas internal pixel buffer size (actual drawing buffer)
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    // Scale factor from CSS pixels to canvas pixels
-    const scaleX = canvasWidth / cssWidth;
-    const scaleY = canvasHeight / cssHeight;
-
-    const x = (clientX - rect.left) * scaleX;
-    const y = (clientY - rect.top) * scaleY;
-
-    // saving points for showing them and sending them later as clues
-    setSelectedPoints((prev) => [...prev, { x, y }]);
-
-    // Optional debugging:
-    // console.log({ clientX, clientY, rect, canvasWidth, canvasHeight, scaleX, scaleY, x, y });
-
-    // Ensure masks exist and have points in the same coordinate space as the canvas's pixel coords
-    if (!masks || !Array.isArray(masks)) return;
-
-    // find clicked mask (normalize id types so "1" and 1 match)
-    const clickedMask = masks.find((mask) => {
-      if (!mask || !Array.isArray(mask.points)) return false;
-      return pointInPolygon([x, y], mask.points);
-    });
-
-    if (!clickedMask) return;
-
-    const clickedId = String(clickedMask.id); // normalize to string (or Number(...) if you prefer)
-
-    setSelected((prev) => {
-      // normalize prev to strings for comparison
-      const prevStrs = prev.map((p) => String(p));
-      const already = prevStrs.includes(clickedId);
-
-      if (already) {
-        return prev;
-      } else {
-        // add original type? keep consistent type - we'll add same type as mask.id
-        // If you want selected state to keep numbers, use Number(clickedId) instead.
-        const newId =
-          typeof clickedMask.id === "number" ? clickedMask.id : clickedId;
-        setSelectedSegments((prevSeg) => [...prevSeg, clickedMask]);
-        return [...prev, newId];
+    let hoveredIdx = null;
+    for (let i = maskCanvases.length - 1; i >= 0; i--) {
+      const ctx = maskCanvases[i].getContext("2d");
+      const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
+      const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
+      const pixel = ctx.getImageData(px, py, 1, 1).data;
+      if (pixel[3] > 0) {
+        hoveredIdx = i;
+        break;
       }
-    });
+    }
+    setHovered(hoveredIdx);
   };
 
-  // Right click
-  const handleCanvasUnclick = (e) => {
+  // Toggle selection
+  const toggleMask = (e, mode) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !maskCanvases.length) return;
 
-    // getBoundingClientRect in CSS pixels
     const rect = canvas.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * canvas.width;
+    const y = ((e.clientY - rect.top) / rect.height) * canvas.height;
 
-    // Convert client coords → canvas pixel coordinates (account for CSS scaling & devicePixelRatio)
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-
-    // CSS size:
-    const cssWidth = rect.width;
-    const cssHeight = rect.height;
-
-    // Canvas internal pixel buffer size (actual drawing buffer)
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    // Scale factor from CSS pixels to canvas pixels
-    const scaleX = canvasWidth / cssWidth;
-    const scaleY = canvasHeight / cssHeight;
-
-    const x = (clientX - rect.left) * scaleX;
-    const y = (clientY - rect.top) * scaleY;
-
-    // saving points for showing them and sending them later as clues
-    setDeselectedPoints((prev) => [...prev, { x, y }]);
-
-    // Optional debugging:
-    // console.log({ clientX, clientY, rect, canvasWidth, canvasHeight, scaleX, scaleY, x, y });
-
-    // Ensure masks exist and have points in the same coordinate space as the canvas's pixel coords
-    if (!masks || !Array.isArray(masks)) return;
-
-    // find clicked mask (normalize id types so "1" and 1 match)
-    const clickedMask = masks.find((mask) => {
-      if (!mask || !Array.isArray(mask.points)) return false;
-      return pointInPolygon([x, y], mask.points);
-    });
-
-    if (!clickedMask) return;
-
-    const clickedId = String(clickedMask.id); // normalize to string (or Number(...) if you prefer)
-
-    setSelected((prev) => {
-      // normalize prev to strings for comparison
-      const prevStrs = prev.map((p) => String(p));
-      const already = prevStrs.includes(clickedId);
-
-      if (already) {
-        setSelectedSegments((prevSeg) => {
-          return prevSeg.filter((seg) => seg != clickedMask);
-        });
-        // remove
-        return prev.filter((id) => String(id) !== clickedId);
-      } else {
-        return prev;
+    let clickedIdx = null;
+    for (let i = maskCanvases.length - 1; i >= 0; i--) {
+      const ctx = maskCanvases[i].getContext("2d");
+      const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
+      const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
+      const pixel = ctx.getImageData(px, py, 1, 1).data;
+      if (pixel[3] > 0) {
+        clickedIdx = i;
+        break;
       }
-    });
+    }
+    if (clickedIdx === null) return;
+
+    if (mode === "add") {
+      if (!selected.includes(clickedIdx)) {
+        setSelected([...selected, clickedIdx]);
+        setSelectedSegments((prev) => [...prev, masks[clickedIdx]]);
+        setSelectedPoints((prev) => [...prev, { x, y }]);
+      }
+    } else {
+      setSelected(selected.filter((i) => i !== clickedIdx));
+      setSelectedSegments((prev) =>
+        prev.filter((s) => s !== masks[clickedIdx])
+      );
+      setDeselectedPoints((prev) => [...prev, { x, y }]);
+    }
   };
 
-  // Redraw masks on canvas whenever masks or selection change
-  useEffect(() => {
-    if (!canvasRef.current || !imageObj) return;
+  const handleCanvasClick = (e) => toggleMask(e, "add");
+  const handleCanvasUnclick = (e) => toggleMask(e, "remove");
 
-    if (selected.length == 0) setClickMode("add");
+  // Draw everything
+  const drawCanvas = () => {
     const canvas = canvasRef.current;
+    if (!canvas || !imageObj) return;
     const ctx = canvas.getContext("2d");
-    const width = canvas.width;
-    const height = canvas.height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = false;
 
-    // quality settings
-    ctx.clearRect(0, 0, width, height);
-    ctx.imageSmoothingEnabled = true;
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
+    // 1. Draw main image
+    ctx.globalAlpha = 1;
+    ctx.drawImage(imageObj, 0, 0, canvas.width, canvas.height);
 
-    // draw base image
-    ctx.drawImage(imageObj, 0, 0, width, height);
-    if (!masks?.length) return;
+    // Function to draw a colored mask
+    const drawColoredMask = (maskCanvas, color, alpha) => {
+      const tmp = document.createElement("canvas");
+      tmp.width = maskCanvas.width;
+      tmp.height = maskCanvas.height;
+      const tmpCtx = tmp.getContext("2d");
 
-    const selectedMasks = masks.filter((m) => selected.includes(m.id));
+      // Draw mask
+      tmpCtx.drawImage(maskCanvas, 0, 0);
 
-    // -------------------------
-    // If any mask is selected -> draw a dimmed/blurred background
-    // but leave selected mask regions "revealed" (transparent core).
-    // -------------------------
-    if (selectedMasks.length > 0) {
-      // Option A: blur background (preferred) using an offscreen canvas
-      // create blurred background
-      const offBg = document.createElement("canvas");
-      offBg.width = width;
-      offBg.height = height;
-      const bgCtx = offBg.getContext("2d");
-      bgCtx.drawImage(imageObj, 0, 0, width, height);
+      // Fill with color using source-in
+      tmpCtx.globalCompositeOperation = "source-in";
+      tmpCtx.fillStyle = color;
+      tmpCtx.globalAlpha = alpha;
+      tmpCtx.fillRect(0, 0, tmp.width, tmp.height);
 
-      // apply blur if available
-      if ("filter" in bgCtx) {
-        bgCtx.filter = "blur(8px)"; // tune blur amount
-        const tmp = document.createElement("canvas");
-        tmp.width = width;
-        tmp.height = height;
-        tmp.getContext("2d").drawImage(offBg, 0, 0);
-        bgCtx.clearRect(0, 0, width, height);
-        bgCtx.filter = "blur(10px)";
-        bgCtx.drawImage(tmp, 0, 0);
-        bgCtx.filter = "none";
+      // Draw onto main canvas
+      ctx.drawImage(tmp, 0, 0, canvas.width, canvas.height);
+    };
+
+    // 2. Unselected masks
+    maskCanvases.forEach((mc, idx) => {
+      if (!selected.includes(idx) && hovered !== idx) {
+        drawColoredMask(mc, "rgba(0,150,255,1)", 0.5);
       }
+    });
 
-      // darken the blurred background a little
-      bgCtx.fillStyle = "rgba(0,0,0,0.25)";
-      bgCtx.fillRect(0, 0, width, height);
-
-      // draw the blurred/dim background onto main canvas
-      ctx.save();
-      ctx.globalCompositeOperation = "source-over";
-      ctx.drawImage(offBg, 0, 0);
-      ctx.restore();
-
-      // Punch out (reveal) the selected mask regions so the clear (non-dim) image shows
-      ctx.save();
-      ctx.globalCompositeOperation = "destination-out";
-      selectedMasks.forEach((mask) => {
-        ctx.beginPath();
-        mask.points.forEach(([x, y], i) =>
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
-        );
-        ctx.closePath();
-        ctx.fill();
-      });
-      ctx.restore();
-
-      // After punching out, redraw the original image *only inside* the selected regions
-      // so they appear crisp (not blurred), using clip for each selected mask
-      selectedMasks.forEach((mask) => {
-        ctx.save();
-        ctx.beginPath();
-        mask.points.forEach(([x, y], i) =>
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
-        );
-        ctx.closePath();
-        ctx.clip();
-        ctx.drawImage(imageObj, 0, 0, width, height);
-        ctx.restore();
-      });
+    // 3. Hovered mask
+    if (hovered !== null && !selected.includes(hovered)) {
+      drawColoredMask(maskCanvases[hovered], "rgba(255,105,180,1)", 0.6);
     }
 
-    // -------------------------
-    // Render hover highlight and selected glow outlines
-    // -------------------------
-    masks.forEach((mask) => {
-      const isSelected = selected.includes(mask.id);
-      const isHovered = hovered?.id === mask.id;
-
-      // build path once per mask
-      ctx.beginPath();
-      mask.points.forEach(([x, y], i) =>
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
+    let colors = ["#00ffd5", "#fc218f", "#ff0000", "#4a4902", "#ff0000"];
+    let colorIndex = 0;
+    // 4. Selected masks + border
+    selected.forEach((idx) => {
+      drawColoredMask(
+        maskCanvases[idx],
+        colors[colorIndex % colors.length],
+        0.95
       );
-      ctx.closePath();
-
-      if (isHovered && !isSelected) {
-        // Hover: soft blue interior glow (no border)
-        ctx.save();
-        ctx.fillStyle = "rgba(0, 150, 255, 0.18)"; // interior tint
-        ctx.shadowColor = "rgba(0, 180, 255, 0.75)";
-        ctx.shadowBlur = 30;
-        ctx.fill();
-        ctx.restore();
-      } else if (isSelected) {
-        // build offscreen halo
-        let usedOffscreen = false;
-        try {
-          const off = document.createElement("canvas");
-          off.width = width;
-          off.height = height;
-          const octx = off.getContext("2d");
-          octx.lineJoin = "round";
-          octx.lineCap = "round";
-
-          // draw a thick solid stroke that will become the halo
-          octx.beginPath();
-          mask.points.forEach(([x, y], i) =>
-            i === 0 ? octx.moveTo(x, y) : octx.lineTo(x, y)
-          );
-          octx.closePath();
-
-          octx.lineWidth = 30; // base halo thickness - tune this
-          octx.strokeStyle = "rgba(255,105,180,1)";
-          octx.stroke();
-
-          // blur the thick stroke to get a smooth halo if filter supported
-          if ("filter" in octx) {
-            const tmp = document.createElement("canvas");
-            tmp.width = width;
-            tmp.height = height;
-            tmp.getContext("2d").drawImage(off, 0, 0);
-
-            octx.clearRect(0, 0, width, height);
-            octx.filter = "blur(30px)"; // halo softness - tune
-            octx.drawImage(tmp, 0, 0);
-            octx.filter = "none";
-
-            // composite halo onto main canvas with additive blending for glow
-            ctx.save();
-            ctx.globalCompositeOperation = "lighter";
-            ctx.drawImage(off, 0, 0);
-            ctx.restore();
-
-            usedOffscreen = true;
-          }
-        } catch (err) {
-          usedOffscreen = false;
-        }
-
-        // fallback: multi-stroke additive rings (fast & compatible)
-        if (!usedOffscreen) {
-          ctx.save();
-          ctx.globalCompositeOperation = "lighter";
-          const rings = [
-            { w: 20, a: 0.18 },
-            { w: 40, a: 0.12 },
-            { w: 70, a: 0.06 },
-          ];
-          // draw the crisp path first as transparent core (so inner is not blocked)
-          // then draw rings
-          for (const r of rings) {
-            ctx.lineWidth = r.w;
-            ctx.strokeStyle = `rgba(255,105,180,${r.a})`;
-            ctx.stroke();
-          }
-          ctx.globalCompositeOperation = "source-over";
-          ctx.restore();
-        }
-
-        // OPTIONAL: faint inner definition (very transparent) - comment out to be fully transparent
-        ctx.save();
-        ctx.lineWidth = 10;
-        ctx.strokeStyle = "rgba(255,105,180,0.5)"; // extremely faint edge to hint shape
-        ctx.setLineDash([]);
-        ctx.stroke();
-        ctx.restore();
-      } else {
-        // Default masks (not hovered or selected): faint dashed outline
-        ctx.save();
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = "rgba(255,255,255,0.25)";
-        ctx.setLineDash([6, 6]);
-        ctx.stroke();
-        ctx.restore();
-      }
+      const border = borderCanvases[idx];
+      if (border) ctx.drawImage(border, 0, 0, canvas.width, canvas.height);
+      colorIndex++;
     });
 
-    // -------------------------
-    // Draw clicked points
-    // -------------------------
+    // 5. Draw points
     selectedPoints.forEach(({ x, y }) => {
       ctx.beginPath();
-      ctx.arc(x, y, 10, 0, 2 * Math.PI);
-      ctx.fillStyle = "rgba(255,105,180,0.9)"; // pink
+      ctx.arc(x, y, 12, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(255,105,180,1)";
       ctx.fill();
     });
 
     deselectedPoints.forEach(({ x, y }) => {
       ctx.beginPath();
-      ctx.arc(x, y, 10, 0, 2 * Math.PI);
-      ctx.fillStyle = "rgba(0,150,255,0.9)"; // blue
+      ctx.arc(x, y, 12, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(0,150,255,1)";
       ctx.fill();
     });
+  };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [masks, selected, hovered, imageObj]);
+  // Redraw whenever hover/selection changes
+  useEffect(() => {
+    drawCanvas();
+  }, [
+    hovered,
+    selected,
+    maskCanvases,
+    borderCanvases,
+    imageObj,
+    selectedPoints,
+    deselectedPoints,
+  ]);
 
-  // Send selected masks to API
-  const sendSelected = async () => {
+  const sendSelected = () => {
     if (selected.length > 1) {
       Notifier.notifyError("You must select just one segment to search for!");
       return;
@@ -487,52 +341,55 @@ export default function SAMFrontend({
         animation: "fadeIn 0.5s",
       }}
     >
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <Canvas
-          ref={canvasRef}
-          onClick={clickMode == "add" ? handleCanvasClick : handleCanvasUnclick}
-          onContextMenu={
-            selected != 0 ? handleCanvasUnclick : handleCanvasClick
-          }
-          onMouseMove={handleCanvasMove}
-          onMouseLeave={() => setHovered(null)}
-          imageURL={imageURL}
-          loading={loading}
-        />
-        {loading && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              gap: "1rem",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "transparent",
-              color: "##f994ac",
-            }}
-          >
-            <HashLoader size={50} color={"#fff"} />
-            <p>The image is being segmented, Please be patient...</p>
-            <Button
-              onClick={() => setLoading(false)}
-              bgColor="orange"
-              bgColorHover="red"
-            >
-              cancel
-            </Button>
-          </div>
-        )}
-      </div>
-
+      {!sessionStarted ? (
+        <div style={{ position: "relative", display: "inline-block" }}>
+          <Canvas
+            ref={canvasRef}
+            onClick={
+              clickMode === "add" ? handleCanvasClick : handleCanvasUnclick
+            }
+            onContextMenu={
+              selected.length ? handleCanvasUnclick : handleCanvasClick
+            }
+            onMouseMove={handleCanvasMove}
+            onMouseLeave={() => setHovered(null)}
+            imageURL={imageURL}
+            loading={loading}
+          />
+          {loading && (
+            <Overlay>
+              <HashLoader size={50} color="#fff" />
+              {segmentationStatus === "uploading" && <p>Uploading image...</p>}
+              {segmentationStatus === "segmenting" && (
+                <p>Segmenting image, please wait...</p>
+              )}
+              <Button
+                onClick={() => {
+                  setLoading(false);
+                  segmentationService.endSession();
+                  setSegmentationStatus("idle");
+                }}
+                bgColor="orange"
+                bgColorHover="red"
+              >
+                Cancel
+              </Button>
+            </Overlay>
+          )}
+        </div>
+      ) : (
+        <Overlay>
+          <HashLoader size={50} color="#fff" />
+          <p>Connecting to segmentation server...</p>
+        </Overlay>
+      )}
       <div style={{ marginTop: 10 }}>
         <MagicButton
           processImage={processImage}
           isDisabled={!imageURL || loading}
-          name={masks.length == 0 ? "Segment" : "Re-segment"}
+          name={masks.length === 0 ? "Segment" : "Re-segment"}
         />
-        {!selected.length == 0 && (
+        {selected.length !== 0 && (
           <Button
             onClick={sendSelected}
             bgColor="rgba(255,105,180,1)"
@@ -542,123 +399,27 @@ export default function SAMFrontend({
           </Button>
         )}
       </div>
-
       <div
         style={{
           marginTop: 10,
-          opacity: masks.length == 0 ? "0" : "1",
+          opacity: masks.length === 0 ? "0" : "1",
           transition: "all 1s",
         }}
       >
         <AddRemoveMaskToggleButton
-          disabled={selected.length == 0}
+          disabled={selected.length === 0}
           mode={clickMode}
           setMode={setClickMode}
         />
       </div>
-
-      <Guide title="Instructions Guide">
-        {masks.length == 0 ? (
-          <p>
-            Click <strong>Segment</strong> to send image for segmentation
-          </p>
-        ) : selected.length == 0 ? (
-          <p>
-            <strong>Hover</strong> over the segmented image to select the
-            desired mask
-          </p>
-        ) : clickMode == "add" ? (
-          <p>
-            <strong>Left-Click</strong> on the desired mask to{" "}
-            <strong>add</strong> it. Or <strong>Right-Click</strong> on it to{" "}
-            <strong>remove</strong> it.
-          </p>
-        ) : (
-          <p>
-            <strong>Click</strong> on the desired mask to{" "}
-            <strong>remove</strong> it.
-          </p>
-        )}
-        {masks.length != 0 && (
-          <small style={{ fontSize: "0.7rem", color: "#3041f8" }}>
-            Notice that in case of <strong>Re-segment</strong> added and removed
-            points will be sent as clues to improve the next segmentation.
-          </small>
-        )}
-      </Guide>
     </div>
   );
 }
 
+// Styled Components
 const fadeIn = keyframes`
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
-`;
-
-const gleam = keyframes`
-  0% {
-    transform: translateX(-150%) rotate(25deg);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateX(150%) rotate(25deg);
-    opacity: 0;
-  }
-`;
-
-const Guide = styled.div`
-  margin-top: 10;
-  opacity: ${({ opacity }) => (opacity ? "0" : "1")};
-  transition: all 1s;
-  padding: 1rem;
-  margin: 1rem;
-  background-color: #f0f8ff72;
-  border-radius: 2rem;
-  animation: ${fadeIn} 1s;
-
-  p {
-    animation: ${fadeIn} 1s;
-    font-family: "Cinzel", "MedievalSharp", serif;
-  }
-
-  position: relative;
-
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37),
-    inset 0 4px 8px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px) scale(1.02);
-  }
-
-  /* Gleam overlay */
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.6) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-25deg);
-    opacity: 0;
-  }
-
-  &:hover::after {
-    animation: ${gleam} 1s ease forwards;
-  }
 `;
 
 const Canvas = styled.canvas`
@@ -667,8 +428,18 @@ const Canvas = styled.canvas`
   max-width: 100%;
   filter: ${({ loading }) => (loading ? "blur(20px)" : "none")};
   animation: ${fadeIn} 1.5s;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transform: all 1s;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #f994ac;
 `;
 
 const Button = styled.button`

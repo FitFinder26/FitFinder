@@ -1,10 +1,14 @@
 import { apiClient } from "./apiClient";
+import { API_BASE_URL } from "../config/env";
+
 let sessionId = null;
 let ws = null;
 let masks = null;
+let maskListeners = [];
+
 export const segmentationService = {
   connect: () => {
-    ws = new WebSocket("ws://localhost:8081/ws");
+    ws = new WebSocket(`${API_BASE_URL.replace(/^https/, "wss")}/ws`);
 
     ws.onopen = () => {
       console.log("WebSocket Connected");
@@ -20,9 +24,11 @@ export const segmentationService = {
           console.log("Session ID:", data.sessionId);
           // store it properly
           sessionId = data.sessionId;
-        } else if (data.mask) {
-          masks = data.mask;
+        } else {
+          masks = data;
           console.log("Masks array updated in the service:", masks);
+          // 🔥 notify all listeners
+          maskListeners.forEach((cb) => cb(masks));
         }
       } catch (error) {
         console.error("Invalid JSON:", event.data);
@@ -37,7 +43,6 @@ export const segmentationService = {
     ws.onclose = (event) => {
       console.log("WebSocket closed:", event.code, event.reason);
     };
-    return sessionId;
   },
 
   endSession: () => {
@@ -53,7 +58,12 @@ export const segmentationService = {
 
   getSessionId: () => sessionId,
 
-  getMasks: () => masks,
+  subscribeToMasks: (callback) => {
+    maskListeners.push(callback);
+    return () => {
+      maskListeners = maskListeners.filter((cb) => cb !== callback);
+    };
+  },
 
   segment: async (formData) => {
     formData.append("sessionId", sessionId);

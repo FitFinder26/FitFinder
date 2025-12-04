@@ -38,7 +38,7 @@ export const apiClient = async (endpoint, options = {}) => {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...fetchOptions,
     headers,
-    credentials: "include", // always send cookies
+    // credentials: "include", // always send cookies
   });
 
   // 452 means the refresh cookie may have expired
