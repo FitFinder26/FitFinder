@@ -25,16 +25,16 @@ def get_model():
         _model.eval()
     return _model, _preprocess, _tokenizer
 
-def get_image_embedding(image_data):
+def get_image_embedding(image):
     """
-    image_data: can be raw bytes or base64 string
+    image_data: raw bytes or base64 string
     """
     # If base64 encoded, decode it
-    if isinstance(image_data, str):
-        image_data = base64.b64decode(image_data)
+    # if isinstance(image_data, str):
+    #     image_data = base64.b64decode(image_data)
 
     model, preprocess, _ = get_model()
-    image = Image.open(io.BytesIO(image_data)).convert("RGB")
+    # image = Image.open(io.BytesIO(image_data)).convert("RGB")
     image_tensor = preprocess(image).unsqueeze(0).to(_device)
 
     with torch.no_grad():

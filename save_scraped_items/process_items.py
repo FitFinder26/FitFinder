@@ -11,14 +11,24 @@ from db import create_table, insert_item_metadata
 from models.fitfinder_ai_service.app.workers.clip_worker.faiss_manager import (
     add_embedding
 )
+from models.fitfinder_ai_service.app.workers.clip_worker.clip_model import (
+    get_image_embedding
+)
+import requests
+
+def download_image_bytes(image_url: str) -> bytes:
+    """
+    Downloads an image from a URL and returns raw image bytes.
+    """
+    response = requests.get(image_url, timeout=10)
+    response.raise_for_status()  # raise error if download failed
+    return response.content
 
 
-
-# TEMP: placeholder embedding generator (until you send the real code)
 def generate_embedding(image_url):
-    # TODO: replace with your CLIP embedding code
-    # Must return a numpy array of size (512,)
-    return np.random.rand(512).astype("float32")
+    image_data = download_image_bytes(image_url)
+    embedding = get_image_embedding(image_data)
+    return embedding.astype("float32")
 
 RAW_DATA_PATH = "data/raw/*.json"
 
