@@ -18,7 +18,6 @@ public class StoredItem {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long itemId;
 
-  private Long itemFAISSId;
   private String title;
   private float price;
   private String currency;
@@ -31,9 +30,10 @@ public class StoredItem {
   private String description;
 
   private String source;
+  @CreationTimestamp
+  private LocalDateTime createdAt;
 
   public StoredItem(
-      Long itemFAISSId,
       String title,
       float price,
       String currency,
@@ -41,8 +41,9 @@ public class StoredItem {
       String imageURL,
       String category,
       String description,
-      String source) {
-    this.itemFAISSId = itemFAISSId;
+      String source
+      
+    ) {
     this.title = title;
     this.price = price;
     this.currency = currency;

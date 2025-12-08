@@ -18,12 +18,12 @@ public class StoredItemController {
     }
 
     @PostMapping("/search")
-    public List<StoredItem> getByFaiss(@RequestBody List<Long> faissIds) {
-        return storedItemService.getProductsByFaiss(faissIds);
+    public List<StoredItem> getByVectors(@RequestBody List<Long> vectorIds) {
+        return storedItemService.getProductsByVectorIds(vectorIds);
     }
 
-    @GetMapping("/{id}")
-    public StoredItem getItemById(@PathVariable Long id) {
+    @GetMapping("/product/{id}")
+    public StoredItem getItem(@PathVariable Long id) {
         return storedItemService.getItemById(id);
     }
 }

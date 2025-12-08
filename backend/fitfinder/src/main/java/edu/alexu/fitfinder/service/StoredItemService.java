@@ -1,7 +1,9 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.entity.StoredItem;
+import edu.alexu.fitfinder.entity.ItemVector;
 import edu.alexu.fitfinder.repository.StoredItemRepository;
+import edu.alexu.fitfinder.repository.ItemVectorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,18 +12,24 @@ import java.util.List;
 public class StoredItemService {
 
     private final StoredItemRepository storedItemRepository;
+    private final ItemVectorRepository itemVectorRepository;
 
-    public StoredItemService(StoredItemRepository storedItemRepository) {
+    public StoredItemService(StoredItemRepository storedItemRepository,
+                             ItemVectorRepository itemVectorRepository) {
         this.storedItemRepository = storedItemRepository;
+        this.itemVectorRepository = itemVectorRepository;
     }
 
-    public List<StoredItem> getProductsByFaiss(List<Long> faissIds) {
-        return storedItemRepository.findByItemFAISSIdIn(faissIds);
+    public List<StoredItem> getProductsByVectorIds(List<Long> vectorIds) {
+        List<ItemVector> vectors = itemVectorRepository.findByVectorIdIn(vectorIds);
+        return vectors.stream()
+                .map(ItemVector::getItem)
+                .distinct()
+                .toList();
     }
 
     public StoredItem getItemById(Long id) {
-    return storedItemRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Product not found"));
-}
-
+        return storedItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item not found"));
+    }
 }
