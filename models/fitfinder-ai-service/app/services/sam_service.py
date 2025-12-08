@@ -36,6 +36,23 @@ def segment(image: Image.Image):
     # TODO: Implement SAM2 inference here
     pass
 
+def segment_image(self, image: Image.Image, boxes=None, multimask=False):
+        # Set Image (Only if new)
+        self._set_image_if_needed(image)
+
+        # Predict
+        masks, scores, logits = self.predictor.predict(
+            point_coords=None,
+            point_labels=None,
+            box=boxes,
+            multimask_output=multimask,
+        )
+
+        # CPU Cleanup
+        gc.collect()
+
+        return masks, scores, logits
+
 
 def resegment(image: Image.Image, clues: dict):
     """
@@ -53,3 +70,47 @@ def create_segmented_object(image: Image.Image, mask: np.ndarray):
     """
     # TODO: Blend image and mask or crop region
     pass
+
+
+def get_segmented_image(self, image: Image.Image, mask):
+        """
+        Applies the mask, CROPS the empty space, and returns a transparent PNG.
+        """
+        image_np = self._prepare_image(image)
+
+        # Handle SAM dimensions: Ensure we have (H, W)
+        if len(mask.shape) > 2:
+            mask = mask[0]
+
+        # Create RGBA
+        h, w, c = image_np.shape
+        rgba_image = np.zeros((h, w, 4), dtype=np.uint8)
+
+        # Copy RGB channels
+        rgba_image[..., :3] = image_np
+
+        # Create Binary Mask
+        binary_mask = mask > 0
+        rgba_image[..., 3] = np.where(binary_mask, 255, 0)
+
+        # --- NEW: CROP LOGIC ---
+        # 1. Find indices where the mask is True
+        # np.where returns (row_indices, col_indices)
+        y_indices, x_indices = np.where(binary_mask)
+
+        # 2. Safety Check: If mask is empty, return the original transparent image
+        if len(y_indices) == 0 or len(x_indices) == 0:
+            return Image.fromarray(rgba_image)
+
+        # 3. Calculate the Bounding Box
+        top = y_indices.min()
+        bottom = y_indices.max()
+        left = x_indices.min()
+        right = x_indices.max()
+
+        # 4. Crop the Numpy Array
+        # Slice format: [start_row : end_row, start_col : end_col]
+        # We add +1 because Python slicing excludes the upper bound
+        cropped_rgba = rgba_image[top:bottom+1, left:right+1]
+
+        return Image.fromarray(cropped_rgba)
