@@ -6,3 +6,4 @@ models/fitfinder-ai-service/venv
 *__pycache__/
 *.env.example
 scraper/.env
+
