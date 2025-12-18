@@ -7,6 +7,7 @@ from app.api.connection import segment_queue, resegment_queue
 import io
 from PIL import Image
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
+import numpy as np
 
 
 router = APIRouter()
@@ -115,7 +116,6 @@ async def create_re_segment_job(
         "service": "fitfinder-ai"
     }
 
-
 @router.post("/search/", status_code=200) # 200 OK
 async def search_job(
     request: Request,
@@ -140,8 +140,8 @@ async def search_job(
         )
 
     try:
-        mask_data = json.loads(mask_json)
-        mask = np.array(mask_data)
+        mask_data = json.loads(mask)
+        mask = np.nparray(mask_data)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid mask JSON: {str(e)}")
 
