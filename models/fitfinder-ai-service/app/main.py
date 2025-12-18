@@ -52,9 +52,19 @@ async def lifespan(app: FastAPI):
 
     print("SAM Service initialized.")
 
+
+    try:
+        # TODO: Load CLIP model on startup
+
+        app.state.clip_service = None # TODO: Load model on startup
+        pass
+    except Exception as e:
+        print(f"Error loading model: {e}")
+
     yield
     print("Shutting down the FitFinder AI Service...")
     app.state.sam_service = None
+    app.state.clip_service = None
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 

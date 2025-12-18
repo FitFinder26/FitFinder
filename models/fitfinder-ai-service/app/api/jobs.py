@@ -8,6 +8,9 @@ import io
 from PIL import Image
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
 import numpy as np
+from workers.clip_worker.clip_model import get_image_embedding
+from workers.clip_worker.faiss_manager import search_top_k_similar
+
 
 
 router = APIRouter()
@@ -133,6 +136,7 @@ async def search_job(
         )
 
     sam_service = request.app.state.sam_service
+
     if not sam_service:
         raise HTTPException(
             status_code=500,
@@ -152,18 +156,27 @@ async def search_job(
         image=Image.open(io.BytesIO(image_bytes)),
         mask=mask
     )
-    # Placeholder: In a real implementation, this would query a database or index.
 
-    results = [
-        'sample_result_1',
-        'sample_result_2',
-        'sample_result_3',
-        'sample_result_4',
-        'sample_result_5'
-    ]
-    return {
-        "job_id": job_id,
-        "results": results,
-        "message": "Search functionality not yet implemented.",
-        "service": "fitfinder-ai"
-    }
+    try:
+        embedding = get_image_embedding(segmented_image_result)
+
+        distances, indices = search_top_k_similar(
+            embedding,
+            index_type="store_item",
+            k=10
+        )
+
+
+        return {
+                "job_id": job_id,
+                "indices": indices.tolist(),
+                "distances": distances.tolist(),
+                "status": "completed",
+                "service": "fitfinder-ai"
+            }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Search failed: {str(e)}"
+        )
