@@ -4,6 +4,7 @@ import edu.alexu.fitfinder.entity.StoredItem;
 import edu.alexu.fitfinder.entity.ItemVector;
 import edu.alexu.fitfinder.repository.StoredItemRepository;
 import edu.alexu.fitfinder.repository.ItemVectorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.List;
 @Service
 public class StoredItemService {
 
-    private final StoredItemRepository storedItemRepository;
+    @Autowired
+    private StoredItemRepository storedItemRepository;
+    @Autowired
     private final ItemVectorRepository itemVectorRepository;
 
     public StoredItemService(StoredItemRepository storedItemRepository,
