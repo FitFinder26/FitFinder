@@ -5,6 +5,7 @@ from .api.test import router as test_api
 from .api.connection import route as health_api
 from .api.jobs import router as jobs_api
 from .services.sam_service import SAM_service
+from .services.clip_service import CLIPService
 import torch
 
 sam_service_instance = None
@@ -53,11 +54,11 @@ async def lifespan(app: FastAPI):
     print("SAM Service initialized.")
 
 
+    print("Loading CLIP Model...")
     try:
-        # TODO: Load CLIP model on startup
-
-        app.state.clip_service = None # TODO: Load model on startup
-        pass
+        clip_service_instance = CLIPService(device=device)
+        app.state.clip_service = clip_service_instance
+        print("CLIP Model Loaded Successfully.")
     except Exception as e:
         print(f"Error loading model: {e}")
 
