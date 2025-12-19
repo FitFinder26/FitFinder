@@ -1,5 +1,9 @@
 package edu.alexu.fitfinder.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;

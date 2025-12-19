@@ -2,7 +2,7 @@ package edu.alexu.fitfinder.controller;
 
 import edu.alexu.fitfinder.entity.StoredItem;
 import edu.alexu.fitfinder.service.StoredItemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.alexu.fitfinder.service.AiClientService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,13 +12,21 @@ import java.util.List;
 @CrossOrigin
 public class StoredItemController {
 
-    @Autowired
-    private StoredItemService storedItemService;
+    private final StoredItemService storedItemService;
+    private final AiClientService aiClientService;
+
+    
+    public StoredItemController(StoredItemService storedItemService, AiClientService aiClientService) {
+        this.storedItemService = storedItemService;
+        this.aiClientService = aiClientService;
+    }
 
     @PostMapping("/search")
-    public List<StoredItem> getByVectors(@RequestBody List<Long> vectorIds) {
+    public List<StoredItem> searchByImage(@RequestBody String imageUrl) {
+        List<Long> vectorIds = aiClientService.getSimilarIndices(imageUrl);
         return storedItemService.getProductsByVectorIds(vectorIds);
     }
+
 
     @GetMapping("/product/{id}")
     public StoredItem getItem(@PathVariable Long id) {

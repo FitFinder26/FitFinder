@@ -15,7 +15,7 @@ public class StoredItemService {
     @Autowired
     private StoredItemRepository storedItemRepository;
     @Autowired
-    private final ItemVectorRepository itemVectorRepository;
+    private ItemVectorRepository itemVectorRepository;
 
     public StoredItemService(StoredItemRepository storedItemRepository,
                              ItemVectorRepository itemVectorRepository) {
