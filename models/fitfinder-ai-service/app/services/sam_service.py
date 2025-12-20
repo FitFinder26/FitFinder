@@ -143,7 +143,7 @@ class SAM_service():
 
         return boxes[keep]
 
-    def resegment(self, image: Image.Image, pos_points, neg_points):
+    def resegment(self, image: Image.Image, pos_points, neg_points, boxes=None):
         """
         Refines the mask based on user clicks.
         """
@@ -169,6 +169,7 @@ class SAM_service():
         masks, scores, logits = self.predictor.predict(
             point_coords=points_np,
             point_labels=labels_np,
+            box=boxes,
             multimask_output=False,
         )
 
