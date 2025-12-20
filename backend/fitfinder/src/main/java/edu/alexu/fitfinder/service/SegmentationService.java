@@ -3,16 +3,21 @@ package edu.alexu.fitfinder.service;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import edu.alexu.fitfinder.component.JobRegistry;
+import edu.alexu.fitfinder.dto.ResegmentImageDTO;
+import edu.alexu.fitfinder.exception.InvalidInputException;
 import edu.alexu.fitfinder.exception.SocketException;
 import edu.alexu.fitfinder.handler.MyWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.socket.WebSocketSession;
+import reactor.core.publisher.Mono;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,44 +38,83 @@ public class SegmentationService {
     this.webClient = WebClient.builder().baseUrl("https://fitfinder-ai-service.hf.space").build();
   }
 
-  public Map<String, String> uploadImage(MultipartFile image, String sessionId)
-      throws IOException, SocketException {
+  public Map<String, String> UploadImageAndSegment(MultipartFile image, String sessionId)
+      throws IOException, SocketException, Exception {
 
-    // Get websocket session related to this id
+    // Get websocket session related to this session id
     WebSocketSession session = MyWebSocketHandler.sessions.get(sessionId);
     if (session == null) throw new SocketException("WebSocket not connected");
 
-    System.out.println("SessionId is correctly connected with Websocket!");
-    // create unique image id and upload it to cloudinary service
-    String imageId = UUID.randomUUID().toString(); // 128-bit collision free random string
-    var params = ObjectUtils.asMap("public_id", imageId, "overwrite", true);
+    // create unique job id and upload it to cloudinary service
+    String jobId = UUID.randomUUID().toString(); // 128-bit collision free random string
+    var params = ObjectUtils.asMap("public_id", jobId, "overwrite", true);
     var uploadResult = cloudinary.uploader().upload(image.getBytes(), params);
     String imageUrl = uploadResult.get("secure_url").toString();
 
-    System.out.println("Image is uploaded successfully to cloudinary!");
     System.out.println("Image url :" + imageUrl);
-    // register this image with the session
-    jobRegistry.registerJob(imageId, session);
+    // register this job with the session
+    jobRegistry.registerJob(jobId, session);
 
     // send the image to the AI service for segmentation
-    String response =
+    HttpStatusCode status =
         webClient
             .post()
             .uri("/api/v1/job/segment/")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .body(
-                BodyInserters.fromFormData("job_id", imageId)
+                BodyInserters.fromFormData("job_id", jobId)
                     .with("image_url", imageUrl)
                     .with("callback_url", forwardingUrl + "/segment/callback"))
-            .retrieve()
-            .bodyToMono(String.class)
+            .exchangeToMono(response -> Mono.just(response.statusCode()))
             .block();
 
+    System.out.println(status);
+    if (status == null || status.value() != 202) throw new Exception();
     System.out.println("Image is uploaded successfully to hugging face");
-    System.out.println("Hugging face response : " + response);
-    // return job id to the client
-    Map<String, String> jobId = new HashMap<>();
-    jobId.put("job_id", imageId);
-    return jobId;
+
+    // return job id and image url to the client
+    Map<String, String> response = new HashMap<>();
+    response.put("job_id", jobId);
+    return response;
+  }
+
+  public void Resegment(String sessionId, ResegmentImageDTO resegmentInfo) {
+    // Get websocket session related to this id
+    WebSocketSession session = MyWebSocketHandler.sessions.get(sessionId);
+    if (session == null) throw new SocketException("WebSocket not connected");
+
+    String imageUrl = null;
+
+    try {
+      imageUrl =
+          cloudinary
+              .api()
+              .resource(resegmentInfo.getJob_id(), ObjectUtils.emptyMap())
+              .get("secure_url")
+              .toString();
+    } catch (Exception ignored) {
+    }
+
+    System.out.println(imageUrl);
+    if (imageUrl == null)
+      throw new InvalidInputException("There is no image associated with job Id");
+
+    //    System.out.println("SessionId is correctly connected with Websocket!");
+    //
+    //    // register this job with the session
+    //    jobRegistry.registerJob(jobId, session);
+    //
+    //    webClient
+    //        .post()
+    //        .uri("/api/v1/job/re-segment/")
+    //        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+    //        .body(
+    //            BodyInserters.fromFormData("job_id", jobId)
+    //                .with("image_url", imageUrl)
+    //                .with("callback_url", forwardingUrl + "/segment/callback")
+    //                .with("points", ""))
+    //        .retrieve()
+    //        .bodyToMono(String.class)
+    //        .block();
   }
 }
