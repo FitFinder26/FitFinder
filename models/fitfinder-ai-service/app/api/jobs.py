@@ -7,6 +7,8 @@ from pydantic import BaseModel
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query, Request
 
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
+from app.workers.clip_worker.faiss_manager import search_top_k_similar
+from app.db import get_items_by_faiss_ids
 import io
 from PIL import Image
 import numpy as np
@@ -175,17 +177,23 @@ async def search_job(
     try:
         embedding = clip_service.get_image_embedding(segmented_image_result)
 
-        distances, indices = clip_service.search_top_k_similar(
+        distances, indices = search_top_k_similar(
             embedding,
             index_type="store_item",
             k=10
         )
-
-
+        
+        items = get_items_by_faiss_ids(indices.tolist())
+        
         return {
                 "job_id": body.job_id,
-                "indices": indices.tolist(),
-                "distances": distances.tolist(),
+                "results": [
+                    {
+                        "item": item,
+                        "distance": float(dist)
+                    }
+                    for item, dist in zip(items, distances)
+                ],
                 "status": "completed",
                 "service": "fitfinder-ai"
             }
