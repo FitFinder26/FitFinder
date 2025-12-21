@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(PROJECT_ROOT))
 
 from db import create_table, insert_item_metadata
-from models.fitfinder_ai_service.app.workers.clip_worker.faiss_manager import (
+from models.fitfinder_ai_service.app.services.faiss_service import (
     add_embedding
 )
 

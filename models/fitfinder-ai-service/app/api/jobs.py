@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query, Request
 
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
-from app.workers.clip_worker.faiss_manager import search_top_k_similar
+from app.services.faiss_service import search_top_k_similar
 from app.db import get_items_by_faiss_ids
 import io
 from PIL import Image
