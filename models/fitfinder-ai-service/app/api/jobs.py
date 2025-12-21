@@ -8,9 +8,6 @@ import io
 from PIL import Image
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
 import numpy as np
-from workers.clip_worker.clip_model import get_image_embedding
-from workers.clip_worker.faiss_manager import search_top_k_similar
-
 
 
 router = APIRouter()
@@ -157,10 +154,17 @@ async def search_job(
         mask=mask
     )
 
-    try:
-        embedding = get_image_embedding(segmented_image_result)
+    clip_service = getattr(request.app.state, "clip_service", None)
+    if clip_service is None:
+        raise HTTPException(
+            status_code=503,
+            detail="CLIP service not available"
+        )
 
-        distances, indices = search_top_k_similar(
+    try:
+        embedding = clip_service.get_image_embedding(segmented_image_result)
+
+        distances, indices = clip_service.search_top_k_similar(
             embedding,
             index_type="store_item",
             k=10

@@ -37,13 +37,13 @@ async def lifespan(app: FastAPI):
     device = get_default_device()
     checkpoint_path = "/app/checkpoints/sam2.1_hiera_large.pt"
     config_path = "configs/sam2.1/sam2.1_hiera_l.yaml"
-    detectiont_model_id = "IDEA-Research/grounding-dino-tiny"
+    d_model_id = "IDEA-Research/grounding-dino-tiny"
 
     print("Loading SAM2 Model...")
     try:
         sam_service_instance =  SAM_service(checkpoint_path,
                                             model_cfg=config_path,
-                                            detectiont_model_id=detectiont_model_id,
+                                            d_model_id=d_model_id,
                                             device=device)
 
         app.state.sam_service = sam_service_instance
