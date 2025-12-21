@@ -8,7 +8,6 @@ from .services.sam_service import SAM_service
 from .services.clip_service import CLIPService
 import torch
 
-sam_service_instance = None
 
 def get_default_device():
     if torch.cuda.is_available():
@@ -31,7 +30,6 @@ def get_default_device():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-
     print("Starting up the FitFinder AI Service...")
 
     device = get_default_device()
@@ -40,29 +38,21 @@ async def lifespan(app: FastAPI):
     d_model_id = "IDEA-Research/grounding-dino-tiny"
 
     print("Loading SAM2 Model...")
-    try:
-        sam_service_instance =  SAM_service(checkpoint_path,
-                                            model_cfg=config_path,
-                                            d_model_id=d_model_id,
-                                            device=device)
-
-        app.state.sam_service = sam_service_instance
-        print("SAM2 Model Loaded Successfully.")
-    except Exception as e:
-        print(f"Error loading model: {e}")
+    app.state.sam_service = SAM_service(
+        checkpoint_path,
+        model_cfg=config_path,
+        d_model_id=d_model_id,
+        device=device
+    )
 
     print("SAM Service initialized.")
 
 
-    print("Loading CLIP Model...")
-    try:
-        clip_service_instance = CLIPService(device=device)
-        app.state.clip_service = clip_service_instance
-        print("CLIP Model Loaded Successfully.")
-    except Exception as e:
-        print(f"Error loading model: {e}")
+    app.state.clip_service = CLIPService(device=device, sam_instance=app.state.sam_service)
+    print("CLIP Model Loaded Successfully.")
 
     yield
+
     print("Shutting down the FitFinder AI Service...")
     app.state.sam_service = None
     app.state.clip_service = None

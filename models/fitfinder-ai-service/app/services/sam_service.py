@@ -53,8 +53,19 @@ class SAM_service():
         return masks, scores, logits
 
     def segment_with_prompt(self, image: Image.Image, prompt: str, multimask=False):
+
+        if isinstance(image, Image.Image):
+            if image.mode != "RGB":
+                image = image.convert("RGB")
+        else:
+            raise TypeError("Expected PIL.Image.Image")
+
         # Grounding DINO
-        inputs = self.processor(images=image, text=prompt, return_tensors="pt").to(self.device)
+        inputs = self.processor(
+                images=image,
+                text=prompt,
+                return_tensors="pt"
+                ).to(self.device)
 
         with torch.no_grad():
             outputs = self.model(**inputs)
@@ -218,3 +229,12 @@ class SAM_service():
         cropped_rgba = rgba_image[top:bottom+1, left:right+1]
 
         return Image.fromarray(cropped_rgba)
+
+    def squeeze_mask(self, mask):
+        """
+        Removes single-dimensional entries from the mask array.
+        """
+        M = mask.shape[0]
+        weights = np.arange(1, M + 1)[:, np.newaxis, np.newaxis]
+        Y = np.sum(mask * weights, axis=0)
+        return Y

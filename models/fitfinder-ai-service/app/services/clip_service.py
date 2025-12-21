@@ -6,11 +6,10 @@ import open_clip
 import io
 import httpx
 from pathlib import Path
-from sam_service import SAM_service
 import traceback
 
 class CLIPService:
-    def __init__(self, device=None):
+    def __init__(self, device=None, sam_instance=None):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         print("🔹 Loading CLIP model...")
         self.model, _, self.preprocess = open_clip.create_model_and_transforms(
@@ -20,7 +19,7 @@ class CLIPService:
         self.model = self.model.to(self.device)
         self.model.eval()
         self.http_client = httpx.AsyncClient(timeout=30.0)
-        self.sam = SAM_service(device=self.device)
+        self.sam = sam_instance
 
 
 
@@ -107,5 +106,5 @@ class CLIPService:
             print(f"---  ERROR: {e} ---")
             traceback.print_exc()
             return
-        
+
         return embeddings
