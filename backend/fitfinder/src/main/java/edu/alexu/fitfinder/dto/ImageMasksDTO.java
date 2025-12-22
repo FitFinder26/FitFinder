@@ -10,4 +10,6 @@ public class ImageMasksDTO {
   String job_id;
   String status;
   List<List<Integer>> masks;
+  
+  List<List<Integer>> boxes;
 }
