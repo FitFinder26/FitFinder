@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { SAMService } from "../../../shared/services/SAMService";
 import { Notifier } from "./Notifier";
+import { segmentationService } from "../../../shared/services/segmentationService";
+import products from "./searchResponse.json";
 
 // Crop SAM masks from the original image
 const cropSelectedSegments = (imageObj, masks) => {
@@ -22,11 +23,6 @@ const cropSelectedSegments = (imageObj, masks) => {
     canvas.height = imageObj.height;
     const ctx = canvas.getContext("2d");
 
-    console.log(
-      "Drawing original image on canvas",
-      canvas.width,
-      canvas.height
-    );
     ctx.drawImage(imageObj, 0, 0, canvas.width, canvas.height);
 
     const maskCanvas = document.createElement("canvas");
@@ -38,10 +34,7 @@ const cropSelectedSegments = (imageObj, masks) => {
       maskCanvas.height
     );
 
-    console.log("Mask canvas size:", maskCanvas.width, maskCanvas.height);
-
     masks.forEach((mask, maskIndex) => {
-      console.log(`Processing mask #${maskIndex}`);
       for (let y = 0; y < mask.length; y++) {
         for (let x = 0; x < mask[0].length; x++) {
           const i = (y * mask[0].length + x) * 4;
@@ -52,7 +45,6 @@ const cropSelectedSegments = (imageObj, masks) => {
 
     maskCtx.putImageData(maskData, 0, 0);
 
-    console.log("Applying mask to image");
     ctx.globalCompositeOperation = "destination-in";
     ctx.drawImage(maskCanvas, 0, 0, canvas.width, canvas.height);
 
@@ -72,11 +64,11 @@ export default function CustomizeSegment({
   setImageUploaded,
 }) {
   const [segmentedImageSrc, setSegmentedImageSrc] = useState(null);
+  const [selectedMask, setSelectedMask] = useState([]);
   const [prompt, setPrompt] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("CustomizeSegment useEffect triggered");
     if (!imageObj) {
       console.error("No imageObj!");
       return;
@@ -88,11 +80,12 @@ export default function CustomizeSegment({
       return;
     }
 
+    setSelectedMask(initialSegments);
+
     try {
       const src = cropSelectedSegments(imageObj, initialSegments);
       if (!src) throw new Error("Cropped segment is empty.");
       setSegmentedImageSrc(src);
-      console.log("Segmented image src set successfully");
     } catch (err) {
       console.error("Failed to crop segment:", err);
       Notifier.notifyError("Failed to crop segment: " + err.message);
@@ -101,30 +94,36 @@ export default function CustomizeSegment({
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
-    console.log("Prompt updated:", e.target.value);
   };
 
   const handleSearch = async () => {
-    console.log("handleSearch triggered");
     if (!segmentedImageSrc) {
       console.warn("Segmented image not ready");
       Notifier.notifyError("Segmented image not ready.");
       return;
     }
+    await segmentationService
+      .search(selectedMask[0], prompt)
+      .then((response) => response.json())
+      .then((products) => {
+        if (products && products?.error) {
+          Notifier.notifyError(`Search failed: ${products.error}`);
+        } else {
+          setImageUploaded(false);
+          navigate("/search-result", {
+            state: { products: products, searchingPeice: segmentedImageSrc },
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Search failed:", err);
+        Notifier.notifyError(err.message);
+      });
 
-    try {
-      const response = await SAMService.search(segmentedImageSrc, prompt);
-      console.log("Search response:", response);
-      if (response.status === 200) {
-        setImageUploaded(false);
-        navigate("/search");
-      } else {
-        throw new Error("Search failed.");
-      }
-    } catch (err) {
-      console.error("Search failed:", err);
-      Notifier.notifyError(err.message);
-    }
+    // setImageUploaded(false);
+    // navigate("/search-result", {
+    //   state: { products: products, searchingPeice: segmentedImageSrc },
+    // });
   };
 
   return (

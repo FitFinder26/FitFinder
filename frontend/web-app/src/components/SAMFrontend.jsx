@@ -162,13 +162,18 @@ export default function SAMFrontend({
         if (response.ok) {
           setSegmentationStatus("segmenting");
         } else {
-          Notifier.notifyError("Segmentation failed. Please try again.");
-          setLoading(false);
-          setSegmentationStatus("idle");
+          return response.json();
         }
       })
-      .catch((error) => {
-        Notifier.notifyError("Segmentation failed. Please try again.");
+      .then((data) => {
+        if (data && data.error) {
+          Notifier.notifyError(`Segmentation failed: ${data.error}`);
+        }
+      })
+      .catch(() => {
+        Notifier.notifyError(
+          `Segmentation failed. Please try again.\n${error}`
+        );
         setLoading(false);
         setSegmentationStatus("idle");
       });

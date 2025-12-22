@@ -74,4 +74,18 @@ export const segmentationService = {
       skipAuth: true,
     });
   },
+
+  search: async (mask, prompt) => {
+    const formData = new FormData();
+    formData.append("job_id", sessionId);
+    formData.append("mask_json", JSON.stringify(mask));
+    // formData.append("prompt", prompt);
+    console.log(formData.get("job_id"));
+    console.log(formData.get("mask_json"));
+    return await apiClient("/search", {
+      method: "POST",
+      body: formData,
+      skipAuth: true,
+    });
+  },
 };
