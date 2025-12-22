@@ -25,7 +25,11 @@ public class StoredItem {
   private String itemWebURL;
   private String imageURL;
   private String category;
+
+  @Lob
+  @Column(columnDefinition = "TEXT")
   private String description;
+
   private String source;
 
   public StoredItem(
