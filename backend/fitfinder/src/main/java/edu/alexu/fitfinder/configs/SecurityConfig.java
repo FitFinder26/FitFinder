@@ -48,7 +48,8 @@ public class SecurityConfig {
                         "/segment/upload",
                         "/segment/callback",
                         "resegment",
-                        "/ws")
+                        "/ws",
+                        "api/v1/items/search")
                     .permitAll()
                     .anyRequest()
                     .authenticated())

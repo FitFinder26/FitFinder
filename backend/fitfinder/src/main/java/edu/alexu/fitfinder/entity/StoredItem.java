@@ -22,39 +22,41 @@ public class StoredItem {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long itemId;
 
-  private String title;
-  private float price;
-  private String currency;
-  private String itemWebURL;
-  private String imageURL;
   private String category;
+  @CreationTimestamp private LocalDateTime createdAt;
+  private String currency;
 
   @Lob
-  @Column(columnDefinition = "TEXT")
+  @Column(columnDefinition = "TEXT", name = "description")
   private String description;
 
+  private boolean embedded;
+  private String imageURL;
+  private String itemWebURL;
+  private float price;
   private String source;
-  @CreationTimestamp
-  private LocalDateTime createdAt;
+  private String title;
 
   public StoredItem(
-      String title,
-      float price,
-      String currency,
-      String itemWebURL,
-      String imageURL,
       String category,
+      LocalDateTime createdAt,
+      String currency,
       String description,
-      String source
-      
-    ) {
-    this.title = title;
-    this.price = price;
-    this.currency = currency;
-    this.itemWebURL = itemWebURL;
-    this.imageURL = imageURL;
+      boolean embedded,
+      String imageURL,
+      String itemWebURL,
+      float price,
+      String source,
+      String title) {
     this.category = category;
+    this.createdAt = createdAt;
+    this.currency = currency;
     this.description = description;
+    this.embedded = embedded;
+    this.imageURL = imageURL;
+    this.itemWebURL = itemWebURL;
+    this.price = price;
     this.source = source;
+    this.title = title;
   }
 }

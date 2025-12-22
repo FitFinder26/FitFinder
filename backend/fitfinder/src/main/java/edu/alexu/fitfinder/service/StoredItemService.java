@@ -1,38 +1,51 @@
 package edu.alexu.fitfinder.service;
 
-import edu.alexu.fitfinder.entity.StoredItem;
-import edu.alexu.fitfinder.entity.ItemVector;
-import edu.alexu.fitfinder.repository.StoredItemRepository;
-import edu.alexu.fitfinder.repository.ItemVectorRepository;
+import edu.alexu.fitfinder.dto.ItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class StoredItemService {
 
-    @Autowired
-    private StoredItemRepository storedItemRepository;
-    @Autowired
-    private ItemVectorRepository itemVectorRepository;
+  @Autowired private NamedParameterJdbcTemplate namedJdbcTemplate;
 
-    public StoredItemService(StoredItemRepository storedItemRepository,
-                             ItemVectorRepository itemVectorRepository) {
-        this.storedItemRepository = storedItemRepository;
-        this.itemVectorRepository = itemVectorRepository;
-    }
+  public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds) {
 
-    public List<StoredItem> getProductsByVectorIds(List<Long> vectorIds) {
-        List<ItemVector> vectors = itemVectorRepository.findByVectorIdIn(vectorIds);
-        return vectors.stream()
-                .map(ItemVector::getItem)
-                .distinct()
-                .toList();
-    }
+    String sql =
+        """
+        SELECT DISTINCT
+            si.item_id,
+            si.category,
+            si.currency,
+            si.description,
+            si.imageurl,
+            si.item_weburl,
+            si.price,
+            si.title
+        FROM ITEM_VECTOR vi
+        JOIN STORED_ITEMS si
+            ON vi.item_id = si.item_id
+        WHERE vi.vector_id IN (:vectorIds)
+        """;
 
-    public StoredItem getItemById(Long id) {
-        return storedItemRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Item not found"));
-    }
+    MapSqlParameterSource params = new MapSqlParameterSource("vectorIds", vectorIds);
+
+    return namedJdbcTemplate.query(
+        sql,
+        params,
+        (rs, rowNum) -> {
+          return new ItemDTO(
+              rs.getLong("item_id"),
+              rs.getString("category"),
+              rs.getString("currency"),
+              rs.getString("description"),
+              rs.getString("imageurl"),
+              rs.getString("item_weburl"),
+              rs.getFloat("price"),
+              rs.getString("title"));
+        });
+  }
 }

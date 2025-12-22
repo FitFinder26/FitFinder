@@ -42,21 +42,4 @@ public class SegmentationController {
     //    System.out.println("Image is sent to segmentation successfully!");
     //    return ResponseEntity.status(HttpStatus.OK).body(response);
   }
-
-  @PutMapping("/segment/callback")
-  public void segmentCallback(@RequestBody ImageMasksDTO masks) throws IOException {
-
-    System.out.println("mask has been received from hugging face!");
-    WebSocketSession session = jobRegistry.getSession(masks.getJob_id());
-    // make sure that session exists and still open
-    if (session != null && session.isOpen()) {
-      System.out.println("mask is sent to client!");
-      byte[] bytes = masks.getMasksBytes(); // serialize properly
-      session.sendMessage(new BinaryMessage(bytes));
-
-      System.out.println(masks.getMasks().toString().getBytes(StandardCharsets.UTF_8).length);
-      session.sendMessage(new TextMessage(masks.getMasks().toString()));
-      jobRegistry.removeJob(masks.getJob_id());
-    }
-  }
 }
