@@ -209,7 +209,6 @@ export default function SAMFrontend({
     if (!imageURL) return;
     setSegmentationStatus("uploading");
     setLoading(true);
-
     const blob = await fetch(imageURL).then((r) => r.blob());
     const file = new File([blob], "photo.jpg", {
       type: blob.type || "image/jpeg",
