@@ -8,7 +8,10 @@ export const apiClient = async (endpoint, options = {}) => {
   const { skipAuth, ...fetchOptions } = options;
 
   // ⏱ Auto-refresh if token close to expiry (e.g., < 30s)
-  if (!skipAuth && tokenService.getTimeToExpiry() < tokenService.getTTL() * 1000) {
+  if (
+    !skipAuth &&
+    tokenService.getTimeToExpiry() < tokenService.getTTL() * 1000
+  ) {
     if (!refreshingPromise) {
       refreshingPromise = authService
         .refreshAccessToken()
@@ -27,7 +30,7 @@ export const apiClient = async (endpoint, options = {}) => {
   const token = tokenService.getToken();
 
   const headers = {
-    "Content-Type": "application/json",
+    // "Content-Type": "application/json",
     ...(fetchOptions.headers || {}),
     ...(token && !skipAuth ? { Authorization: `Bearer ${token}` } : {}),
   };
@@ -35,7 +38,7 @@ export const apiClient = async (endpoint, options = {}) => {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...fetchOptions,
     headers,
-    credentials: "include", // always send cookies
+    // credentials: "include", // always send cookies
   });
 
   // 452 means the refresh cookie may have expired
@@ -43,6 +46,6 @@ export const apiClient = async (endpoint, options = {}) => {
     tokenService.clearToken();
     throw new Error("Unauthorized — session expired");
   }
-  
+
   return response;
 };

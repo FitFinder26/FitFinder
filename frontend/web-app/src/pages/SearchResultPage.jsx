@@ -1,26 +1,62 @@
-import React, { useMemo, useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSearchParams, useNavigate } from "react-router-dom"; // <-- added useNavigate
-
-/**
- * Minimal mock of a search results page to match the uploaded layout:
- * - left column: large image preview + filters
- * - right column: grid of product cards
- *
- * Replace the mock data + imageUrl handling with your real search results / API calls.
- */
+import { useNavigate, useLocation } from "react-router-dom"; // <-- added useNavigate
 
 export default function SearchResultPage() {
-  const [searchParams] = useSearchParams();
+  const [categories, setCategories] = useState([]);
+  const [stores, setStores] = useState([]);
+  const [sortOrder, setSortOrder] = useState("similarity");
+  const location = useLocation();
+  const { products } = location.state || []; // get products from navigation state
   const navigate = useNavigate(); // <-- added
-  const imageUrl =
-  searchParams.get("image-url") || "https://picsum.photos/seed/default/300/360";
+  const searchingPeice = location.state?.searchingPeice || null;
 
   const [filters, setFilters] = useState({
-    gender: new Set(),
+    category: new Set(),
     store: new Set(),
-    brand: new Set(),
   });
+
+  useEffect(() => {
+    console.log(products);
+    extractCategoryFromData();
+    settingSellers();
+    extractStoresFromData();
+  }, []);
+
+  const extractCategoryFromData = () => {
+    let extractedCategories = [];
+    products.forEach((product) => {
+      if (product.category && !extractedCategories.includes(product.category)) {
+        extractedCategories.push(product.category);
+      }
+    });
+    setCategories(extractedCategories);
+  };
+
+  const getWebsiteName = (url) => {
+    const { hostname } = new URL(url);
+
+    return hostname
+      .replace(/^www\./, "") // remove www.
+      .split(".")[0] // take main name
+      .replace(/-/g, " "); // optional formatting
+  };
+
+  const extractStoresFromData = () => {
+    let extractedStores = [];
+    products.forEach((product) => {
+      if (!extractedStores.includes(product.seller))
+        extractedStores.push(product.seller);
+    });
+    setStores(extractedStores);
+  };
+
+  const settingSellers = () => {
+    products.forEach((product) => {
+      product.seller = getWebsiteName(product.itemWebURL);
+    });
+    console.log(products);
+  };
 
   const toggleFilter = (group, value) => {
     setFilters((prev) => {
@@ -31,25 +67,18 @@ export default function SearchResultPage() {
     });
   };
 
-  // mock products
-  const products = useMemo(
-    () =>
-      new Array(12).fill(0).map((_, i) => ({
-        id: i + 1,
-        title: `Striped Shirt ${i + 1}`,
-        price: (19 + i).toFixed(2),
-        seller: ["Amazon", "Shein", "Noon"][i % 3],
-        img: `https://picsum.photos/seed/fit-${i + 1}/300/360`,
-        description:
-      "No description available. In a real app fetch product details from the backend using the id.",
-      })),
-    []
-  );
-
   // simple client-side filter demo (no API)
   const visible = products.filter((p) => {
     if (filters.store.size && !filters.store.has(p.seller)) return false;
+    if (filters.category.size && !filters.category.has(p.category))
+      return false;
     return true;
+  });
+
+  visible.sort((a, b) => {
+    if (sortOrder === "lowest_price") return a.price - b.price;
+    if (sortOrder === "highest_price") return b.price - a.price;
+    return 0; // similarity or default
   });
 
   return (
@@ -57,14 +86,13 @@ export default function SearchResultPage() {
       <Content>
         <Left>
           <PreviewCard>
-            {imageUrl ? (
-              <PreviewImage src={imageUrl} alt="query" />
+            {searchingPeice ? (
+              <PreviewImage src={searchingPeice} alt="query" />
             ) : (
               <PreviewPlaceholder>
-                 {/* <div>
-                  <p>Category: </p>
-                  <p>Details: {imageUrl ? "based on uploaded image" : "—"}</p>
-                </div> */}
+                <div>
+                  <p>Segmented Image</p>
+                </div>
               </PreviewPlaceholder>
             )}
           </PreviewCard>
@@ -73,13 +101,13 @@ export default function SearchResultPage() {
             <h3>Filters</h3>
 
             <FilterSection>
-              <h4>Gender</h4>
-              {["Male", "Female", "Unisex"].map((g) => (
-                <FilterRow key={g} onClick={() => toggleFilter("gender", g)}>
+              <h4>Category</h4>
+              {categories.map((g) => (
+                <FilterRow key={g} onClick={() => toggleFilter("category", g)}>
                   <input
                     type="checkbox"
                     readOnly
-                    checked={filters.gender.has(g)}
+                    checked={filters.category.has(g)}
                   />
                   <label>{g}</label>
                 </FilterRow>
@@ -88,20 +116,14 @@ export default function SearchResultPage() {
 
             <FilterSection>
               <h4>Store</h4>
-              {["Amazon", "Shein", "Noon"].map((s) => (
+              {stores.map((s) => (
                 <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
-                  <input type="checkbox" readOnly checked={filters.store.has(s)} />
+                  <input
+                    type="checkbox"
+                    readOnly
+                    checked={filters.store.has(s)}
+                  />
                   <label>{s}</label>
-                </FilterRow>
-              ))}
-            </FilterSection>
-
-            <FilterSection>
-              <h4>Brand</h4>
-              {["LC Waikiki", "DeFacto", "Nike"].map((b) => (
-                <FilterRow key={b} onClick={() => toggleFilter("brand", b)}>
-                  <input type="checkbox" readOnly checked={filters.brand.has(b)} />
-                  <label>{b}</label>
                 </FilterRow>
               ))}
             </FilterSection>
@@ -112,10 +134,13 @@ export default function SearchResultPage() {
           <ResultsHeader>
             <SortSelect>
               <label>Sort:</label>
-              <select>
-                <option>similarity</option>
-                <option>lowest price</option>
-                <option>highest price</option>
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <option value={"similarity"}>similarity</option>
+                <option value={"lowest_price"}>lowest price</option>
+                <option value={"highest_price"}>highest price</option>
               </select>
             </SortSelect>
           </ResultsHeader>
@@ -123,17 +148,28 @@ export default function SearchResultPage() {
           <Grid>
             {visible.map((p) => (
               <Card
-                key={p.id}
-                onClick={() => navigate(`/product/${p.id}`, { state: { product: p } })}
+                key={p.item_id}
+                onClick={() =>
+                  navigate(`/product/${p.item_id}`, {
+                    state: {
+                      product: p,
+                      similarProducts: visible.filter(
+                        (similar) => similar.category == p.category
+                      ),
+                    },
+                  })
+                }
               >
-                 <CardImage src={p.img} alt={p.title} />
-                 <CardBody>
-                   <CardTitle>{p.title}</CardTitle>
-                   <CardMeta>
-                     <Price>${p.price}</Price>
-                     <Seller>Sold by {p.seller}</Seller>
-                   </CardMeta>
-                 </CardBody>
+                <CardImage src={p.imageURL} alt={p.title} />
+                <CardBody>
+                  <CardTitle>{p.title}</CardTitle>
+                  <CardMeta>
+                    <Price>
+                      {p.price} {p.currency}
+                    </Price>
+                    <Seller>Sold by {p.seller}</Seller>
+                  </CardMeta>
+                </CardBody>
               </Card>
             ))}
           </Grid>
@@ -292,6 +328,11 @@ const Card = styled.div`
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   cursor: pointer; /* <-- make it clear this is clickable */
+  transition: all 0.3s ease;
+  &:hover {
+    scale: 1.02;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const CardImage = styled.img`

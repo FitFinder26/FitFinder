@@ -3,11 +3,13 @@ import io
 import random
 from PIL import Image
 from typing import Any, List, Optional
+from app.services.sam_service import SAM_service
 import httpx
 import numpy as np
 
 
 http_client = httpx.AsyncClient(timeout=30.0)
+
 
 
 async def generate_mock_mask(height: int, width: int):
@@ -19,12 +21,36 @@ async def generate_mock_mask(height: int, width: int):
     # Return the encoded mask
     return {
         "mask_id": "mock_1",
-        "mask_data": mask
+        "mask_data": mask.tolist()
     }
 
+async def download_image(image_url: str, job_id: str) -> Optional[Image.Image]:
+    print(f"--- [Segment {job_id}] Downloading image from: {image_url} ---")
+    try:
+        response = await http_client.get(image_url)
+
+        response.raise_for_status()
+
+        image_bytes = response.content
+        image = Image.open(io.BytesIO(image_bytes))
+        print(f"--- [Segment {job_id}] Downloaded {len(image_bytes)} bytes. ---")
+        return image
+
+    except httpx.HTTPStatusError as e:
+        print(f"--- [Segment {job_id}] ERROR: HTTP error while downloading: {e} ---")
+    except httpx.RequestError as e:
+        print(f"--- [Segment {job_id}] ERROR: Network error while downloading: {e} ---")
+    return None
 
 
-async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, callback_url: Optional[str] = None):
+
+async def image_segment_job(
+        job_id: str,
+        sam_instance: SAM_service,
+        image_url: str,
+        TRUSTED_HOST: str,
+        callback_url: Optional[str] = None
+        ):
     """
     This is background worker function.
     It runs *after* the API response has been sent.
@@ -64,17 +90,19 @@ async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, call
     # Here, we would pass 'image_bytes' to ML model,
     # image processing library, etc.
     print(f"--- [Segment {job_id}] Processing image... ---")
-    await asyncio.sleep(5)  # Simulate 5 seconds of work
+
+    masks, scores, logits = sam_instance.segment_image(image, multimask=True)
 
     print(f"--- [Segment Job {job_id}] COMPLETED ---")
 
     if callback_url:
         print(f"--- [Segment {job_id}] Notifying callback URL: {callback_url} ---")
         # Simulate some results
+
         results = {
             "job_id": job_id,
             "status": "segmented",
-            "masks": [generate_mock_mask(image.height, image.width)]
+            "masks": [masks[i].tolist() for i in range(len(masks))]
         }
         try:
             response = await http_client.put(callback_url, json=results)
@@ -88,7 +116,14 @@ async def image_segment_job(job_id: str, image_url: str, TRUSTED_HOST: str, call
             print(f"--- [Segment {job_id}] ERROR: Callback notification received non-2xx status: {e.response.status_code} ---")
 
 
-async def image_resegment_job(job_id: str, image_url: str, TRUSTED_HOST: str, points: List[Any], callback_url: Optional[str] = None):
+async def image_resegment_job(
+        job_id: str,
+        sam_instance: SAM_service,
+        image_url: str,
+        TRUSTED_HOST: str,
+        points: List[Any],
+        callback_url: Optional[str] = None
+        ):
     """
     This is  background worker function for re-segment job.
     It runs *after* the API response has been sent.
@@ -138,10 +173,12 @@ async def image_resegment_job(job_id: str, image_url: str, TRUSTED_HOST: str, po
     if callback_url:
         print(f"--- [Re-Segment Job {job_id}] Notifying callback URL: {callback_url} ---")
         # Simulate some results
+
+        mask = await generate_mock_mask(image.height, image.width)
         results = {
             "job_id": job_id,
             "status": "re-segmented",
-            "masks": [generate_mock_mask(image.height, image.width)]
+            "masks": [mask]
         }
         try:
             response = await http_client.put(callback_url, json=results)
