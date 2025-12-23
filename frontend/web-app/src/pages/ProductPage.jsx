@@ -1,6 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { Heart } from "lucide-react";
+import { AiFillHeart } from "react-icons/ai";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -23,6 +25,7 @@ export default function ProductPage() {
 
   const rawDescription = product.description;
   const [featuresPart, paragraphPart] = rawDescription.split(" Description ");
+  const [liked, setLiked] = useState(false);
 
   const features = featuresPart
     .split("•")
@@ -35,6 +38,9 @@ export default function ProductPage() {
         <LeftColumn>
           <ImageWrapper>
             <MainImage src={product.imageURL} alt={product.title} />
+            <LikeButton onClick={() => setLiked((prev) => !prev)}>
+              {!liked ? <Heart /> : <AiFillHeart size={25} />}
+            </LikeButton>
           </ImageWrapper>
         </LeftColumn>
 
@@ -318,4 +324,13 @@ const SimilarMeta = styled.div`
   align-items: center;
   color: #666;
   font-size: 0.9rem;
+`;
+
+const LikeButton = styled.button`
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: red;
+  margin: 1rem;
 `;

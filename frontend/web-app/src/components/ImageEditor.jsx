@@ -3,6 +3,7 @@ import { Sheet } from "react-modal-sheet";
 import CustomizeSegment from "./CustomizeSegment";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { segmentationService } from "../../../shared/services/segmentationService";
 
 export default function ImageEditor({
   imageUploaded,
@@ -49,6 +50,8 @@ export default function ImageEditor({
               setIsBeingCustomized={setIsBeingCustomized}
               selectedSegments={selectedSegments}
               setImageUploaded={setImageUploaded}
+              segmentationService={segmentationService}
+              handleCloseSegmentationSheet={handleCloseSegmentationSheet}
             />
           ) : (
             <SAMFrontend
@@ -59,6 +62,7 @@ export default function ImageEditor({
               setImageObj={setImageObj}
               setSelectedSegments={setSelectedSegments}
               setIsBeingCustomized={setIsBeingCustomized}
+              segmentationService={segmentationService}
             />
           )}
           <Toaster />

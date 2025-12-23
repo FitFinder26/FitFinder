@@ -4,8 +4,7 @@ import { HashLoader } from "react-spinners";
 import { Notifier } from "./Notifier";
 import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
 import styled, { keyframes } from "styled-components";
-import { segmentationService } from "../../../shared/services/segmentationService";
-import { bigArray } from "./masks";
+// import { bigArray } from "./masks";
 
 export default function SAMFrontend({
   imageURL,
@@ -15,9 +14,10 @@ export default function SAMFrontend({
   setImageObj,
   setSelectedSegments,
   setIsBeingCustomized,
+  segmentationService,
 }) {
-  const [masks, setMasks] = useState(bigArray); // raw SAM masks
-  // const [masks, setMasks] = useState([]); // raw SAM masks
+  // const [masks, setMasks] = useState(bigArray); // raw SAM masks
+  const [masks, setMasks] = useState([]); // raw SAM masks
   const [maskCanvases, setMaskCanvases] = useState([]); // blue overlays
   const [borderCanvases, setBorderCanvases] = useState([]); // strong pink borders
   const [selected, setSelected] = useState([]);
@@ -42,24 +42,49 @@ export default function SAMFrontend({
     return () => canvas.removeEventListener("contextmenu", handleContextMenu);
   }, []);
 
-  // receive masks from segmentationService and close the websocket on unmount
-  useEffect(() => {
-    // Subscribe to service updates
-    const unsubscribe = segmentationService.subscribeToMasks((segmentation) => {
-      const convertedMasks = convertMasksToPoints(segmentation.masks);
-      setBoxes(segmentation.boxes);
-      console.log(
-        "number of masks received in SAMFrontend:",
-        convertedMasks.length
-      );
-      setMasks(convertedMasks);
-      console.log("Masks received in SAMFrontend:", newMasks);
+  // Subscribe to service updates for segmentation
+  const unsubscribeFromSegmentation = segmentationService.subscribeToMasks(
+    (segmentation) => {
+      if (segmentation?.error) {
+        Notifier.notifyError(
+          `Segmentation failed. Please try again.\n${segmentation.error}`
+        );
+        setSegmentationStatus("idle");
+        setLoading(false);
+        return;
+      } else if (segmentation?.masks && segmentation?.boxes) {
+        const convertedMasks = convertMasksToPoints(segmentation.masks);
+        setBoxes(segmentation.boxes);
+        console.log(
+          "number of masks received in SAMFrontend Segmentation:",
+          convertedMasks.length
+        );
+        console.log(
+          "number of boxes received in SAMFrontend Segmentation:",
+          segmentation.boxes.length
+        );
+        setMasks(convertedMasks);
+      } else {
+        const convertedMasks = convertMasksToPoints(segmentation.masks);
+        console.log(
+          "number of masks received in SAMFrontend Re-segmentation:",
+          convertedMasks.length
+        );
+        setMasks(convertedMasks);
+      }
       setSegmentationStatus("completed");
       setLoading(false);
-    });
+    }
+  );
 
-    return () => unsubscribe();
-  }, []);
+  // listening to the websocket and close the websocket on unmount
+  useEffect(() => {
+    // listener is already subscribed
+    return () => {
+      // cleanup: call unsubscribe
+      unsubscribeFromSegmentation();
+    };
+  });
 
   // Load main image
   useEffect(() => {
@@ -193,29 +218,22 @@ export default function SAMFrontend({
     const formData = new FormData();
     formData.append("image", file);
 
-    // await segmentationService
-    //   .segment(formData)
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       setSegmentationStatus("segmenting");
-    //     } else {
-    //       return response.json();
-    //     }
-    //   })
-    //   .then((data) => {
-    //     if (data && data.error) {
-    //       Notifier.notifyError(`Segmentation failed: ${data.error}`);
-    //       setSegmentationStatus("idle");
-    //       setLoading(false);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     Notifier.notifyError(
-    //       `Segmentation failed. Please try again.\n${error}`
-    //     );
-    //     setLoading(false);
-    //     setSegmentationStatus("idle");
-    //   });
+    await segmentationService
+      .segment(formData)
+      .then((response) => {
+        if (response?.error) {
+          Notifier.notifyError(`Segmentation failed: ${response.error}`);
+          setSegmentationStatus("idle");
+          setLoading(false);
+        } else setSegmentationStatus("segmenting");
+      })
+      .catch((error) => {
+        Notifier.notifyError(
+          `Segmentation failed. Please try again.\n${error}`
+        );
+        setLoading(false);
+        setSegmentationStatus("idle");
+      });
   };
 
   const getSelectedBoxes = () => {
@@ -261,6 +279,12 @@ export default function SAMFrontend({
     return outputBoxes;
   };
 
+  function double2DArrayToInt2DArray(arr) {
+    return arr.map(
+      (row) => row.map((value) => Math.round(value)) // or Math.floor / Math.trunc
+    );
+  }
+
   const reSegmentImage = async () => {
     if (!imageURL) return;
     if (selectedPoints.length === 0 && deselectedPoints.length === 0) {
@@ -277,11 +301,11 @@ export default function SAMFrontend({
       type: blob.type || "image/jpeg",
     });
 
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("selected_points", JSON.stringify(selectedPoints));
-    formData.append("deselected_points", JSON.stringify(deselectedPoints));
-    formData.append("boxes", JSON.stringify(getSelectedBoxes()));
+    const formData = {
+      pos_points: double2DArrayToInt2DArray(selectedPoints),
+      neg_points: double2DArrayToInt2DArray(deselectedPoints),
+      boxes: getSelectedBoxes(),
+    };
 
     await segmentationService
       .resegment(formData)
@@ -430,14 +454,14 @@ export default function SAMFrontend({
     });
 
     // 5. Draw points
-    selectedPoints.forEach(({ x, y }) => {
+    selectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
       ctx.arc(x, y, 12, 0, 2 * Math.PI);
       ctx.fillStyle = "rgba(255,105,180,1)";
       ctx.fill();
     });
 
-    deselectedPoints.forEach(({ x, y }) => {
+    deselectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
       ctx.arc(x, y, 12, 0, 2 * Math.PI);
       ctx.fillStyle = "rgba(0,150,255,1)";

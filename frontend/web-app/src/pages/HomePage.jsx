@@ -9,11 +9,15 @@ import ImageEditor from "../components/ImageEditor";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Recommendations from "../components/Recommendations";
 import PreferenceSurvey from "../components/PreferenceSurvey";
+import { recomendedationService } from "../../../shared/services/recomendationService";
+import SideBar from "../components/SideBar";
 
 export default function HomePage() {
   const inputRef = useRef(null);
   const [imageUploaded, setImageUploaded] = useState(false);
   const [imageURL, setImageURL] = useState(null);
+  const [categoricalProducts, setCategoricalProducts] = useState({});
+  const [products, setProducts] = useState([]);
   const [showPreferenceSurvey, setShowPreferenceSurvey] = useState(false);
   const location = useLocation();
   const cameFrom = location.state?.cameFrom || null;
@@ -28,10 +32,55 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    if (!imageUploaded) inputRef.current.value = "";
+  }, [imageUploaded]);
+
+  useEffect(() => {
     if (cameFrom === "signup" || cameFrom === "google-signup") {
       setShowPreferenceSurvey(true);
     }
   }, [cameFrom]);
+
+  useEffect(() => {
+    recomendedationService
+      .getRandomProducts()
+      .then((result) => {
+        if (result.ok) return result.json();
+        else throw new Error("Couldn't fetch random products.");
+      })
+      .then((data) => {
+        setProducts(data);
+        setCategoricalProducts(groupByCategory(data));
+      })
+      .catch((error) => new Error(error));
+  }, []);
+
+  const groupByCategory = (products, { includeNullCategory = false } = {}) => {
+    if (!Array.isArray(products)) {
+      throw new TypeError("Expected an array of products");
+    }
+
+    return products.reduce((acc, item) => {
+      let cat = item?.category;
+
+      // Normalize category strings (trim extra spaces)
+      if (typeof cat === "string") {
+        cat = cat.trim();
+      }
+
+      // Handle missing/empty categories
+      if (!cat) {
+        if (!includeNullCategory) {
+          return acc; // skip items with no category
+        }
+        cat = "Uncategorized";
+      }
+
+      if (!acc[cat]) acc[cat] = [];
+      acc[cat].push(item);
+      return acc;
+    }, {});
+  };
 
   return (
     <Container>
@@ -92,7 +141,10 @@ export default function HomePage() {
         </RightHero>
       </Hero>
 
-      <Recommendations />
+      <Recommendations
+        products={products}
+        categoricalProducts={categoricalProducts}
+      />
 
       <LazyMount>
         <Feedback>
@@ -197,7 +249,7 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 4.5rem;
+  margin-top: 1rem;
   display: grid;
   grid-template-rows: 4;
   grid-template-columns: 1;

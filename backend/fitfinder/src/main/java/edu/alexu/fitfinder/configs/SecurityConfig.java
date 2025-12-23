@@ -49,6 +49,7 @@ public class SecurityConfig {
                         "/re-segment",
                         "/segmentation/callback",
                         "api/v1/items/search",
+                        "api/v1/items/random",
                         "/ws")
                     .permitAll()
                     .anyRequest()
