@@ -46,10 +46,10 @@ public class SecurityConfig {
                         "/auth/refresh",
                         "/auth/logout",
                         "/segment/upload",
-                        "/segment/callback",
-                        "resegment",
-                        "/ws",
-                        "api/v1/items/search")
+                        "/re-segment",
+                        "/segmentation/callback",
+                        "api/v1/items/search",
+                        "/ws")
                     .permitAll()
                     .anyRequest()
                     .authenticated())

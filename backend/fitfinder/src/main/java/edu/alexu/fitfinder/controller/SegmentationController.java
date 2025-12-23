@@ -3,6 +3,7 @@ package edu.alexu.fitfinder.controller;
 import edu.alexu.fitfinder.component.JobRegistry;
 import edu.alexu.fitfinder.dto.ImageMasksDTO;
 import edu.alexu.fitfinder.dto.ResegmentImageDTO;
+import edu.alexu.fitfinder.exception.InvalidInputException;
 import edu.alexu.fitfinder.service.SegmentationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,15 +32,34 @@ public class SegmentationController {
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 
-  @PostMapping("/resegment")
-  public String resegment(
-      @RequestParam String sessionId, @RequestBody ResegmentImageDTO resegmentInfo) {
+  @PostMapping("/re-segment")
+  public ResponseEntity<?> resegment(
+      @RequestParam String sessionId, @RequestBody ResegmentImageDTO resegmentInfo)
+      throws InvalidInputException, Exception {
+
     segmentationService.Resegment(sessionId, resegmentInfo);
-    return "Successfully";
-    //
-    //    System.out.println("Hey from uploading image controller!");
-    //    Map<String, String> response = segmentationService.uploadImage(image, sessionId);
-    //    System.out.println("Image is sent to segmentation successfully!");
-    //    return ResponseEntity.status(HttpStatus.OK).body(response);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PutMapping("/segmentation/callback")
+  public void segmentationCallback(@RequestBody ImageMasksDTO masks) throws IOException {
+    System.out.println("mask has been received from hugging face!");
+    WebSocketSession session = jobRegistry.getSession(masks.getJob_id());
+    // make sure that session exists and still open
+    if (session != null && session.isOpen()) {
+      if (masks.getStatus().equals("re-segmented"))
+        session.sendMessage(new TextMessage(masks.getMasks().toString()));
+      else
+        session.sendMessage(
+            new TextMessage(
+                "{\"masks\": "
+                    + masks.getMasks().toString()
+                    + ", \"boxes\": "
+                    + masks.getBoxes().toString()
+                    + "}"));
+
+      System.out.println("mask has been sent to client!");
+      jobRegistry.removeJob(masks.getJob_id());
+    }
   }
 }
