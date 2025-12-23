@@ -17,7 +17,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.socket.WebSocketSession;
 import reactor.core.publisher.Mono;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,20 +55,16 @@ public class SegmentationService {
     jobRegistry.registerJob(jobId, session);
 
     // send the image to the AI service for segmentation
-    HttpStatusCode status =
-        webClient
-            .post()
-            .uri("/api/v1/job/segment/")
-            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .body(
-                BodyInserters.fromFormData("job_id", jobId)
-                    .with("image_url", imageUrl)
-                    .with("callback_url", forwardingUrl + "/segment/callback"))
-            .exchangeToMono(response -> Mono.just(response.statusCode()))
-            .block();
-
-    System.out.println(status);
-    if (status == null || status.value() != 202) throw new Exception();
+    webClient
+        .post()
+        .uri("/api/v1/job/segment/")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        .body(
+            BodyInserters.fromFormData("job_id", jobId)
+                .with("image_url", imageUrl)
+                .with("callback_url", forwardingUrl + "/segmentation/callback"))
+        .exchangeToMono(response -> Mono.just(response.statusCode()))
+        .block();
     System.out.println("Image is uploaded successfully to hugging face");
 
     // return job id and image url to the client
@@ -78,43 +73,69 @@ public class SegmentationService {
     return response;
   }
 
+  private void validatePointsAndBoxes(int[][] posPoints, int[][] negPoints, int[][] boxes)
+      throws InvalidInputException {
+    if ((negPoints == null || negPoints.length == 0)
+        && (posPoints == null || posPoints.length == 0)) {
+      throw new InvalidInputException("Pos points or neg points should be given");
+    }
+
+    boolean isNegPointsInValid =
+        negPoints != null && negPoints.length != 0 && negPoints[0].length != 2;
+    boolean isPosPointsInValid =
+        posPoints != null && posPoints.length != 0 && posPoints[0].length != 2;
+
+    if (isNegPointsInValid || isPosPointsInValid) {
+      throw new InvalidInputException("Pos points and neg points should be of shape (N,2)");
+    }
+
+    if (boxes != null && boxes.length != 0 && boxes[0].length != 4) {
+      throw new InvalidInputException("Boxes should be of shape (N,4)");
+    }
+  }
+
   public void Resegment(String sessionId, ResegmentImageDTO resegmentInfo) {
     // Get websocket session related to this id
     WebSocketSession session = MyWebSocketHandler.sessions.get(sessionId);
     if (session == null) throw new SocketException("WebSocket not connected");
 
-    String imageUrl = null;
-
+    // Validate job_id
     try {
-      imageUrl =
+      resegmentInfo.setImage_url(
           cloudinary
               .api()
               .resource(resegmentInfo.getJob_id(), ObjectUtils.emptyMap())
               .get("secure_url")
-              .toString();
-    } catch (Exception ignored) {
-    }
-
-    System.out.println(imageUrl);
-    if (imageUrl == null)
+              .toString());
+    } catch (Exception e) {
       throw new InvalidInputException("There is no image associated with job Id");
+    }
+    System.out.println(resegmentInfo.getImage_url());
 
-    //    System.out.println("SessionId is correctly connected with Websocket!");
-    //
-    //    // register this job with the session
-    //    jobRegistry.registerJob(jobId, session);
-    //
-    //    webClient
-    //        .post()
-    //        .uri("/api/v1/job/re-segment/")
-    //        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-    //        .body(
-    //            BodyInserters.fromFormData("job_id", jobId)
-    //                .with("image_url", imageUrl)
-    //                .with("callback_url", forwardingUrl + "/segment/callback")
-    //                .with("points", ""))
-    //        .retrieve()
-    //        .bodyToMono(String.class)
-    //        .block();
+    // Validate points and boxes
+    validatePointsAndBoxes(
+        resegmentInfo.getPos_points(), resegmentInfo.getNeg_points(), resegmentInfo.getBoxes());
+
+    // Refactor dimension for null and empty inputs
+    if (resegmentInfo.getNeg_points() == null) resegmentInfo.setNeg_points(new int[0][0]);
+    if (resegmentInfo.getPos_points() == null) resegmentInfo.setPos_points(new int[0][0]);
+    if (resegmentInfo.getBoxes() != null && resegmentInfo.getBoxes().length == 0)
+      resegmentInfo.setBoxes(null);
+
+    // register this job with the session
+    System.out.println("SessionId is correctly connected with Websocket!");
+    jobRegistry.registerJob(resegmentInfo.getJob_id(), session);
+
+    resegmentInfo.setCallback_url(forwardingUrl + "/segmentation/callback");
+    String response =
+        webClient
+            .post()
+            .uri("/api/v1/job/re-segment/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(resegmentInfo)
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    System.out.println(response);
   }
 }

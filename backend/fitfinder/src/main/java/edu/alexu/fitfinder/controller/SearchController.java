@@ -1,10 +1,10 @@
 package edu.alexu.fitfinder.controller;
 
-import edu.alexu.fitfinder.dto.ItemDTO;
 import edu.alexu.fitfinder.dto.SearchRequestDTO;
-import edu.alexu.fitfinder.service.AIService;
+import edu.alexu.fitfinder.service.SearchService;
 import edu.alexu.fitfinder.service.StoredItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
 @CrossOrigin
 public class SearchController {
 
-  @Autowired AIService AIService;
+  @Autowired SearchService searchService;
   @Autowired StoredItemService storedItemService;
 
   @PostMapping("/search")
-  public List<ItemDTO> searchByImageMask(@RequestBody SearchRequestDTO searchInfo)
+  public ResponseEntity<?> searchByImageMask(@RequestBody SearchRequestDTO searchInfo)
       throws Exception {
-    List<Long> vectorIds = AIService.getSimilarIndices(searchInfo);
-    if (vectorIds.isEmpty()) return new LinkedList<>();
-    return storedItemService.getProductsByVectorIds(vectorIds);
+    List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
+    if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
+    return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds));
   }
 }

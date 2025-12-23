@@ -14,17 +14,4 @@ public class WebSocketConfig implements WebSocketConfigurer {
   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
     registry.addHandler(new MyWebSocketHandler(), "/ws").setAllowedOriginPatterns("*");
   }
-
-  @Bean
-  public ServletServerContainerFactoryBean createWebSocketContainer() {
-    ServletServerContainerFactoryBean container = new ServletServerContainerFactoryBean();
-
-    container.setMaxTextMessageBufferSize(20 * 1024 * 1024); // 10 MB
-    container.setMaxBinaryMessageBufferSize(20 * 1024 * 1024); // 10 MB
-    //    container.setMaxSessionIdleTimeout(60_000L); // 60 second
-
-    System.out.println("✅ WebSocket max text size set to 10 MB");
-
-    return container;
-  }
 }

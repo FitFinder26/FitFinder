@@ -18,7 +18,6 @@ public class ItemVector {
   private Long id;
 
   @CreationTimestamp private LocalDateTime createdAt;
-
   private Long vectorId;
 
   @ManyToOne
