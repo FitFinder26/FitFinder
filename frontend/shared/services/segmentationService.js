@@ -1,5 +1,6 @@
 import { apiClient } from "./apiClient";
 import { API_BASE_URL } from "../config/env";
+import search_request from "../constants/search_request.json";
 
 let sessionId = null;
 let ws = null;
@@ -66,6 +67,10 @@ export const segmentationService = {
   },
 
   segment: async (formData) => {
+    const isConnected = () => ws && ws.readyState === WebSocket.OPEN;
+    if (!isConnected || !sessionId) {
+      segmentationService.connect();
+    }
     formData.append("sessionId", sessionId);
     console.log(formData.get("sessionId"));
     return await apiClient("/segment/upload", {
@@ -75,14 +80,31 @@ export const segmentationService = {
     });
   },
 
+  resegment: async (formData) => {
+    const isConnected = () => ws && ws.readyState === WebSocket.OPEN;
+    if (!isConnected || !sessionId) {
+      segmentationService.connect();
+    }
+    formData.append("sessionId", sessionId);
+    console.log(formData.get("sessionId"));
+    return await apiClient("/resegment", {
+      method: "POST",
+      body: formData,
+      skipAuth: true,
+    });
+  },
+
   search: async (mask, prompt) => {
     const formData = new FormData();
-    formData.append("job_id", sessionId);
-    formData.append("mask_json", JSON.stringify(mask));
+    // formData.append("job_id", sessionId);
+    // formData.append("mask_json", JSON.stringify(mask));
+
+    formData.append("job_id", search_request.job_id);
+    formData.append("mask_json", search_request.mask_json);
     // formData.append("prompt", prompt);
     console.log(formData.get("job_id"));
     console.log(formData.get("mask_json"));
-    return await apiClient("/search", {
+    return await apiClient("/api/v1/items/search", {
       method: "POST",
       body: formData,
       skipAuth: true,
