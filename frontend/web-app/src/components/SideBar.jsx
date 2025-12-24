@@ -9,14 +9,17 @@ import { useState } from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { useAuth } from "../../../shared/hooks/useAuth";
 import { CgPassword } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar({ isOpen, setIsOpen }) {
   const { logout } = useAuth();
+  const navigator = useNavigate();
 
   const handleLogout = () => {
     logout();
     window.location.reload();
   };
+
   return (
     <>
       {/* Buttons */}
@@ -48,7 +51,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
 
         {/* Menu items */}
         <Menu>
-          <MenuItem icon={<History />}>Recent Searches</MenuItem>
+          <MenuItem icon={<History />} onClick={() => navigator("/history")}>
+            Recent Searches
+          </MenuItem>
           <MenuItem icon={<Heart />}>Saved Items</MenuItem>
           <MenuItem icon={<MessageCircleDashed />}>Send Feedback</MenuItem>
           <MenuItem icon={<CgPassword />}>Change Password</MenuItem>

@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import whiteCameraIcon from "../assets/camera-icon-white.png";
 import blackCameraIcon from "../assets/camera-icon.png";
-import ilustratorImage from "../assets/ilustrator.png";
+// import ilustratorImage from "../assets/ilustrator.png";
 import { useEffect, useRef, useState } from "react";
 import LazyMount from "../components/LazyMount";
 import Logo from "../components/Logo";
@@ -10,7 +10,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Recommendations from "../components/Recommendations";
 import PreferenceSurvey from "../components/PreferenceSurvey";
 import { recomendedationService } from "../../../shared/services/recomendationService";
-import SideBar from "../components/SideBar";
 
 export default function HomePage() {
   const inputRef = useRef(null);
@@ -22,7 +21,8 @@ export default function HomePage() {
   const location = useLocation();
   const cameFrom = location.state?.cameFrom || null;
   const navigator = useNavigate();
-
+  const welcomeVideo =
+    "https://media.istockphoto.com/id/1140675444/video/young-surfer-ripping-gnarly-turn.mp4?s=mp4-640x640-is&k=20&c=Y8S6HPimKxeMPx8DPAbqrjayjLvxlkScIuNO5lkcLXM=";
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -137,7 +137,15 @@ export default function HomePage() {
           </div>
         </LeftHero>
         <RightHero>
-          <img src={ilustratorImage} alt="illustrator image" />
+          {/* <img src={ilustratorImage} alt="illustrator image" /> */}
+          <VideoBox
+            autoPlay
+            loop
+            muted
+            src={welcomeVideo}
+            onClick={() => window.open(welcomeVideo)}
+            width="600"
+          />
         </RightHero>
       </Hero>
 
@@ -348,18 +356,16 @@ const LeftHero = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 70%;
+  width: 60%;
 `;
 
 const RightHero = styled.div`
   animation: ${slideLeft} 1s;
-  width: 30%;
+  width: 40%;
   padding: 1rem;
-  img {
-    width: 100%;
-    object-fit: fill;
-    height: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Feedback = styled.div`
@@ -370,4 +376,20 @@ const Feedback = styled.div`
 const SocialMedia = styled.div`
   padding: 1rem;
   animation: ${slideRight} 1s;
+`;
+
+const VideoBox = styled.video`
+  border-radius: 20px;
+  transform: perspective(600px) rotateY(-15deg) scale(0.9) rotateX(10deg)
+    translateX(-50px);
+  filter: blur(2px);
+  opacity: 0.9;
+  transition: 0.6s ease all;
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
+  width: 85%;
+  &:hover {
+    transform: perspective(600px) rotateY(0deg) rotateX(0deg) scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
 `;
