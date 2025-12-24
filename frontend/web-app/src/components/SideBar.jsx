@@ -5,15 +5,19 @@ import {
   MessageCircleDashed,
   User as UserIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { useAuth } from "../../../shared/hooks/useAuth";
+import { useAuthContext } from "../providers/AuthProvider";
 import { CgPassword } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
 export default function SideBar({ isOpen, setIsOpen }) {
-  const { logout } = useAuth();
+  const { logout, user } = useAuthContext();
   const navigator = useNavigate();
+
+  useEffect(() => {
+    if (isOpen) alert(user);
+  }, [isOpen]);
 
   const handleLogout = () => {
     logout();

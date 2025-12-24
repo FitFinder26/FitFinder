@@ -121,7 +121,7 @@ export const authService = {
       await apiClient("/auth/profile"),
       {
         method: "GET",
-        skipAuth: true,
+        skipAuth: false,
       }
     );
   },
