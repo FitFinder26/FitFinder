@@ -115,4 +115,14 @@ export const authService = {
       },
     });
   },
+
+  getProfile: async () => {
+    return (
+      await apiClient("/auth/profile"),
+      {
+        method: "GET",
+        skipAuth: true,
+      }
+    );
+  },
 };
