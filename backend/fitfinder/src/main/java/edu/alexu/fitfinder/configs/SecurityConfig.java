@@ -40,17 +40,14 @@ public class SecurityConfig {
                     }))
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers(
-                        "/auth/login",
-                        "/auth/signup",
-                        "/auth/refresh",
-                        "/auth/logout",
+                    auth.requestMatchers(
+                        "/api/v1/auth/**",
+                        "/api/v1/items/**",
                         "/segment/upload",
                         "/re-segment",
                         "/segmentation/callback",
-                        "api/v1/items/search",
-                        "api/v1/items/random",
-                        "/ws")
+                        "/ws"
+                    )
                     .permitAll()
                     .anyRequest()
                     .authenticated())
