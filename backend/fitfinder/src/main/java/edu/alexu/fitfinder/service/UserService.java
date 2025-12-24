@@ -5,6 +5,8 @@ import edu.alexu.fitfinder.entity.User;
 import edu.alexu.fitfinder.exception.InvalidInputException;
 import edu.alexu.fitfinder.exception.UnauthorizedException;
 import edu.alexu.fitfinder.exception.UserAlreadyExistsException;
+import edu.alexu.fitfinder.exception.UserNotFoundException;
+import edu.alexu.fitfinder.mapper.UserMapper;
 import edu.alexu.fitfinder.repository.UserRepo;
 import edu.alexu.fitfinder.service.signup.EmailValidator;
 import edu.alexu.fitfinder.service.signup.PasswordValidator;
@@ -18,12 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
   @Autowired UserRepo userRepo;
   @Autowired JwtService jwtService;
+  @Autowired UserMapper userMapper;
 
   private final int REFRESH_TOKEN_MAX_AGE = 3 * 60 * 60; // 3 hours
   private final String REFRESH_TOKEN_PATH = "/auth";
@@ -133,5 +137,13 @@ public class UserService {
 
   public void LogOut(HttpServletResponse response) {
     response.addCookie(DeleteRefreshToken());
+  }
+
+  public UserDTO getUser(String token) {
+    Long userID =  Long.parseLong(jwtService.extractUserId(token));
+    User user = userRepo.findById(userID)
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+      return userMapper.toDTO(user);
   }
 }
