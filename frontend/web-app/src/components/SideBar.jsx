@@ -17,7 +17,13 @@ export default function SideBar({ isOpen, setIsOpen }) {
 
   const handleLogout = () => {
     logout();
+    navigator("/");
     window.location.reload();
+  };
+
+  const handleHistoryNavigation = () => {
+    navigator("/history");
+    setIsOpen(false);
   };
 
   return (
@@ -51,7 +57,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
 
         {/* Menu items */}
         <Menu>
-          <MenuItem icon={<History />} onClick={() => navigator("/history")}>
+          <MenuItem icon={<History />} onClick={handleHistoryNavigation}>
             Recent Searches
           </MenuItem>
           <MenuItem icon={<Heart />}>Saved Items</MenuItem>

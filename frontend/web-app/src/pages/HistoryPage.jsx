@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { AiFillHeart } from "react-icons/ai";
+import { useAuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 /* ================== Helpers ================== */
 const parseDate = (dateStr) => {
@@ -40,11 +42,17 @@ function CardImageWithLoader({ src, alt }) {
 /* ================== Component ================== */
 export default function HistoryPage() {
   const [sortOrder, setSortOrder] = useState("most_recent");
-
   const [filters, setFilters] = useState({
     date: new Set(),
     specificDate: "",
   });
+  const navigator = useNavigate();
+  const { isAuthenticated } = useAuthContext();
+
+  useEffect(() => {
+    if (!isAuthenticated())
+      navigator("/registration", { state: { form: "signup" } });
+  }, []);
 
   const products = [
     {
@@ -245,6 +253,13 @@ const SpecificDate = styled.div`
   margin-top: 0.8rem;
   display: flex;
   flex-direction: column;
+
+  input {
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 20px;
+  }
 `;
 
 const Right = styled.section``;
