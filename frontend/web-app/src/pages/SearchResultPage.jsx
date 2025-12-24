@@ -1,14 +1,43 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom"; // <-- added useNavigate
+import styled, { keyframes } from "styled-components";
+import { useNavigate, useLocation } from "react-router-dom";
+import { MdNoAdultContent } from "react-icons/md";
+import noDataFound from "../assets/noDataFound.svg";
+
+/* ---------------------------------------------
+   Image with Skeleton + Fade + Error Fallback
+----------------------------------------------*/
+function CardImageWithLoader({ src, alt }) {
+  const [status, setStatus] = useState("loading");
+
+  return (
+    <ImageWrapper>
+      {status === "loading" && <ImageSkeleton />}
+      {status === "error" && <ImageFallback>No image</ImageFallback>}
+
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setStatus("loaded")}
+        onError={() => setStatus("error")}
+        style={{
+          opacity: status === "loaded" ? 1 : 0,
+        }}
+      />
+    </ImageWrapper>
+  );
+}
 
 export default function SearchResultPage() {
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
   const location = useLocation();
-  const { products } = location.state || []; // get products from navigation state
-  const navigate = useNavigate(); // <-- added
+  const navigate = useNavigate();
+
   const searchingPeice = location.state?.searchingPeice || null;
 
   const [filters, setFilters] = useState({
@@ -16,84 +45,86 @@ export default function SearchResultPage() {
     store: new Set(),
   });
 
+  /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
-    console.log(products);
-    extractCategoryFromData();
-    settingSellers();
-    extractStoresFromData();
+    const productsFromState = location.state?.products || [];
+    // simulate async fetch
+    setTimeout(() => {
+      const productsCopy = JSON.parse(JSON.stringify(productsFromState));
+      settingSellers(productsCopy);
+      extractCategoryFromData(productsCopy);
+      extractStoresFromData(productsCopy);
+      setProducts(productsCopy);
+      setLoading(false);
+    }, 500); // simulate delay
   }, []);
 
-  const extractCategoryFromData = () => {
-    let extractedCategories = [];
-    products.forEach((product) => {
-      if (product.category && !extractedCategories.includes(product.category)) {
-        extractedCategories.push(product.category);
+  const extractCategoryFromData = (prods) => {
+    const extracted = [];
+    prods.forEach((p) => {
+      if (p.category && !extracted.includes(p.category)) {
+        extracted.push(p.category);
       }
     });
-    setCategories(extractedCategories);
+    setCategories(extracted);
+  };
+
+  const extractStoresFromData = (prods) => {
+    const extracted = [];
+    prods.forEach((p) => {
+      if (!extracted.includes(p.seller)) extracted.push(p.seller);
+    });
+    setStores(extracted);
   };
 
   const getWebsiteName = (url) => {
     const { hostname } = new URL(url);
-
     return hostname
-      .replace(/^www\./, "") // remove www.
-      .split(".")[0] // take main name
-      .replace(/-/g, " "); // optional formatting
+      .replace(/^www\./, "")
+      .split(".")[0]
+      .replace(/-/g, " ");
   };
 
-  const extractStoresFromData = () => {
-    let extractedStores = [];
-    products.forEach((product) => {
-      if (!extractedStores.includes(product.seller))
-        extractedStores.push(product.seller);
+  const settingSellers = (prods) => {
+    prods.forEach((p) => {
+      p.seller = getWebsiteName(p.itemWebURL);
     });
-    setStores(extractedStores);
-  };
-
-  const settingSellers = () => {
-    products.forEach((product) => {
-      product.seller = getWebsiteName(product.itemWebURL);
-    });
-    console.log(products);
   };
 
   const toggleFilter = (group, value) => {
     setFilters((prev) => {
       const next = { ...prev, [group]: new Set(prev[group]) };
-      if (next[group].has(value)) next[group].delete(value);
-      else next[group].add(value);
+      next[group].has(value)
+        ? next[group].delete(value)
+        : next[group].add(value);
       return next;
     });
   };
 
-  // simple client-side filter demo (no API)
-  const visible = products.filter((p) => {
-    if (filters.store.size && !filters.store.has(p.seller)) return false;
-    if (filters.category.size && !filters.category.has(p.category))
-      return false;
-    return true;
-  });
+  /* ------------------ Filter + Sort ------------------ */
+  const visible = products
+    .filter((p) => {
+      if (filters.store.size && !filters.store.has(p.seller)) return false;
+      if (filters.category.size && !filters.category.has(p.category))
+        return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "lowest_price") return a.price - b.price;
+      if (sortOrder === "highest_price") return b.price - a.price;
+      return 0;
+    });
 
-  visible.sort((a, b) => {
-    if (sortOrder === "lowest_price") return a.price - b.price;
-    if (sortOrder === "highest_price") return b.price - a.price;
-    return 0; // similarity or default
-  });
-
+  /* ------------------ Render ------------------ */
   return (
     <PageWrap>
       <Content>
         <Left>
           <PreviewCard>
             {searchingPeice ? (
-              <PreviewImage src={searchingPeice} alt="query" />
+              <PreviewImage src={searchingPeice} />
             ) : (
-              <PreviewPlaceholder>
-                <div>
-                  <p>Segmented Image</p>
-                </div>
-              </PreviewPlaceholder>
+              <PreviewPlaceholder>Segmented Image</PreviewPlaceholder>
             )}
           </PreviewCard>
 
@@ -102,14 +133,14 @@ export default function SearchResultPage() {
 
             <FilterSection>
               <h4>Category</h4>
-              {categories.map((g) => (
-                <FilterRow key={g} onClick={() => toggleFilter("category", g)}>
+              {categories.map((c) => (
+                <FilterRow key={c} onClick={() => toggleFilter("category", c)}>
                   <input
                     type="checkbox"
                     readOnly
-                    checked={filters.category.has(g)}
+                    checked={filters.category.has(c)}
                   />
-                  <label>{g}</label>
+                  <label>{c}</label>
                 </FilterRow>
               ))}
             </FilterSection>
@@ -138,51 +169,72 @@ export default function SearchResultPage() {
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
-                <option value={"similarity"}>similarity</option>
-                <option value={"lowest_price"}>lowest price</option>
-                <option value={"highest_price"}>highest price</option>
+                <option value="similarity">similarity</option>
+                <option value="lowest_price">lowest price</option>
+                <option value="highest_price">highest price</option>
               </select>
             </SortSelect>
           </ResultsHeader>
 
           <Grid>
-            {visible.map((p) => (
-              <Card
-                key={p.item_id}
-                onClick={() =>
-                  navigate(`/product/${p.item_id}`, {
-                    state: {
-                      product: p,
-                      similarProducts: visible.filter(
-                        (similar) => similar.category == p.category
-                      ),
-                    },
-                  })
-                }
-              >
-                <CardImage src={p.imageURL} alt={p.title} />
-                <CardBody>
-                  <CardTitle>{p.title}</CardTitle>
-                  <CardMeta>
-                    <Price>
-                      {p.price} {p.currency}
-                    </Price>
-                    <Seller>Sold by {p.seller}</Seller>
-                  </CardMeta>
-                </CardBody>
-              </Card>
-            ))}
+            {loading
+              ? Array.from({ length: 8 }).map((_, idx) => (
+                  <Card key={idx}>
+                    <ImageWrapper>
+                      <ImageSkeleton />
+                    </ImageWrapper>
+                    <CardBody>
+                      <CardTitle>Loading...</CardTitle>
+                      <CardMeta>
+                        <Price>--</Price>
+                        <Seller>--</Seller>
+                      </CardMeta>
+                    </CardBody>
+                  </Card>
+                ))
+              : visible.map((p) => (
+                  <Card
+                    key={p.item_id}
+                    onClick={() =>
+                      navigate(`/product/${p.item_id}`, {
+                        state: {
+                          product: p,
+                          similarProducts: visible.filter(
+                            (x) => x.category === p.category
+                          ),
+                        },
+                      })
+                    }
+                  >
+                    <CardImageWithLoader src={p.imageURL} alt={p.title} />
+
+                    <CardBody>
+                      <CardTitle>{p.title}</CardTitle>
+                      <CardMeta>
+                        <Price>
+                          {p.price} {p.currency}
+                        </Price>
+                        <Seller>{p.seller}</Seller>
+                      </CardMeta>
+                    </CardBody>
+                  </Card>
+                ))}
           </Grid>
+          {visible.length === 0 && !loading && (
+            <img src={noDataFound} style={{}} />
+          )}
         </Right>
       </Content>
     </PageWrap>
   );
 }
 
-/* Styled components */
+/* ---------------------------------------------
+   Styled Components
+----------------------------------------------*/
 
 const PageWrap = styled.main`
-  padding-top: 84px; /* space for fixed navbar */
+  padding-top: 84px;
   min-height: calc(100vh - 84px);
   background: #fafafa;
 `;
@@ -193,11 +245,9 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 2rem;
-  align-items: start;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    padding: 0 1rem;
   }
 `;
 
@@ -212,59 +262,35 @@ const PreviewCard = styled.div`
   border-radius: 10px;
   padding: 1rem;
   min-height: 360px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 `;
 
 const PreviewImage = styled.img`
   max-width: 100%;
   max-height: 320px;
   object-fit: contain;
-  border-radius: 8px;
 `;
 
 const PreviewPlaceholder = styled.div`
-  text-align: center;
-  color: #666;
-  p {
-    margin-top: 0.6rem;
-    font-size: 0.9rem;
-  }
+  color: #777;
 `;
 
 const Filters = styled.div`
   background: white;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-
-  h3 {
-    margin-bottom: 0.5rem;
-  }
 `;
 
 const FilterSection = styled.div`
-  margin-top: 0.8rem;
-  h4 {
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    color: #333;
-  }
+  margin-top: 1rem;
 `;
 
 const FilterRow = styled.label`
   display: flex;
-  gap: 0.6rem;
-  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
-  user-select: none;
-  margin: 0.35rem 0;
-  input {
-    width: 16px;
-    height: 16px;
-  }
 `;
 
 const Right = styled.section`
@@ -275,49 +301,30 @@ const Right = styled.section`
 
 const ResultsHeader = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: transparent;
-  padding: 0.2rem 0;
-  h2 {
-    margin: 0;
-    font-size: 1.4rem;
-  }
-  p {
-    margin: 0;
-    color: #666;
-    font-size: 0.95rem;
-  }
+  justify-content: flex-end;
 `;
 
 const SortSelect = styled.div`
   display: flex;
-  align-items: center;
   gap: 0.5rem;
-  label {
-    color: #666;
-    font-size: 0.95rem;
-  }
   select {
-    padding: 0.35rem 0.6rem;
-    border-radius: 6px;
-    border: 1px solid #ddd;
+    padding: 0.2rem;
+    border-radius: 20px;
   }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* <- changed to 4 per row */
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr); /* fallback for narrower screens */
+    grid-template-columns: repeat(3, 1fr);
   }
-
-  @media (max-width: 1000px) {
+  @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 640px) {
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -326,45 +333,75 @@ const Card = styled.div`
   background: white;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  cursor: pointer; /* <-- make it clear this is clickable */
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+
   &:hover {
-    scale: 1.02;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
   }
 `;
 
-const CardImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-`;
-
 const CardBody = styled.div`
-  padding: 0.6rem 0.9rem;
+  padding: 0.8rem;
 `;
 
 const CardTitle = styled.h3`
   font-size: 0.95rem;
-  margin: 0 0 0.4rem 0;
   height: 40px;
   overflow: hidden;
-  color: #111;
 `;
 
 const CardMeta = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
 
 const Price = styled.span`
   font-weight: 700;
-  color: #111;
 `;
 
 const Seller = styled.span`
   font-size: 0.85rem;
   color: #666;
+`;
+
+/* ---------------------------------------------
+   Skeleton Styles
+----------------------------------------------*/
+
+const shimmer = keyframes`
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+`;
+
+const ImageSkeleton = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+  background-size: 400% 100%;
+  animation: ${shimmer} 1.4s infinite;
+`;
+
+const ImageFallback = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #888;
 `;
