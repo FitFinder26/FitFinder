@@ -67,7 +67,7 @@ public class UserController {
     return ResponseEntity.ok(user);
   }
 
-  @PostMapping("/profile/photo")
+  @PutMapping("/profile/photo")
   public ResponseEntity<?> uploadImageProfile(
           @RequestParam MultipartFile image,
           @RequestHeader("Authorization") String token) {
