@@ -43,6 +43,7 @@ public class SecurityConfig {
                     auth.requestMatchers(
                         "/api/v1/auth/**",
                         "/api/v1/items/**",
+                        "/api/v1/favorites/**",
                         "/segment/upload",
                         "/re-segment",
                         "/segmentation/callback",
