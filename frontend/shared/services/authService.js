@@ -3,7 +3,7 @@ import { tokenService } from "./tokenService";
 
 export const authService = {
   signup: async (userName, email, password) => {
-    const response = await apiClient("/auth/signup", {
+    const response = await apiClient("/api/v1/auth/signup", {
       method: "POST",
       body: JSON.stringify({ userName, email, password }),
       skipAuth: false,
@@ -33,7 +33,7 @@ export const authService = {
   },
 
   login: async (email, password) => {
-    const response = await apiClient("/auth/login", {
+    const response = await apiClient("/api/v1/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       skipAuth: false,
@@ -63,9 +63,9 @@ export const authService = {
   },
 
   refreshAccessToken: async () => {
-    const response = await apiClient("/auth/refresh", {
+    const response = await apiClient("/api/v1/auth/refresh", {
       method: "POST",
-      skipAuth: true, // don't send old token
+      skipAuth: false, // don't send old token
     });
 
     // Extracting the body to get token
@@ -87,7 +87,7 @@ export const authService = {
   },
 
   logout: async () => {
-    await apiClient("/auth/logout", {
+    await apiClient("/api/v1/auth/logout", {
       method: "POST",
       skipAuth: true,
     });
@@ -95,7 +95,7 @@ export const authService = {
   },
 
   sendCode: async (email) => {
-    return await apiClient("/auth/send-code", {
+    return await apiClient("/api/v1/auth/send-code", {
       method: "POST",
       body: JSON.stringify({ email }),
       skipAuth: false,
@@ -106,7 +106,7 @@ export const authService = {
   },
 
   updatePassword: async (email, newPassword) => {
-    return await apiClient("/auth/update-password", {
+    return await apiClient("/api/v1/auth/update-password", {
       method: "POST",
       body: JSON.stringify({ email, newPassword }),
       skipAuth: false,
@@ -116,13 +116,22 @@ export const authService = {
     });
   },
 
+  updateProfileImage: async (file) => {
+    const form = new FormData();
+    form.append("image", file);
+    const response = await apiClient("/api/v1/auth/profile/photo", {
+      method: "POST",
+      body: form,
+      skipAuth: false,
+    });
+    return response;
+  },
+
   getProfile: async () => {
-    return (
-      await apiClient("/auth/profile"),
-      {
-        method: "GET",
-        skipAuth: false,
-      }
-    );
+    const response = await apiClient("/api/v1/auth/profile", {
+      method: "GET",
+      skipAuth: false,
+    });
+    return response;
   },
 };
