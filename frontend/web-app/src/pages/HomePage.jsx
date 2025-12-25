@@ -257,7 +257,7 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: grid;
   grid-template-rows: 4;
   grid-template-columns: 1;

@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MdNoAdultContent } from "react-icons/md";
 import noDataFound from "../assets/noDataFound.svg";
+import { AiFillHeart } from "react-icons/ai";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -207,7 +208,14 @@ export default function SearchResultPage() {
                     }
                   >
                     <CardImageWithLoader src={p.imageURL} alt={p.title} />
-
+                    {p.favorite && (
+                      <LikeButton
+                        aria-label="Remove from favorites"
+                        title="Remove from favorites"
+                      >
+                        <AiFillHeart size={25} />
+                      </LikeButton>
+                    )}
                     <CardBody>
                       <CardTitle>{p.title}</CardTitle>
                       <CardMeta>
@@ -404,4 +412,20 @@ const ImageFallback = styled.div`
   justify-content: center;
   font-size: 0.85rem;
   color: #888;
+`;
+
+const LikeButton = styled.button`
+  position: absolute;
+  top: 0; /* sits over the image */
+  right: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #e63946; /* neutral by default */
+  margin: 1rem;
+  transition: color 160ms ease, transform 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
