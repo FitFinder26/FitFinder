@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import noDataFound from "../assets/noFavorites.svg";
 import { useAuthContext } from "../providers/AuthProvider";
 import { favoriteService } from "../../../shared/services/favoriteService";
+import { AiFillHeart } from "react-icons/ai";
+import { Notifier } from "../components/Notifier";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -45,49 +47,87 @@ export default function FavoritePage() {
     store: new Set(),
   });
 
+  // confirmation dialog state for removals
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [pendingRemoveId, setPendingRemoveId] = useState(null);
+
   useEffect(() => {
     if (!isAuthenticated())
       navigator("/registration", { state: { form: "signup" } });
   }, []);
 
   /* ------------------ Simulate fetching products ------------------ */
-  useEffect(async () => {
-    await favoriteService
+  useEffect(() => {
+    favoriteService
       .getFavorites()
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else throw Error("Failed to fetch favorites.");
-      })
       .then((data) => {
-        if (data) {
-          settingSellers(data);
-          extractCategoryFromData(data);
-          extractStoresFromData(data);
-          setProducts(data);
-          setLoading(false);
-        }
+        settingSellers(data);
+        extractCategoryFromData(data);
+        extractStoresFromData(data);
+        setProducts(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error in retreiving favorites: ", error);
       });
   }, []);
 
+  // perform the actual removal (called after confirmation)
+  const removeFromFavorite = async (itemId) => {
+    try {
+      const response = await favoriteService.removeFromFavorite(itemId);
+      if (!response.ok) {
+        const text = await response.text().catch(() => null);
+        throw new Error(
+          `Failed to remove from favorite: ${response.status} ${text || ""}`
+        );
+      }
+      // remove from local state so UI updates immediately
+      setProducts((prev) => prev.filter((p) => p.item_id !== itemId));
+      Notifier.notifySuccess("Removed from favorites");
+    } catch (error) {
+      Notifier.notifyError("Failed to remove from favorites");
+      console.error(error);
+    }
+  };
+
+  // Ask user to confirm before removing
+  const requestRemoveFromFavorite = (itemId, e) => {
+    // prevent card click navigation
+    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+    setPendingRemoveId(itemId);
+    setConfirmOpen(true);
+  };
+
+  const confirmRemove = async () => {
+    setConfirmOpen(false);
+    if (!pendingRemoveId) return;
+    await removeFromFavorite(pendingRemoveId);
+    setPendingRemoveId(null);
+  };
+
+  const cancelRemove = () => {
+    setConfirmOpen(false);
+    setPendingRemoveId(null);
+  };
+
   const extractCategoryFromData = (prods) => {
     const extracted = [];
-    prods.forEach((p) => {
-      if (p.category && !extracted.includes(p.category)) {
-        extracted.push(p.category);
-      }
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        if (p.category && !extracted.includes(p.category)) {
+          extracted.push(p.category);
+        }
+      });
     setCategories(extracted);
   };
 
   const extractStoresFromData = (prods) => {
     const extracted = [];
-    prods.forEach((p) => {
-      if (!extracted.includes(p.seller)) extracted.push(p.seller);
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        if (!extracted.includes(p.seller)) extracted.push(p.seller);
+      });
     setStores(extracted);
   };
 
@@ -100,9 +140,10 @@ export default function FavoritePage() {
   };
 
   const settingSellers = (prods) => {
-    prods.forEach((p) => {
-      p.seller = getWebsiteName(p.itemWebURL);
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        p.seller = getWebsiteName(p.itemWebURL);
+      });
   };
 
   const toggleFilter = (group, value) => {
@@ -116,18 +157,22 @@ export default function FavoritePage() {
   };
 
   /* ------------------ Filter + Sort ------------------ */
-  const visible = products
-    .filter((p) => {
-      if (filters.store.size && !filters.store.has(p.seller)) return false;
-      if (filters.category.size && !filters.category.has(p.category))
-        return false;
-      return true;
-    })
-    .sort((a, b) => {
-      if (sortOrder === "lowest_price") return a.price - b.price;
-      if (sortOrder === "highest_price") return b.price - a.price;
-      return 0;
-    });
+  const visible =
+    products.length > 0
+      ? products
+          .filter((p) => {
+            if (filters.store.size && !filters.store.has(p.seller))
+              return false;
+            if (filters.category.size && !filters.category.has(p.category))
+              return false;
+            return true;
+          })
+          .sort((a, b) => {
+            if (sortOrder === "lowest_price") return a.price - b.price;
+            if (sortOrder === "highest_price") return b.price - a.price;
+            return 0;
+          })
+      : [];
 
   /* ------------------ Render ------------------ */
   return (
@@ -200,7 +245,8 @@ export default function FavoritePage() {
                     </CardBody>
                   </Card>
                 ))
-              : visible.map((p) => (
+              : visible.length > 0 &&
+                visible.map((p) => (
                   <Card
                     key={p.item_id}
                     onClick={() =>
@@ -215,7 +261,13 @@ export default function FavoritePage() {
                     }
                   >
                     <CardImageWithLoader src={p.imageURL} alt={p.title} />
-
+                    <LikeButton
+                      onClick={(e) => requestRemoveFromFavorite(p.item_id, e)}
+                      aria-label="Remove from favorites"
+                      title="Remove from favorites"
+                    >
+                      <AiFillHeart size={25} />
+                    </LikeButton>
                     <CardBody>
                       <CardTitle>{p.title}</CardTitle>
                       <CardMeta>
@@ -228,7 +280,29 @@ export default function FavoritePage() {
                   </Card>
                 ))}
           </Grid>
-          {visible.length === 0 && !loading && (
+
+          {confirmOpen && (
+            <ModalOverlay
+              role="dialog"
+              aria-modal="true"
+              onClick={cancelRemove}
+            >
+              <ModalBox onClick={(e) => e.stopPropagation()}>
+                <h3>Remove from favorites?</h3>
+                <p>
+                  Are you sure you want to remove this item from your favorites?
+                </p>
+                <ModalActions>
+                  <CancelButton onClick={cancelRemove}>Cancel</CancelButton>
+                  <ConfirmButton onClick={confirmRemove}>
+                    Yes, remove
+                  </ConfirmButton>
+                </ModalActions>
+              </ModalBox>
+            </ModalOverlay>
+          )}
+
+          {visible.length == 0 && !loading && (
             <img src={noDataFound} style={{}} />
           )}
         </Right>
@@ -318,6 +392,7 @@ const Grid = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -392,4 +467,109 @@ const ImageFallback = styled.div`
   justify-content: center;
   font-size: 0.85rem;
   color: #888;
+`;
+
+const LikeButton = styled.button`
+  position: absolute;
+  top: 0; /* sits over the image */
+  right: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #e63946; /* neutral by default */
+  margin: 1rem;
+  transition: color 160ms ease, transform 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #bbb; /* heart red */
+    transform: scale(1.08);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.12);
+    border-radius: 6px;
+  }
+`;
+
+/* Confirmation modal + animations */
+const overlayFade = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+const popIn = keyframes`
+  0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+  60% { opacity: 1; transform: translateY(-6px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 1000;
+  animation: ${overlayFade} 220ms ease forwards;
+`;
+
+const ModalBox = styled.div`
+  background: white;
+  padding: 1.25rem;
+  border-radius: 8px;
+  width: min(420px, 90%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  animation: ${popIn} 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+  }
+  p {
+    margin: 0 0 1rem 0;
+    color: #444;
+  }
+`;
+
+const ModalActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+`;
+
+const ConfirmButton = styled.button`
+  background: #e63946;
+  color: #fff;
+  border: none;
+
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.02;
+  }
+`;
+
+const CancelButton = styled.button`
+  border: solid 1px transparent;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    opacity: 0.95;
+    border-color: black;
+  }
 `;
