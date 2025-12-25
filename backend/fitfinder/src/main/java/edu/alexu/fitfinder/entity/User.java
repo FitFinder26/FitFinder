@@ -30,6 +30,9 @@ public class User {
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<UploadedImage> images;
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Favorite> favorites;
+
   public User(String userName, String password, String email) {
     this.userName = userName;
     this.password = password;
