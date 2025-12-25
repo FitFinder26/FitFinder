@@ -23,6 +23,7 @@ public class UploadedImage {
 
   private Long uploadedFAISSId;
   private String imageURL;
+  private String croppedImageURL;
   private String name;
 
   //  private boolean[][] mask;
