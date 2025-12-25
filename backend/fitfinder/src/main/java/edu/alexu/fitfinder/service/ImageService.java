@@ -32,6 +32,7 @@ public class ImageService {
     String imageName = user.getUserId()+"_"+(user.getImages().size()+1);
     String url = this.uploadImage(image, imageName);
     img.setImageURL(url);
+    img.setName(imageName);
     imageRepo.save(img);
     return img;
   }
@@ -39,9 +40,5 @@ public class ImageService {
   public void deleteImage(String publicId) throws IOException {
     cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
   }
-
-  public void removeImage()
-
-
 
 }
