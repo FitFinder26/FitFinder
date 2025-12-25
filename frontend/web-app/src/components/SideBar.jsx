@@ -26,6 +26,10 @@ export default function SideBar({ isOpen, setIsOpen }) {
     setImgError(false);
   }, [user?.profileImageURL]);
 
+  useEffect(async () => {
+    await refreshUser();
+  }, [user?.userName]);
+
   const handleLogout = () => {
     logout();
     navigator("/");

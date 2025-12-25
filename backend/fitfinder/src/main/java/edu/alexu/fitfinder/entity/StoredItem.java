@@ -25,7 +25,7 @@ public class StoredItem {
   private String category;
   @CreationTimestamp private LocalDateTime createdAt;
   private String currency;
-  
+
   @Column(columnDefinition = "TEXT", name = "description")
   private String description;
 

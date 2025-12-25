@@ -80,10 +80,9 @@ public class FavoriteService {
 
         List<Favorite> favorites = favoriteRepo.findAllByUser(user);
 
-        List<StoredItem> items = favorites.stream()
-                .map(Favorite::getItem)
+        return favorites.stream()
+                .map(fav -> itemMapper.toDTO(fav.getItem(), true))
                 .collect(Collectors.toList());
 
-        return itemMapper.toDTOList(items);
     }
 }
