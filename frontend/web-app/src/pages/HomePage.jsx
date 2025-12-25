@@ -16,7 +16,7 @@ export default function HomePage() {
   const [imageUploaded, setImageUploaded] = useState(false);
   const [imageURL, setImageURL] = useState(null);
   const [categoricalProducts, setCategoricalProducts] = useState({});
-  const [products, setProducts] = useState([]);
+  const [loadingRecomendations, setLoadingRecomendations] = useState(true);
   const [showPreferenceSurvey, setShowPreferenceSurvey] = useState(false);
   const location = useLocation();
   const cameFrom = location.state?.cameFrom || null;
@@ -42,6 +42,7 @@ export default function HomePage() {
   }, [cameFrom]);
 
   useEffect(() => {
+    setLoadingRecomendations(true);
     recomendedationService
       .getRandomProducts()
       .then((result) => {
@@ -49,8 +50,8 @@ export default function HomePage() {
         else throw new Error("Couldn't fetch random products.");
       })
       .then((data) => {
-        setProducts(data);
         setCategoricalProducts(groupByCategory(data));
+        setLoadingRecomendations(false);
       })
       .catch((error) => new Error(error));
   }, []);
@@ -150,8 +151,8 @@ export default function HomePage() {
       </Hero>
 
       <Recommendations
-        products={products}
         categoricalProducts={categoricalProducts}
+        loading={loadingRecomendations}
       />
 
       <LazyMount>

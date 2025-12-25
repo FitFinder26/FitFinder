@@ -8,23 +8,23 @@ export default function Recommendation({
   loading = false,
 }) {
   const navigator = useNavigate();
-  const isLoading =
-    loading ||
-    !categoricalProducts ||
-    Object.keys(categoricalProducts).length === 0;
+  // const isLoading =
+  //   loading ||
+  //   !categoricalProducts ||
+  //   Object.keys(categoricalProducts).length === 0;
 
   return (
     <LazyMount>
-      <Container aria-busy={isLoading}>
+      <Container aria-busy={loading}>
         <Title>Most Searched for Items</Title>
-        {isLoading && (
+        {loading && (
           <VisuallyHidden role="status">
             Loading recommendations…
           </VisuallyHidden>
         )}
 
         <ScrollArea>
-          {isLoading
+          {loading
             ? Array.from({ length: 6 }).map((_, i) => (
                 <SkeletonItem key={i} aria-hidden>
                   <SkeletonImage />

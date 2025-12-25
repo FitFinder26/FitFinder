@@ -142,7 +142,7 @@ export const authService = {
     const form = new FormData();
     form.append("image", file);
     const response = await apiClient("/api/v1/auth/profile/photo", {
-      method: "POST",
+      method: "PUT",
       body: form,
       skipAuth: false,
     });
