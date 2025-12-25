@@ -95,7 +95,7 @@ export const segmentationService = {
     await apiClient("/segment/upload", {
       method: "POST",
       body: formData,
-      skipAuth: true,
+      skipAuth: false,
     })
       .then((response) => {
         if (!response.ok) {
@@ -127,7 +127,7 @@ export const segmentationService = {
     return await apiClient(`/re-segment?sessionId=${sessionId}`, {
       method: "POST",
       body: JSON.stringify(formData),
-      skipAuth: true,
+      skipAuth: false,
       headers: {
         "Content-Type": "application/json",
       },
@@ -145,7 +145,7 @@ export const segmentationService = {
       headers: {
         "Content-Type": "application/json",
       },
-      skipAuth: true,
+      skipAuth: false,
     });
   },
 };

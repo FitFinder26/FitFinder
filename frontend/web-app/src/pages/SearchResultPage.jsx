@@ -49,6 +49,7 @@ export default function SearchResultPage() {
   /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
     const productsFromState = location.state?.products || [];
+    console.log(productsFromState);
     // simulate async fetch
     setTimeout(() => {
       const productsCopy = JSON.parse(JSON.stringify(productsFromState));
@@ -338,6 +339,7 @@ const Grid = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
   background: white;
   border-radius: 10px;
   overflow: hidden;

@@ -61,8 +61,8 @@ export const useAuth = () => {
     getProfile();
   };
 
-  const updateProfileImage = async () => {
-    return await authService.updateProfileImage();
+  const updateProfileImage = async (file) => {
+    return await authService.updateProfileImage(file);
   };
 
   // Background refresh scheduling
