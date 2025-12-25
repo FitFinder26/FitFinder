@@ -22,8 +22,15 @@ public class ItemMapper {
                 item.getImageURL(),
                 item.getItemWebURL(),
                 item.getPrice(),
-                item.getTitle()
+                item.getTitle(),
+                false
         );
+    }
+
+    public ItemDTO toDTO(StoredItem item, boolean isFavorite) {
+        ItemDTO dto = toDTO(item); // Call your existing base method
+        dto.setFavorite(isFavorite); // Set the new field
+        return dto;
     }
 
     // Helper to map a whole list at once

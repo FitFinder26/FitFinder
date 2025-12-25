@@ -1,87 +1,91 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.ItemDTO;
+import edu.alexu.fitfinder.entity.StoredItem;
+import edu.alexu.fitfinder.mapper.ItemMapper;
+import edu.alexu.fitfinder.repository.FavoriteRepo;
+import edu.alexu.fitfinder.repository.ItemRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class StoredItemService {
 
-  @Autowired private NamedParameterJdbcTemplate namedJdbcTemplate;
+    private final ItemRepo itemRepo;
+    private final FavoriteRepo favoriteRepo;
+    private final ItemMapper itemMapper;
 
-  public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds) {
+    // REPLACES: getProductsByVectorIds
+    public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds, Long userId) {
+        if (vectorIds == null || vectorIds.isEmpty()) return Collections.emptyList();
 
-    String sql =
-        """
-        SELECT DISTINCT
-            si.item_id,
-            si.category,
-            si.currency,
-            si.description,
-            si.imageurl,
-            si.item_weburl,
-            si.price,
-            si.title
-        FROM ITEM_VECTOR vi
-        JOIN STORED_ITEMS si
-            ON vi.item_id = si.item_id
-        WHERE vi.vector_id IN (:vectorIds)
-        """;
+        // 1. Get Entities using the Repository (Native Query)
+        List<StoredItem> items = itemRepo.findItemsByVectorIds(vectorIds);
 
-    MapSqlParameterSource params = new MapSqlParameterSource("vectorIds", vectorIds);
-
-    return namedJdbcTemplate.query(
-        sql,
-        params,
-        (rs, rowNum) -> {
-          return new ItemDTO(
-              rs.getLong("item_id"),
-              rs.getString("category"),
-              rs.getString("currency"),
-              rs.getString("description"),
-              rs.getString("imageurl"),
-              rs.getString("item_weburl"),
-              rs.getFloat("price"),
-              rs.getString("title"));
-        });
-  }
-
-    public List<ItemDTO> getProducts(List<Long> vectorIds) {
-
-        String sql =
-                """
-                SELECT DISTINCT
-                    si.item_id,
-                    si.category,
-                    si.currency,
-                    si.description,
-                    si.imageurl,
-                    si.item_weburl,
-                    si.price,
-                    si.title
-                FROM STORED_ITEMS si
-                WHERE si.item_id IN (:vectorIds)
-                """;
-
-        MapSqlParameterSource params = new MapSqlParameterSource("vectorIds", vectorIds);
-
-        return namedJdbcTemplate.query(
-                sql,
-                params,
-                (rs, rowNum) -> {
-                    return new ItemDTO(
-                            rs.getLong("item_id"),
-                            rs.getString("category"),
-                            rs.getString("currency"),
-                            rs.getString("description"),
-                            rs.getString("imageurl"),
-                            rs.getString("item_weburl"),
-                            rs.getFloat("price"),
-                            rs.getString("title"));
-                });
+        // 2. Map them
+        return mapItemsToDTOs(items, userId);
     }
 
+    public List<ItemDTO> getProducts(List<Long> itemIds, Long userId) {
+        if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
+
+        // 1. Get Entities using standard JPA
+        List<StoredItem> items = itemRepo.findAllById(itemIds);
+
+        // 2. Map them, respecting the order of input IDs
+        // (Optional: Re-sort items to match 'itemIds' order if strict ordering is needed)
+        List<ItemDTO> dtos = mapItemsToDTOs(items, userId);
+
+        return preserveOrder(dtos, itemIds);
+    }
+
+    public List<ItemDTO> getProducts(List<Long> itemIds) {
+        if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
+
+        // 1. Get Entities using standard JPA
+        List<StoredItem> items = itemRepo.findAllById(itemIds);
+
+
+        List<ItemDTO> dtos = mapItemsToDTOs(items);
+
+        return preserveOrder(dtos, itemIds);
+    }
+
+    private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items, Long userId) {
+        Set<Long> likedIds = (userId != null)
+                ? favoriteRepo.findFavoriteItemIds(userId)
+                : Collections.emptySet();
+
+        return items.stream()
+                .map(item -> itemMapper.toDTO(item, likedIds.contains(item.getItemId())))
+                .collect(Collectors.toList());
+    }
+
+    private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items) {
+
+        return items.stream()
+                .map(itemMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<ItemDTO> preserveOrder(List<ItemDTO> unsortedDtos, List<Long> orderedIds) {
+        Map<Long, ItemDTO> map = unsortedDtos.stream()
+                .collect(Collectors.toMap(ItemDTO::getItem_id, Function.identity()));
+
+        return orderedIds.stream()
+                .filter(map::containsKey)
+                .map(map::get)
+                .collect(Collectors.toList());
+    }
 }

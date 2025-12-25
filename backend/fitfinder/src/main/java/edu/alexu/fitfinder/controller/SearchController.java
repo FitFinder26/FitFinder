@@ -24,8 +24,11 @@ public class SearchController {
   private final StoredItemService storedItemService;
 
   @PostMapping("/search")
-  public ResponseEntity<?> searchByImageMask(@RequestBody SearchRequestDTO searchInfo)
+  public ResponseEntity<?> searchByImageMask(
+          @RequestBody SearchRequestDTO searchInfo,
+          @RequestHeader("Authorization") String token)
       throws Exception {
+
     List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
     if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
     return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds));
