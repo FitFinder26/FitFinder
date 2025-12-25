@@ -1,45 +1,62 @@
-let accessToken = null;
-let tokenExpiry = null; // timestamp in ms
-let TTL = null; // time to live in seconds
-
 export const tokenService = {
   setToken: (token, expiresIn) => {
-    accessToken = token;
-    // `expiresIn` may be either an absolute timestamp (ms since epoch)
-    // or a TTL in seconds. Handle both cases:
+    // persist token value
+    if (token) {
+      localStorage.setItem("accessToken", token);
+    } else {
+      localStorage.removeItem("accessToken");
+    }
+
+    // handle no expiry provided
     if (!expiresIn) {
-      tokenExpiry = null;
-      TTL = null;
+      localStorage.removeItem("tokenExpiry");
+      localStorage.removeItem("TTL");
       return;
     }
 
+    // normalize expiresIn into an absolute timestamp in ms
+    let expiryTs;
     if (typeof expiresIn === "number" && expiresIn > Date.now()) {
-      // absolute timestamp in ms
-      tokenExpiry = expiresIn;
+      expiryTs = expiresIn;
     } else {
       // treat as TTL in seconds
-      tokenExpiry = Date.now() + expiresIn * 1000;
+      expiryTs = Date.now() + Number(expiresIn) * 1000;
     }
 
+    localStorage.setItem("tokenExpiry", String(expiryTs));
+
     // store TTL in seconds (rounded down)
-    TTL = Math.floor((tokenExpiry - Date.now()) / 1000);
+    const ttlSeconds = Math.max(0, Math.floor((expiryTs - Date.now()) / 1000));
+    localStorage.setItem("TTL", String(ttlSeconds));
   },
 
-  getToken: () => accessToken,
-  getTTL: () => TTL,
+  getToken: () => {
+    return localStorage.getItem("accessToken") || null;
+  },
+
+  getTTL: () => {
+    const ttl = localStorage.getItem("TTL");
+    if (ttl !== null && !Number.isNaN(Number(ttl))) return Number(ttl);
+    const expiry = localStorage.getItem("tokenExpiry");
+    if (!expiry) return null;
+    return Math.max(0, Math.floor((Number(expiry) - Date.now()) / 1000));
+  },
+
   clearToken: () => {
-    accessToken = null;
-    tokenExpiry = null;
-    TTL = null;
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("tokenExpiry");
+    localStorage.removeItem("TTL");
   },
 
   isExpired: () => {
-    if (!tokenExpiry) return true;
-    return Date.now() >= tokenExpiry;
+    const expiry = localStorage.getItem("tokenExpiry");
+    if (!expiry) return true;
+    return Date.now() >= Number(expiry);
   },
 
   getTimeToExpiry: () => {
-    if (!tokenExpiry) return 0;
-    return tokenExpiry - Date.now();
+    const expiry = localStorage.getItem("tokenExpiry");
+    if (!expiry) return 0;
+    return Math.max(0, Number(expiry) - Date.now());
   },
 };

@@ -29,7 +29,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
   const handleLogout = () => {
     logout();
     navigator("/");
-    window.location.reload();
+    setIsOpen(false);
+
+    // window.location.reload();
   };
 
   const handleHistoryNavigation = () => {
