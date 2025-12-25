@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Recommendations from "../components/Recommendations";
 import PreferenceSurvey from "../components/PreferenceSurvey";
 import { recomendedationService } from "../../../shared/services/recomendationService";
+import { Instagram } from "lucide-react";
 
 export default function HomePage() {
   const inputRef = useRef(null);
@@ -175,8 +176,9 @@ export default function HomePage() {
             >
               <path d="M12 2C6.48 2 2 6.48 2 12C2 13.7 2.45 15.3 3.24 16.71L2.09 21.09L6.47 19.95C7.88 20.75 9.48 21.2 11.16 21.2H12C17.52 21.2 22 16.72 22 11.2C22 6.13 17.52 2 12 2Z" />
             </svg>
-            Feel free to click&nbsp;<Link>here</Link>&nbsp; and drop us a
-            message.
+            Feel free to click&nbsp;
+            <Link style={{ color: "var(--links-color)" }}>here</Link>&nbsp; and
+            drop us a message.
           </p>
         </Feedback>
       </LazyMount>
@@ -184,28 +186,14 @@ export default function HomePage() {
         <SocialMedia>
           <h1>Follow us on social media</h1>
           <div style={{ display: "flex", gap: "0.3rem", alignItems: "center" }}>
-            <svg
-              width="60"
-              height="60"
-              style={{ marginLeft: "1rem" }}
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm-4 16A6 6 0 1 1 12 6a6 6 0 0 1 0 12zm5-10a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
-                fill="none"
-                stroke="black"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <Instagram width={60} height={60} />
+
             <p>
               Connect with us on Instagram and stay up to date with
               <br />
               our announcements and future updates.
               <br />
-              <Link>Follow us</Link>
+              <Link style={{ color: "var(--links-color)" }}>Follow us</Link>
             </p>
           </div>
         </SocialMedia>
@@ -263,13 +251,15 @@ const Container = styled.div`
   grid-template-rows: 4;
   grid-template-columns: 1;
   animation: ${fadeIn} 1s;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 `;
 
 const Welcome = styled.div`
   text-align: start;
   width: 100%;
-  color: white;
   font-size: 1.5rem;
+  color: white;
   h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
@@ -279,26 +269,7 @@ const Hero = styled.div`
   height: 60vh;
   display: flex;
   flex-direction: row;
-  background-image: repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.08) 0 1px,
-      rgba(0, 0, 0, 0.05) 1px 2px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.08) 0 1px,
-      rgba(0, 0, 0, 0.05) 1px 2px
-    ),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.05) 0 2px,
-      rgba(0, 0, 0, 0.05) 2px 4px
-    ),
-    linear-gradient(
-      -45deg,
-      var(--primary-color) 0%,
-      var(--secondary-color) 100%
-    );
+  background-image: var(--bg-image);
 `;
 
 const SearchWithImageButton = styled.button`

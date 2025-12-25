@@ -318,7 +318,8 @@ export default function FavoritePage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  /* background: #fafafa; */
+  color: var(--text-color);
 `;
 
 const Content = styled.div`
@@ -343,6 +344,7 @@ const Filters = styled.div`
   background: white;
   border-radius: 10px;
   padding: 1rem;
+  color: #666;
 `;
 
 const FilterSection = styled.div`
@@ -393,12 +395,14 @@ const Grid = styled.div`
 
 const Card = styled.div`
   position: relative;
-  background: white;
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.25s ease;
-
+  transition: transform 0.25s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  color: var(--text-color);
+  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
   &:hover {
     transform: scale(1.02);
   }
@@ -516,13 +520,14 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(0, 0, 0, 0.639);
   z-index: 1000;
   animation: ${overlayFade} 220ms ease forwards;
 `;
 
 const ModalBox = styled.div`
-  background: white;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   padding: 1.25rem;
   border-radius: 8px;
   width: min(420px, 90%);
@@ -537,7 +542,7 @@ const ModalBox = styled.div`
   }
   p {
     margin: 0 0 1rem 0;
-    color: #444;
+    color: var(--text-color);
   }
 `;
 

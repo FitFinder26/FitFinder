@@ -17,6 +17,83 @@ body {
     transform: scale(1);
   }
 }
-html, body, #root {
-  height: 100%;
+html,
+body,
+#root {
+  /* height: 100%; */
+
+  height: 100vh;
+  overflow: hidden;
+}
+
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --hovered-text-color: white;
+  --links-color: #2f68c5;
+  --primary-color: #fa587e;
+  --secondary-color: #2f68c5;
+  --meta-text-color: #666;
+  --black: #181818;
+  --white: #ffffff;
+  --gray: #efefef;
+  --gray-2: #757575;
+  --back-drop-shadow-color: rgba(0, 0, 0, 0.3);
+  --facebook-color: #4267b2;
+  --google-color: #db4437;
+  --twitter-color: #1da1f2;
+  --insta-color: #e1306c;
+  --skeleton-loader-bg: linear-gradient(
+    90deg,
+    #f3f3f3 25%,
+    #e2e2e2 50%,
+    #f3f3f3 75%
+  );
+  --texture-light: rgba(255, 255, 255, 0.08);
+  --texture-dark: rgba(0, 0, 0, 0.05);
+  --input-bg-color: #efefef;
+  --bg-image: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-color) 100%, #0b0e14),
+    color-mix(in srgb, var(--secondary-color) 100%, #0b0e14)
+  );
+  --card-bg-color: white;
+}
+
+[data-theme="dark"] {
+  --bg-color: #181818;
+  --text-color: #e5e7eb;
+  --hovered-text-color: #181818;
+  --meta-text-color: #d4d1d1;
+  --links-color: #2f68c5;
+  --back-drop-shadow-color: rgba(255, 255, 255, 0.3);
+  --skeleton-loader-bg: linear-gradient(
+    90deg,
+    #2b2b2b 25%,
+    #3a3a3a 50%,
+    #2b2b2b 75%
+  );
+  --texture-light: rgba(255, 255, 255, 0.04);
+  --texture-dark: rgba(0, 0, 0, 0.5);
+  --input-bg-color: #2c2c2c;
+  --bg-image: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-color) 40%, #0b0e14),
+    color-mix(in srgb, var(--secondary-color) 40%, #0b0e14)
+  );
+  --card-bg-color: #272525;
+}
+* {
+  /* No @import needed; this stack looks close to Poppins on all platforms */
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

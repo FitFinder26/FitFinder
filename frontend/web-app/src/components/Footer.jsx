@@ -42,7 +42,8 @@ const slideUp = keyframes`
 `;
 
 const FooterContainer = styled.footer`
-  background-color: #ffffff;
+  /* background-color: var(--bg-color); */
+  color: var(--text-color);
   padding: 1rem;
   text-align: center;
   /* z-index: 1000; */
@@ -53,13 +54,13 @@ const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 5px var(--back-drop-shadow-color);
   animation: ${slideUp} 1s;
   margin-top: auto; /* pushes footer to bottom */
 `;
 
 const Link = styled.a`
-  color: #555;
+  color: var(--links-color);
   text-decoration: none;
   display: inline-block;
   margin: 0 0.5rem;

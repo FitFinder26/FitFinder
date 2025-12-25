@@ -216,7 +216,9 @@ const shimmer = keyframes`
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  /* background: #fafafa; */
+  color: var(--text-color);
+  transition: 0.5s ease-in-out;
 `;
 
 const Content = styled.div`
@@ -238,6 +240,7 @@ const Filters = styled.div`
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  color: #666;
 `;
 
 const FilterSection = styled.div`
@@ -289,14 +292,18 @@ const Grid = styled.div`
 
 const Card = styled.div`
   display: flex;
-  background: white;
+  background-color: var(--card-bg-color);
+
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: background-color 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  color: var(--text-color);
+
   &:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
     scale: 1.02;
   }
 `;

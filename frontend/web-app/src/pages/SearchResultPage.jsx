@@ -245,7 +245,7 @@ export default function SearchResultPage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  /* background: #fafafa; */
 `;
 
 const Content = styled.div`
@@ -340,12 +340,14 @@ const Grid = styled.div`
 
 const Card = styled.div`
   position: relative;
-  background: white;
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.25s ease;
-
+  transition: transform 0.25s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  color: var(--text-color);
+  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
   &:hover {
     transform: scale(1.02);
   }

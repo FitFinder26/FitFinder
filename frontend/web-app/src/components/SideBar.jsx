@@ -5,14 +5,18 @@ import {
   MessageCircleDashed,
   User as UserIcon,
   Edit2 as EditIcon,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { useAuthContext } from "../providers/AuthProvider";
 import { CgPassword } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { Notifier } from "./Notifier";
 import styled from "styled-components";
+import { useTheme } from "../providers/ThemeProvider";
+import { FaCheck } from "react-icons/fa";
 
 export default function SideBar({ isOpen, setIsOpen }) {
   const { logout, user, refreshUser, updateProfileImage } = useAuthContext();
@@ -20,6 +24,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
   const [imgError, setImgError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     // Reset image error when the user's profile image changes
@@ -157,6 +162,21 @@ export default function SideBar({ isOpen, setIsOpen }) {
             Saved Items
           </MenuItem>
           <MenuItem icon={<MessageCircleDashed />}>Send Feedback</MenuItem>
+          <SubMenu
+            icon={theme === "light" ? <Sun /> : <Moon />}
+            title="Theme"
+            label="Theme"
+          >
+            <MenuItem onClick={() => setTheme("light")}>
+              {theme === "light" && <FaCheck />} Light
+            </MenuItem>
+            <MenuItem onClick={() => setTheme("dark")}>
+              {theme === "dark" && <FaCheck />} Dark
+            </MenuItem>
+            <MenuItem onClick={() => setTheme("system")}>
+              {theme === "system" && <FaCheck />} System
+            </MenuItem>
+          </SubMenu>
           <MenuItem icon={<CgPassword />}>Change Password</MenuItem>
           <MenuItem icon={<DoorOpen />} onClick={handleLogout}>
             Sign out

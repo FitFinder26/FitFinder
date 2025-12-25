@@ -6,6 +6,7 @@ import { useAuthContext } from "../providers/AuthProvider";
 import { useEffect, useState, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
+import { Camera } from "lucide-react";
 
 export default function Navbar({ navigationBlocked }) {
   const navigate = useNavigate();
@@ -52,11 +53,7 @@ export default function Navbar({ navigationBlocked }) {
             onChange={handleUploadImage}
           />
           <SearchWithImageButton onClick={() => inputRef.current.click()}>
-            <img
-              src={cameraIcon}
-              style={{ width: "24px", height: "24px", cursor: "pointer" }}
-              alt="Camera Icon"
-            />
+            <Camera width={24} height={24} />
             <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
               Search With Image
             </label>
@@ -113,7 +110,7 @@ export default function Navbar({ navigationBlocked }) {
 const NavContainer = styled.nav`
   background-color: transparent;
   padding: 1rem;
-  color: black;
+  color: var(--text-color);
   width: 100%;
   top: 0;
   left: 0;
@@ -122,7 +119,7 @@ const NavContainer = styled.nav`
   align-items: center;
   height: 4.5rem;
   position: absolute;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px var(--back-drop-shadow-color);
   z-index: 10;
   backdrop-filter: blur(10px);
   align-items: center;
@@ -137,15 +134,16 @@ const SearchWithImageButton = styled.button`
   display: flex;
   align-items: center;
   font-weight: 500;
+  color: var(--text-color);
   cursor: pointer;
   &:hover {
-    border: 2px solid black;
+    border: 2px solid var(--text-color);
   }
 `;
 
 const NavButton = styled.button`
   background: none;
-  color: black;
+  color: var(--text-color);
   cursor: pointer;
   font-weight: 500;
   font-size: 1rem;

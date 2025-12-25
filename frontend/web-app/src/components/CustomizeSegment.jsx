@@ -205,7 +205,8 @@ const Prompt = styled.textarea`
   font-size: 1rem;
   resize: vertical;
   transition: border-color 0.3s ease;
-
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
   &:focus {
     outline: none;
     border-color: #6bcb77;
@@ -226,7 +227,7 @@ const ButtonsContainer = styled.div`
 `;
 
 const BackButton = styled.button`
-  color: black;
+  color: var(--text-color);
   cursor: pointer;
   font-weight: 500;
   font-size: 1rem;
@@ -283,7 +284,7 @@ const Guide = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
-
+  color: var(--text-color);
   &:hover {
     transform: translateY(-5px) scale(1.02);
   }

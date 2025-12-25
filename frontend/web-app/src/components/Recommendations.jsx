@@ -137,7 +137,7 @@ const SkeletonImage = styled.div`
   width: 100%;
   height: 140px;
   border-radius: 14px;
-  background: linear-gradient(90deg, #f3f3f3 25%, #e2e2e2 50%, #f3f3f3 75%);
+  background: var(--skeleton-loader-bg);
   background-size: 200% 100%;
   animation: ${shimmer} 1.2s linear infinite;
 `;
@@ -146,7 +146,7 @@ const SkeletonLabel = styled.div`
   width: 70px;
   height: 14px;
   border-radius: 6px;
-  background: linear-gradient(90deg, #f3f3f3 25%, #e2e2e2 50%, #f3f3f3 75%);
+  background: var(--skeleton-loader-bg);
   background-size: 200% 100%;
   animation: ${shimmer} 1.2s linear infinite;
 `;

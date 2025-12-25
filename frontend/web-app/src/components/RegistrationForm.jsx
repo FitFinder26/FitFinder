@@ -9,6 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import showPasswordIcon from "../assets/show-password.png";
 import hidePasswordIcon from "../assets/hide-password.png";
 import { Notifier } from "./Notifier";
+import { Eye, EyeClosed } from "lucide-react";
 
 export default function RegistrationForm({
   usedForm,
@@ -283,12 +284,19 @@ export default function RegistrationForm({
                   onChange={handleSignupFormVariables}
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <div
                 style={{
@@ -360,12 +368,19 @@ export default function RegistrationForm({
                   title="Your passwords must match"
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <button
                 className="signupButton"
@@ -439,12 +454,25 @@ export default function RegistrationForm({
                   style={{ border: errors.wrongPassword && "1px solid red" }}
                   required
                 />
-                <img
+                {/* <img
                   src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
                   alt={passwordVisible ? "Show password" : "Hide password"}
                   className="password-toggle-icon"
                   onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                /> */}
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               {errors.wrongPassword && (
                 <p style={{ color: "red", textAlign: "start" }}>
@@ -592,12 +620,19 @@ export default function RegistrationForm({
                   onChange={handleForgotPasswordVariables}
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <div
                 style={{
@@ -669,12 +704,19 @@ export default function RegistrationForm({
                   title="Your passwords must match"
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <button className="loginButton" type="submit" disabled={disabled}>
                 {disabled ? (

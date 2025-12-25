@@ -144,7 +144,8 @@ export default function ProductPage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  /* background: #fafafa; */
+  color: var(--text-color);
 `;
 
 const Container = styled.div`
@@ -236,7 +237,7 @@ const PriceTag = styled.span`
 `;
 
 const Meta = styled.div`
-  color: #666;
+  color: var(--meta-text-color);
   font-size: 0.95rem;
   display: flex;
   gap: 1rem;
@@ -306,10 +307,11 @@ const SecondaryButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-
+  color: var(--text-color);
   &:hover {
     background-color: #f3f4f6;
     transform: translateX(-1rem);
+    color: var(--hovered-text-color);
   }
 `;
 
@@ -349,18 +351,17 @@ const SimilarGrid = styled.div`
 `;
 
 const SimilarCard = styled.div`
-  background: white;
+  position: relative;
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-
+  transition: transform 0.25s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  color: var(--text-color);
+  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
   &:hover {
-    scale: 1.02;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
   }
 `;
 
