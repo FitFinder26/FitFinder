@@ -37,6 +37,11 @@ export default function SideBar({ isOpen, setIsOpen }) {
     setIsOpen(false);
   };
 
+  const handleFavoriteNavigation = () => {
+    navigator("/favorite");
+    setIsOpen(false);
+  };
+
   const handleProfilePicClick = () => {
     if (!user) return;
     fileInputRef.current?.click();
@@ -142,7 +147,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
           <MenuItem icon={<History />} onClick={handleHistoryNavigation}>
             Recent Searches
           </MenuItem>
-          <MenuItem icon={<Heart />}>Saved Items</MenuItem>
+          <MenuItem icon={<Heart />} onClick={handleFavoriteNavigation}>
+            Saved Items
+          </MenuItem>
           <MenuItem icon={<MessageCircleDashed />}>Send Feedback</MenuItem>
           <MenuItem icon={<CgPassword />}>Change Password</MenuItem>
           <MenuItem icon={<DoorOpen />} onClick={handleLogout}>

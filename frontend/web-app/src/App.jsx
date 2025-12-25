@@ -12,6 +12,7 @@ import ProductPage from "./pages/ProductPage";
 import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
+import FavoritePage from "./pages/FavoritePage";
 
 function App() {
   const router = createBrowserRouter(
@@ -22,6 +23,7 @@ function App() {
         <Route path="search-result" element={<SearchResultPage />} />
         <Route path="product/:id" element={<ProductPage />} />
         <Route path="history" element={<HistoryPage />} />
+        <Route path="favorite" element={<FavoritePage />} />
         <Route path="*" element={<EmptyPage />} />
       </Route>
     )

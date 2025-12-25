@@ -129,6 +129,7 @@ export default function HistoryPage() {
     <PageWrap>
       <Content>
         <Left>
+          <h1 style={{ marginBottom: "1rem" }}>History</h1>
           <Filters>
             <h3>Filters</h3>
 
