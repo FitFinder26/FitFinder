@@ -63,26 +63,42 @@ export const authService = {
   },
 
   refreshAccessToken: async () => {
+    // Call refresh without sending Authorization header (skipAuth: true)
     const response = await apiClient("/api/v1/auth/refresh", {
       method: "POST",
-      skipAuth: false, // don't send old token
+      skipAuth: true,
     });
 
-    // Extracting the body to get token
-    // The backend sends the access token in JSON,
-    // and refresh token in a secure HttpOnly cookie.
-    const data = await response.json();
+    // If server returned an error status, show helpful info
+    if (!response.ok) {
+      const text = await response.text().catch(() => null);
+      throw new Error(`Refresh failed: ${response.status} ${text || ""}`);
+    }
 
-    // TTL get returned as EET e.g. Fri Oct 31 00:20:00 EET 2025
-    // So this changes it into ISO 8601 e.g. 2025-10-31T01:19:39+02:00
-    // Then pass it as milliseconds
-    const parsedDateString = new Date(
-      Date.parse(data.expiresIn.replace("EET", "GMT+0200"))
-    );
-    const expirationDate = new Date(parsedDateString);
+    const data = await response.json().catch(() => null);
+    if (!data || !data.expiresIn) {
+      throw new Error("Refresh response missing required 'expiresIn' value");
+    }
 
-    // seting the access token and its TTL
-    tokenService.setToken(data.accessToken, expirationDate.getTime());
+    // Parse expiresIn robustly (supports EET strings, ISO strings, or numeric timestamps)
+    let expiryMs;
+    if (typeof data.expiresIn === "string") {
+      // support strings with timezone text like 'EET'
+      const s = data.expiresIn.includes("EET")
+        ? data.expiresIn.replace("EET", "GMT+0200")
+        : data.expiresIn;
+      expiryMs = Date.parse(s);
+    } else if (typeof data.expiresIn === "number") {
+      expiryMs = data.expiresIn;
+    } else {
+      throw new Error("Unknown format for 'expiresIn' in refresh response");
+    }
+
+    if (Number.isNaN(expiryMs) || expiryMs <= 0) {
+      throw new Error("Invalid 'expiresIn' value in refresh response");
+    }
+
+    tokenService.setToken(data.accessToken, expiryMs);
     return response;
   },
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { AiFillHeart } from "react-icons/ai";
+import { favoriteService } from "../../../shared/services/favoriteService";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -32,13 +33,27 @@ export default function ProductPage() {
     .map((item) => item.trim())
     .filter(Boolean);
 
+  const toggleFavorite = async () => {
+    favoriteService
+      .toggleFavorite(product.item_id, !liked)
+      .then((response) => {
+        if (response.ok) {
+          setLiked((prev) => !prev);
+        } else throw Error("Failed to add to favorite");
+      })
+      .catch((error) => {
+        console.error("Something went wrong in setting as favorite: ", error);
+        throw error;
+      });
+  };
+
   return (
     <PageWrap>
       <Container>
         <LeftColumn>
           <ImageWrapper>
             <MainImage src={product.imageURL} alt={product.title} />
-            <LikeButton onClick={() => setLiked((prev) => !prev)}>
+            <LikeButton onClick={toggleFavorite}>
               {!liked ? <Heart /> : <AiFillHeart size={25} />}
             </LikeButton>
           </ImageWrapper>

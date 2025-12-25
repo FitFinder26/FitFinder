@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import noDataFound from "../assets/noFavorites.svg";
 import { useAuthContext } from "../providers/AuthProvider";
+import { favoriteService } from "../../../shared/services/favoriteService";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -50,17 +51,26 @@ export default function FavoritePage() {
   }, []);
 
   /* ------------------ Simulate fetching products ------------------ */
-  useEffect(() => {
-    const productsFromState = location.state?.products || [];
-    // simulate async fetch
-    setTimeout(() => {
-      const productsCopy = JSON.parse(JSON.stringify(productsFromState));
-      settingSellers(productsCopy);
-      extractCategoryFromData(productsCopy);
-      extractStoresFromData(productsCopy);
-      setProducts(productsCopy);
-      setLoading(false);
-    }, 500); // simulate delay
+  useEffect(async () => {
+    await favoriteService
+      .getFavorites()
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else throw Error("Failed to fetch favorites.");
+      })
+      .then((data) => {
+        if (data) {
+          settingSellers(data);
+          extractCategoryFromData(data);
+          extractStoresFromData(data);
+          setProducts(data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error in retreiving favorites: ", error);
+      });
   }, []);
 
   const extractCategoryFromData = (prods) => {

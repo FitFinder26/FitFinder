@@ -8,9 +8,12 @@ export const apiClient = async (endpoint, options = {}) => {
   const { skipAuth, ...fetchOptions } = options;
 
   // ⏱ Auto-refresh if token close to expiry (e.g., < 30s)
+  // Only attempt refresh when we actually have a token; otherwise a
+  // refresh call during unauthenticated flows caused spurious requests.
   if (
     !skipAuth &&
-    tokenService.getTimeToExpiry() < tokenService.getTTL() * 1000
+    tokenService.getToken() &&
+    tokenService.getTimeToExpiry() < 30000
   ) {
     if (!refreshingPromise) {
       refreshingPromise = authService
@@ -34,6 +37,12 @@ export const apiClient = async (endpoint, options = {}) => {
     ...(fetchOptions.headers || {}),
     ...(token && !skipAuth ? { Authorization: `Bearer ${token}` } : {}),
   };
+
+  console.log({
+    ...fetchOptions,
+    headers,
+    // credentials: "include", // always send cookies
+  });
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...fetchOptions,
