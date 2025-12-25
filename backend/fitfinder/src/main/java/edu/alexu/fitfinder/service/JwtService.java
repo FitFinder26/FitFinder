@@ -24,6 +24,7 @@ public class JwtService {
   @Value("${security.jwt.refresh-expiration-time}")
   private long refreshExpiration;
 
+
   private Claims extractAllClaims(String token) {
     return Jwts.parserBuilder()
         .setSigningKey(getSignInKey())
@@ -69,6 +70,15 @@ public class JwtService {
 
   public boolean isTokenExpired(String token) {
     return extractExpiration(token).before(new Date());
+  }
+
+  public Long extractUserFromToken(String token) {
+    if (token == null || !token.startsWith("Bearer ")) {
+      throw new IllegalArgumentException("Invalid Token");
+    }
+    // Clean the token once
+    String cleanToken = token.substring(7);
+    return Long.parseLong(this.extractUserId(cleanToken));
   }
 
   private Key getSignInKey() {

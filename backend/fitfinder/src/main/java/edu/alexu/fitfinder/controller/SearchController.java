@@ -3,6 +3,7 @@ package edu.alexu.fitfinder.controller;
 import edu.alexu.fitfinder.dto.ItemDTO;
 import edu.alexu.fitfinder.dto.SearchRequestDTO;
 import edu.alexu.fitfinder.repository.ItemRepo;
+import edu.alexu.fitfinder.service.JwtService;
 import edu.alexu.fitfinder.service.SearchService;
 import edu.alexu.fitfinder.service.StoredItemService;
 import lombok.RequiredArgsConstructor;
@@ -19,16 +20,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SearchController {
 
+  private final JwtService jwtService;
   private final ItemRepo findRandomEntities;
   private final SearchService searchService;
   private final StoredItemService storedItemService;
 
   @PostMapping("/search")
-  public ResponseEntity<?> searchByImageMask(@RequestBody SearchRequestDTO searchInfo)
+  public ResponseEntity<?> searchByImageMask(
+          @RequestBody SearchRequestDTO searchInfo,
+          @RequestHeader("Authorization") String token)
       throws Exception {
-    List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
-    if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
-    return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds));
+
+
+    try {
+      Long userId = jwtService.extractUserFromToken(token);
+      List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
+      if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
+      return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds,userId));
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
   }
 
   @GetMapping("/random")
