@@ -52,6 +52,9 @@ public class UserController {
       if (token != null && token.startsWith("Bearer ")) {
         token = token.substring(7);
       }
+      else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      }
 
       user = userService.getUser(token);
     } catch (UserNotFoundException e) {

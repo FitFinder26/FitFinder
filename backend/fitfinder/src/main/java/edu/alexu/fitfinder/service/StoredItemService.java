@@ -49,7 +49,7 @@ public class StoredItemService {
         });
   }
 
-    public List<ItemDTO> getRandomProducts(List<Long> vectorIds) {
+    public List<ItemDTO> getProducts(List<Long> vectorIds) {
 
         String sql =
                 """
