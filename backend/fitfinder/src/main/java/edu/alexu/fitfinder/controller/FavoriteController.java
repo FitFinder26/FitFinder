@@ -1,5 +1,6 @@
 package edu.alexu.fitfinder.controller;
 
+import edu.alexu.fitfinder.dto.ItemDTO;
 import edu.alexu.fitfinder.exception.FavoriteNotFoundException;
 import edu.alexu.fitfinder.exception.ItemNotFoundException;
 import edu.alexu.fitfinder.exception.UserNotFoundException;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/favorites")
@@ -78,6 +81,16 @@ public class FavoriteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (FavoriteNotFoundException | UserNotFoundException | ItemNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ItemDTO>> getAllFavorites(@RequestHeader("Authorization") String token) {
+        try{
+            Long userId = extractUserFromToken(token);
+            return ResponseEntity.ok(favoriteService.getUserFavorites(userId));
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }
