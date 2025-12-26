@@ -263,6 +263,9 @@ const Left = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  position: sticky;
+  top: 84px;
+  align-self: start; /* 👈 CRITICAL for grid */
 `;
 
 const PreviewCard = styled.div`

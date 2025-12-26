@@ -232,6 +232,9 @@ const Left = styled.aside`
   position: sticky;
   top: 100px;
   align-self: start;
+  position: sticky;
+  top: 84px;
+  align-self: start; /* 👈 CRITICAL for grid */
 `;
 
 const Filters = styled.div`

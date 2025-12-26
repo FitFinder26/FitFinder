@@ -138,15 +138,15 @@ export default function HomePage() {
           </div>
         </LeftHero>
         <RightHero>
-          <img src={ilustratorImage} alt="illustrator image" />
-          {/* <VideoBox
+          {/*<img src={ilustratorImage} alt="illustrator image" />*/}
+          <VideoBox
             autoPlay
             loop
             muted
             src={welcomeVideo}
             onClick={() => window.open(welcomeVideo)}
             width="600"
-          /> */}
+          />
         </RightHero>
       </Hero>
 
