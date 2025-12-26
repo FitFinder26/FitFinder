@@ -2,14 +2,33 @@ import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 
 export default function Footer({ navigationBlocked }) {
+  const contactEmail = (email, subject = "", body = "") => {
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <FooterContainer>
       <LinksWrapper>
         <Logo fontSize={70} scale={0.3} variant={2} />
-        <Link onClick={() => navigate("/about")} disabled={navigationBlocked}>
+        <Link
+          onClick={() => navigate("/about-us")}
+          disabled={navigationBlocked}
+        >
           About us
         </Link>
-        <Link onClick={() => navigate("/contact")} disabled={navigationBlocked}>
+        <Link
+          onClick={() =>
+            contactEmail(
+              "fitfindercsed@gmail.com",
+              "Inquiry about FITFINDER",
+              "Hello, I would like to know more about your platform..."
+            )
+          }
+          disabled={navigationBlocked}
+        >
           Contact
         </Link>
       </LinksWrapper>
@@ -26,7 +45,7 @@ export default function Footer({ navigationBlocked }) {
         >
           Terms of Service
         </Link>
-        &copy; 2025 FitFinder. All rights reserved.
+        &copy; {new Date().getFullYear()} FitFinder. All rights reserved.
       </LinksWrapper>
     </FooterContainer>
   );

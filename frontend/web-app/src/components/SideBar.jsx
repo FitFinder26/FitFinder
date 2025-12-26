@@ -9,7 +9,7 @@ import {
   Moon,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import Sidebar from "react-sidebar";
 import { useAuthContext } from "../providers/AuthProvider";
 import { CgPassword } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,9 @@ import styled from "styled-components";
 import { useTheme } from "../providers/ThemeProvider";
 import { FaCheck } from "react-icons/fa";
 
+/* ---------------------------------------------
+   Sidebar Component
+----------------------------------------------*/
 export default function SideBar({ isOpen, setIsOpen }) {
   const { logout, user, updateProfileImage } = useAuthContext();
   const navigator = useNavigate();
@@ -25,9 +28,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
   const { theme, setTheme } = useTheme();
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
   useEffect(() => {
-    // Reset image error when the user's profile image changes
     setImgError(false);
   }, [user?.profileImageURL]);
 
@@ -35,8 +38,6 @@ export default function SideBar({ isOpen, setIsOpen }) {
     logout();
     navigator("/");
     setIsOpen(false);
-
-    // window.location.reload();
   };
 
   const handleHistoryNavigation = () => {
@@ -60,15 +61,12 @@ export default function SideBar({ isOpen, setIsOpen }) {
     setUploading(true);
     try {
       const res = await updateProfileImage(file);
-      if (res && res.ok) {
-        Notifier.notifySuccess("Profile image changed successfuly");
+      if (res?.ok) {
+        Notifier.notifySuccess("Profile image changed successfully");
       } else {
-        const text = res ? await res.text() : null;
-        console.error("Profile image upload failed", res && res.status, text);
         Notifier.notifyError("Profile image upload failed");
       }
-    } catch (err) {
-      console.error("Profile image upload error", err);
+    } catch {
       Notifier.notifyError("Profile image upload failed");
     } finally {
       setUploading(false);
@@ -76,156 +74,138 @@ export default function SideBar({ isOpen, setIsOpen }) {
     }
   };
 
-  return (
+  const sidebarContent = (
     <>
-      {/* Buttons */}
-      <TopButtons>
-        <ActionButton onClick={() => setIsOpen(true)}>
-          Open Sidebar
-        </ActionButton>
-        <ActionButton onClick={() => setIsOpen(false)}>
-          Close Sidebar
-        </ActionButton>
-      </TopButtons>
+      {/* User Header */}
+      <UserHeader>
+        <FileInput
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
 
-      {/* Sidebar */}
-      <Sidebar
-        toggled={isOpen}
-        breakPoint="all"
-        onBackdropClick={() => setIsOpen(false)}
-        backgroundColor={theme === "light" ? "#ffffffa0" : "#181818a0"}
-        style={{
-          color: theme === "light" ? "black" : "white",
-          transition: "all 0.5s ease-in-out",
-        }}
-      >
-        {/* User icon container */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            padding: "1.5rem 0",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.7)", // optional separator
-          }}
-        >
-          {/* hidden file input */}
-          <FileInput
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            aria-hidden="true"
-          />
-
-          <UserSection>
-            <AvatarContainer>
-              <AvatarWrap>
-                {user && user.profileImageURL && !imgError ? (
-                  <AvatarImg
-                    src={user.profileImageURL}
-                    alt={user.userName || "Profile"}
-                    onError={() => setImgError(true)}
-                  />
-                ) : (
-                  <AvatarFallback>
-                    <UserIcon
-                      size={48}
-                      color={theme === "light" ? "black" : "white"}
-                    />
-                  </AvatarFallback>
-                )}
-              </AvatarWrap>
-
-              {user && (
-                <EditButton
-                  $theme={theme}
-                  onClick={handleProfilePicClick}
-                  disabled={uploading}
-                  title="Change profile photo"
-                  aria-label="Change profile photo"
-                >
-                  {uploading ? (
-                    <span>...</span>
-                  ) : (
-                    <EditIcon
-                      size={14}
-                      color={theme === "light" ? "black" : "white"}
-                    />
-                  )}
-                </EditButton>
+        <UserSection>
+          <AvatarContainer>
+            <AvatarWrap onClick={handleProfilePicClick}>
+              {user && user.profileImageURL && !imgError ? (
+                <AvatarImg
+                  src={user.profileImageURL}
+                  alt={user.userName}
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <AvatarFallback>
+                  <UserIcon size={48} />
+                </AvatarFallback>
               )}
-            </AvatarContainer>
+            </AvatarWrap>
 
-            <UserName>{user?.userName || "Guest"}</UserName>
-          </UserSection>
-        </div>
+            {user && (
+              <EditButton
+                $theme={theme}
+                disabled={uploading}
+                onClick={handleProfilePicClick}
+              >
+                {uploading ? "..." : <EditIcon size={14} />}
+              </EditButton>
+            )}
+          </AvatarContainer>
 
-        {/* Menu items */}
-        <Menu
-          menuItemStyles={{
-            button: {
-              color: theme === "light" ? "black" : "white",
-              transition: "all 0.5s ease-in-out",
+          <UserName>{user?.userName || "Guest"}</UserName>
+        </UserSection>
+      </UserHeader>
 
-              "&:hover": {
-                color: "black",
-              },
-            },
-            subMenuContent: {
-              backgroundColor: theme === "light" ? "#ffffffaf" : "#181818af",
-              transition: "all 0.5s ease-in-out",
-            },
-          }}
-        >
-          <MenuItem icon={<History />} onClick={handleHistoryNavigation}>
-            Recent Searches
-          </MenuItem>
-          <MenuItem icon={<Heart />} onClick={handleFavoriteNavigation}>
-            Saved Items
-          </MenuItem>
-          <MenuItem icon={<MessageCircleDashed />}>Send Feedback</MenuItem>
-          <SubMenu
-            icon={theme === "light" ? <Sun /> : <Moon />}
-            title="Theme"
-            label="Theme"
-          >
-            <MenuItem onClick={() => setTheme("light")}>
-              {theme === "light" && <FaCheck />} Light
-            </MenuItem>
-            <MenuItem onClick={() => setTheme("dark")}>
-              {theme === "dark" && <FaCheck />} Dark
-            </MenuItem>
-            <MenuItem onClick={() => setTheme("system")}>
-              {theme === "system" && <FaCheck />} System
-            </MenuItem>
-          </SubMenu>
-          <MenuItem icon={<CgPassword />}>Change Password</MenuItem>
-          <MenuItem icon={<DoorOpen />} onClick={handleLogout}>
-            Sign out
-          </MenuItem>
-        </Menu>
-      </Sidebar>
+      {/* Menu */}
+      <MenuList>
+        <MenuItemRow onClick={handleHistoryNavigation}>
+          <History /> Recent Searches
+        </MenuItemRow>
+
+        <MenuItemRow onClick={handleFavoriteNavigation}>
+          <Heart /> Saved Items
+        </MenuItemRow>
+
+        <MenuItemRow>
+          <MessageCircleDashed /> Send Feedback
+        </MenuItemRow>
+
+        <SubMenuTitle onClick={() => setIsThemeOpen((v) => !v)}>
+          {theme === "light" ? (
+            <Sun
+              style={{
+                rotate: isThemeOpen ? "90deg" : "0deg",
+                transition: "rotate 0.5s ease-in-out",
+              }}
+            />
+          ) : (
+            <Moon
+              style={{
+                rotate: isThemeOpen ? "90deg" : "0deg",
+                transition: "rotate 0.5s ease-in-out",
+              }}
+            />
+          )}
+          Theme
+        </SubMenuTitle>
+
+        <SubMenuContent $open={isThemeOpen}>
+          <MenuItemRow onClick={() => setTheme("light")}>
+            {theme === "light" && <FaCheck />} Light
+          </MenuItemRow>
+
+          <MenuItemRow onClick={() => setTheme("dark")}>
+            {theme === "dark" && <FaCheck />} Dark
+          </MenuItemRow>
+
+          <MenuItemRow onClick={() => setTheme("system")}>
+            {theme === "system" && <FaCheck />} System
+          </MenuItemRow>
+        </SubMenuContent>
+
+        <MenuItemRow>
+          <CgPassword size={20} /> Change Password
+        </MenuItemRow>
+
+        <MenuItemRow onClick={handleLogout}>
+          <DoorOpen /> Sign out
+        </MenuItemRow>
+      </MenuList>
     </>
+  );
+
+  return (
+    <Sidebar
+      open={isOpen}
+      onSetOpen={setIsOpen}
+      pullRight={true}
+      styles={{
+        root: {
+          position: "fixed",
+          inset: 0,
+          zIndex: 1200,
+          pointerEvents: isOpen ? "auto" : "none",
+        },
+        sidebar: {
+          pointerEvents: "auto",
+
+          zIndex: "10",
+          background: theme === "light" ? "#ffffffa0" : "#181818a0",
+          color: theme === "light" ? "black" : "white",
+          transition: "0.5s ease-in-out",
+          width: 280,
+        },
+        overlay: {
+          pointerEvents: "auto",
+          backgroundColor: "rgba(0,0,0,0.4)",
+        },
+      }}
+      sidebar={sidebarContent}
+    ></Sidebar>
   );
 }
 
 // Styled components
-const TopButtons = styled.div`
-  padding: 1rem;
-  display: flex;
-  gap: 1rem;
-`;
-
-const ActionButton = styled.button`
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  font-family: inherit;
-`;
 
 const FileInput = styled.input`
   display: none;
@@ -326,4 +306,63 @@ const EditButton = styled.button`
 
 const UserName = styled.h2`
   margin: 0;
+`;
+
+const UserHeader = styled.div`
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease-in-out;
+`;
+
+const MenuList = styled.div`
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease-in-out;
+`;
+
+const MenuItemRow = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 1rem;
+  font-family: inherit;
+  transition: opacity 0.2s ease;
+  &:hover {
+    color: var(--bg-color);
+    background-color: var(--text-color);
+  }
+`;
+
+const SubMenuTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: var(--bg-color);
+    background-color: var(--text-color);
+  }
+`;
+
+const SubMenuContent = styled.div`
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  max-height: ${({ $open }) => ($open ? "200px" : "0")};
+  opacity: ${({ $open }) => ($open ? 1 : 0)};
+  transform: ${({ $open }) => ($open ? "translateY(0)" : "translateY(-4px)")};
+
+  transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease;
 `;

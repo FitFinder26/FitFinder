@@ -23,7 +23,7 @@ export default function HomePage() {
   const cameFrom = location.state?.cameFrom || null;
   const navigator = useNavigate();
   const welcomeVideo =
-    "https://gnygxghbaxatvpryczjc.supabase.co/storage/v1/object/sign/files/1766772231119-z52pm8eh.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNTg5ZDg2ZS00MTZlLTRkMzItOGYxZS03OGJmMGZhMDA1MTMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJmaWxlcy8xNzY2NzcyMjMxMTE5LXo1MnBtOGVoLm1wNCIsImlhdCI6MTc2Njc3MjYwMCwiZXhwIjoxNzY2Nzc2MjAwfQ.BYI808o4E4MmYXI6pc_1bd52B8Z6KBp-piM9KtqZ3hE";
+    "https://videos2.sendvid.com/b8/13/9esrmpyk.mp4?validfrom=1766775377&validto=1766789777&rate=180k&ip=41.43.133.200&hash=iOAmPtJ8DvnLc0%2FQgu2BmuEuf%2F8%3D";
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -348,7 +348,6 @@ const VideoBox = styled.video`
   border-radius: 20px;
   transform: perspective(600px) rotateY(-15deg) scale(0.9) rotateX(10deg)
     translateX(-50px);
-  /* filter: blur(2px); */
   opacity: 0.9;
   transition: 0.6s ease all;
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);

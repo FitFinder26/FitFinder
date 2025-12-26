@@ -8,12 +8,11 @@ import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
 import { Camera } from "lucide-react";
 
-export default function Navbar({ navigationBlocked }) {
+export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [imageURL, setImageURL] = useState(null);
   const inputRef = useRef(null);
 
@@ -99,8 +98,6 @@ export default function Navbar({ navigationBlocked }) {
           setImageURL={setImageURL}
         />
       )}
-
-      <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen} />
     </>
   );
 }

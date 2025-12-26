@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import FavoritePage from "./pages/FavoritePage";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
         <Route path="product/:id" element={<ProductPage />} />
         <Route path="history" element={<HistoryPage />} />
         <Route path="favorite" element={<FavoritePage />} />
+        <Route path="about-us" element={<AboutUs />} />
         <Route path="*" element={<EmptyPage />} />
       </Route>
     )
