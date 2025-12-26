@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import whiteCameraIcon from "../assets/camera-icon-white.png";
 import blackCameraIcon from "../assets/camera-icon.png";
-// import ilustratorImage from "../assets/ilustrator.png";
+import ilustratorImage from "../assets/ilustrator.png";
 import { useEffect, useRef, useState } from "react";
 import LazyMount from "../components/LazyMount";
 import Logo from "../components/Logo";
@@ -10,7 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Recommendations from "../components/Recommendations";
 import PreferenceSurvey from "../components/PreferenceSurvey";
 import { recomendedationService } from "../../../shared/services/recomendationService";
-import { Instagram } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 export default function HomePage() {
   const inputRef = useRef(null);
@@ -28,7 +28,6 @@ export default function HomePage() {
     const file = e.target.files[0];
     if (!file) return;
     setImageURL(URL.createObjectURL(file));
-
     setImageUploaded(true);
   };
 
@@ -139,15 +138,15 @@ export default function HomePage() {
           </div>
         </LeftHero>
         <RightHero>
-          {/* <img src={ilustratorImage} alt="illustrator image" /> */}
-          <VideoBox
+          <img src={ilustratorImage} alt="illustrator image" />
+          {/* <VideoBox
             autoPlay
             loop
             muted
             src={welcomeVideo}
             onClick={() => window.open(welcomeVideo)}
             width="600"
-          />
+          /> */}
         </RightHero>
       </Hero>
 
@@ -166,16 +165,11 @@ export default function HomePage() {
               marginLeft: "1rem",
             }}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              style={{ marginRight: "0.3rem" }}
-              fill="#202020"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12C2 13.7 2.45 15.3 3.24 16.71L2.09 21.09L6.47 19.95C7.88 20.75 9.48 21.2 11.16 21.2H12C17.52 21.2 22 16.72 22 11.2C22 6.13 17.52 2 12 2Z" />
-            </svg>
+            <MessageCircle
+              width={20}
+              height={20}
+              style={{ marginRight: "0.5rem" }}
+            />
             Feel free to click&nbsp;
             <Link style={{ color: "var(--links-color)" }}>here</Link>&nbsp; and
             drop us a message.
@@ -266,7 +260,7 @@ const Welcome = styled.div`
 `;
 
 const Hero = styled.div`
-  height: 60vh;
+  height: 75vh;
   display: flex;
   flex-direction: row;
   background-image: var(--bg-image);

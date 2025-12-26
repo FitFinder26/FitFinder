@@ -49,7 +49,6 @@ export default function SearchResultPage() {
   /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
     const productsFromState = location.state?.products || [];
-    console.log(productsFromState);
     // simulate async fetch
     setTimeout(() => {
       const productsCopy = JSON.parse(JSON.stringify(productsFromState));
@@ -267,13 +266,13 @@ const Left = styled.aside`
 `;
 
 const PreviewCard = styled.div`
-  background: white;
   border-radius: 10px;
   padding: 1rem;
   min-height: 360px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--text-color);
 `;
 
 const PreviewImage = styled.img`
@@ -287,9 +286,12 @@ const PreviewPlaceholder = styled.div`
 `;
 
 const Filters = styled.div`
-  background: white;
+  background: var(--bg-color);
   border-radius: 10px;
   padding: 1rem;
+  color: var(--text-color);
+  transition: 0.5s ease-in-out;
+  box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
 `;
 
 const FilterSection = styled.div`

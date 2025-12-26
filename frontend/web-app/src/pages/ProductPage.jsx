@@ -23,9 +23,6 @@ export default function ProductPage() {
   };
 
   const similar = location.state?.similarProducts || [];
-
-  console.log("Product data:", product);
-
   const rawDescription = product.description;
   const [featuresPart, paragraphPart] = rawDescription.split(" Description ");
   const [liked, setLiked] = useState(product.favorite);
@@ -116,9 +113,9 @@ export default function ProductPage() {
         <SimilarGrid>
           {similar.map((p) => (
             <SimilarCard
-              key={p.id}
+              key={p.item_id}
               onClick={() =>
-                navigate(`/product/${p.id}`, {
+                navigate(`/product/${p.item_id}`, {
                   state: { product: p, similar: similar },
                 })
               }
@@ -165,10 +162,11 @@ const LeftColumn = styled.div``;
 
 const ImageWrapper = styled.div`
   position: relative;
-  background: white;
+  background: var(--bg-color);
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 10px 0px 20px var(--back-drop-shadow-color);
+  transition: 0.5s ease-in-out;
 `;
 
 const pop = keyframes`
@@ -244,10 +242,12 @@ const Meta = styled.div`
 `;
 
 const ProductDescription = styled.div`
-  background: #ffffff;
+  /* background: #ffffff; */
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
 `;
 
 const FeaturesList = styled.ul`
@@ -260,7 +260,6 @@ const FeaturesList = styled.ul`
     padding-left: 1.5rem;
     margin-bottom: 0.6rem;
     line-height: 1.45;
-    color: #374151;
 
     &::before {
       content: "•";

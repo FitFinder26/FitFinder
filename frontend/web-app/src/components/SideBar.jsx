@@ -19,7 +19,7 @@ import { useTheme } from "../providers/ThemeProvider";
 import { FaCheck } from "react-icons/fa";
 
 export default function SideBar({ isOpen, setIsOpen }) {
-  const { logout, user, refreshUser, updateProfileImage } = useAuthContext();
+  const { logout, user, updateProfileImage } = useAuthContext();
   const navigator = useNavigate();
   const [imgError, setImgError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -30,10 +30,6 @@ export default function SideBar({ isOpen, setIsOpen }) {
     // Reset image error when the user's profile image changes
     setImgError(false);
   }, [user?.profileImageURL]);
-
-  useEffect(async () => {
-    await refreshUser();
-  }, [user?.userName]);
 
   const handleLogout = () => {
     logout();
@@ -66,7 +62,6 @@ export default function SideBar({ isOpen, setIsOpen }) {
       const res = await updateProfileImage(file);
       if (res && res.ok) {
         Notifier.notifySuccess("Profile image changed successfuly");
-        await refreshUser();
       } else {
         const text = res ? await res.text() : null;
         console.error("Profile image upload failed", res && res.status, text);
@@ -96,8 +91,13 @@ export default function SideBar({ isOpen, setIsOpen }) {
       {/* Sidebar */}
       <Sidebar
         toggled={isOpen}
-        breakPoint="always"
+        breakPoint="all"
         onBackdropClick={() => setIsOpen(false)}
+        backgroundColor={theme === "light" ? "#ffffffa0" : "#181818a0"}
+        style={{
+          color: theme === "light" ? "black" : "white",
+          transition: "all 0.5s ease-in-out",
+        }}
       >
         {/* User icon container */}
         <div
@@ -127,24 +127,34 @@ export default function SideBar({ isOpen, setIsOpen }) {
                   <AvatarImg
                     src={user.profileImageURL}
                     alt={user.userName || "Profile"}
-                    loading="lazy"
                     onError={() => setImgError(true)}
                   />
                 ) : (
                   <AvatarFallback>
-                    <UserIcon size={48} />
+                    <UserIcon
+                      size={48}
+                      color={theme === "light" ? "black" : "white"}
+                    />
                   </AvatarFallback>
                 )}
               </AvatarWrap>
 
               {user && (
                 <EditButton
+                  $theme={theme}
                   onClick={handleProfilePicClick}
                   disabled={uploading}
                   title="Change profile photo"
                   aria-label="Change profile photo"
                 >
-                  {uploading ? <span>...</span> : <EditIcon size={14} />}
+                  {uploading ? (
+                    <span>...</span>
+                  ) : (
+                    <EditIcon
+                      size={14}
+                      color={theme === "light" ? "black" : "white"}
+                    />
+                  )}
                 </EditButton>
               )}
             </AvatarContainer>
@@ -154,7 +164,22 @@ export default function SideBar({ isOpen, setIsOpen }) {
         </div>
 
         {/* Menu items */}
-        <Menu>
+        <Menu
+          menuItemStyles={{
+            button: {
+              color: theme === "light" ? "black" : "white",
+              transition: "all 0.5s ease-in-out",
+
+              "&:hover": {
+                color: "black",
+              },
+            },
+            subMenuContent: {
+              backgroundColor: theme === "light" ? "#ffffffaf" : "#181818af",
+              transition: "all 0.5s ease-in-out",
+            },
+          }}
+        >
           <MenuItem icon={<History />} onClick={handleHistoryNavigation}>
             Recent Searches
           </MenuItem>
@@ -261,7 +286,6 @@ const EditButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #000;
   padding: 0;
   z-index: 2;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -279,7 +303,8 @@ const EditButton = styled.button`
 
   &:hover {
     transform: translateY(-4px) scale(1.1); /* subtle lift + scale */
-    background: #fff;
+    background: ${(props) =>
+      props?.$theme && props.$theme === "light" ? "white" : "black"};
     border-color: rgba(0, 0, 0, 0.12);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   }

@@ -18,15 +18,12 @@ export default function Navbar({ navigationBlocked }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    if (isAuthenticated()) setIsLoggedIn(true);
+    else setIsLoggedIn(false);
+  }, [isAuthenticated]);
+  useEffect(() => {
     if (!imageUploaded) inputRef.current.value = "";
   }, [imageUploaded]);
-
-  useEffect(() => {
-    setIsLoggedIn(() => {
-      let res = isAuthenticated();
-      return res;
-    });
-  }, [isAuthenticated]);
 
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
@@ -94,12 +91,14 @@ export default function Navbar({ navigationBlocked }) {
           )}
         </div>
       </NavContainer>
-      <ImageEditor
-        imageUploaded={imageUploaded}
-        setImageUploaded={setImageUploaded}
-        imageURL={imageURL}
-        setImageURL={setImageURL}
-      />
+      {imageUploaded && (
+        <ImageEditor
+          imageUploaded={imageUploaded}
+          setImageUploaded={setImageUploaded}
+          imageURL={imageURL}
+          setImageURL={setImageURL}
+        />
+      )}
 
       <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen} />
     </>
@@ -108,7 +107,9 @@ export default function Navbar({ navigationBlocked }) {
 
 // 🎨 Styled Components
 const NavContainer = styled.nav`
-  background-color: transparent;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
   padding: 1rem;
   color: var(--text-color);
   width: 100%;
@@ -118,11 +119,28 @@ const NavContainer = styled.nav`
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 4.5rem;
-  position: absolute;
-  box-shadow: 0 1px 4px var(--back-drop-shadow-color);
-  z-index: 10;
-  backdrop-filter: blur(10px);
+  /* box-shadow: 0 1px 4px var(--back-drop-shadow-color); */
   align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--navbar-bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4; /* crucial */
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: -2;
+  }
 `;
 
 const SearchWithImageButton = styled.button`
@@ -153,7 +171,7 @@ const NavButton = styled.button`
   border-bottom: 2px solid transparent;
   transition: all 0.3s;
   &:hover {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--text-color);
   }
 `;
 

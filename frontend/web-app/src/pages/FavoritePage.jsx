@@ -41,7 +41,6 @@ export default function FavoritePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
-
   const [filters, setFilters] = useState({
     category: new Set(),
     store: new Set(),
@@ -341,10 +340,12 @@ const Left = styled.aside`
 `;
 
 const Filters = styled.div`
-  background: white;
+  background: var(--bg-color);
   border-radius: 10px;
   padding: 1rem;
-  color: #666;
+  color: var(--text-color);
+  transition: 0.5s ease-in-out;
+  box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
 `;
 
 const FilterSection = styled.div`

@@ -28,7 +28,6 @@ function CardImageWithLoader({ src, alt }) {
       <img
         src={src}
         alt={alt}
-        loading="lazy"
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
         style={{
@@ -236,11 +235,12 @@ const Left = styled.aside`
 `;
 
 const Filters = styled.div`
-  background: white;
-  padding: 1rem;
+  background: var(--bg-color);
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  color: #666;
+  padding: 1rem;
+  color: var(--text-color);
+  transition: 0.5s ease-in-out;
+  box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
 `;
 
 const FilterSection = styled.div`

@@ -38,12 +38,6 @@ export const apiClient = async (endpoint, options = {}) => {
     ...(token && !skipAuth ? { Authorization: `Bearer ${token}` } : {}),
   };
 
-  console.log({
-    ...fetchOptions,
-    headers,
-    // credentials: "include", // always send cookies
-  });
-
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...fetchOptions,
     headers,

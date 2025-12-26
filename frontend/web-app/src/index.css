@@ -53,11 +53,24 @@ body,
   --texture-dark: rgba(0, 0, 0, 0.05);
   --input-bg-color: #efefef;
   --bg-image: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--primary-color) 100%, #0b0e14),
-    color-mix(in srgb, var(--secondary-color) 100%, #0b0e14)
+    180deg,
+    color-mix(in srgb, var(--primary-color) 90%, var(--bg-color)),
+    color-mix(in srgb, var(--secondary-color) 90%, var(--bg-color)),
+    color-mix(in srgb, var(--bg-color) 90%, var(--bg-color))
+  );
+  --navbar-bg-image: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--primary-color) 40%, var(--bg-color)),
+    color-mix(in srgb, var(--secondary-color) 40%, var(--bg-color)) 25%,
+    color-mix(in srgb, var(--bg-color) 40%, var(--bg-color)) 50%
   );
   --card-bg-color: white;
+  --linear-gradiant-bg: linear-gradient(
+    135deg,
+    #e0e7ff 0%,
+    #f3e7e9 50%,
+    #e0e7ff 100%
+  );
 }
 
 [data-theme="dark"] {
@@ -77,11 +90,18 @@ body,
   --texture-dark: rgba(0, 0, 0, 0.5);
   --input-bg-color: #2c2c2c;
   --bg-image: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--primary-color) 40%, #0b0e14),
-    color-mix(in srgb, var(--secondary-color) 40%, #0b0e14)
+    180deg,
+    color-mix(in srgb, var(--primary-color) 50%, var(--bg-color)),
+    color-mix(in srgb, var(--secondary-color) 50%, var(--bg-color)),
+    color-mix(in srgb, var(--bg-color) 50%, var(--bg-color))
   );
   --card-bg-color: #272525;
+  --linear-gradiant-bg: linear-gradient(
+    135deg,
+    #1f1f1f 0%,
+    #424242 50%,
+    #5c5c5c 100%
+  );
 }
 * {
   /* No @import needed; this stack looks close to Poppins on all platforms */

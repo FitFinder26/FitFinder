@@ -8,7 +8,6 @@ import { HashLoader } from "react-spinners";
 
 // Crop SAM masks from the original image
 const cropSelectedSegments = (imageObj, masks) => {
-  console.log("cropSelectedSegments called");
   if (!imageObj) {
     console.error("No imageObj provided!");
     return null;
@@ -50,7 +49,6 @@ const cropSelectedSegments = (imageObj, masks) => {
     ctx.drawImage(maskCanvas, 0, 0, canvas.width, canvas.height);
 
     const result = canvas.toDataURL();
-    console.log("Cropped segment generated successfully");
     return result;
   } catch (err) {
     console.error("Error in cropSelectedSegments:", err);
@@ -147,6 +145,7 @@ export default function CustomizeSegment({
         value={prompt}
         onChange={handlePromptChange}
         placeholder="Enter any additional details..."
+        disabled={isSearching}
       />
 
       <ButtonsContainer>
