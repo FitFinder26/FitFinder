@@ -24,6 +24,8 @@ export default function HomePage() {
   const navigator = useNavigate();
   const welcomeVideo =
     "https://videos2.sendvid.com/b8/13/9esrmpyk.mp4?validfrom=1766775377&validto=1766789777&rate=180k&ip=41.43.133.200&hash=iOAmPtJ8DvnLc0%2FQgu2BmuEuf%2F8%3D";
+  const feedbackFormLink =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -132,7 +134,7 @@ export default function HomePage() {
                 Search With Image
               </label>
             </SearchWithImageButton>
-            <AboutUsButton onClick={() => navigator("/inspiration")}>
+            <AboutUsButton onClick={() => navigator("/about-us")}>
               About us
             </AboutUsButton>
           </div>
@@ -171,8 +173,13 @@ export default function HomePage() {
               style={{ marginRight: "0.5rem" }}
             />
             Feel free to click&nbsp;
-            <Link style={{ color: "var(--links-color)" }}>here</Link>&nbsp; and
-            drop us a message.
+            <Link
+              style={{ color: "var(--links-color)" }}
+              onClick={() => window.open(feedbackFormLink)}
+            >
+              here
+            </Link>
+            &nbsp; and drop us a message.
           </p>
         </Feedback>
       </LazyMount>

@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer({ navigationBlocked }) {
   const contactEmail = (email, subject = "", body = "") => {
@@ -8,13 +9,14 @@ export default function Footer({ navigationBlocked }) {
     )}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
   };
+  const navigator = useNavigate();
 
   return (
     <FooterContainer>
       <LinksWrapper>
         <Logo fontSize={70} scale={0.3} variant={2} />
         <Link
-          onClick={() => navigate("/about-us")}
+          onClick={() => navigator("/about-us")}
           disabled={navigationBlocked}
         >
           About us
@@ -34,13 +36,13 @@ export default function Footer({ navigationBlocked }) {
       </LinksWrapper>
       <LinksWrapper>
         <Link
-          onClick={() => navigate("/privacy-policy")}
+          onClick={() => navigator("/privacy-policy")}
           disabled={navigationBlocked}
         >
           Privacy Policy
         </Link>
         <Link
-          onClick={() => navigate("/terms-of-service")}
+          onClick={() => navigator("/terms-of-service")}
           disabled={navigationBlocked}
         >
           Terms of Service

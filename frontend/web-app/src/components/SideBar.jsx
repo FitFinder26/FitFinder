@@ -29,6 +29,8 @@ export default function SideBar({ isOpen, setIsOpen }) {
   const fileInputRef = useRef(null);
   const { theme, setTheme } = useTheme();
   const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const feedbackFormLink =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
 
   useEffect(() => {
     setImgError(false);
@@ -126,7 +128,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
           <Heart /> Saved Items
         </MenuItemRow>
 
-        <MenuItemRow>
+        <MenuItemRow onClick={() => window.open(feedbackFormLink)}>
           <MessageCircleDashed /> Send Feedback
         </MenuItemRow>
 

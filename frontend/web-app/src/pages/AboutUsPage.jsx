@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
-const AboutUs = () => {
+const AboutUsPage = () => {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -10,6 +11,8 @@ const AboutUs = () => {
       });
     }
   };
+
+  useEffect(() => scrollToSection("hero"), []);
 
   return (
     <Page>
@@ -190,7 +193,7 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsPage;
 
 /* ===========================
    Styled Components
@@ -198,6 +201,7 @@ export default AboutUs;
 
 const Page = styled.div`
   display: flex;
+  padding-top: 1rem;
   scroll-behavior: smooth;
   color: var(--text-color);
   scroll-behavior: smooth; /* enable smooth scroll for anchor links */
@@ -205,7 +209,7 @@ const Page = styled.div`
 
 const Sidebar = styled.aside`
   position: sticky;
-  top: 0;
+  top: 6rem;
   height: fit-content;
   margin-top: 1rem;
   margin-left: 1rem;
