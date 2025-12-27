@@ -11,6 +11,7 @@ import Recommendations from "../components/Recommendations";
 import PreferenceSurvey from "../components/PreferenceSurvey";
 import { recomendedationService } from "../../../shared/services/recomendationService";
 import { Instagram, MessageCircle } from "lucide-react";
+// import logo from "../assets/logo.png";
 
 export default function HomePage() {
   const inputRef = useRef(null);
@@ -26,6 +27,8 @@ export default function HomePage() {
     "https://videos2.sendvid.com/b8/13/9esrmpyk.mp4?validfrom=1766775377&validto=1766789777&rate=180k&ip=41.43.133.200&hash=iOAmPtJ8DvnLc0%2FQgu2BmuEuf%2F8%3D";
   const feedbackFormLink =
     "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
+  const instagramURL =
+    "https://www.instagram.com/fitfinder_csed_2026?igsh=ZG5mamtod3lyMWZo&utm_source=ig_contact_invite";
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -93,6 +96,7 @@ export default function HomePage() {
             <h1>Welcome to</h1>
           </Welcome>
           <Logo fontSize={150} />
+          {/* <img src={logo} /> */}
           <input
             type="file"
             accept="image/*"
@@ -194,7 +198,12 @@ export default function HomePage() {
               <br />
               our announcements and future updates.
               <br />
-              <Link style={{ color: "var(--links-color)" }}>Follow us</Link>
+              <Link
+                style={{ color: "var(--links-color)" }}
+                onClick={() => window.open(instagramURL)}
+              >
+                Follow us
+              </Link>
             </p>
           </div>
         </SocialMedia>

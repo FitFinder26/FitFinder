@@ -334,11 +334,12 @@ const MenuItemRow = styled.button`
   color: inherit;
   cursor: pointer;
   padding: 1rem;
+  font-weight: bold;
   font-family: inherit;
   transition: opacity 0.2s ease;
   &:hover {
     color: var(--bg-color);
-    background-color: var(--text-color);
+    background-color: var(--primary-color, 50%);
   }
 `;
 
@@ -353,7 +354,7 @@ const SubMenuTitle = styled.div`
 
   &:hover {
     color: var(--bg-color);
-    background-color: var(--text-color);
+    background-color: var(--primary-color);
   }
 `;
 

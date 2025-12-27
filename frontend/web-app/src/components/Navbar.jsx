@@ -38,7 +38,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
           onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
         >
-          <Logo fontSize={70} scale={0.4} variant={0} />
+          {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
+          <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
         </div>
         <div style={{ gridColumn: "2", textAlign: "center" }}>
           <input
@@ -118,7 +119,7 @@ const NavContainer = styled.nav`
   height: 4.5rem;
   /* box-shadow: 0 1px 4px var(--back-drop-shadow-color); */
   align-items: center;
-
+  padding: 0;
   &::before {
     content: "";
     position: absolute;
@@ -137,6 +138,15 @@ const NavContainer = styled.nav`
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: -2;
+  }
+`;
+
+const LogoIcon = styled.img`
+  width: 70px;
+  height: 70px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    scale: 1.3;
   }
 `;
 
