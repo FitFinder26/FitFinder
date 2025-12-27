@@ -45,6 +45,7 @@ export default function SAMFrontend({
   // Subscribe to service updates for segmentation
   const unsubscribeFromSegmentation = segmentationService.subscribeToMasks(
     (segmentation) => {
+      // At error
       if (segmentation?.error) {
         Notifier.notifyError(
           `Segmentation failed. Please try again.\n${segmentation.error}`
@@ -52,10 +53,14 @@ export default function SAMFrontend({
         setSegmentationStatus("idle");
         setLoading(false);
         return;
+
+        // At segmentation (masks + boxes)
       } else if (segmentation?.masks && segmentation?.boxes) {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
         setBoxes(segmentation.boxes);
         setMasks(convertedMasks);
+
+        // At re-segmentation (masks)
       } else {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
         setMasks(convertedMasks);

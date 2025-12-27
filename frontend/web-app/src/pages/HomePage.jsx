@@ -24,7 +24,7 @@ export default function HomePage() {
   const cameFrom = location.state?.cameFrom || null;
   const navigator = useNavigate();
   const welcomeVideo =
-    "https://videos2.sendvid.com/b8/13/9esrmpyk.mp4?validfrom=1766775377&validto=1766789777&rate=180k&ip=41.43.133.200&hash=iOAmPtJ8DvnLc0%2FQgu2BmuEuf%2F8%3D";
+    "https://www.dropbox.com/scl/fi/wtzwj2trdhnd611o44mg5/How-to-use.mp4?rlkey=n6xa1fwtukjud63ujsg3g6ob1&st=h8i4vpfb&raw=1";
   const feedbackFormLink =
     "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
   const instagramURL =
