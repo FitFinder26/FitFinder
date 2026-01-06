@@ -116,7 +116,7 @@ const ItemImage = styled.img`
 
 const ItemLabel = styled.span`
   font-size: 14px;
-  color: #333;
+  color: var(--text-color);
 `;
 
 const shimmer = keyframes`

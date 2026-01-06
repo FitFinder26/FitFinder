@@ -133,6 +133,8 @@ export const segmentationService = {
   search: async (mask, prompt) => {
     return await apiClient("/api/v1/items/search", {
       method: "POST",
+      skipAuth: false,
+
       body: JSON.stringify({
         job_id: jobId,
         mask_json: mask,
@@ -141,7 +143,6 @@ export const segmentationService = {
       headers: {
         "Content-Type": "application/json",
       },
-      skipAuth: false,
     });
   },
 };
