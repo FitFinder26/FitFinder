@@ -229,6 +229,17 @@ a {
   transform: translateX(0);
 }
 
+@media (max-width: var(--mobile)) {
+  .container.sign-in .text.sign-in h2,
+  .container.sign-in .text.sign-in p,
+  .container.sign-in .img.sign-in img,
+  .container.sign-up .text.sign-up h2,
+  .container.sign-up .text.sign-up p,
+  .container.sign-up .img.sign-up img {
+    transform: translateY(150%);
+  }
+}
+
 /* BACKGROUND */
 /* PINK TEXTILE BACKGROUND — no images, no imports */
 .container::before {

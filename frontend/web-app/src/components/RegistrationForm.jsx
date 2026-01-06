@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./external-styles/RegistrationForm.css";
+import styled from "styled-components";
 import { HashLoader } from "react-spinners";
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
@@ -733,7 +734,7 @@ export default function RegistrationForm({
       </div>
       {/* <!-- END FORM SECTION --> */}
       {/* <!-- CONTENT SECTION --> */}
-      <div className="row content-row">
+      <ContentRow className="row content-row">
         {/* <!-- SIGN IN CONTENT --> */}
         <div className="col align-items-center flex-col">
           <div className="text sign-in">
@@ -750,8 +751,21 @@ export default function RegistrationForm({
           </div>
         </div>
         {/* <!-- END SIGN UP CONTENT --> */}
-      </div>
+      </ContentRow>
       {/* <!-- END CONTENT SECTION --> */}
     </div>
   );
 }
+
+const ContentRow = styled.div`
+  @media (max-width: var(--mobile)) {
+    .container.sign-in .text.sign-in h2,
+    .container.sign-in .text.sign-in p,
+    .container.sign-in .img.sign-in img,
+    .container.sign-up .text.sign-up h2,
+    .container.sign-up .text.sign-up p,
+    .container.sign-up .img.sign-up img {
+      transform: translateY(150%) !important;
+    }
+  }
+`;

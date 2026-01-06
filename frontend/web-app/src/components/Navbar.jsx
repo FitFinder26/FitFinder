@@ -6,7 +6,7 @@ import { useAuthContext } from "../providers/AuthProvider";
 import { useEffect, useState, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
-import { Camera } from "lucide-react";
+import { Camera, Upload } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
@@ -15,15 +15,21 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
   const [imageURL, setImageURL] = useState(null);
+  const [showImageSourceModal, setShowImageSourceModal] = useState(false);
   const inputRef = useRef(null);
+  const cameraInputRef = useRef(null);
   const { device } = useDevice();
 
   useEffect(() => {
     if (isAuthenticated()) setIsLoggedIn(true);
     else setIsLoggedIn(false);
   }, [isAuthenticated]);
+  
   useEffect(() => {
-    if (!imageUploaded) inputRef.current.value = "";
+    if (!imageUploaded) {
+      if (inputRef.current) inputRef.current.value = "";
+      if (cameraInputRef.current) cameraInputRef.current.value = "";
+    }
   }, [imageUploaded]);
 
   const handleUploadImage = (e) => {
@@ -31,6 +37,23 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     if (!file) return;
     setImageURL(URL.createObjectURL(file));
     setImageUploaded(true);
+    setShowImageSourceModal(false);
+  };
+
+  const handleSearchWithImageClick = () => {
+    if (device === "desktop") {
+      handleUploadClick();
+    } else {
+      setShowImageSourceModal(true);
+    }
+  };
+
+  const handleCameraClick = () => {
+    cameraInputRef.current.click();
+  };
+
+  const handleUploadClick = () => {
+    inputRef.current.click();
   };
 
   return (
@@ -51,7 +74,15 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             style={{ display: "none" }}
             onChange={handleUploadImage}
           />
-          <SearchWithImageButton onClick={() => inputRef.current.click()}>
+          <input
+            type="file"
+            accept="image/*"
+            capture="camera"
+            ref={cameraInputRef}
+            style={{ display: "none" }}
+            onChange={handleUploadImage}
+          />
+          <SearchWithImageButton onClick={handleSearchWithImageClick}>
             <Camera width={24} height={24} />
             <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
               Search With Image
@@ -100,6 +131,26 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           imageURL={imageURL}
           setImageURL={setImageURL}
         />
+      )}
+      {showImageSourceModal && (
+        <ModalOverlay onClick={() => setShowImageSourceModal(false)}>
+          <ModalContent device={device} onClick={(e) => e.stopPropagation()}>
+            <ModalTitle device={device}>Choose Image Source</ModalTitle>
+            <ModalButtonGroup device={device}>
+              <ModalButton device={device} onClick={handleCameraClick}>
+                <Camera size={24} />
+                <span>Take Photo</span>
+              </ModalButton>
+              <ModalButton device={device} onClick={handleUploadClick}>
+                <Upload size={24} />
+                <span>Upload from Device</span>
+              </ModalButton>
+            </ModalButtonGroup>
+            <CancelButton device={device} onClick={() => setShowImageSourceModal(false)}>
+              Cancel
+            </CancelButton>
+          </ModalContent>
+        </ModalOverlay>
       )}
     </>
   );
@@ -198,5 +249,198 @@ const JoinButton = styled.button`
   border-radius: 2rem;
   &:hover {
     background-color: #4d96ff;
+  }
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+`;
+
+const ModalContent = styled.div`
+  background-color: var(--bg-color);
+  border-radius: 20px;
+  padding: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "2rem 1.5rem";
+      case "tablet":
+        return "2.5rem 2rem";
+      default:
+        return "3rem 2.5rem";
+    }
+  }};
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "280px";
+      case "tablet":
+        return "350px";
+      default:
+        return "400px";
+    }
+  }};
+  max-width: 90vw;
+
+  @media (max-width: var(--tablet)) {
+    padding: 2rem 1.5rem;
+    min-width: 280px;
+  }
+
+  @media (max-width: var(--mobile)) {
+    padding: 1.5rem 1rem;
+    min-width: 260px;
+  }
+`;
+
+const ModalTitle = styled.h2`
+  font-size: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "1.3rem";
+      case "tablet":
+        return "1.5rem";
+      default:
+        return "1.75rem";
+    }
+  }};
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  text-align: center;
+
+  @media (max-width: var(--tablet)) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: var(--mobile)) {
+    font-size: 1.2rem;
+  }
+`;
+
+const ModalButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => (props.device === "mobile" ? "0.75rem" : "1rem")};
+
+  @media (max-width: var(--mobile)) {
+    gap: 0.75rem;
+  }
+`;
+
+const ModalButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "1rem";
+      case "tablet":
+        return "1.2rem";
+      default:
+        return "1.25rem";
+    }
+  }};
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "1rem";
+      case "tablet":
+        return "1.1rem";
+      default:
+        return "1.15rem";
+    }
+  }};
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  span {
+    font-family: inherit;
+  }
+
+  @media (max-width: var(--tablet)) {
+    padding: 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: var(--mobile)) {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+    gap: 0.75rem;
+  }
+`;
+
+const CancelButton = styled.button`
+  padding: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "0.8rem";
+      case "tablet":
+        return "0.9rem";
+      default:
+        return "1rem";
+    }
+  }};
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--meta-text-color);
+  border-radius: 12px;
+  font-size: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "1rem";
+      case "tablet":
+        return "1.05rem";
+      default:
+        return "1.1rem";
+    }
+  }};
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--meta-text-color);
+    color: var(--bg-color);
+  }
+
+  @media (max-width: var(--tablet)) {
+    padding: 0.85rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: var(--mobile)) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
   }
 `;

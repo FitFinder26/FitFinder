@@ -67,7 +67,6 @@ const slideLeft = keyframes`
 
 const Container = styled.div`
   width: 100%;
-  margin: 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -77,6 +76,7 @@ const Container = styled.div`
 const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
+  margin: 1rem;
 `;
 
 const ScrollArea = styled.div`
