@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
 import { Camera } from "lucide-react";
+import { useDevice } from "../providers/DeviceProvider";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const [imageUploaded, setImageUploaded] = useState(false);
   const [imageURL, setImageURL] = useState(null);
   const inputRef = useRef(null);
+  const { device } = useDevice();
 
   useEffect(() => {
     if (isAuthenticated()) setIsLoggedIn(true);
@@ -34,13 +36,13 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   return (
     <>
       <NavContainer>
-        <div
+        {device !== "mobile" && <div
           style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
           onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
         >
           {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
           <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
-        </div>
+        </div>}
         <div style={{ gridColumn: "2", textAlign: "center" }}>
           <input
             type="file"
@@ -56,7 +58,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             </label>
           </SearchWithImageButton>
         </div>
-        <div
+        {device !== "mobile" && <div
           style={{
             gridColumn: "3",
             textAlign: "right",
@@ -89,7 +91,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
               </JoinButton>
             </>
           )}
-        </div>
+        </div>}
       </NavContainer>
       {imageUploaded && (
         <ImageEditor
