@@ -16,7 +16,11 @@ export default function Footer({ navigationBlocked }) {
   return (
     <FooterContainer device={device}>
       <LinksWrapper device={device}>
-        <Logo fontSize={device === "mobile" ? 50 : 70} scale={0.3} variant={2} />
+        <Logo
+          fontSize={device === "mobile" ? 50 : 70}
+          scale={0.3}
+          variant={2}
+        />
         <Link
           device={device}
           onClick={() => navigator("/about-us")}
@@ -83,7 +87,7 @@ const FooterContainer = styled.footer`
     }
   }};
 
-  ${(props) => (props.device === "mobile" && "padding-bottom: 4rem")};
+  ${(props) => props.device === "mobile" && "padding-bottom: 4rem"};
   text-align: center;
   width: 100%;
   max-width: 100%;
@@ -157,7 +161,8 @@ const LinksWrapper = styled.div`
   }};
   grid-auto-flow: ${(props) => (props.device === "mobile" ? "row" : "column")};
   align-items: center;
-  justify-content: ${(props) => (props.device === "mobile" ? "center" : "space-evenly")};
+  justify-content: ${(props) =>
+    props.device === "mobile" ? "center" : "space-evenly"};
 
   @media (max-width: var(--tablet)) {
     grid-auto-flow: row;

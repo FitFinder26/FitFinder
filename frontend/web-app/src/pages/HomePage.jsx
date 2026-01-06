@@ -119,7 +119,11 @@ export default function HomePage() {
           <Welcome>
             <h1>Welcome to</h1>
           </Welcome>
-          <Logo fontSize={device === "mobile" ? 60 : device === "tablet" ? 100 : 150} />
+          <Logo
+            fontSize={
+              device === "mobile" ? 60 : device === "tablet" ? 100 : 150
+            }
+          />
           {/* <img src={logo} /> */}
           <input
             type="file"
@@ -139,40 +143,45 @@ export default function HomePage() {
           <ButtonContainer device={device}>
             {device === "desktop" ? (
               <SearchWithImageButton
-              device={device}
-              onClick={handleSearchWithImageClick}
-              onMouseOver={(e) =>
-                (e.currentTarget.children[0].src = blackCameraIcon)
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.children[0].src = whiteCameraIcon)
-              }
-              onFocus={(e) =>
-                (e.currentTarget.children[0].src = blackCameraIcon)
-              }
-              onBlur={(e) =>
-                (e.currentTarget.children[0].src = whiteCameraIcon)
-              }
-              tabIndex={0}
-            >
-              <img
-                src={whiteCameraIcon}
-                style={{ width: "24px", height: "24px", cursor: "pointer" }}
-                alt="Camera Icon"
-              />
-              <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
-                Search With Image
-              </label>
-            </SearchWithImageButton>) : (
-            <JoinButton
+                device={device}
+                onClick={handleSearchWithImageClick}
+                onMouseOver={(e) =>
+                  (e.currentTarget.children[0].src = blackCameraIcon)
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.children[0].src = whiteCameraIcon)
+                }
+                onFocus={(e) =>
+                  (e.currentTarget.children[0].src = blackCameraIcon)
+                }
+                onBlur={(e) =>
+                  (e.currentTarget.children[0].src = whiteCameraIcon)
+                }
+                tabIndex={0}
+              >
+                <img
+                  src={whiteCameraIcon}
+                  style={{ width: "24px", height: "24px", cursor: "pointer" }}
+                  alt="Camera Icon"
+                />
+                <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
+                  Search With Image
+                </label>
+              </SearchWithImageButton>
+            ) : (
+              <JoinButton
                 device={device}
                 onClick={() =>
                   navigator("/registration", { state: { form: "signup" } })
                 }
               >
                 Join
-              </JoinButton>)}
-            <AboutUsButton device={device} onClick={() => navigator("/about-us")}>
+              </JoinButton>
+            )}
+            <AboutUsButton
+              device={device}
+              onClick={() => navigator("/about-us")}
+            >
               About us
             </AboutUsButton>
           </ButtonContainer>
@@ -228,7 +237,10 @@ export default function HomePage() {
         <SocialMedia>
           <h1>Follow us on social media</h1>
           <div style={{ display: "flex", gap: "0.3rem", alignItems: "center" }}>
-            <Instagram width={device === "mobile" ? 120 : 60} height={device === "mobile" ? 120 : 60} />
+            <Instagram
+              width={device === "mobile" ? 120 : 60}
+              height={device === "mobile" ? 120 : 60}
+            />
 
             <p>
               Connect with us on Instagram and stay up to date with
@@ -271,7 +283,10 @@ export default function HomePage() {
                 <span>Upload from Device</span>
               </ModalButton>
             </ModalButtonGroup>
-            <CancelButton device={device} onClick={() => setShowImageSourceModal(false)}>
+            <CancelButton
+              device={device}
+              onClick={() => setShowImageSourceModal(false)}
+            >
               Cancel
             </CancelButton>
           </ModalContent>
@@ -845,7 +860,11 @@ const ModalButton = styled.button`
         return "1.25rem";
     }
   }};
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   color: white;
   border: none;
   border-radius: 12px;
