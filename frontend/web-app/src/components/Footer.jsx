@@ -15,52 +15,75 @@ export default function Footer({ navigationBlocked }) {
 
   return (
     <FooterContainer device={device}>
-      <LinksWrapper device={device}>
-        <Logo
-          fontSize={device === "mobile" ? 50 : 70}
-          scale={0.3}
-          variant={2}
-        />
-        <Link
-          device={device}
-          onClick={() => navigator("/about-us")}
-          disabled={navigationBlocked}
-        >
-          About us
-        </Link>
-        <Link
-          device={device}
-          onClick={() =>
-            contactEmail(
-              "fitfindercsed@gmail.com",
-              "Inquiry about FITFINDER",
-              "Hello, I would like to know more about your platform..."
-            )
-          }
-          disabled={navigationBlocked}
-        >
-          Contact
-        </Link>
-      </LinksWrapper>
-      <LinksWrapper device={device}>
-        <Link
-          device={device}
-          onClick={() => navigator("/privacy-policy")}
-          disabled={navigationBlocked}
-        >
-          Privacy Policy
-        </Link>
-        <Link
-          device={device}
-          onClick={() => navigator("/terms-of-service")}
-          disabled={navigationBlocked}
-        >
-          Terms of Service
-        </Link>
+      <TopSection device={device}>
+        <BrandSection device={device}>
+          <Logo
+            fontSize={device === "mobile" ? 50 : 70}
+            scale={0.3}
+            variant={2}
+          />
+          <BrandText device={device}>Your perfect fit, our mission</BrandText>
+        </BrandSection>
+
+        <Section device={device}>
+          <SectionTitle device={device}>Quick Links</SectionTitle>
+          <LinksList device={device}>
+            <Link
+              device={device}
+              onClick={() => navigator("/")}
+              disabled={navigationBlocked}
+            >
+              Home
+            </Link>
+            <Link
+              device={device}
+              onClick={() => navigator("/about-us")}
+              disabled={navigationBlocked}
+            >
+              About Us
+            </Link>
+            <Link
+              device={device}
+              onClick={() =>
+                contactEmail(
+                  "fitfindercsed@gmail.com",
+                  "Inquiry about FITFINDER",
+                  "Hello, I would like to know more about your platform..."
+                )
+              }
+              disabled={navigationBlocked}
+            >
+              Contact
+            </Link>
+          </LinksList>
+        </Section>
+
+        <Section device={device}>
+          <SectionTitle device={device}>Legal</SectionTitle>
+          <LinksList device={device}>
+            <Link
+              device={device}
+              onClick={() => navigator("/privacy-policy")}
+              disabled={navigationBlocked}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              device={device}
+              onClick={() => navigator("/terms-of-service")}
+              disabled={navigationBlocked}
+            >
+              Terms of Service
+            </Link>
+          </LinksList>
+        </Section>
+      </TopSection>
+
+      <BottomSection device={device}>
         <Copyright device={device}>
           &copy; {new Date().getFullYear()} FitFinder. All rights reserved.
         </Copyright>
-      </LinksWrapper>
+      </BottomSection>
     </FooterContainer>
   );
 }
@@ -79,99 +102,139 @@ const FooterContainer = styled.footer`
   padding: ${(props) => {
     switch (props.device) {
       case "mobile":
-        return "1rem 0.5rem";
+        return "2rem 1.5rem";
       case "tablet":
-        return "1rem";
+        return "2rem 2rem";
       default:
-        return "1rem";
+        return "2rem 3rem";
     }
   }};
 
-  ${(props) => props.device === "mobile" && "padding-bottom: 4rem"};
-  text-align: center;
+  ${(props) => props.device === "mobile" && "padding-bottom: 4.5rem"};
   width: 100%;
   max-width: 100%;
   bottom: 0;
   height: auto;
   display: flex;
-  flex-direction: ${(props) => (props.device === "mobile" ? "column" : "row")};
-  justify-content: space-between;
-  align-items: center;
-  gap: ${(props) => (props.device === "mobile" ? "1rem" : "0")};
+  flex-direction: column;
   box-shadow: 0 -2px 5px var(--back-drop-shadow-color);
   animation: ${slideUp} 1s;
   margin-top: auto;
   box-sizing: border-box;
 
   @media (max-width: var(--tablet)) {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 0.5rem;
+    padding: 2rem 2rem;
   }
 
   @media (max-width: var(--mobile)) {
-    padding: 0.75rem 0.5rem;
-    gap: 0.75rem;
+    padding: 2rem 1.5rem;
   }
+`;
+
+const TopSection = styled.div`
+  display: grid;
+  grid-template-columns: ${(props) => {
+    switch (props.device) {
+      case "mobile":
+        return "1fr";
+      case "tablet":
+        return "1fr 1fr";
+      default:
+        return "2fr 1fr 1fr";
+    }
+  }};
+  gap: ${(props) => (props.device === "mobile" ? "2rem" : "3rem")};
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--back-drop-shadow-color);
+
+  @media (max-width: var(--tablet)) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: var(--mobile)) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+const BrandSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) =>
+    props.device === "mobile" ? "center" : "flex-start"};
+  gap: 0.5rem;
+
+  @media (max-width: var(--mobile)) {
+    align-items: center;
+  }
+`;
+
+const BrandText = styled.p`
+  margin: 0;
+  font-size: ${(props) => (props.device === "mobile" ? "0.938rem" : "1rem")};
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--text-color);
+  opacity: 0.8;
+`;
+
+const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) =>
+    props.device === "mobile" ? "center" : "flex-start"};
+  gap: 1rem;
+
+  @media (max-width: var(--mobile)) {
+    align-items: center;
+  }
+`;
+
+const SectionTitle = styled.h3`
+  margin: 0;
+  font-size: ${(props) =>
+    props.device === "mobile" ? "1.063rem" : "1.125rem"};
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+`;
+
+const LinksList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: ${(props) =>
+    props.device === "mobile" ? "center" : "flex-start"};
+
+  @media (max-width: var(--mobile)) {
+    align-items: center;
+  }
+`;
+
+const BottomSection = styled.div`
+  padding-top: 1.5rem;
+  text-align: center;
 `;
 
 const Link = styled.a`
   color: var(--links-color);
   text-decoration: none;
-  display: inline-block;
-  margin: 0 ${(props) => (props.device === "mobile" ? "0.25rem" : "0.5rem")};
   cursor: pointer;
-  font-size: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "0.85rem";
-      case "tablet":
-        return "0.95rem";
-      default:
-        return "1rem";
-    }
-  }};
+  font-size: 0.938rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  transition: opacity 0.2s ease;
 
   &:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: var(--tablet)) {
-    font-size: 0.9rem;
-    margin: 0 0.3rem;
+    opacity: 0.7;
   }
 
   @media (max-width: var(--mobile)) {
-    font-size: 0.8rem;
-    margin: 0 0.25rem;
-  }
-`;
-
-const LinksWrapper = styled.div`
-  display: grid;
-  gap: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "0.5rem";
-      case "tablet":
-        return "0.75rem";
-      default:
-        return "1rem";
-    }
-  }};
-  grid-auto-flow: ${(props) => (props.device === "mobile" ? "row" : "column")};
-  align-items: center;
-  justify-content: ${(props) =>
-    props.device === "mobile" ? "center" : "space-evenly"};
-
-  @media (max-width: var(--tablet)) {
-    grid-auto-flow: row;
-    gap: 0.5rem;
-    justify-content: center;
-  }
-
-  @media (max-width: var(--mobile)) {
-    gap: 0.4rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -179,19 +242,23 @@ const Copyright = styled.span`
   font-size: ${(props) => {
     switch (props.device) {
       case "mobile":
-        return "0.75rem";
+        return "0.813rem";
       case "tablet":
-        return "0.85rem";
+        return "0.875rem";
       default:
-        return "0.9rem";
+        return "0.875rem";
     }
   }};
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  opacity: 0.75;
 
   @media (max-width: var(--tablet)) {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
   }
 
   @media (max-width: var(--mobile)) {
-    font-size: 0.75rem;
+    font-size: 0.813rem;
   }
 `;

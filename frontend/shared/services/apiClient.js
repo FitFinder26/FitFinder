@@ -2,6 +2,15 @@ import { tokenService } from "./tokenService";
 import { authService } from "./authService";
 import { API_BASE_URL } from "../config/env";
 
+const buildUrl = (base, path) => {
+  try {
+    return new URL(path, base).toString();
+  } catch (err) {
+    console.error("Invalid API base URL", base, err);
+    return path;
+  }
+};
+
 let refreshingPromise = null;
 
 export const apiClient = async (endpoint, options = {}) => {
@@ -33,15 +42,18 @@ export const apiClient = async (endpoint, options = {}) => {
   const token = tokenService.getToken();
 
   const headers = {
-    // "Content-Type": "application/json",
     ...(fetchOptions.headers || {}),
     ...(token && !skipAuth ? { Authorization: `Bearer ${token}` } : {}),
+    ...(API_BASE_URL?.includes("ngrok")
+      ? { "ngrok-skip-browser-warning": "true" }
+      : {}),
   };
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(buildUrl(API_BASE_URL, endpoint), {
+    mode: "cors",
+    credentials: "include", // allow refresh-token cookies when present
     ...fetchOptions,
     headers,
-    // credentials: "include", // always send cookies
   });
 
   // 452 means the refresh cookie may have expired

@@ -229,7 +229,7 @@ a {
   transform: translateX(0);
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 810px) {
   .container.sign-in .text.sign-in h2,
   .container.sign-in .text.sign-in p,
   .container.sign-in .img.sign-in img,
@@ -259,27 +259,32 @@ a {
 
   /* Layered weave + gradient */
   background-image:
-        /* vertical threads */ repeating-linear-gradient(
+        /* vertical threads */
+    repeating-linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.08) 0 1px,
       rgba(0, 0, 0, 0.05) 1px 2px
     ),
     /* horizontal threads */
-      repeating-linear-gradient(
+    repeating-linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.08) 0 1px,
         rgba(0, 0, 0, 0.05) 1px 2px
       ),
     /* diagonal weave pattern */
-      repeating-linear-gradient(
+    repeating-linear-gradient(
         45deg,
         rgba(255, 255, 255, 0.05) 0 2px,
         rgba(0, 0, 0, 0.05) 2px 4px
       ),
     /* base gradient (you can change these colors) */
-      linear-gradient(-45deg, #f79b4e 0%, #2f68c5 100%);
+    linear-gradient(-45deg, #f79b4e 0%, #2f68c5 100%);
 
-  background-size: 6px 6px, 6px 6px, 12px 12px, cover;
+  background-size:
+    6px 6px,
+    6px 6px,
+    12px 12px,
+    cover;
 
   background-blend-mode: multiply, multiply, overlay, normal;
 }

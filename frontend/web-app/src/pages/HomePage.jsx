@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import whiteCameraIcon from "../assets/camera-icon-white.png";
 import blackCameraIcon from "../assets/camera-icon.png";
-import ilustratorImage from "../assets/ilustrator.png";
 import { useEffect, useRef, useState } from "react";
 import LazyMount from "../components/LazyMount";
 import Logo from "../components/Logo";
@@ -27,8 +26,6 @@ export default function HomePage() {
   const cameFrom = location.state?.cameFrom || null;
   const navigator = useNavigate();
   const { device } = useDevice();
-  const welcomeVideo =
-    "https://www.dropbox.com/scl/fi/wtzwj2trdhnd611o44mg5/How-to-use.mp4?rlkey=n6xa1fwtukjud63ujsg3g6ob1&st=h8i4vpfb&raw=1";
   const feedbackFormLink =
     "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
   const instagramURL =
@@ -188,16 +185,31 @@ export default function HomePage() {
         </LeftHero>
         {device === "desktop" && (
           <RightHero device={device}>
-            {/*<img src={ilustratorImage} alt="illustrator image" />*/}
-            <VideoBox
-              device={device}
-              autoPlay
-              loop
-              muted
-              src={welcomeVideo}
-              onClick={() => window.open(welcomeVideo)}
-              width="600"
-            />
+            <AnimationContainer>
+              <SegmentationVisualizer>
+                <SVGMaskContainer
+                  viewBox="0 0 280 280"
+                  preserveAspectRatio="xMidYMid slice"
+                >
+                  {/* Blue mask regions representing detected clothing areas */}
+                  <MaskRegion d="M 70 60 Q 90 40 110 50 L 130 70 Q 120 90 100 100 Q 80 95 70 80 Z" />
+                  <MaskRegion d="M 150 90 Q 180 70 200 100 L 210 140 Q 180 160 150 150 Z" />
+                  <MaskRegion d="M 80 150 Q 110 140 130 160 L 120 200 Q 90 210 70 190 Z" />
+
+                  {/* Pink borders around detected regions */}
+                  <BorderStroke d="M 70 60 Q 90 40 110 50 L 130 70 Q 120 90 100 100 Q 80 95 70 80 Z" />
+                  <BorderStroke d="M 150 90 Q 180 70 200 100 L 210 140 Q 180 160 150 150 Z" />
+                  <BorderStroke d="M 80 150 Q 110 140 130 160 L 120 200 Q 90 210 70 190 Z" />
+
+                  {/* Interaction points - simulating click points for refinement */}
+                  <PointMarker cx="95" cy="75" />
+                  <PointMarker cx="175" cy="120" />
+                  <PointMarker cx="105" cy="175" />
+                  <PointMarker cx="200" cy="85" />
+                </SVGMaskContainer>
+                <InteractionHint>Click to refine</InteractionHint>
+              </SegmentationVisualizer>
+            </AnimationContainer>
           </RightHero>
         )}
       </Hero>
@@ -325,6 +337,202 @@ const fadeIn = keyframes`
     to{
         opacity: 1;
     }
+`;
+
+const maskDetect = keyframes`
+  0% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity: 0.4;
+  }
+`;
+
+const borderDetect = keyframes`
+  0% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+`;
+
+const pointPulse = keyframes`
+  0% {
+    r: 3px;
+    opacity: 0;
+  }
+  40% {
+    r: 5px;
+    opacity: 1;
+  }
+  100% {
+    r: 3px;
+    opacity: 0.6;
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+`;
+
+const glow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.3), inset 0 0 20px rgba(0, 150, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 150, 255, 0.6), inset 0 0 30px rgba(0, 150, 255, 0.2);
+  }
+`;
+
+const AnimationContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SegmentationVisualizer = styled.div`
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${glow} 3s ease-in-out infinite;
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: ${shimmer} 3s infinite;
+    pointer-events: none;
+  }
+`;
+
+const SVGMaskContainer = styled.svg`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 1px rgba(0, 150, 255, 0.3));
+`;
+
+const MaskRegion = styled.path`
+  fill: rgba(0, 150, 255, 0.35);
+  animation: ${maskDetect} 2.5s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 1.2s;
+  }
+`;
+
+const BorderStroke = styled.path`
+  fill: none;
+  stroke: rgba(255, 105, 180, 1);
+  stroke-width: 2.5;
+  animation: ${borderDetect} 2.5s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.9s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 1.5s;
+  }
+`;
+
+const PointMarker = styled.circle`
+  fill: rgba(255, 105, 180, 1);
+  animation: ${pointPulse} 1.8s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: 0.4s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.9s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 1.4s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 1.9s;
+  }
+`;
+
+const InteractionHint = styled.div`
+  position: absolute;
+  bottom: 15px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeInText 1s ease-out 0.5s forwards;
+
+  @keyframes fadeInText {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 0.6;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -688,48 +896,6 @@ const SocialMedia = styled.div`
   }
 `;
 
-const VideoBox = styled.video`
-  border-radius: 20px;
-  transform: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "perspective(400px) rotateY(-10deg) scale(0.85) rotateX(8deg) translateX(-30px)";
-      case "tablet":
-        return "perspective(500px) rotateY(-12deg) scale(0.92) rotateX(9deg) translateX(-40px)";
-      default:
-        return "perspective(600px) rotateY(-15deg) scale(0.9) rotateX(10deg) translateX(-50px)";
-    }
-  }};
-  opacity: 0.9;
-  transition: 0.6s ease all;
-  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
-  width: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "90%";
-      case "tablet":
-        return "95%";
-      default:
-        return "85%";
-    }
-  }};
-  max-width: 100%;
-
-  &:hover {
-    transform: perspective(600px) rotateY(0deg) rotateX(0deg) scale(1);
-    filter: blur(0);
-    opacity: 1;
-  }
-
-  @media (max-width: var(--desktop)) {
-    width: 95%;
-  }
-
-  @media (max-width: var(--tablet)) {
-    display: none;
-  }
-`;
-
 const JoinButton = styled.button`
   background: #6bcb77;
   color: white;
@@ -767,7 +933,7 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  backdrop-filter: blur(4px);
+  /* backdrop-filter: blur(4px); */
 `;
 
 const ModalContent = styled.div`

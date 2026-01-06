@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { AiFillHeart } from "react-icons/ai";
 import { useAuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useDevice } from "../providers/DeviceProvider";
 
 /* ================== Helpers ================== */
 const parseDate = (dateStr) => {
@@ -40,6 +41,7 @@ function CardImageWithLoader({ src, alt }) {
 
 /* ================== Component ================== */
 export default function HistoryPage() {
+  const { device } = useDevice();
   const [sortOrder, setSortOrder] = useState("most_recent");
   const [filters, setFilters] = useState({
     date: new Set(),
@@ -47,6 +49,7 @@ export default function HistoryPage() {
   });
   const navigator = useNavigate();
   const { isAuthenticated } = useAuthContext();
+  const [showFilters, setShowFilters] = useState(device !== "mobile");
 
   useEffect(() => {
     if (!isAuthenticated())
@@ -76,6 +79,10 @@ export default function HistoryPage() {
       id: "3",
     },
   ];
+
+  useEffect(() => {
+    setShowFilters(device !== "mobile");
+  }, [device]);
 
   const toggleFilter = (group, value) => {
     setFilters((prev) => {
@@ -126,45 +133,54 @@ export default function HistoryPage() {
   /* ================== Render ================== */
   return (
     <PageWrap>
-      <Content>
-        <Left>
+      <Content device={device}>
+        <Left device={device}>
           <h1 style={{ marginBottom: "1rem" }}>History</h1>
-          <Filters>
+          <FilterHeader>
             <h3>Filters</h3>
+            {device !== "desktop" && (
+              <FilterToggle onClick={() => setShowFilters((v) => !v)}>
+                {showFilters ? "Hide" : "Show"}
+              </FilterToggle>
+            )}
+          </FilterHeader>
 
-            <FilterSection>
-              <h4>Date</h4>
+          {showFilters && (
+            <Filters device={device}>
+              <FilterSection>
+                <h4>Date</h4>
 
-              {[
-                { label: "Today", value: "today" },
-                { label: "Last 7 days", value: "last_7" },
-                { label: "Last 30 days", value: "last_30" },
-              ].map((opt) => (
-                <FilterRow key={opt.value}>
+                {[
+                  { label: "Today", value: "today" },
+                  { label: "Last 7 days", value: "last_7" },
+                  { label: "Last 30 days", value: "last_30" },
+                ].map((opt) => (
+                  <FilterRow key={opt.value}>
+                    <input
+                      type="checkbox"
+                      checked={filters.date.has(opt.value)}
+                      onChange={() => toggleFilter("date", opt.value)}
+                    />
+                    {opt.label}
+                  </FilterRow>
+                ))}
+
+                <SpecificDate>
+                  <label>Specific date</label>
                   <input
-                    type="checkbox"
-                    checked={filters.date.has(opt.value)}
-                    onChange={() => toggleFilter("date", opt.value)}
+                    type="date"
+                    value={filters.specificDate}
+                    onChange={(e) =>
+                      setFilters((p) => ({
+                        ...p,
+                        specificDate: e.target.value,
+                      }))
+                    }
                   />
-                  {opt.label}
-                </FilterRow>
-              ))}
-
-              <SpecificDate>
-                <label>Specific date</label>
-                <input
-                  type="date"
-                  value={filters.specificDate}
-                  onChange={(e) =>
-                    setFilters((p) => ({
-                      ...p,
-                      specificDate: e.target.value,
-                    }))
-                  }
-                />
-              </SpecificDate>
-            </FilterSection>
-          </Filters>
+                </SpecificDate>
+              </FilterSection>
+            </Filters>
+          )}
         </Left>
 
         <Right>
@@ -181,7 +197,7 @@ export default function HistoryPage() {
             </SortSelect>
           </ResultsHeader>
 
-          <Grid>
+          <Grid device={device}>
             {filteredProducts.map((p) => (
               <Card key={p.id}>
                 <CardImageWithLoader src={p.imageURL} alt="segment" />
@@ -215,7 +231,6 @@ const shimmer = keyframes`
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  /* background: #fafafa; */
   color: var(--text-color);
   transition: 0.5s ease-in-out;
 `;
@@ -224,17 +239,43 @@ const Content = styled.div`
   max-width: 1200px;
   margin: 1.2rem auto;
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 2rem;
+  grid-template-columns: ${({ device }) =>
+    device === "mobile"
+      ? "1fr"
+      : device === "tablet"
+        ? "260px 1fr"
+        : "320px 1fr"};
+  gap: ${({ device }) => (device === "mobile" ? "1.25rem" : "2rem")};
+  padding: 0 1rem;
 `;
 
 const Left = styled.aside`
-  position: sticky;
-  top: 100px;
-  align-self: start;
-  position: sticky;
+  position: ${({ device }) => (device === "desktop" ? "sticky" : "static")};
   top: 84px;
-  align-self: start; /* 👈 CRITICAL for grid */
+  align-self: start;
+`;
+
+const FilterHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+`;
+
+const FilterToggle = styled.button.attrs({ type: "button" })`
+  border: 1px solid var(--text-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+  }
 `;
 
 const Filters = styled.div`
@@ -242,8 +283,9 @@ const Filters = styled.div`
   border-radius: 10px;
   padding: 1rem;
   color: var(--text-color);
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
   box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
+  border: 1px solid var(--text-color);
 `;
 
 const FilterSection = styled.div`
@@ -290,13 +332,18 @@ const SortSelect = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  gap: 1rem;
+  gap: ${({ device }) => (device === "mobile" ? "0.9rem" : "1.1rem")};
+  grid-template-columns: ${({ device }) => {
+    if (device === "mobile") return "1fr";
+    if (device === "tablet") return "repeat(2, 1fr)";
+    return "repeat(3, 1fr)";
+  }};
 `;
 
 const Card = styled.div`
   display: flex;
+  flex-direction: column;
   background-color: var(--card-bg-color);
-
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
@@ -309,13 +356,20 @@ const Card = styled.div`
     box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
     scale: 1.02;
   }
+
+  @media (min-width: 901px) {
+    flex-direction: row;
+  }
 `;
 
 const ImageWrapper = styled.div`
-  width: 200px;
-  height: 200px;
   position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 280px;
   background: #f0f0f0;
+  overflow: hidden;
+  border-radius: 10px;
 
   img {
     width: 100%;
@@ -324,6 +378,13 @@ const ImageWrapper = styled.div`
     transition: opacity 0.35s ease;
     position: absolute;
     inset: 0;
+  }
+
+  @media (min-width: 901px) {
+    width: 220px;
+    min-width: 200px;
+    aspect-ratio: 1 / 1;
+    max-height: none;
   }
 `;
 

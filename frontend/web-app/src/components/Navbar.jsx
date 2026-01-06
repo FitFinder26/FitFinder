@@ -1,6 +1,5 @@
 import Logo from "./Logo";
 import styled from "styled-components";
-import cameraIcon from "../assets/camera-icon.png";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../providers/AuthProvider";
 import { useEffect, useState, useRef } from "react";
@@ -24,7 +23,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     if (isAuthenticated()) setIsLoggedIn(true);
     else setIsLoggedIn(false);
   }, [isAuthenticated]);
-  
+
   useEffect(() => {
     if (!imageUploaded) {
       if (inputRef.current) inputRef.current.value = "";
@@ -59,13 +58,15 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   return (
     <>
       <NavContainer>
-        {device !== "mobile" && <div
-          style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
-          onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
-        >
-          {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
-          <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
-        </div>}
+        {device !== "mobile" && (
+          <div
+            style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
+            onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
+          >
+            {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
+            <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
+          </div>
+        )}
         <div style={{ gridColumn: "2", textAlign: "center" }}>
           <input
             type="file"
@@ -89,7 +90,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             </label>
           </SearchWithImageButton>
         </div>
-        {device !== "mobile" && <div
+
+        <div
           style={{
             gridColumn: "3",
             textAlign: "right",
@@ -103,26 +105,28 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
               Profile
             </NavButton>
           ) : (
-            <>
-              <NavButton
-                onClick={() =>
-                  navigate("/registration", { state: { form: "login" } })
-                }
-                disabled={navigationBlocked}
-              >
-                Login
-              </NavButton>
-              <JoinButton
-                onClick={() =>
-                  navigate("/registration", { state: { form: "signup" } })
-                }
-                disabled={navigationBlocked}
-              >
-                Join
-              </JoinButton>
-            </>
+            device !== "mobile" && (
+              <>
+                <NavButton
+                  onClick={() =>
+                    navigate("/registration", { state: { form: "login" } })
+                  }
+                  disabled={navigationBlocked}
+                >
+                  Login
+                </NavButton>
+                <JoinButton
+                  onClick={() =>
+                    navigate("/registration", { state: { form: "signup" } })
+                  }
+                  disabled={navigationBlocked}
+                >
+                  Join
+                </JoinButton>
+              </>
+            )
           )}
-        </div>}
+        </div>
       </NavContainer>
       {imageUploaded && (
         <ImageEditor
@@ -146,7 +150,10 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                 <span>Upload from Device</span>
               </ModalButton>
             </ModalButtonGroup>
-            <CancelButton device={device} onClick={() => setShowImageSourceModal(false)}>
+            <CancelButton
+              device={device}
+              onClick={() => setShowImageSourceModal(false)}
+            >
               Cancel
             </CancelButton>
           </ModalContent>
@@ -203,7 +210,7 @@ const LogoIcon = styled.img`
   }
 `;
 
-const SearchWithImageButton = styled.button`
+const SearchWithImageButton = styled.button.attrs({ type: "button" })`
   border: 2px solid transparent;
   transition: all 0.3s;
   border-radius: 5px;
@@ -219,7 +226,7 @@ const SearchWithImageButton = styled.button`
   }
 `;
 
-const NavButton = styled.button`
+const NavButton = styled.button.attrs({ type: "button" })`
   background: none;
   color: var(--text-color);
   cursor: pointer;
@@ -235,7 +242,7 @@ const NavButton = styled.button`
   }
 `;
 
-const JoinButton = styled.button`
+const JoinButton = styled.button.attrs({ type: "button" })`
   background: #6bcb77;
   color: white;
   cursor: pointer;
@@ -341,7 +348,7 @@ const ModalButtonGroup = styled.div`
   }
 `;
 
-const ModalButton = styled.button`
+const ModalButton = styled.button.attrs({ type: "button" })`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -356,7 +363,11 @@ const ModalButton = styled.button`
         return "1.25rem";
     }
   }};
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   color: white;
   border: none;
   border-radius: 12px;
@@ -400,7 +411,7 @@ const ModalButton = styled.button`
   }
 `;
 
-const CancelButton = styled.button`
+const CancelButton = styled.button.attrs({ type: "button" })`
   padding: ${(props) => {
     switch (props.device) {
       case "mobile":

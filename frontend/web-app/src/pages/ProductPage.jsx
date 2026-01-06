@@ -5,6 +5,7 @@ import { Heart } from "lucide-react";
 import { AiFillHeart } from "react-icons/ai";
 import { favoriteService } from "../../../shared/services/favoriteService";
 import { Notifier } from "../components/Notifier";
+import { useAuthContext } from "../providers/AuthProvider";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -27,6 +28,8 @@ export default function ProductPage() {
   const [featuresPart, paragraphPart] = rawDescription.split(" Description ");
   const [liked, setLiked] = useState(product.favorite);
   const [animating, setAnimating] = useState(false);
+  const { isAuthenticated } = useAuthContext();
+  const navigator = useNavigate();
 
   const features = featuresPart
     .split(/[•🔹]|\s{3}/)
@@ -34,6 +37,11 @@ export default function ProductPage() {
     .filter(Boolean);
 
   const toggleFavorite = async () => {
+    if (!isAuthenticated()) {
+      navigator("/registration", { state: { form: "signup" } });
+      return;
+    }
+
     try {
       const response = await favoriteService.toggleFavorite(
         product.item_id,
@@ -409,7 +417,9 @@ const LikeButton = styled.button`
   justify-content: center;
   border-radius: 999px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 
   &:hover {
     transform: translateY(-3px) scale(1.03);
@@ -418,7 +428,10 @@ const LikeButton = styled.button`
   svg {
     width: 22px;
     height: 22px;
-    transition: transform 180ms ease, fill 220ms ease, color 220ms ease;
+    transition:
+      transform 180ms ease,
+      fill 220ms ease,
+      color 220ms ease;
     color: rgba(239, 68, 68, 0.95);
   }
 

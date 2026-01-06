@@ -6,6 +6,7 @@ import { useAuthContext } from "../providers/AuthProvider";
 import { favoriteService } from "../../../shared/services/favoriteService";
 import { AiFillHeart } from "react-icons/ai";
 import { Notifier } from "../components/Notifier";
+import { useDevice } from "../providers/DeviceProvider";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -32,6 +33,7 @@ function CardImageWithLoader({ src, alt }) {
 }
 
 export default function FavoritePage() {
+  const { device } = useDevice();
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
@@ -45,10 +47,15 @@ export default function FavoritePage() {
     category: new Set(),
     store: new Set(),
   });
+  const [showFilters, setShowFilters] = useState(device !== "mobile");
 
   // confirmation dialog state for removals
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [pendingRemoveId, setPendingRemoveId] = useState(null);
+
+  useEffect(() => {
+    setShowFilters(device !== "mobile");
+  }, [device]);
 
   useEffect(() => {
     if (!isAuthenticated())
@@ -176,41 +183,53 @@ export default function FavoritePage() {
   /* ------------------ Render ------------------ */
   return (
     <PageWrap>
-      <Content>
-        <Left>
+      <Content device={device}>
+        <Left device={device}>
           <h1 style={{ marginBottom: "1rem" }}>Favorites</h1>
 
-          <Filters>
+          <FilterHeader>
             <h3>Filters</h3>
+            {device !== "desktop" && (
+              <FilterToggle onClick={() => setShowFilters((v) => !v)}>
+                {showFilters ? "Hide" : "Show"}
+              </FilterToggle>
+            )}
+          </FilterHeader>
 
-            <FilterSection>
-              <h4>Category</h4>
-              {categories.map((c) => (
-                <FilterRow key={c} onClick={() => toggleFilter("category", c)}>
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={filters.category.has(c)}
-                  />
-                  <label>{c}</label>
-                </FilterRow>
-              ))}
-            </FilterSection>
+          {showFilters && (
+            <Filters device={device}>
+              <FilterSection>
+                <h4>Category</h4>
+                {categories.map((c) => (
+                  <FilterRow
+                    key={c}
+                    onClick={() => toggleFilter("category", c)}
+                  >
+                    <input
+                      type="checkbox"
+                      readOnly
+                      checked={filters.category.has(c)}
+                    />
+                    <label>{c}</label>
+                  </FilterRow>
+                ))}
+              </FilterSection>
 
-            <FilterSection>
-              <h4>Store</h4>
-              {stores.map((s) => (
-                <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={filters.store.has(s)}
-                  />
-                  <label>{s}</label>
-                </FilterRow>
-              ))}
-            </FilterSection>
-          </Filters>
+              <FilterSection>
+                <h4>Store</h4>
+                {stores.map((s) => (
+                  <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
+                    <input
+                      type="checkbox"
+                      readOnly
+                      checked={filters.store.has(s)}
+                    />
+                    <label>{s}</label>
+                  </FilterRow>
+                ))}
+              </FilterSection>
+            </Filters>
+          )}
         </Left>
 
         <Right>
@@ -228,7 +247,7 @@ export default function FavoritePage() {
             </SortSelect>
           </ResultsHeader>
 
-          <Grid>
+          <Grid device={device}>
             {loading
               ? Array.from({ length: 8 }).map((_, idx) => (
                   <Card key={idx}>
@@ -317,7 +336,6 @@ export default function FavoritePage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  /* background: #fafafa; */
   color: var(--text-color);
 `;
 
@@ -325,21 +343,46 @@ const Content = styled.div`
   max-width: 1200px;
   margin: 1.2rem auto;
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 2rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: ${({ device }) =>
+    device === "mobile"
+      ? "1fr"
+      : device === "tablet"
+        ? "260px 1fr"
+        : "320px 1fr"};
+  gap: ${({ device }) => (device === "mobile" ? "1.25rem" : "2rem")};
+  padding: 0 1rem;
 `;
 
 const Left = styled.aside`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  position: sticky;
+  gap: 1.2rem;
+  position: ${({ device }) => (device === "desktop" ? "sticky" : "static")};
   top: 84px;
-  align-self: start; /* 👈 CRITICAL for grid */
+  align-self: start;
+`;
+
+const FilterHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+`;
+
+const FilterToggle = styled.button.attrs({ type: "button" })`
+  border: 1px solid var(--text-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+  }
 `;
 
 const Filters = styled.div`
@@ -347,8 +390,9 @@ const Filters = styled.div`
   border-radius: 10px;
   padding: 1rem;
   color: var(--text-color);
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
   box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
+  border: 1px solid var(--text-color);
 `;
 
 const FilterSection = styled.div`
@@ -383,18 +427,12 @@ const SortSelect = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
+  gap: ${({ device }) => (device === "mobile" ? "0.9rem" : "1.1rem")};
+  grid-template-columns: ${({ device }) => {
+    if (device === "mobile") return "1fr";
+    if (device === "tablet") return "repeat(2, 1fr)";
+    return "repeat(4, 1fr)";
+  }};
 `;
 
 const Card = styled.div`
@@ -487,7 +525,9 @@ const LikeButton = styled.button`
   background-color: transparent;
   color: #e63946; /* neutral by default */
   margin: 1rem;
-  transition: color 160ms ease, transform 120ms ease;
+  transition:
+    color 160ms ease,
+    transform 120ms ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -556,7 +596,7 @@ const ModalActions = styled.div`
   gap: 0.5rem;
 `;
 
-const ConfirmButton = styled.button`
+const ConfirmButton = styled.button.attrs({ type: "button" })`
   background: #e63946;
   color: #fff;
   border: none;
@@ -571,7 +611,7 @@ const ConfirmButton = styled.button`
   }
 `;
 
-const CancelButton = styled.button`
+const CancelButton = styled.button.attrs({ type: "button" })`
   border: solid 1px transparent;
   padding: 0.5rem 0.8rem;
   border-radius: 6px;

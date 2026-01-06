@@ -78,6 +78,13 @@ const AboutUsPage = () => {
         <Section id="how-it-works">
           <Container>
             <Title>How It Works</Title>
+            <DemoVideoContainer>
+              <DemoVideo
+                controls
+                src="https://www.dropbox.com/scl/fi/wtzwj2trdhnd611o44mg5/How-to-use.mp4?rlkey=n6xa1fwtukjud63ujsg3g6ob1&st=h8i4vpfb&raw=1"
+                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f79b4e' width='400' height='300'/%3E%3C/svg%3E"
+              />
+            </DemoVideoContainer>
             <OrderedList>
               <li>Upload an image containing a person.</li>
               <li>Click Segment to highlight clothing pieces.</li>
@@ -307,6 +314,26 @@ const OrderedList = styled.ol`
   li {
     margin-bottom: 0.75rem;
     line-height: 1.6;
+  }
+`;
+
+const DemoVideoContainer = styled.div`
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+`;
+
+const DemoVideo = styled.video`
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #000;
+
+  &:focus {
+    outline: 2px solid var(--primary-color);
   }
 `;
 
