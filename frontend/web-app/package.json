@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://FitFinder26.github.io/FitFinder",
+  "homepage": "https://fitfinder26.github.io/FitFinder",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
