@@ -38,6 +38,18 @@ export default function HomePage() {
     setShowImageSourceModal(false);
   };
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth", // animate the scroll
+        block: "start", // scroll to top of element
+      });
+    }
+  };
+
+  useEffect(() => scrollToSection("hero"), []);
+
   const handleSearchWithImageClick = () => {
     if (device === "desktop") {
       handleUploadClick();
@@ -111,7 +123,7 @@ export default function HomePage() {
 
   return (
     <Container>
-      <Hero device={device}>
+      <Hero id="hero" device={device}>
         <LeftHero device={device}>
           <Welcome>
             <h1>Welcome to</h1>
@@ -177,9 +189,11 @@ export default function HomePage() {
             )}
             <AboutUsButton
               device={device}
-              onClick={() => navigator("/about-us")}
+              onClick={() =>
+                navigator("/about-us", { state: { toSection: "how-it-works" } })
+              }
             >
-              About us
+              Demo
             </AboutUsButton>
           </ButtonContainer>
         </LeftHero>
@@ -219,33 +233,36 @@ export default function HomePage() {
         loading={loadingRecomendations}
       />
 
-      <LazyMount>
+      <LazyMount unmountOnHide={true}>
         <Feedback>
           <h1>Tell us what you think about FitFinder</h1>
           <p
             style={{
               display: "flex",
-              alignContent: "center",
+              alignItems: "center",
+              gap: "0.5rem",
               marginLeft: "1rem",
             }}
           >
             <MessageCircle
-              width={device === "mobile" ? 40 : 24}
-              height={device === "mobile" ? 40 : 24}
-              style={{ marginRight: "0.5rem" }}
+              width={device === "mobile" ? 50 : 24}
+              height={device === "mobile" ? 50 : 24}
+              flexShrink={0}
             />
-            Feel free to click&nbsp;
-            <Link
-              style={{ color: "var(--links-color)" }}
-              onClick={() => window.open(feedbackFormLink)}
-            >
-              here
-            </Link>
-            &nbsp;and drop us a message.
+            <span>
+              We&apos;d love to hear your feedback! Click{" "}
+              <Link
+                style={{ color: "var(--links-color)" }}
+                onClick={() => window.open(feedbackFormLink)}
+              >
+                here
+              </Link>{" "}
+              and drop us a message.
+            </span>
           </p>
         </Feedback>
       </LazyMount>
-      <LazyMount>
+      <LazyMount unmountOnHide={true}>
         <SocialMedia>
           <h1>Follow us on social media</h1>
           <div style={{ display: "flex", gap: "0.3rem", alignItems: "center" }}>
@@ -257,7 +274,7 @@ export default function HomePage() {
             <p>
               Connect with us on Instagram and stay up to date with
               {device !== "mobile" && <br />}
-              our announcements and future updates.
+              our announcements and future updates.&nbsp;
               {device !== "mobile" && <br />}
               <Link
                 style={{ color: "var(--links-color)" }}

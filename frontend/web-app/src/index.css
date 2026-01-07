@@ -65,6 +65,14 @@ body,
     color-mix(in srgb, var(--secondary-color) 40%, var(--bg-color)) 25%,
     color-mix(in srgb, var(--bg-color) 40%, var(--bg-color)) 50%
   );
+
+  --footer-bg-image: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--primary-color) 40%, var(--bg-color)),
+    /* color-mix(in srgb, var(--secondary-color) 40%, var(--bg-color)), */
+    color-mix(in srgb, var(--bg-color) 40%, var(--bg-color)) 50%
+  );
+
   --card-bg-color: white;
   --linear-gradiant-bg: linear-gradient(
     135deg,
@@ -72,7 +80,7 @@ body,
     #f3e7e9 50%,
     #e0e7ff 100%
   );
-  
+
   --mobile: 480px;
   --tablet: 810px;
   --desktop: 1024px;
@@ -110,8 +118,18 @@ body,
 }
 * {
   /* No @import needed; this stack looks close to Poppins on all platforms */
-  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  font-family:
+    "Poppins",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    "Liberation Sans",
+    sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

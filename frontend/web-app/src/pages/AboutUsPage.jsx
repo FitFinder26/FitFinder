@@ -1,7 +1,10 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const AboutUsPage = () => {
+  const location = useLocation();
+  const { toSection } = location.state || {};
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -12,7 +15,7 @@ const AboutUsPage = () => {
     }
   };
 
-  useEffect(() => scrollToSection("hero"), []);
+  useEffect(() => scrollToSection(toSection || "hero"), []);
 
   return (
     <Page>

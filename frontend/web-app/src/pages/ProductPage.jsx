@@ -31,6 +31,18 @@ export default function ProductPage() {
   const { isAuthenticated } = useAuthContext();
   const navigator = useNavigate();
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth", // animate the scroll
+        block: "start", // scroll to top of element
+      });
+    }
+  };
+
+  useEffect(() => scrollToSection("start"), []);
+
   const features = featuresPart
     .split(/[•🔹]|\s{3}/)
     .map((item) => item.trim())
@@ -61,7 +73,7 @@ export default function ProductPage() {
   };
 
   return (
-    <PageWrap>
+    <PageWrap id="start">
       <Container>
         <LeftColumn>
           <ImageWrapper>

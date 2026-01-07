@@ -270,8 +270,12 @@ const EditButton = styled.button`
   cursor: pointer;
   padding: 0;
   z-index: 2;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-    background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  color: var(--text-color);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 
   &::after {
     content: "";
@@ -280,7 +284,9 @@ const EditButton = styled.button`
     border-radius: 50%;
     pointer-events: none;
     border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: opacity 0.2s ease, transform 0.3s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.3s ease;
   }
 
   &:hover {
@@ -367,5 +373,8 @@ const SubMenuContent = styled.div`
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   transform: ${({ $open }) => ($open ? "translateY(0)" : "translateY(-4px)")};
 
-  transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
 `;

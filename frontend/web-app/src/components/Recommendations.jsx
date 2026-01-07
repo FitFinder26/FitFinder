@@ -14,7 +14,7 @@ export default function Recommendation({
   //   Object.keys(categoricalProducts).length === 0;
 
   return (
-    <LazyMount>
+    <LazyMount unmountOnHide={false}>
       <Container aria-busy={loading}>
         <Title>Most Searched for Items</Title>
         {loading && (

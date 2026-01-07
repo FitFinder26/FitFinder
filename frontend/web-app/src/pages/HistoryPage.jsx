@@ -56,6 +56,18 @@ export default function HistoryPage() {
       navigator("/registration", { state: { form: "signup" } });
   }, []);
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth", // animate the scroll
+        block: "start", // scroll to top of element
+      });
+    }
+  };
+
+  useEffect(() => scrollToSection("start"), []);
+
   const products = [
     {
       imageURL: "https://picsum.photos/200",
@@ -133,7 +145,7 @@ export default function HistoryPage() {
   /* ================== Render ================== */
   return (
     <PageWrap>
-      <Content device={device}>
+      <Content id="start" device={device}>
         <Left device={device}>
           <h1 style={{ marginBottom: "1rem" }}>History</h1>
           <FilterHeader>
@@ -333,11 +345,7 @@ const SortSelect = styled.div`
 const Grid = styled.div`
   display: grid;
   gap: ${({ device }) => (device === "mobile" ? "0.9rem" : "1.1rem")};
-  grid-template-columns: ${({ device }) => {
-    if (device === "mobile") return "1fr";
-    if (device === "tablet") return "repeat(2, 1fr)";
-    return "repeat(3, 1fr)";
-  }};
+  grid-template-columns: 1fr;
 `;
 
 const Card = styled.div`

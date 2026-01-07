@@ -83,14 +83,12 @@ export const useAuth = () => {
 
   // Initialize if already logged in
   useEffect(() => {
-    if (token) scheduleRefresh();
+    if (token) {
+      scheduleRefresh();
+      getProfile();
+    }
     return () => clearTimeout(refreshTimer);
   }, [token]);
-
-  // refreshing user
-  useEffect(() => {
-    getProfile();
-  }, [user]);
 
   return {
     signup,

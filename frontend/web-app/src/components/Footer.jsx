@@ -121,6 +121,7 @@ const FooterContainer = styled.footer`
   animation: ${slideUp} 1s;
   margin-top: auto;
   box-sizing: border-box;
+  background-image: var(--footer-bg-image);
 
   @media (max-width: var(--tablet)) {
     padding: 2rem 2rem;
@@ -216,6 +217,7 @@ const LinksList = styled.div`
 
 const BottomSection = styled.div`
   padding-top: 1.5rem;
+  padding-bottom: 4rem;
   text-align: center;
 `;
 

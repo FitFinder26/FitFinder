@@ -393,7 +393,7 @@ export default function RegistrationForm({
               <div className="divider">
                 <span>or</span>
               </div>
-              <div className="google-signin">
+              {/* <div className="google-signin">
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     const userInfo = jwtDecode(credentialResponse.credential);
@@ -407,7 +407,7 @@ export default function RegistrationForm({
                     console.log("Google Sign In Failed");
                   }}
                 />
-              </div>
+              </div> */}
 
               <p>
                 <span>Already have an account?</span>
@@ -500,7 +500,7 @@ export default function RegistrationForm({
               <div className="divider">
                 <span>or</span>
               </div>
-              <div className="google-signin">
+              {/* <div className="google-signin">
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     const userInfo = jwtDecode(credentialResponse.credential);
@@ -514,7 +514,7 @@ export default function RegistrationForm({
                     console.log("Google Sign In Failed");
                   }}
                 />
-              </div>
+              </div> */}
 
               <p>
                 <span>Don't have an account?</span>

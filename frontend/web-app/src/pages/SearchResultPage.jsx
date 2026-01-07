@@ -314,6 +314,7 @@ const FilterHeader = styled.div`
   justify-content: space-between;
   gap: 0.75rem;
   margin-top: 0.25rem;
+  color: var(--text-color);
 `;
 
 const FilterToggle = styled.button`
@@ -364,6 +365,7 @@ const ResultsHeader = styled.div`
 `;
 
 const SortSelect = styled.div`
+  color: var(--text-color);
   display: flex;
   gap: 0.5rem;
   select {

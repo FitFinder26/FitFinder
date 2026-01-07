@@ -5,12 +5,16 @@ import { useAuthContext } from "../providers/AuthProvider";
 import { useEffect, useState, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
-import { Camera, Upload } from "lucide-react";
+import { Camera, Upload, UserIcon } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
+import { ImProfile } from "react-icons/im";
+import { CgProfile } from "react-icons/cg";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
+  const [imgError, setImgError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
   const [imageURL, setImageURL] = useState(null);
@@ -39,6 +43,10 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     setShowImageSourceModal(false);
   };
 
+  const handleProfilePicClick = () => {
+    setIsSideBarOpen(true);
+  };
+
   const handleSearchWithImageClick = () => {
     if (device === "desktop") {
       handleUploadClick();
@@ -58,15 +66,14 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   return (
     <>
       <NavContainer>
-        {device !== "mobile" && (
-          <div
-            style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
-            onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
-          >
-            {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
-            <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
-          </div>
-        )}
+        <div
+          style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
+          onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
+        >
+          {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
+          <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
+        </div>
+
         <div style={{ gridColumn: "2", textAlign: "center" }}>
           <input
             type="file"
@@ -101,20 +108,34 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           }}
         >
           {isLoggedIn ? (
-            <NavButton onClick={() => setIsSideBarOpen(true)}>
-              Profile
-            </NavButton>
+            <ProfileButton>
+              <AvatarContainer>
+                <AvatarWrap onClick={handleProfilePicClick}>
+                  {user && user.profileImageURL && !imgError ? (
+                    <AvatarImg
+                      src={user.profileImageURL}
+                      alt={user.userName}
+                      onError={() => setImgError(true)}
+                    />
+                  ) : (
+                    <AvatarFallback>
+                      <UserIcon size={48} />
+                    </AvatarFallback>
+                  )}
+                </AvatarWrap>
+              </AvatarContainer>
+            </ProfileButton>
           ) : (
-            device !== "mobile" && (
-              <>
-                <NavButton
-                  onClick={() =>
-                    navigate("/registration", { state: { form: "login" } })
-                  }
-                  disabled={navigationBlocked}
-                >
-                  Login
-                </NavButton>
+            <>
+              <NavButton
+                onClick={() =>
+                  navigate("/registration", { state: { form: "login" } })
+                }
+                disabled={navigationBlocked}
+              >
+                Login
+              </NavButton>
+              {device !== "mobile" && (
                 <JoinButton
                   onClick={() =>
                     navigate("/registration", { state: { form: "signup" } })
@@ -123,8 +144,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                 >
                   Join
                 </JoinButton>
-              </>
-            )
+              )}
+            </>
           )}
         </div>
       </NavContainer>
@@ -202,11 +223,11 @@ const NavContainer = styled.nav`
 `;
 
 const LogoIcon = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   transition: all 0.3s ease-in-out;
   &:hover {
-    scale: 1.3;
+    scale: 1.1;
   }
 `;
 
@@ -225,7 +246,20 @@ const SearchWithImageButton = styled.button.attrs({ type: "button" })`
     border: 2px solid var(--text-color);
   }
 `;
-
+const ProfileButton = styled.button.attrs({ type: "button" })`
+  padding-right: 0.2rem;
+  transition: all 0.3s ease-in-out;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    scale: 1.1;
+  }
+`;
 const NavButton = styled.button.attrs({ type: "button" })`
   background: none;
   color: var(--text-color);
@@ -454,4 +488,39 @@ const CancelButton = styled.button.attrs({ type: "button" })`
     padding: 0.75rem;
     font-size: 0.9rem;
   }
+`;
+
+const AvatarContainer = styled.div`
+  position: relative;
+  margin-right: 8px;
+`;
+
+const AvatarWrap = styled.div`
+  position: relative;
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    border: solid 2px white;
+  }
+`;
+
+const AvatarImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+`;
+
+const AvatarFallback = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(255, 255, 255, 0.06); */
 `;
