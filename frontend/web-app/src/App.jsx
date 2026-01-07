@@ -32,7 +32,10 @@ function App() {
         <Route path="terms-of-service" element={<TermsOfServicePage />} />
         <Route path="*" element={<EmptyPage />} />
       </Route>
-    )
+    ),
+    {
+      basename: import.meta.env.BASE_URL,
+    }
   );
 
   return (
