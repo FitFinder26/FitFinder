@@ -11,6 +11,7 @@ import PreferenceSurvey from "../components/PreferenceSurvey";
 import { recomendedationService } from "../../../shared/services/recomendationService";
 import { Instagram, MessageCircle, Camera, Upload } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
+import { useAuthContext } from "../providers/AuthProvider";
 // import logo from "../assets/logo.png";
 
 export default function HomePage() {
@@ -24,12 +25,20 @@ export default function HomePage() {
   const [showImageSourceModal, setShowImageSourceModal] = useState(false);
   const location = useLocation();
   const cameFrom = location.state?.cameFrom || null;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isAuthenticated } = useAuthContext();
+
   const navigator = useNavigate();
   const { device } = useDevice();
   const feedbackFormLink =
     "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
   const instagramURL =
     "https://www.instagram.com/fitfinder_csed_2026?igsh=ZG5mamtod3lyMWZo&utm_source=ig_contact_invite";
+
+  useEffect(() => {
+    if (isAuthenticated()) setIsLoggedIn(true);
+    else setIsLoggedIn(false);
+  }, [isAuthenticated]);
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -150,7 +159,7 @@ export default function HomePage() {
             onChange={handleUploadImage}
           />
           <ButtonContainer device={device}>
-            {device === "desktop" ? (
+            {device === "desktop" || (device !== "desktop" && isLoggedIn) ? (
               <SearchWithImageButton
                 device={device}
                 onClick={handleSearchWithImageClick}
@@ -178,14 +187,16 @@ export default function HomePage() {
                 </label>
               </SearchWithImageButton>
             ) : (
-              <JoinButton
-                device={device}
-                onClick={() =>
-                  navigator("/registration", { state: { form: "signup" } })
-                }
-              >
-                Join
-              </JoinButton>
+              !isLoggedIn && (
+                <JoinButton
+                  device={device}
+                  onClick={() =>
+                    navigator("/registration", { state: { form: "signup" } })
+                  }
+                >
+                  Join
+                </JoinButton>
+              )
             )}
             <AboutUsButton
               device={device}

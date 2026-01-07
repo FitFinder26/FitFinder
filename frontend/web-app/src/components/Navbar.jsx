@@ -9,11 +9,11 @@ import { Camera, Upload, UserIcon } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
 import { ImProfile } from "react-icons/im";
 import { CgProfile } from "react-icons/cg";
+import logoSrc from "../assets/logo.png";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
-  const { user } = useAuthContext();
+  const { user, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuthContext();
   const [imgError, setImgError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
@@ -71,7 +71,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
         >
           {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
-          <LogoIcon src="/logo.png" alt="FITFINDER" title="Home" />
+          <LogoIcon src={logoSrc} alt="FITFINDER" title="Home" />
         </div>
 
         <div style={{ gridColumn: "2", textAlign: "center" }}>
