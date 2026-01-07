@@ -11,6 +11,7 @@ import showPasswordIcon from "../assets/show-password.png";
 import hidePasswordIcon from "../assets/hide-password.png";
 import { Notifier } from "./Notifier";
 import { Eye, EyeClosed } from "lucide-react";
+import { emailService } from "../../../shared/services/emailService";
 
 export default function RegistrationForm({
   usedForm,
@@ -112,6 +113,13 @@ export default function RegistrationForm({
         setErrors((prev) => ({ ...prev, ["emailAlreadyExist"]: true }));
         Notifier.notifyError("Email already exists");
       } else if (data.status == 201) {
+        // Fire-and-forget welcome email with feedback link
+        emailService
+          .sendWelcomeEmail(
+            signupFormVariables.email,
+            signupFormVariables.username
+          )
+          .catch(() => {});
         navigate("/", { state: { cameFrom: "signup" } });
         Notifier.notifySuccess("Welcome to FitFinder");
       } else throw new Error(data.status);
