@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 const TermsOfServicePage = () => {
+  const { t } = useTranslation(NAMESPACES.terms);
+  const { i18n } = useTranslation();
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -16,28 +21,28 @@ const TermsOfServicePage = () => {
   return (
     <Page>
       {/* ============ Sticky Sidebar ============ */}
-      <Sidebar>
+      <Sidebar $language={i18n.language}>
         <Nav>
           <NavItem onClick={() => scrollToSection("acceptance")}>
-            Acceptance of Terms
+            {t("navAcceptance")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("purpose")}>
-            Purpose of the Application
+            {t("navPurpose")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("responsibilities")}>
-            User Responsibilities
+            {t("navResponsibilities")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("usage")}>
-            Account Usage
+            {t("navUsage")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("extera")}>
-            External Links
+            {t("navExternalLinks")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("liability")}>
-            Limitation of Liability
+            {t("navLiability")}
           </NavItem>
           <NavItem onClick={() => scrollToSection("changes")}>
-            Changes to These Terms
+            {t("navChanges")}
           </NavItem>
         </Nav>
       </Sidebar>
@@ -46,93 +51,75 @@ const TermsOfServicePage = () => {
       <Content>
         <Section>
           <Container>
-            <HeroTitle>Terms of Service</HeroTitle>
+            <HeroTitle>{t("heroTitle")}</HeroTitle>
             <HeroSubtitle>
-              Please read these terms carefully before using FITFINDER.
+              {t("heroSubtitle", { appName: tCommon("appName") })}
             </HeroSubtitle>
           </Container>
         </Section>
 
         <Section id="acceptance">
           <Container>
-            <Title>Acceptance of Terms</Title>
-            <Text>
-              By accessing or using FITFINDER, you agree to be bound by these
-              Terms of Service. If you do not agree, please do not use the
-              application.
-            </Text>
+            <Title>{t("acceptanceTitle")}</Title>
+            <Text>{t("acceptanceBody", { appName: tCommon("appName") })}</Text>
           </Container>
         </Section>
 
         <Section id="purpose">
           <Container>
-            <Title>Purpose of the Application</Title>
-            <Text>
-              FITFINDER is an academic graduation project designed for research,
-              learning, and demonstration purposes. It is not a commercial
-              service.
-            </Text>
+            <Title>{t("purposeTitle")}</Title>
+            <Text>{t("purposeBody", { appName: tCommon("appName") })}</Text>
           </Container>
         </Section>
 
         <Section id="responsibilities">
           <Container>
-            <Title>User Responsibilities</Title>
-            <List>
-              <li>Do not upload illegal or inappropriate content</li>
-              <li>
-                Use the application for personal and academic purposes only
-              </li>
-              <li>Respect intellectual property rights</li>
+            <Title>{t("responsibilitiesTitle")}</Title>
+            <List $language={i18n.language}>
+              {t("responsibilitiesItems", { returnObjects: true }).map(
+                (item, idx) => (
+                  <li key={idx}>{item}</li>
+                )
+              )}
             </List>
           </Container>
         </Section>
 
         <Section id="usage">
           <Container>
-            <Title>Account Usage</Title>
-            <Text>
-              Users may use FITFINDER with or without an account. Logged-in
-              users are responsible for maintaining the confidentiality of their
-              account information.
-            </Text>
+            <Title>{t("usageTitle")}</Title>
+            <Text>{t("usageBody", { appName: tCommon("appName") })}</Text>
           </Container>
         </Section>
 
         <Section id="extera">
           <Container>
-            <Title>External Links</Title>
+            <Title>{t("externalLinksTitle")}</Title>
             <Text>
-              FITFINDER may provide links to third-party websites. We do not
-              control and are not responsible for the content or practices of
-              those websites.
+              {t("externalLinksBody", { appName: tCommon("appName") })}
             </Text>
           </Container>
         </Section>
 
         <Section id="liability">
           <Container>
-            <Title>Limitation of Liability</Title>
-            <Text>
-              FITFINDER is provided "as is" without warranties of any kind. The
-              developers are not liable for any damages arising from the use of
-              this application.
-            </Text>
+            <Title>{t("liabilityTitle")}</Title>
+            <Text>{t("liabilityBody", { appName: tCommon("appName") })}</Text>
           </Container>
         </Section>
 
         <Section id="changes">
           <Container>
-            <Title>Changes to These Terms</Title>
-            <Text>
-              These terms may be updated as the project evolves. Continued use
-              of FITFINDER implies acceptance of the updated terms.
-            </Text>
+            <Title>{t("changesTitle")}</Title>
+            <Text>{t("changesBody", { appName: tCommon("appName") })}</Text>
           </Container>
         </Section>
 
         <Footer>
-          © {new Date().getFullYear()} FITFINDER — Terms of Service
+          {t("footer", {
+            year: new Date().getFullYear(),
+            appName: tCommon("appName"),
+          })}
         </Footer>
       </Content>
     </Page>
@@ -153,7 +140,9 @@ const Sidebar = styled.aside`
   top: 6rem;
   height: fit-content;
   margin-top: 1rem;
-  margin-left: 1rem;
+  ${(props) =>
+    props.$language === "ar" ? `margin-left: 1rem;` : `margin-right: 1rem;`}
+
   width: 220px;
   padding: 2rem 1rem;
   box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
@@ -228,7 +217,10 @@ const Text = styled.p`
 `;
 
 const List = styled.ul`
-  padding-left: 1.2rem;
+  ${(props) =>
+    props.$language === "ar"
+      ? `padding-right: 1.2rem;`
+      : `padding-left: 1.2rem;`}
 
   li {
     margin-bottom: 0.75rem;

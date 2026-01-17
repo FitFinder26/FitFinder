@@ -5,10 +5,13 @@ import Footer from "../components/Footer";
 import styled from "styled-components";
 import { useState } from "react";
 import SideBar from "../components/SideBar";
+import { useDevice } from "../providers/DeviceProvider";
+import { useAuthContext } from "../providers/AuthProvider";
 
 export default function UserLayout() {
   const [navigationBlocked, setNavigationBlocked] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const { isAuthenticated } = useAuthContext();
 
   return (
     <Container>
@@ -16,9 +19,11 @@ export default function UserLayout() {
         navigationBlocked={navigationBlocked}
         setIsSideBarOpen={setIsSideBarOpen}
       />
-      <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen}>
-        <div />
-      </SideBar>
+      {isAuthenticated() && (
+        <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen}>
+          <div />
+        </SideBar>
+      )}
 
       {/* WRAP THE OUTLET in a styled component to apply flex-grow: 1 */}
       <MainContent>

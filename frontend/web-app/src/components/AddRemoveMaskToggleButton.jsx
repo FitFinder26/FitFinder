@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
+  const { t } = useTranslation(NAMESPACES.editor);
 
   return (
     <Container>
-      <Switch disabled={disabled} role="switch" aria-checked={mode === "remove"}>
+      <Switch
+        disabled={disabled}
+        role="switch"
+        aria-checked={mode === "remove"}
+      >
         <input
           id="switch-opt-1"
           type="radio"
@@ -23,18 +30,18 @@ export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
           disabled={disabled}
         />
 
-        <label htmlFor="switch-opt-1" title="Add mask">
+        <label htmlFor="switch-opt-1" title={t("addMaskTitle")}>
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
             <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
           </svg>
-          <span>Add Mask</span>
+          <span>{t("addMask")}</span>
         </label>
 
-        <label htmlFor="switch-opt-2" title="Remove mask">
+        <label htmlFor="switch-opt-2" title={t("removeMaskTitle")}>
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
             <path d="M5 11h14v2H5z" />
           </svg>
-          <span>Remove Mask</span>
+          <span>{t("removeMask")}</span>
         </label>
 
         <SwitchCard aria-hidden="true">
@@ -91,8 +98,16 @@ const Container = styled.div`
   --text-color: #ffffff;
   --inactive-text-color: rgba(255, 255, 255, 0.6);
   --icon-shadow-color: rgba(0, 0, 0, 0.3);
-  --card-front-bg: linear-gradient(135deg, rgba(255,105,180,0.9), rgba(255,255,255,0.06));
-  --card-back-bg: linear-gradient(135deg, rgba(0,150,255,0.9), rgba(255,255,255,0.06));
+  --card-front-bg: linear-gradient(
+    135deg,
+    rgba(255, 105, 180, 0.9),
+    rgba(255, 255, 255, 0.06)
+  );
+  --card-back-bg: linear-gradient(
+    135deg,
+    rgba(0, 150, 255, 0.9),
+    rgba(255, 255, 255, 0.06)
+  );
   --highlight-color: #64ffda;
 
   display: grid;
@@ -130,7 +145,6 @@ const Switch = styled.div`
   perspective: 1000px;
   align-items: center;
   gap: 0;
-  
 
   input[type="radio"] {
     display: none;
@@ -145,31 +159,39 @@ const Switch = styled.div`
     gap: 8px;
     cursor: pointer;
     z-index: 3;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     position: relative;
     user-select: none;
   }
 
   label:hover {
-    span, svg{
-        transition: all 0.5s;
-        color: ${({disabled})=>(disabled ? "auto" : "black")};
+    span,
+    svg {
+      transition: all 0.5s;
+      color: ${({ disabled }) => (disabled ? "auto" : "black")};
     }
   }
 
   label:hover svg {
-    transform: ${({disabled})=>(disabled ? "none" : "translateY(-3px)")};
-    filter: ${({disabled})=>(!disabled && "drop-shadow(0 4px 6px var(--icon-shadow-color)) brightness(1.1)")};
+    transform: ${({ disabled }) => (disabled ? "none" : "translateY(-3px)")};
+    filter: ${({ disabled }) =>
+      !disabled &&
+      "drop-shadow(0 4px 6px var(--icon-shadow-color)) brightness(1.1)"};
   }
 
   label svg {
-    transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.24s;
+    transition:
+      transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+      filter 0.24s;
     filter: drop-shadow(0 2px 3px var(--icon-shadow-color));
     width: 24px;
     height: 24px;
     transform: color 1s;
-    color: ${({disabled})=>(disabled ? "#3f3f3f" : "var(--inactive-text-color)")};
+    color: ${({ disabled }) =>
+      disabled ? "#3f3f3f" : "var(--inactive-text-color)"};
   }
 
   label span {
@@ -177,7 +199,8 @@ const Switch = styled.div`
     font-weight: 500;
     letter-spacing: 0.4px;
     transform: color 1s;
-    color: ${({disabled})=>(disabled ? "#3f3f3f" : "var(--inactive-text-color)")};
+    color: ${({ disabled }) =>
+      disabled ? "#3f3f3f" : "var(--inactive-text-color)"};
   }
 
   /* highlight for checked label */

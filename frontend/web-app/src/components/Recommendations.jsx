@@ -2,11 +2,14 @@ import styled, { keyframes } from "styled-components";
 import LazyMount from "./LazyMount";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function Recommendation({
   categoricalProducts = null,
   loading = false,
 }) {
+  const { t } = useTranslation(NAMESPACES.home);
   const navigator = useNavigate();
   // const isLoading =
   //   loading ||
@@ -16,10 +19,10 @@ export default function Recommendation({
   return (
     <LazyMount unmountOnHide={false}>
       <Container aria-busy={loading}>
-        <Title>Most Searched for Items</Title>
+        <Title>{t("recommendationsTitle")}</Title>
         {loading && (
           <VisuallyHidden role="status">
-            Loading recommendations…
+            {t("loadingRecommendations")}
           </VisuallyHidden>
         )}
 

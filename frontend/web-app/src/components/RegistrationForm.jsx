@@ -12,12 +12,16 @@ import hidePasswordIcon from "../assets/hide-password.png";
 import { Notifier } from "./Notifier";
 import { Eye, EyeClosed } from "lucide-react";
 import { emailService } from "../../../shared/services/emailService";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function RegistrationForm({
   usedForm,
   setUsedForm,
   setNavigationBlocked,
 }) {
+  const { t } = useTranslation(NAMESPACES.auth);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const [signupFormVariables, setSignupFormVariables] = useState({});
   const [loginFormVariables, setLoginFormVariables] = useState({});
   const [forgotPasswordVariables, setForgotPasswordVariables] = useState({});
@@ -81,7 +85,7 @@ export default function RegistrationForm({
     // Check password strength
     const passwordTag = document.getElementById("password");
     if (signupFormVariables.password.length == 0) {
-      passwordTag.setCustomValidity("Please enter a password.");
+      passwordTag.setCustomValidity(t("passwordRequired"));
       passwordTag.reportValidity();
       return;
     } else if (
@@ -89,9 +93,7 @@ export default function RegistrationForm({
         signupFormVariables.password
       )
     ) {
-      passwordTag.setCustomValidity(
-        "Password must follow the below red conditions."
-      );
+      passwordTag.setCustomValidity(t("passwordValidationError"));
       passwordTag.reportValidity();
       return;
     }
@@ -111,7 +113,7 @@ export default function RegistrationForm({
       // check if email already exists
       if (data.status == 409) {
         setErrors((prev) => ({ ...prev, ["emailAlreadyExist"]: true }));
-        Notifier.notifyError("Email already exists");
+        Notifier.notifyError(t("emailAlreadyExists"));
       } else if (data.status == 201) {
         // Fire-and-forget welcome email with feedback link
         emailService
@@ -121,10 +123,12 @@ export default function RegistrationForm({
           )
           .catch(() => {});
         navigate("/", { state: { cameFrom: "signup" } });
-        Notifier.notifySuccess("Welcome to FitFinder");
+        Notifier.notifySuccess(
+          t("welcomeToApp", { appName: tCommon("appName") })
+        );
       } else throw new Error(data.status);
     } catch (error) {
-      Notifier.notifyError("Signup failed: ", error);
+      Notifier.notifyError(t("signupFailed"), error);
     }
     // Release blocker after signup
     flushSync(() => {
@@ -148,14 +152,14 @@ export default function RegistrationForm({
       );
       // check of password is wrong
       if (data.status == 422) {
-        Notifier.notifyError("Password is not correct");
+        Notifier.notifyError(t("passwordNotCorrect"));
         setErrors((prev) => ({ ...prev, ["wrongPassword"]: true }));
       } else if (data.status == 200) {
-        Notifier.notifySuccess("Welcome back!");
+        Notifier.notifySuccess(t("welcomeBackMessage"));
         navigate("/", { state: { cameFrom: "login" } });
       } else throw new Error(data.status);
     } catch (error) {
-      Notifier.notifyError("Login failed: ", error);
+      Notifier.notifyError(t("loginFailed"), error);
     }
 
     // Release blocker after login
@@ -178,11 +182,11 @@ export default function RegistrationForm({
       if (data.status == 200) {
         const body = data.json();
         setCode(body.code);
-        Notifier.notifySuccess("Verification code sent to your email.");
+        Notifier.notifySuccess(t("verificationCodeSent"));
         setLoginPhase("verifyCode");
       } else throw new Error(data.status);
     } catch (error) {
-      Notifier.notifyError("Sending code failed: ", error);
+      Notifier.notifyError(t("sendingCodeFailed"), error);
     }
 
     // Release blocker after login
@@ -224,13 +228,11 @@ export default function RegistrationForm({
         forgotPasswordVariables.password
       );
       if (data.status == 200) {
-        Notifier.notifySuccess(
-          "Password updated successfully. You can now log in with your new password."
-        );
+        Notifier.notifySuccess(t("passwordUpdatedSuccess"));
         setLoginPhase("login");
       } else throw new Error(data.status);
     } catch (error) {
-      Notifier.notifyError("Updating password failed: ", error);
+      Notifier.notifyError(t("updatingPasswordFailed"), error);
     }
 
     // Release blocker after login
@@ -253,11 +255,11 @@ export default function RegistrationForm({
                 <input
                   type="text"
                   name="username"
-                  placeholder="Username"
+                  placeholder={t("username")}
                   pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
                   minLength={3}
                   maxLength={30}
-                  title="Username can only contain letters, numbers, must start with a letter and of length between 3 to 30 characters"
+                  title={t("usernamePattern")}
                   onChange={handleSignupFormVariables}
                   required
                 />
@@ -268,9 +270,9 @@ export default function RegistrationForm({
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder={t("email")}
                   pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$"
-                  title="Please enter a valid email address in the format: username@example.com"
+                  title={t("emailPattern")}
                   onChange={handleSignupFormVariables}
                   style={{
                     border: errors.emailAlreadyExist && "1px solid red",
@@ -279,7 +281,7 @@ export default function RegistrationForm({
                 />
                 {errors.emailAlreadyExist && (
                   <p style={{ color: "red", textAlign: "start" }}>
-                    Email already exists.
+                    {t("emailAlreadyExistsNote")}
                   </p>
                 )}
               </div>
@@ -288,20 +290,24 @@ export default function RegistrationForm({
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
-                  title="Must contain 8-64 characters, with at least one uppercase, one lowercase, one number, and one special character."
+                  placeholder={t("password")}
+                  title={t("passwordPattern")}
                   onChange={handleSignupFormVariables}
                   required
                 />
                 {passwordVisible ? (
                   <Eye
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                 ) : (
                   <EyeClosed
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
@@ -323,7 +329,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least 8 characters and at most 64 characters
+                    {t("passwordRequirements.length")}
                   </li>
                   <li
                     style={{
@@ -332,7 +338,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one uppercase letter (A-Z)
+                    {t("passwordRequirements.uppercase")}
                   </li>
                   <li
                     style={{
@@ -341,7 +347,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one lowercase letter (a-z)
+                    {t("passwordRequirements.lowercase")}
                   </li>
                   <li
                     style={{
@@ -350,7 +356,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one digit (0-9)
+                    {t("passwordRequirements.digit")}
                   </li>
                   <li
                     style={{
@@ -361,8 +367,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one special character (!@#$%^&*()_+-=[]{};':",.
-                    &lt;&gt;/?\|)
+                    {t("passwordRequirements.special")}
                   </li>
                 </ul>
               </div>
@@ -372,20 +377,24 @@ export default function RegistrationForm({
                 <input
                   name="password"
                   type={passwordVisible ? "text" : "password"}
-                  placeholder="Confirm Password"
+                  placeholder={t("confirmPassword")}
                   pattern={signupFormVariables.password}
-                  title="Your passwords must match"
+                  title={t("passwordsMustMatch")}
                   required
                 />
                 {passwordVisible ? (
                   <Eye
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                 ) : (
                   <EyeClosed
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
@@ -396,10 +405,14 @@ export default function RegistrationForm({
                 type="submit"
                 disabled={disabled}
               >
-                {disabled ? <HashLoader size={20} color={"#fff"} /> : "Sign up"}
+                {disabled ? (
+                  <HashLoader size={20} color={"#fff"} />
+                ) : (
+                  t("signUp")
+                )}
               </button>
               <div className="divider">
-                <span>or</span>
+                <span>{t("or")}</span>
               </div>
               {/* <div className="google-signin">
                 <GoogleLogin
@@ -418,7 +431,7 @@ export default function RegistrationForm({
               </div> */}
 
               <p>
-                <span>Already have an account?</span>
+                <span>{t("alreadyHaveAccount")}</span>
                 <Link
                   onClick={(e) =>
                     disabled
@@ -427,7 +440,7 @@ export default function RegistrationForm({
                   }
                   className="pointer"
                 >
-                  &nbsp;&nbsp;Log in here
+                  &nbsp;&nbsp;{t("logInHere")}
                 </Link>
               </p>
             </form>
@@ -449,7 +462,7 @@ export default function RegistrationForm({
                 <i className="bx bxs-user"></i>
                 <input
                   name="email"
-                  placeholder="Email"
+                  placeholder={t("email")}
                   required
                   onChange={handleLoginFormVariables}
                 />
@@ -458,7 +471,7 @@ export default function RegistrationForm({
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
+                  placeholder={t("password")}
                   onChange={handleLoginFormVariables}
                   style={{ border: errors.wrongPassword && "1px solid red" }}
                   required
@@ -471,13 +484,17 @@ export default function RegistrationForm({
                 /> */}
                 {passwordVisible ? (
                   <Eye
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                 ) : (
                   <EyeClosed
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
@@ -485,9 +502,8 @@ export default function RegistrationForm({
               </div>
               {errors.wrongPassword && (
                 <p style={{ color: "red", textAlign: "start" }}>
-                  Entered password is not correct please try again or press{" "}
-                  <br />
-                  <strong>Forgot your Passord</strong>.
+                  {t("wrongPasswordNote")} <br />
+                  <strong>{t("forgotYourPassword")}</strong>.
                 </p>
               )}
 
@@ -498,15 +514,19 @@ export default function RegistrationForm({
                 }}
                 className="pointer"
               >
-                Forgot your password?
+                {t("forgotPassword")}
               </Link>
 
               <button className="loginButton" type="submit" disabled={disabled}>
-                {disabled ? <HashLoader size={20} color={"#fff"} /> : "Log in"}
+                {disabled ? (
+                  <HashLoader size={20} color={"#fff"} />
+                ) : (
+                  t("logIn")
+                )}
               </button>
 
               <div className="divider">
-                <span>or</span>
+                <span>{t("or")}</span>
               </div>
               {/* <div className="google-signin">
                 <GoogleLogin
@@ -525,7 +545,7 @@ export default function RegistrationForm({
               </div> */}
 
               <p>
-                <span>Don't have an account?</span>
+                <span>{t("dontHaveAccount")}</span>
                 <Link
                   onClick={(e) =>
                     disabled
@@ -534,7 +554,7 @@ export default function RegistrationForm({
                   }
                   className="pointer"
                 >
-                  &nbsp;&nbsp;Sign up here
+                  &nbsp;&nbsp;{t("signUpHere")}
                 </Link>
               </p>
             </form>
@@ -554,7 +574,7 @@ export default function RegistrationForm({
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder={t("email")}
                   required
                   onChange={handleForgotPasswordVariables}
                 />
@@ -563,7 +583,7 @@ export default function RegistrationForm({
                 {disabled ? (
                   <HashLoader size={20} color={"#fff"} />
                 ) : (
-                  "Send Code"
+                  t("sendCode")
                 )}
               </button>
             </form>
@@ -576,39 +596,33 @@ export default function RegistrationForm({
                 animation: loginPhase == "verifyCode" && "fadeIn 0.5s",
               }}
             >
-              <p>
-                Please copy and past the code sent to your email in the field
-                below.
-              </p>
+              <p>{t("codeInstruction")}</p>
               <div className="input-group">
                 <i className="bx bxs-user"></i>
                 <input
                   type="text"
                   name="code"
-                  placeholder="Code"
+                  placeholder={t("code")}
                   style={{ border: errors.wrongCode && "1px solid red" }}
                   onChange={handleForgotPasswordVariables}
                   required
                 />
                 {errors.wrongCode && (
-                  <p style={{ color: "red" }}>
-                    The code doesn't match the one sent to your email, please
-                    try again or press resend.
-                  </p>
+                  <p style={{ color: "red" }}>{t("wrongCodeNote")}</p>
                 )}
               </div>
               <button className="loginButton" type="submit" disabled={disabled}>
                 {disabled ? (
                   <HashLoader size={20} color={"#fff"} />
                 ) : (
-                  "Verify Code"
+                  t("verifyCode")
                 )}
               </button>
               <p>
                 <Link onClick={handleSendCode} className="pointer">
-                  Resend
+                  {t("resend")}
                 </Link>
-                <span>&nbsp;code.</span>
+                <span>&nbsp;{t("resendCode")}</span>
               </p>
             </form>
             {/* Update password phase */}
@@ -624,20 +638,24 @@ export default function RegistrationForm({
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
-                  title="Must contain 8-64 characters, with at least one uppercase, one lowercase, one number, and one special character."
+                  placeholder={t("password")}
+                  title={t("passwordPattern")}
                   onChange={handleForgotPasswordVariables}
                   required
                 />
                 {passwordVisible ? (
                   <Eye
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                 ) : (
                   <EyeClosed
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
@@ -659,7 +677,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least 8 characters and at most 64 characters
+                    {t("passwordRequirements.length")}
                   </li>
                   <li
                     style={{
@@ -668,7 +686,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one uppercase letter (A-Z)
+                    {t("passwordRequirements.uppercase")}
                   </li>
                   <li
                     style={{
@@ -677,7 +695,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one lowercase letter (a-z)
+                    {t("passwordRequirements.lowercase")}
                   </li>
                   <li
                     style={{
@@ -686,7 +704,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one digit (0-9)
+                    {t("passwordRequirements.digit")}
                   </li>
                   <li
                     style={{
@@ -697,8 +715,7 @@ export default function RegistrationForm({
                         : "red",
                     }}
                   >
-                    At least one special character (!@#$%^&*()_+-=[]{};':",.
-                    &lt;&gt;/?\|)
+                    {t("passwordRequirements.special")}
                   </li>
                 </ul>
               </div>
@@ -708,20 +725,24 @@ export default function RegistrationForm({
                 <input
                   name="password"
                   type={passwordVisible ? "text" : "password"}
-                  placeholder="Confirm Password"
+                  placeholder={t("confirmPassword")}
                   pattern={forgotPasswordVariables.password}
-                  title="Your passwords must match"
+                  title={t("passwordsMustMatch")}
                   required
                 />
                 {passwordVisible ? (
                   <Eye
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                 ) : (
                   <EyeClosed
-                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    alt={
+                      passwordVisible ? t("showPassword") : t("hidePassword")
+                    }
                     className="password-toggle-icon"
                     onClick={() => setPasswordVisible(!passwordVisible)}
                   />
@@ -731,7 +752,7 @@ export default function RegistrationForm({
                 {disabled ? (
                   <HashLoader size={20} color={"#fff"} />
                 ) : (
-                  "Update Password"
+                  t("updatePassword")
                 )}
               </button>
             </form>
@@ -746,7 +767,7 @@ export default function RegistrationForm({
         {/* <!-- SIGN IN CONTENT --> */}
         <div className="col align-items-center flex-col">
           <div className="text sign-in">
-            <h2>Welcome back</h2>
+            <h2>{t("welcomeBack")}</h2>
           </div>
           <div className="img sign-in"></div>
         </div>
@@ -755,7 +776,7 @@ export default function RegistrationForm({
         <div className="col align-items-center flex-col">
           <div className="img sign-up"></div>
           <div className="text sign-up">
-            <h2>Join with us</h2>
+            <h2>{t("joinWithUs")}</h2>
           </div>
         </div>
         {/* <!-- END SIGN UP CONTENT --> */}

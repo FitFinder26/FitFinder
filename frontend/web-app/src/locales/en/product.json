@@ -1,0 +1,13 @@
+{
+  "productFallbackTitle": "Product {{id}}",
+  "fallbackDescription": "No description available. In a real app fetch product details from the backend using the id.",
+  "sellerLabel": "Seller: {{seller}}",
+  "unknownSeller": "Unknown",
+  "back": "Back",
+  "goToStore": "Go to Store",
+  "similarProducts": "Similar products",
+  "soldBy": "Sold by {{seller}}",
+  "favoriteError": "Failed to add to favorites",
+  "like": "Like",
+  "unlike": "Unlike"
+}

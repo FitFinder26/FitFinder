@@ -6,22 +6,35 @@ import { AiFillHeart } from "react-icons/ai";
 import { favoriteService } from "../../../shared/services/favoriteService";
 import { Notifier } from "../components/Notifier";
 import { useAuthContext } from "../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function ProductPage() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation(NAMESPACES.product);
+  const { i18n } = useTranslation();
   // Prefer product object passed via navigate state to avoid extra API call
-  const product = location.state?.product || {
-    favorite: false,
-    item_id: id,
-    title: `Product ${id}`,
-    price: "0.00",
-    seller: "Unknown",
-    imageURL: `https://picsum.photos/seed/product-${id}/600/720`,
-    description:
-      "No description available. In a real app fetch product details from the backend using the id.",
-  };
+  const productFromState = location.state?.product;
+  const product = useMemo(() => {
+    const base = productFromState || {
+      favorite: false,
+      item_id: id,
+      title: t("productFallbackTitle", { id }),
+      price: "0.00",
+      seller: t("unknownSeller"),
+      imageURL: `https://picsum.photos/seed/product-${id}/600/720`,
+      description: t("fallbackDescription"),
+    };
+
+    return {
+      ...base,
+      title: base.title || t("productFallbackTitle", { id }),
+      seller: base.seller || t("unknownSeller"),
+      description: base.description || t("fallbackDescription"),
+    };
+  }, [productFromState, id, t]);
 
   const similar = location.state?.similarProducts || [];
   const rawDescription = product.description;
@@ -68,7 +81,7 @@ export default function ProductPage() {
       setTimeout(() => setAnimating(false), 480);
     } catch (error) {
       console.error("Something went wrong in setting as favorite: ", error);
-      Notifier.notifyError("Failed to add to favorites");
+      Notifier.notifyError(t("favoriteError"));
     }
   };
 
@@ -81,7 +94,7 @@ export default function ProductPage() {
             <LikeButton
               onClick={toggleFavorite}
               className={animating ? "animating" : ""}
-              aria-label={liked ? "Unlike" : "Like"}
+              aria-label={liked ? t("unlike") : t("like")}
               aria-pressed={liked}
             >
               {!liked ? <Heart /> : <AiFillHeart size={25} />}
@@ -97,11 +110,15 @@ export default function ProductPage() {
           </TitleRow>
 
           <Meta>
-            <span>Seller: {product?.seller || "Unknown"}</span>
+            <span>
+              {t("sellerLabel", {
+                seller: product?.seller || t("unknownSeller"),
+              })}
+            </span>
           </Meta>
 
           <ProductDescription>
-            <FeaturesList>
+            <FeaturesList $language={i18n.language}>
               {features.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
@@ -113,13 +130,15 @@ export default function ProductPage() {
           </ProductDescription>
 
           <Actions>
-            <SecondaryButton onClick={() => navigate(-1)}>Back</SecondaryButton>
+            <SecondaryButton onClick={() => navigate(-1)}>
+              {t("back")}
+            </SecondaryButton>
             <PrimaryButton
               onClick={() =>
                 window.open(product.itemWebURL, "_blank", "noopener,noreferrer")
               }
             >
-              Go to Store
+              {t("goToStore")}
             </PrimaryButton>
           </Actions>
         </RightColumn>
@@ -127,7 +146,7 @@ export default function ProductPage() {
       {/* Similar products section */}
       <SimilarSection>
         <SectionHeader>
-          <h3>Similar products</h3>
+          <h3>{t("similarProducts")}</h3>
         </SectionHeader>
 
         <SimilarGrid>
@@ -145,7 +164,7 @@ export default function ProductPage() {
                 <SimilarTitle>{p.title}</SimilarTitle>
                 <SimilarMeta>
                   <span>${p.price}</span>
-                  <small>Sold by {p.seller}</small>
+                  <small>{t("soldBy", { seller: p.seller })}</small>
                 </SimilarMeta>
               </SimilarBody>
             </SimilarCard>
@@ -277,14 +296,19 @@ const FeaturesList = styled.ul`
 
   li {
     position: relative;
-    padding-left: 1.5rem;
+    ${(props) =>
+      props.$language === "ar"
+        ? `padding-right: 1.5rem;`
+        : `padding-left: 1.5rem;`}
+
     margin-bottom: 0.6rem;
     line-height: 1.45;
 
     &::before {
       content: "•";
       position: absolute;
-      left: 0;
+      ${(props) => (props.$language === "ar" ? `right: 0;` : `left: 0;`)}
+
       color: #6366f1; /* subtle accent */
       font-size: 1.2rem;
       line-height: 1;

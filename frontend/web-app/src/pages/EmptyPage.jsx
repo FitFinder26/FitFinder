@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
+
 const EmptyPage = () => {
+  const { t } = useTranslation(NAMESPACES.common);
   return (
     <Container>
-      <h1> 404! This is an empty page</h1>
-      <Link to={"/"}>Go Home</Link>
+      <h1>{t("error404")}</h1>
+      <Link to={"/"}>{t("goHome")}</Link>
     </Container>
   );
 };

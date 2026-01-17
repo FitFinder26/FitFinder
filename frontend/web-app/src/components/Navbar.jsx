@@ -5,11 +5,18 @@ import { useAuthContext } from "../providers/AuthProvider";
 import { useEffect, useState, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import SideBar from "./SideBar";
-import { Camera, Upload, UserIcon } from "lucide-react";
+import { Camera, Upload, UserIcon, Languages } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
 import { ImProfile } from "react-icons/im";
 import { CgProfile } from "react-icons/cg";
 import logoSrc from "../assets/logo.png";
+import {
+  toggleLanguage,
+  getCurrentLanguage,
+  getLanguageDisplayName,
+} from "../locales/languageHelper";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const { user, isAuthenticated } = useAuthContext();
@@ -22,11 +29,20 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const inputRef = useRef(null);
   const cameraInputRef = useRef(null);
   const { device } = useDevice();
+  const [currentLang, setCurrentLang] = useState(getCurrentLanguage());
+  const { t } = useTranslation(NAMESPACES.navbar);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (isAuthenticated()) setIsLoggedIn(true);
     else setIsLoggedIn(false);
   }, [isAuthenticated]);
+
+  const handleLanguageToggle = async () => {
+    const newLang = await toggleLanguage();
+    setCurrentLang(newLang);
+  };
 
   useEffect(() => {
     if (!imageUploaded) {
@@ -65,13 +81,21 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
 
   return (
     <>
-      <NavContainer>
+      <NavContainer $language={i18n.language}>
         <div
-          style={{ gridColumn: "1", textAlign: "left", cursor: "pointer" }}
+          style={{
+            gridColumn: "1",
+            textAlign: i18n.language === "ar" ? "right" : "left",
+            cursor: "pointer",
+          }}
           onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
         >
           {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
-          <LogoIcon src={logoSrc} alt="FITFINDER" title="Home" />
+          <LogoIcon
+            src={logoSrc}
+            alt={t("logoAlt", { appName: tCommon("appName") })}
+            title={t("logoTitle")}
+          />
         </div>
 
         <div style={{ gridColumn: "2", textAlign: "center" }}>
@@ -92,8 +116,14 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           />
           <SearchWithImageButton onClick={handleSearchWithImageClick}>
             <Camera width={24} height={24} />
-            <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
-              Search With Image
+            <label
+              style={{
+                marginLeft: i18n.language === "ar" ? "0" : "0.5rem",
+                marginRight: i18n.language === "ar" ? "0.5rem" : "0",
+                cursor: "pointer",
+              }}
+            >
+              {t("searchWithImage")}
             </label>
           </SearchWithImageButton>
         </div>
@@ -105,12 +135,24 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             gap: "2rem",
             display: "flex",
             justifyContent: "flex-end",
+            alignItems: "center",
           }}
         >
+          <LanguageToggleButton
+            onClick={handleLanguageToggle}
+            title={t("toggleLanguage")}
+          >
+            <Languages size={20} />
+            {device !== "mobile" && <span>{getLanguageDisplayName(currentLang)}</span>}
+          </LanguageToggleButton>
           {isLoggedIn ? (
-            <ProfileButton>
+            <ProfileButton
+              $language={i18n.language}
+              onClick={handleProfilePicClick}
+              title={t("profileButtonTitle")}
+            >
               <AvatarContainer>
-                <AvatarWrap onClick={handleProfilePicClick}>
+                <AvatarWrap>
                   {user && user.profileImageURL && !imgError ? (
                     <AvatarImg
                       src={user.profileImageURL}
@@ -133,7 +175,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                 }
                 disabled={navigationBlocked}
               >
-                Login
+                {t("login")}
               </NavButton>
               {device !== "mobile" && (
                 <JoinButton
@@ -142,7 +184,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                   }
                   disabled={navigationBlocked}
                 >
-                  Join
+                  {t("join")}
                 </JoinButton>
               )}
             </>
@@ -158,24 +200,27 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
         />
       )}
       {showImageSourceModal && (
-        <ModalOverlay onClick={() => setShowImageSourceModal(false)}>
+        <ModalOverlay
+          $language={i18n.language}
+          onClick={() => setShowImageSourceModal(false)}
+        >
           <ModalContent device={device} onClick={(e) => e.stopPropagation()}>
-            <ModalTitle device={device}>Choose Image Source</ModalTitle>
+            <ModalTitle device={device}>{t("chooseImageSource")}</ModalTitle>
             <ModalButtonGroup device={device}>
               <ModalButton device={device} onClick={handleCameraClick}>
                 <Camera size={24} />
-                <span>Take Photo</span>
+                <span>{t("takePhoto")}</span>
               </ModalButton>
               <ModalButton device={device} onClick={handleUploadClick}>
                 <Upload size={24} />
-                <span>Upload from Device</span>
+                <span>{t("uploadFromDevice")}</span>
               </ModalButton>
             </ModalButtonGroup>
             <CancelButton
               device={device}
               onClick={() => setShowImageSourceModal(false)}
             >
-              Cancel
+              {t("cancel")}
             </CancelButton>
           </ModalContent>
         </ModalOverlay>
@@ -193,7 +238,7 @@ const NavContainer = styled.nav`
   color: var(--text-color);
   width: 100%;
   top: 0;
-  left: 0;
+  ${(props) => (props.$language === "ar" ? "right: 0;" : "left: 0;")};
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -247,7 +292,8 @@ const SearchWithImageButton = styled.button.attrs({ type: "button" })`
   }
 `;
 const ProfileButton = styled.button.attrs({ type: "button" })`
-  padding-right: 0.2rem;
+  ${(props) =>
+    props.$language === "ar" ? "margin-left: 1rem;" : "margin-right: 1rem;"}
   transition: all 0.3s ease-in-out;
   background: none;
   border: none;
@@ -296,7 +342,8 @@ const JoinButton = styled.button.attrs({ type: "button" })`
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
+  ${(props) => (props.$language === "ar" ? "right: 0;" : "left: 0;")};
+
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -523,4 +570,46 @@ const AvatarFallback = styled.div`
   align-items: center;
   justify-content: center;
   /* background: rgba(255, 255, 255, 0.06); */
+`;
+
+const LanguageToggleButton = styled.button.attrs({ type: "button" })`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: var(--text-color);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  span {
+    font-family: inherit;
+  }
+
+  @media (max-width: var(--tablet)) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: var(--mobile)) {
+    span {
+      display: none;
+    }
+    padding: 0.5rem;
+  }
 `;

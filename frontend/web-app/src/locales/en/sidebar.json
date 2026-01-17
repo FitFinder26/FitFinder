@@ -1,0 +1,15 @@
+{
+  "guest": "Guest",
+  "recentSearches": "Recent Searches",
+  "savedItems": "Saved Items",
+  "sendFeedback": "Send Feedback",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "changePassword": "Change Password",
+  "signOut": "Sign out",
+  "profileImageSuccess": "Profile image changed successfully",
+  "profileImageFailed": "Profile image upload failed",
+  "uploading": "..."
+}

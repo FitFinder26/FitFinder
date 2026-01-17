@@ -17,11 +17,15 @@ import { Notifier } from "./Notifier";
 import styled from "styled-components";
 import { useTheme } from "../providers/ThemeProvider";
 import { FaCheck } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 /* ---------------------------------------------
    Sidebar Component
 ----------------------------------------------*/
 export default function SideBar({ isOpen, setIsOpen }) {
+  const { t } = useTranslation(NAMESPACES.sidebar);
+  const { i18n } = useTranslation();
   const { logout, user, updateProfileImage } = useAuthContext();
   const navigator = useNavigate();
   const [imgError, setImgError] = useState(false);
@@ -64,12 +68,12 @@ export default function SideBar({ isOpen, setIsOpen }) {
     try {
       const res = await updateProfileImage(file);
       if (res?.ok) {
-        Notifier.notifySuccess("Profile image changed successfully");
+        Notifier.notifySuccess(t("profileImageSuccess"));
       } else {
-        Notifier.notifyError("Profile image upload failed");
+        Notifier.notifyError(t("profileImageFailed"));
       }
     } catch {
-      Notifier.notifyError("Profile image upload failed");
+      Notifier.notifyError(t("profileImageFailed"));
     } finally {
       setUploading(false);
       e.target.value = null;
@@ -109,27 +113,27 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 disabled={uploading}
                 onClick={handleProfilePicClick}
               >
-                {uploading ? "..." : <EditIcon size={14} />}
+                {uploading ? t("uploading") : <EditIcon size={14} />}
               </EditButton>
             )}
           </AvatarContainer>
 
-          <UserName>{user?.userName || "Guest"}</UserName>
+          <UserName>{user?.userName || t("guest")}</UserName>
         </UserSection>
       </UserHeader>
 
       {/* Menu */}
       <MenuList>
         <MenuItemRow onClick={handleHistoryNavigation}>
-          <History /> Recent Searches
+          <History /> {t("recentSearches")}
         </MenuItemRow>
 
         <MenuItemRow onClick={handleFavoriteNavigation}>
-          <Heart /> Saved Items
+          <Heart /> {t("savedItems")}
         </MenuItemRow>
 
         <MenuItemRow onClick={() => window.open(feedbackFormLink)}>
-          <MessageCircleDashed /> Send Feedback
+          <MessageCircleDashed /> {t("sendFeedback")}
         </MenuItemRow>
 
         <SubMenuTitle onClick={() => setIsThemeOpen((v) => !v)}>
@@ -148,29 +152,29 @@ export default function SideBar({ isOpen, setIsOpen }) {
               }}
             />
           )}
-          Theme
+          {t("theme")}
         </SubMenuTitle>
 
         <SubMenuContent $open={isThemeOpen}>
           <MenuItemRow onClick={() => setTheme("light")}>
-            {theme === "light" && <FaCheck />} Light
+            {theme === "light" && <FaCheck />} {t("light")}
           </MenuItemRow>
 
           <MenuItemRow onClick={() => setTheme("dark")}>
-            {theme === "dark" && <FaCheck />} Dark
+            {theme === "dark" && <FaCheck />} {t("dark")}
           </MenuItemRow>
 
           <MenuItemRow onClick={() => setTheme("system")}>
-            {theme === "system" && <FaCheck />} System
+            {theme === "system" && <FaCheck />} {t("system")}
           </MenuItemRow>
         </SubMenuContent>
 
         <MenuItemRow>
-          <CgPassword size={20} /> Change Password
+          <CgPassword size={20} /> {t("changePassword")}
         </MenuItemRow>
 
         <MenuItemRow onClick={handleLogout}>
-          <DoorOpen /> Sign out
+          <DoorOpen /> {t("signOut")}
         </MenuItemRow>
       </MenuList>
     </>
@@ -180,7 +184,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
     <Sidebar
       open={isOpen}
       onSetOpen={setIsOpen}
-      pullRight={true}
+      pullRight={i18n.language === "ar" ? false : true}
       styles={{
         root: {
           position: "fixed",

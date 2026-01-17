@@ -2,8 +2,12 @@ import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { useNavigate } from "react-router-dom";
 import { useDevice } from "../providers/DeviceProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 export default function Footer({ navigationBlocked }) {
+  const { t } = useTranslation(NAMESPACES.footer);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const contactEmail = (email, subject = "", body = "") => {
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
       subject
@@ -22,58 +26,58 @@ export default function Footer({ navigationBlocked }) {
             scale={0.3}
             variant={2}
           />
-          <BrandText device={device}>Your perfect fit, our mission</BrandText>
+          <BrandText device={device}>{t("tagline")}</BrandText>
         </BrandSection>
 
         <Section device={device}>
-          <SectionTitle device={device}>Quick Links</SectionTitle>
+          <SectionTitle device={device}>{t("quickLinks")}</SectionTitle>
           <LinksList device={device}>
             <Link
               device={device}
               onClick={() => navigator("/")}
               disabled={navigationBlocked}
             >
-              Home
+              {t("home")}
             </Link>
             <Link
               device={device}
               onClick={() => navigator("/about-us")}
               disabled={navigationBlocked}
             >
-              About Us
+              {t("about")}
             </Link>
             <Link
               device={device}
               onClick={() =>
                 contactEmail(
                   "fitfindercsed@gmail.com",
-                  "Inquiry about FITFINDER",
-                  "Hello, I would like to know more about your platform..."
+                  t("contactSubject", { appName: tCommon("appName") }),
+                  t("contactBody")
                 )
               }
               disabled={navigationBlocked}
             >
-              Contact
+              {t("contact")}
             </Link>
           </LinksList>
         </Section>
 
         <Section device={device}>
-          <SectionTitle device={device}>Legal</SectionTitle>
+          <SectionTitle device={device}>{t("legal")}</SectionTitle>
           <LinksList device={device}>
             <Link
               device={device}
               onClick={() => navigator("/privacy-policy")}
               disabled={navigationBlocked}
             >
-              Privacy Policy
+              {t("privacy")}
             </Link>
             <Link
               device={device}
               onClick={() => navigator("/terms-of-service")}
               disabled={navigationBlocked}
             >
-              Terms of Service
+              {t("terms")}
             </Link>
           </LinksList>
         </Section>
@@ -81,7 +85,10 @@ export default function Footer({ navigationBlocked }) {
 
       <BottomSection device={device}>
         <Copyright device={device}>
-          &copy; {new Date().getFullYear()} FitFinder. All rights reserved.
+          {t("copyright", {
+            year: new Date().getFullYear(),
+            appName: tCommon("appName"),
+          })}
         </Copyright>
       </BottomSection>
     </FooterContainer>

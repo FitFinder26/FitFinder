@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 // Component
 export default function PreferenceSurvey({ onClose }) {
+  const { t } = useTranslation(NAMESPACES.survey);
   const [step, setStep] = useState(0);
   const [closing, setClosing] = useState(false);
 
   const styles = [
     {
       id: 1,
-      label: "Streetwear",
+      key: "streetwear",
       img: "https://source.unsplash.com/600x400/?streetwear,fashion,outfit",
       fallback: "https://loremflickr.com/600/400/streetwear,fashion,outfit",
     },
     {
       id: 2,
-      label: "Formal",
+      key: "formal",
       img: "https://source.unsplash.com/600x400/?suit,formal,blazer,evening-wear",
       fallback: "https://loremflickr.com/600/400/suit,formal,blazer",
     },
     {
       id: 3,
-      label: "Boho",
+      key: "boho",
       img: "https://source.unsplash.com/600x400/?boho,bohemian,dress,floral",
       fallback: "https://loremflickr.com/600/400/boho,bohemian,dress,floral",
     },
     {
       id: 4,
-      label: "Athleisure",
+      key: "athleisure",
       img: "https://source.unsplash.com/600x400/?athleisure,sportswear,hoodie,leggings",
       fallback: "https://loremflickr.com/600/400/athleisure,sportswear,hoodie",
     },
@@ -71,15 +74,12 @@ export default function PreferenceSurvey({ onClose }) {
     <Overlay>
       <Dialog role="dialog" aria-modal="true" closing={closing}>
         <Header>
-          <Heading>Quick Preferences</Heading>
-          <CloseButton aria-label="Close" onClick={closePopup}>
+          <Heading>{t("heading")}</Heading>
+          <CloseButton aria-label={t("close")} onClick={closePopup}>
             ×
           </CloseButton>
         </Header>
-        <Intro>
-          Hello new user 👋. A few quick questions to personalize your
-          recommendations.
-        </Intro>
+        <Intro>{t("intro")}</Intro>
 
         {step !== 3 && (
           <Progress>
@@ -92,12 +92,16 @@ export default function PreferenceSurvey({ onClose }) {
         <Body>
           {step === 0 && (
             <Section>
-              <Title>Your gender</Title>
+              <Title>{t("genderTitle")}</Title>
               <Options>
-                <PrimaryButton onClick={handleAnswer}>Male</PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>Female</PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("genderMale")}
+                </PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("genderFemale")}
+                </PrimaryButton>
                 <SecondaryButton onClick={handleAnswer}>
-                  Prefer not to say
+                  {t("genderPreferNot")}
                 </SecondaryButton>
               </Options>
             </Section>
@@ -105,28 +109,36 @@ export default function PreferenceSurvey({ onClose }) {
 
           {step === 1 && (
             <Section>
-              <Title>Your favorite color</Title>
+              <Title>{t("colorTitle")}</Title>
               <Options>
-                <PrimaryButton onClick={handleAnswer}>Red</PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>Blue</PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>Black</PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>White</PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("colors.red")}
+                </PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("colors.blue")}
+                </PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("colors.black")}
+                </PrimaryButton>
+                <PrimaryButton onClick={handleAnswer}>
+                  {t("colors.white")}
+                </PrimaryButton>
               </Options>
             </Section>
           )}
 
           {step === 2 && (
             <Section>
-              <Title>Your favorite style</Title>
+              <Title>{t("styleTitle")}</Title>
               <ImageGrid>
                 {styles.map((s) => (
                   <StyleCard key={s.id} onClick={handleAnswer}>
                     <ImageWithFallback
                       src={s.img}
                       fallback={s.fallback}
-                      alt={`${s.label} example`}
+                      alt={t("styleAlt", { style: t(`styles.${s.key}`) })}
                     />
-                    <StyleLabel>{s.label}</StyleLabel>
+                    <StyleLabel>{t(`styles.${s.key}`)}</StyleLabel>
                   </StyleCard>
                 ))}
               </ImageGrid>
@@ -136,15 +148,15 @@ export default function PreferenceSurvey({ onClose }) {
           {step === 3 && (
             <ThankYou>
               <BigCheck>✔</BigCheck>
-              <ThanksTitle>Thanks!</ThanksTitle>
-              <ThanksText>Your preferences have been saved.</ThanksText>
+              <ThanksTitle>{t("thanksTitle")}</ThanksTitle>
+              <ThanksText>{t("thanksText")}</ThanksText>
             </ThankYou>
           )}
         </Body>
 
         {step !== 3 && (
           <Footer>
-            <SkipButton onClick={closePopup}>Skip for now</SkipButton>
+            <SkipButton onClick={closePopup}>{t("skip")}</SkipButton>
           </Footer>
         )}
       </Dialog>

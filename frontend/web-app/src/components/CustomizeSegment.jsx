@@ -5,6 +5,8 @@ import { Notifier } from "./Notifier";
 import { segmentationService } from "../../../shared/services/segmentationService";
 import products from "./searchResponse.json";
 import { HashLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 // Crop SAM masks from the original image
 const cropSelectedSegments = (imageObj, masks) => {
@@ -64,6 +66,8 @@ export default function CustomizeSegment({
   segmentationService,
   handleCloseSegmentationSheet,
 }) {
+  const { t } = useTranslation(NAMESPACES.editor);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const [segmentedImageSrc, setSegmentedImageSrc] = useState(null);
   const [selectedMask, setSelectedMask] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -90,7 +94,7 @@ export default function CustomizeSegment({
       setSegmentedImageSrc(src);
     } catch (err) {
       console.error("Failed to crop segment:", err);
-      Notifier.notifyError("Failed to crop segment: " + err.message);
+      Notifier.notifyError(t("cropFailed", { message: err.message }));
     }
   }, []); // empty dependency array ensures this runs once
 
@@ -101,7 +105,7 @@ export default function CustomizeSegment({
   const handleSearch = async () => {
     if (!segmentedImageSrc) {
       console.warn("Segmented image not ready");
-      Notifier.notifyError("Segmented image not ready.");
+      Notifier.notifyError(t("segmentNotReady"));
       return;
     }
     setIsSearching(true);
@@ -110,7 +114,7 @@ export default function CustomizeSegment({
       .then((response) => response.json())
       .then((products) => {
         if (products && products?.error) {
-          Notifier.notifyError(`Search failed: ${products.error}`);
+          Notifier.notifyError(t("searchFailed", { reason: products.error }));
         } else {
           setImageUploaded(false);
           segmentationService.endSession();
@@ -122,7 +126,7 @@ export default function CustomizeSegment({
       })
       .catch((err) => {
         console.error("Search failed:", err);
-        Notifier.notifyError(err.message);
+        Notifier.notifyError(t("searchFailedGeneric"));
       });
 
     // setImageUploaded(false);
@@ -136,32 +140,32 @@ export default function CustomizeSegment({
   return (
     <Container>
       {segmentedImageSrc ? (
-        <CroppedImagePreview src={segmentedImageSrc} alt="cropped segment" />
+        <CroppedImagePreview src={segmentedImageSrc} alt={t("croppedAlt")} />
       ) : (
-        <p>Loading cropped segment...</p>
+        <p>{t("loadingCropped")}</p>
       )}
 
       <Prompt
         value={prompt}
         onChange={handlePromptChange}
-        placeholder="Enter any additional details..."
+        placeholder={t("promptPlaceholder")}
         disabled={isSearching}
       />
 
       <ButtonsContainer>
         <BackButton onClick={() => setIsBeingCustomized(false)}>
-          <span>Back</span>
+          <span>{t("back")}</span>
         </BackButton>
         <SearchButton onClick={handleSearch} disabled={isSearching}>
-          {isSearching ? <HashLoader size={20} color="#fff" /> : "Search"}
+          {isSearching ? <HashLoader size={20} color="#fff" /> : t("search")}
         </SearchButton>
       </ButtonsContainer>
 
       <Guide>
         <p>
-          Add extra information about the cloth you are looking for{" "}
-          <small>(e.g., black, cutting, linen)</small> and click{" "}
-          <strong>Search</strong> to find it online.
+          {t("guideLine1")} <small>{t("guideExamples")}</small>{" "}
+          {t("guideLine2")}
+          <strong> {t("search")}</strong>
         </p>
       </Guide>
     </Container>
@@ -277,7 +281,8 @@ const Guide = styled.div`
   animation: ${fadeIn} 1s;
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37),
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
     inset 0 4px 8px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
   overflow: hidden;

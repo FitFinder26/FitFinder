@@ -4,6 +4,8 @@ import { AiFillHeart } from "react-icons/ai";
 import { useAuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useDevice } from "../providers/DeviceProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 /* ================== Helpers ================== */
 const parseDate = (dateStr) => {
@@ -18,13 +20,15 @@ const formatInputDate = (date) => {
 };
 
 /* ================== Image Loader ================== */
-function CardImageWithLoader({ src, alt }) {
+function CardImageWithLoader({ src, alt, t }) {
   const [status, setStatus] = useState("loading"); // loading | loaded | error
 
   return (
     <ImageWrapper>
       {status === "loading" && <ImageSkeleton />}
-      {status === "error" && <ImageFallback>Image unavailable</ImageFallback>}
+      {status === "error" && (
+        <ImageFallback>{t("imageUnavailable")}</ImageFallback>
+      )}
 
       <img
         src={src}
@@ -42,6 +46,7 @@ function CardImageWithLoader({ src, alt }) {
 /* ================== Component ================== */
 export default function HistoryPage() {
   const { device } = useDevice();
+  const { t } = useTranslation(NAMESPACES.history);
   const [sortOrder, setSortOrder] = useState("most_recent");
   const [filters, setFilters] = useState({
     date: new Set(),
@@ -147,12 +152,12 @@ export default function HistoryPage() {
     <PageWrap>
       <Content id="start" device={device}>
         <Left device={device}>
-          <h1 style={{ marginBottom: "1rem" }}>History</h1>
+          <h1 style={{ marginBottom: "1rem" }}>{t("title")}</h1>
           <FilterHeader>
-            <h3>Filters</h3>
+            <h3>{t("filters")}</h3>
             {device !== "desktop" && (
               <FilterToggle onClick={() => setShowFilters((v) => !v)}>
-                {showFilters ? "Hide" : "Show"}
+                {showFilters ? t("hide") : t("show")}
               </FilterToggle>
             )}
           </FilterHeader>
@@ -160,12 +165,12 @@ export default function HistoryPage() {
           {showFilters && (
             <Filters device={device}>
               <FilterSection>
-                <h4>Date</h4>
+                <h4>{t("date")}</h4>
 
                 {[
-                  { label: "Today", value: "today" },
-                  { label: "Last 7 days", value: "last_7" },
-                  { label: "Last 30 days", value: "last_30" },
+                  { label: t("today"), value: "today" },
+                  { label: t("last7"), value: "last_7" },
+                  { label: t("last30"), value: "last_30" },
                 ].map((opt) => (
                   <FilterRow key={opt.value}>
                     <input
@@ -178,7 +183,7 @@ export default function HistoryPage() {
                 ))}
 
                 <SpecificDate>
-                  <label>Specific date</label>
+                  <label>{t("specificDate")}</label>
                   <input
                     type="date"
                     value={filters.specificDate}
@@ -198,13 +203,13 @@ export default function HistoryPage() {
         <Right>
           <ResultsHeader>
             <SortSelect>
-              <label>Sort:</label>
+              <label>{t("sort")}</label>
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
-                <option value="most_recent">Most recent</option>
-                <option value="least_recent">Least recent</option>
+                <option value="most_recent">{t("mostRecent")}</option>
+                <option value="least_recent">{t("leastRecent")}</option>
               </select>
             </SortSelect>
           </ResultsHeader>
@@ -212,7 +217,7 @@ export default function HistoryPage() {
           <Grid device={device}>
             {filteredProducts.map((p) => (
               <Card key={p.id}>
-                <CardImageWithLoader src={p.imageURL} alt="segment" />
+                <CardImageWithLoader src={p.imageURL} alt="segment" t={t} />
 
                 <CardBody>
                   <CardTitle>{p.prompt}</CardTitle>

@@ -1,0 +1,13 @@
+{
+  "logoAlt": "{{appName}}",
+  "logoTitle": "Home",
+  "searchWithImage": "Search With Image",
+  "toggleLanguage": "Toggle Language",
+  "login": "Login",
+  "join": "Join",
+  "chooseImageSource": "Choose Image Source",
+  "takePhoto": "Take Photo",
+  "uploadFromDevice": "Upload from Device",
+  "cancel": "Cancel",
+  "profileButtonTitle": "Profile"
+}

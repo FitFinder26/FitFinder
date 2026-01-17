@@ -1,0 +1,19 @@
+{
+  "title": "Favorites",
+  "filters": "Filters",
+  "show": "Show",
+  "hide": "Hide",
+  "category": "Category",
+  "store": "Store",
+  "sort": "Sort:",
+  "sortSimilarity": "similarity",
+  "sortLowest": "lowest price",
+  "sortHighest": "highest price",
+  "noImage": "No image",
+  "removeButtonLabel": "Remove from favorites",
+  "removeTitle": "Remove from favorites?",
+  "removePrompt": "Are you sure you want to remove this item from your favorites?",
+  "yesRemove": "Yes, remove",
+  "removeSuccess": "Removed from favorites",
+  "removeError": "Failed to remove from favorites"
+}

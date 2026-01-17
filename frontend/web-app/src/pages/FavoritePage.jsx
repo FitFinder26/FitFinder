@@ -7,17 +7,19 @@ import { favoriteService } from "../../../shared/services/favoriteService";
 import { AiFillHeart } from "react-icons/ai";
 import { Notifier } from "../components/Notifier";
 import { useDevice } from "../providers/DeviceProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
 ----------------------------------------------*/
-function CardImageWithLoader({ src, alt }) {
+function CardImageWithLoader({ src, alt, t }) {
   const [status, setStatus] = useState("loading");
 
   return (
     <ImageWrapper>
       {status === "loading" && <ImageSkeleton />}
-      {status === "error" && <ImageFallback>No image</ImageFallback>}
+      {status === "error" && <ImageFallback>{t("noImage")}</ImageFallback>}
 
       <img
         src={src}
@@ -34,6 +36,8 @@ function CardImageWithLoader({ src, alt }) {
 
 export default function FavoritePage() {
   const { device } = useDevice();
+  const { t } = useTranslation(NAMESPACES.favorites);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
@@ -90,9 +94,9 @@ export default function FavoritePage() {
       }
       // remove from local state so UI updates immediately
       setProducts((prev) => prev.filter((p) => p.item_id !== itemId));
-      Notifier.notifySuccess("Removed from favorites");
+      Notifier.notifySuccess(t("removeSuccess"));
     } catch (error) {
-      Notifier.notifyError("Failed to remove from favorites");
+      Notifier.notifyError(t("removeError"));
       console.error(error);
     }
   };
@@ -185,13 +189,13 @@ export default function FavoritePage() {
     <PageWrap>
       <Content device={device}>
         <Left device={device}>
-          <h1 style={{ marginBottom: "1rem" }}>Favorites</h1>
+          <h1 style={{ marginBottom: "1rem" }}>{t("title")}</h1>
 
           <FilterHeader>
-            <h3>Filters</h3>
+            <h3>{t("filters")}</h3>
             {device !== "desktop" && (
               <FilterToggle onClick={() => setShowFilters((v) => !v)}>
-                {showFilters ? "Hide" : "Show"}
+                {showFilters ? t("hide") : t("show")}
               </FilterToggle>
             )}
           </FilterHeader>
@@ -199,7 +203,7 @@ export default function FavoritePage() {
           {showFilters && (
             <Filters device={device}>
               <FilterSection>
-                <h4>Category</h4>
+                <h4>{t("category")}</h4>
                 {categories.map((c) => (
                   <FilterRow
                     key={c}
@@ -216,7 +220,7 @@ export default function FavoritePage() {
               </FilterSection>
 
               <FilterSection>
-                <h4>Store</h4>
+                <h4>{t("store")}</h4>
                 {stores.map((s) => (
                   <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
                     <input
@@ -235,14 +239,14 @@ export default function FavoritePage() {
         <Right>
           <ResultsHeader>
             <SortSelect>
-              <label>Sort:</label>
+              <label>{t("sort")}</label>
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
-                <option value="similarity">similarity</option>
-                <option value="lowest_price">lowest price</option>
-                <option value="highest_price">highest price</option>
+                <option value="similarity">{t("sortSimilarity")}</option>
+                <option value="lowest_price">{t("sortLowest")}</option>
+                <option value="highest_price">{t("sortHighest")}</option>
               </select>
             </SortSelect>
           </ResultsHeader>
@@ -255,7 +259,7 @@ export default function FavoritePage() {
                       <ImageSkeleton />
                     </ImageWrapper>
                     <CardBody>
-                      <CardTitle>Loading...</CardTitle>
+                      <CardTitle>{tCommon("loading")}</CardTitle>
                       <CardMeta>
                         <Price>--</Price>
                         <Seller>--</Seller>
@@ -278,11 +282,11 @@ export default function FavoritePage() {
                       })
                     }
                   >
-                    <CardImageWithLoader src={p.imageURL} alt={p.title} />
+                    <CardImageWithLoader src={p.imageURL} alt={p.title} t={t} />
                     <LikeButton
                       onClick={(e) => requestRemoveFromFavorite(p.item_id, e)}
-                      aria-label="Remove from favorites"
-                      title="Remove from favorites"
+                      aria-label={t("removeButtonLabel")}
+                      title={t("removeButtonLabel")}
                     >
                       <AiFillHeart size={25} />
                     </LikeButton>
@@ -306,14 +310,14 @@ export default function FavoritePage() {
               onClick={cancelRemove}
             >
               <ModalBox onClick={(e) => e.stopPropagation()}>
-                <h3>Remove from favorites?</h3>
-                <p>
-                  Are you sure you want to remove this item from your favorites?
-                </p>
+                <h3>{t("removeTitle")}</h3>
+                <p>{t("removePrompt")}</p>
                 <ModalActions>
-                  <CancelButton onClick={cancelRemove}>Cancel</CancelButton>
+                  <CancelButton onClick={cancelRemove}>
+                    {tCommon("cancel")}
+                  </CancelButton>
                   <ConfirmButton onClick={confirmRemove}>
-                    Yes, remove
+                    {t("yesRemove")}
                   </ConfirmButton>
                 </ModalActions>
               </ModalBox>

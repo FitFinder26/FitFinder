@@ -4,6 +4,8 @@ import { HashLoader } from "react-spinners";
 import { Notifier } from "./Notifier";
 import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 // import { bigArray } from "./masks";
 
 export default function SAMFrontend({
@@ -16,6 +18,7 @@ export default function SAMFrontend({
   setIsBeingCustomized,
   segmentationService,
 }) {
+  const { t } = useTranslation(NAMESPACES.editor);
   // const [masks, setMasks] = useState(bigArray); // raw SAM masks
   const [masks, setMasks] = useState([]); // raw SAM masks
   const [maskCanvases, setMaskCanvases] = useState([]); // blue overlays
@@ -48,7 +51,7 @@ export default function SAMFrontend({
       // At error
       if (segmentation?.error) {
         Notifier.notifyError(
-          `Segmentation failed. Please try again.\n${segmentation.error}`
+          t("segmentationFailed", { error: segmentation.error })
         );
         setSegmentationStatus("idle");
         setLoading(false);
@@ -214,15 +217,15 @@ export default function SAMFrontend({
       .segment(formData)
       .then((response) => {
         if (response?.error) {
-          Notifier.notifyError(`Segmentation failed: ${response.error}`);
+          Notifier.notifyError(
+            t("segmentationFailedShort", { error: response.error })
+          );
           setSegmentationStatus("idle");
           setLoading(false);
         } else setSegmentationStatus("segmenting");
       })
       .catch((error) => {
-        Notifier.notifyError(
-          `Segmentation failed. Please try again.\n${error}`
-        );
+        Notifier.notifyError(t("segmentationFailed", { error }));
         setLoading(false);
         setSegmentationStatus("idle");
       });
@@ -279,9 +282,7 @@ export default function SAMFrontend({
   const reSegmentImage = async () => {
     if (!imageURL) return;
     if (selectedPoints.length === 0 && deselectedPoints.length === 0) {
-      Notifier.notifyError(
-        "Please provide selected or deselected points for re-segmentation."
-      );
+      Notifier.notifyError(t("providePoints"));
       return;
     }
     setSegmentationStatus("uploading");
@@ -309,15 +310,15 @@ export default function SAMFrontend({
       })
       .then((data) => {
         if (data && data.error) {
-          Notifier.notifyError(`Segmentation failed: ${data.error}`);
+          Notifier.notifyError(
+            t("segmentationFailedShort", { error: data.error })
+          );
           setSegmentationStatus("idle");
           setLoading(false);
         }
       })
       .catch((error) => {
-        Notifier.notifyError(
-          `Segmentation failed. Please try again.\n${error}`
-        );
+        Notifier.notifyError(t("segmentationFailed", { error }));
         setLoading(false);
         setSegmentationStatus("idle");
       });
@@ -479,7 +480,7 @@ export default function SAMFrontend({
 
   const sendSelected = () => {
     if (selected.length > 1) {
-      Notifier.notifyError("You must select just one segment to search for!");
+      Notifier.notifyError(t("selectOneSegment"));
       return;
     }
     setIsBeingCustomized(true);
@@ -514,10 +515,10 @@ export default function SAMFrontend({
               <StatusLoader>
                 <HashLoader size={50} color="#fff" />
                 {segmentationStatus === "uploading" && (
-                  <p>Uploading image...</p>
+                  <p>{t("uploadingImage")}</p>
                 )}
                 {segmentationStatus === "segmenting" && (
-                  <p>Segmenting image, please wait...</p>
+                  <p>{t("segmentingImage")}</p>
                 )}
                 <Button
                   onClick={() => {
@@ -528,7 +529,7 @@ export default function SAMFrontend({
                   $bgColor="orange"
                   $bgColorHover="red"
                 >
-                  Cancel
+                  {t("cancel")}
                 </Button>
               </StatusLoader>
             </Overlay>
@@ -537,7 +538,7 @@ export default function SAMFrontend({
       ) : (
         <Overlay>
           <HashLoader size={50} color="#fff" />
-          <p>Connecting to segmentation server...</p>
+          <p>{t("connectingServer")}</p>
         </Overlay>
       )}
       <div style={{ marginTop: 10 }}>
@@ -545,13 +546,13 @@ export default function SAMFrontend({
           <MagicButton
             processImage={processImage}
             isDisabled={!imageURL || loading}
-            name={"Segment"}
+            name={t("segment")}
           />
         ) : (
           <MagicButton
             processImage={reSegmentImage}
             isDisabled={!imageURL || loading}
-            name={"Re-segment"}
+            name={t("resegment")}
           />
         )}
         {selected.length !== 0 && (
@@ -560,7 +561,7 @@ export default function SAMFrontend({
             $bgColor="rgba(255,105,180,1)"
             $marginLeft="1rem"
           >
-            Send Selected
+            {t("sendSelected")}
           </Button>
         )}
       </div>

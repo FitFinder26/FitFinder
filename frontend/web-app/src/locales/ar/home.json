@@ -1,0 +1,20 @@
+{
+  "welcomeTo": "مرحباً بك في",
+  "searchWithImage": "البحث بالصورة",
+  "join": "انضم",
+  "demo": "عرض توضيحي",
+  "clickToRefine": "انقر للتحسين",
+  "feedbackTitle": "أخبرنا برأيك حول فيت فايندر",
+  "feedbackMessage": "نود أن نسمع ملاحظاتك! انقر",
+  "feedbackHere": "هنا",
+  "feedbackMessageEnd": "وأرسل لنا رسالة.",
+  "socialMediaTitle": "تابعنا على وسائل التواصل الاجتماعي",
+  "socialMediaMessage": "تواصل معنا على إنستغرام وابق على اطلاع بإعلاناتنا وتحديثاتنا المستقبلية.",
+  "followUs": "تابعنا",
+  "chooseImageSource": "اختر مصدر الصورة",
+  "takePhoto": "التقط صورة",
+  "uploadFromDevice": "رفع من الجهاز",
+  "cameraIconAlt": "أيقونة الكاميرا",
+  "recommendationsTitle": "أكثر العناصر بحثاً",
+  "loadingRecommendations": "جاري تحميل التوصيات…"
+}

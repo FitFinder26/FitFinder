@@ -1,0 +1,13 @@
+{
+  "productFallbackTitle": "منتج {{id}}",
+  "fallbackDescription": "لا يوجد وصف متاح. في التطبيق الحقيقي يتم جلب تفاصيل المنتج من الخادم باستخدام المعرف.",
+  "sellerLabel": "البائع: {{seller}}",
+  "unknownSeller": "غير معروف",
+  "back": "رجوع",
+  "goToStore": "الذهاب إلى المتجر",
+  "similarProducts": "منتجات مشابهة",
+  "soldBy": "يباع بواسطة {{seller}}",
+  "favoriteError": "فشل في الإضافة إلى المفضلة",
+  "like": "إعجاب",
+  "unlike": "إلغاء الإعجاب"
+}

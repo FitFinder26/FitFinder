@@ -12,9 +12,14 @@ import { recomendedationService } from "../../../shared/services/recomendationSe
 import { Instagram, MessageCircle, Camera, Upload } from "lucide-react";
 import { useDevice } from "../providers/DeviceProvider";
 import { useAuthContext } from "../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 // import logo from "../assets/logo.png";
 
 export default function HomePage() {
+  const { t } = useTranslation(NAMESPACES.home);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
+  const { i18n } = useTranslation();
   const inputRef = useRef(null);
   const cameraInputRef = useRef(null);
   const [imageUploaded, setImageUploaded] = useState(false);
@@ -135,7 +140,7 @@ export default function HomePage() {
       <Hero id="hero" device={device}>
         <LeftHero device={device}>
           <Welcome>
-            <h1>Welcome to</h1>
+            <h1>{t("welcomeTo")}</h1>
           </Welcome>
           <Logo
             fontSize={
@@ -161,6 +166,7 @@ export default function HomePage() {
           <ButtonContainer device={device}>
             {device === "desktop" || (device !== "desktop" && isLoggedIn) ? (
               <SearchWithImageButton
+                $language={i18n.language}
                 device={device}
                 onClick={handleSearchWithImageClick}
                 onMouseOver={(e) =>
@@ -180,10 +186,16 @@ export default function HomePage() {
                 <img
                   src={whiteCameraIcon}
                   style={{ width: "24px", height: "24px", cursor: "pointer" }}
-                  alt="Camera Icon"
+                  alt={t("cameraIconAlt")}
                 />
-                <label style={{ marginLeft: "0.5rem", cursor: "pointer" }}>
-                  Search With Image
+                <label
+                  style={
+                    i18n.language === "ar"
+                      ? { marginRight: "0.5rem", cursor: "pointer" }
+                      : { marginLeft: "0.5rem", cursor: "pointer" }
+                  }
+                >
+                  {t("searchWithImage")}
                 </label>
               </SearchWithImageButton>
             ) : (
@@ -194,7 +206,7 @@ export default function HomePage() {
                     navigator("/registration", { state: { form: "signup" } })
                   }
                 >
-                  Join
+                  {t("join")}
                 </JoinButton>
               )
             )}
@@ -204,7 +216,7 @@ export default function HomePage() {
                 navigator("/about-us", { state: { toSection: "how-it-works" } })
               }
             >
-              Demo
+              {t("demo")}
             </AboutUsButton>
           </ButtonContainer>
         </LeftHero>
@@ -232,7 +244,7 @@ export default function HomePage() {
                   <PointMarker cx="105" cy="175" />
                   <PointMarker cx="200" cy="85" />
                 </SVGMaskContainer>
-                <InteractionHint>Click to refine</InteractionHint>
+                <InteractionHint>{t("clickToRefine")}</InteractionHint>
               </SegmentationVisualizer>
             </AnimationContainer>
           </RightHero>
@@ -246,7 +258,7 @@ export default function HomePage() {
 
       <LazyMount unmountOnHide={true}>
         <Feedback>
-          <h1>Tell us what you think about FitFinder</h1>
+          <h1>{t("feedbackTitle")}</h1>
           <p
             style={{
               display: "flex",
@@ -261,21 +273,21 @@ export default function HomePage() {
               flexShrink={0}
             />
             <span>
-              We&apos;d love to hear your feedback! Click{" "}
+              {t("feedbackMessage")}{" "}
               <Link
                 style={{ color: "var(--links-color)" }}
                 onClick={() => window.open(feedbackFormLink)}
               >
-                here
+                {t("feedbackHere")}
               </Link>{" "}
-              and drop us a message.
+              {t("feedbackMessageEnd")}
             </span>
           </p>
         </Feedback>
       </LazyMount>
       <LazyMount unmountOnHide={true}>
         <SocialMedia>
-          <h1>Follow us on social media</h1>
+          <h1>{t("socialMediaTitle")}</h1>
           <div style={{ display: "flex", gap: "0.3rem", alignItems: "center" }}>
             <Instagram
               width={device === "mobile" ? 120 : 60}
@@ -283,15 +295,13 @@ export default function HomePage() {
             />
 
             <p>
-              Connect with us on Instagram and stay up to date with
-              {device !== "mobile" && <br />}
-              our announcements and future updates.&nbsp;
+              {t("socialMediaMessage")}&nbsp;
               {device !== "mobile" && <br />}
               <Link
                 style={{ color: "var(--links-color)" }}
                 onClick={() => window.open(instagramURL)}
               >
-                Follow us
+                {t("followUs")}
               </Link>
             </p>
           </div>
@@ -312,22 +322,22 @@ export default function HomePage() {
       {showImageSourceModal && (
         <ModalOverlay onClick={() => setShowImageSourceModal(false)}>
           <ModalContent device={device} onClick={(e) => e.stopPropagation()}>
-            <ModalTitle device={device}>Choose Image Source</ModalTitle>
+            <ModalTitle device={device}>{t("chooseImageSource")}</ModalTitle>
             <ModalButtonGroup device={device}>
               <ModalButton device={device} onClick={handleCameraClick}>
                 <Camera size={24} />
-                <span>Take Photo</span>
+                <span>{t("takePhoto")}</span>
               </ModalButton>
               <ModalButton device={device} onClick={handleUploadClick}>
                 <Upload size={24} />
-                <span>Upload from Device</span>
+                <span>{t("uploadFromDevice")}</span>
               </ModalButton>
             </ModalButtonGroup>
             <CancelButton
               device={device}
               onClick={() => setShowImageSourceModal(false)}
             >
-              Cancel
+              {tCommon("cancel")}
             </CancelButton>
           </ModalContent>
         </ModalOverlay>
@@ -695,12 +705,14 @@ const SearchWithImageButton = styled.button`
 
     img {
       transition: all 0.5s;
-      transform: translateX(-200%);
+      transform: ${(props) =>
+        props.$language === "ar" ? "translateX(200%)" : "translateX(-200%)"};
     }
 
     label {
       transition: all 0.5s;
-      transform: translateX(-15%);
+      transform: ${(props) =>
+        props.$language === "ar" ? "translateX(15%)" : "translateX(-15%)"};
       font-size: 1.005rem;
     }
   }

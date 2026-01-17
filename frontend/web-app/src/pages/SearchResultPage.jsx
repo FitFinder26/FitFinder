@@ -4,17 +4,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 import noDataFound from "../assets/noDataFound.svg";
 import { AiFillHeart } from "react-icons/ai";
 import { useDevice } from "../providers/DeviceProvider";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "../locales/namespaces";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
 ----------------------------------------------*/
-function CardImageWithLoader({ src, alt }) {
+function CardImageWithLoader({ src, alt, t }) {
   const [status, setStatus] = useState("loading");
 
   return (
     <ImageWrapper>
       {status === "loading" && <ImageSkeleton />}
-      {status === "error" && <ImageFallback>No image</ImageFallback>}
+      {status === "error" && <ImageFallback>{t("noImage")}</ImageFallback>}
 
       <img
         src={src}
@@ -31,6 +33,8 @@ function CardImageWithLoader({ src, alt }) {
 
 export default function SearchResultPage() {
   const { device } = useDevice();
+  const { t } = useTranslation(NAMESPACES.search);
+  const { t: tCommon } = useTranslation(NAMESPACES.common);
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
@@ -129,17 +133,17 @@ export default function SearchResultPage() {
         <Left device={device}>
           <PreviewCard>
             {searchingPeice ? (
-              <PreviewImage src={searchingPeice} />
+              <PreviewImage src={searchingPeice} alt={t("previewAlt")} />
             ) : (
-              <PreviewPlaceholder>Segmented Image</PreviewPlaceholder>
+              <PreviewPlaceholder>{t("segmentedImage")}</PreviewPlaceholder>
             )}
           </PreviewCard>
 
           <FilterHeader>
-            <h3>Filters</h3>
+            <h3>{t("filters")}</h3>
             {device !== "desktop" && (
               <FilterToggle onClick={() => setShowFilters((v) => !v)}>
-                {showFilters ? "Hide" : "Show"}
+                {showFilters ? t("hide") : t("show")}
               </FilterToggle>
             )}
           </FilterHeader>
@@ -147,7 +151,7 @@ export default function SearchResultPage() {
           {showFilters && (
             <Filters device={device}>
               <FilterSection>
-                <h4>Category</h4>
+                <h4>{t("category")}</h4>
                 {categories.map((c) => (
                   <FilterRow
                     key={c}
@@ -164,7 +168,7 @@ export default function SearchResultPage() {
               </FilterSection>
 
               <FilterSection>
-                <h4>Store</h4>
+                <h4>{t("store")}</h4>
                 {stores.map((s) => (
                   <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
                     <input
@@ -183,14 +187,14 @@ export default function SearchResultPage() {
         <Right>
           <ResultsHeader>
             <SortSelect>
-              <label>Sort:</label>
+              <label>{t("sort")}</label>
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
-                <option value="similarity">similarity</option>
-                <option value="lowest_price">lowest price</option>
-                <option value="highest_price">highest price</option>
+                <option value="similarity">{t("sortSimilarity")}</option>
+                <option value="lowest_price">{t("sortLowest")}</option>
+                <option value="highest_price">{t("sortHighest")}</option>
               </select>
             </SortSelect>
           </ResultsHeader>
@@ -203,7 +207,7 @@ export default function SearchResultPage() {
                       <ImageSkeleton />
                     </ImageWrapper>
                     <CardBody>
-                      <CardTitle>Loading...</CardTitle>
+                      <CardTitle>{tCommon("loading")}</CardTitle>
                       <CardMeta>
                         <Price>--</Price>
                         <Seller>--</Seller>
@@ -225,11 +229,11 @@ export default function SearchResultPage() {
                       })
                     }
                   >
-                    <CardImageWithLoader src={p.imageURL} alt={p.title} />
+                    <CardImageWithLoader src={p.imageURL} alt={p.title} t={t} />
                     {p.favorite && (
                       <LikeButton
-                        aria-label="Remove from favorites"
-                        title="Remove from favorites"
+                        aria-label={t("removeFavoriteLabel")}
+                        title={t("removeFavoriteLabel")}
                       >
                         <AiFillHeart size={25} />
                       </LikeButton>
@@ -247,7 +251,7 @@ export default function SearchResultPage() {
                 ))}
           </Grid>
           {visible.length === 0 && !loading && (
-            <img src={noDataFound} style={{}} />
+            <img src={noDataFound} alt={t("noResultsAlt")} />
           )}
         </Right>
       </Content>

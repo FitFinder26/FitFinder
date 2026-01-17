@@ -1,0 +1,16 @@
+{
+  "filters": "Filters",
+  "show": "Show",
+  "hide": "Hide",
+  "category": "Category",
+  "store": "Store",
+  "sort": "Sort:",
+  "sortSimilarity": "similarity",
+  "sortLowest": "lowest price",
+  "sortHighest": "highest price",
+  "noImage": "No image",
+  "segmentedImage": "Segmented Image",
+  "previewAlt": "Segmented search preview",
+  "removeFavoriteLabel": "Remove from favorites",
+  "noResultsAlt": "No results found"
+}

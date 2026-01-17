@@ -1,0 +1,19 @@
+{
+  "title": "المفضلة",
+  "filters": "عوامل التصفية",
+  "show": "إظهار",
+  "hide": "إخفاء",
+  "category": "الفئة",
+  "store": "المتجر",
+  "sort": "الترتيب:",
+  "sortSimilarity": "التشابه",
+  "sortLowest": "الأقل سعراً",
+  "sortHighest": "الأعلى سعراً",
+  "noImage": "لا توجد صورة",
+  "removeButtonLabel": "إزالة من المفضلة",
+  "removeTitle": "إزالة من المفضلة؟",
+  "removePrompt": "هل أنت متأكد أنك تريد إزالة هذا العنصر من المفضلة؟",
+  "yesRemove": "نعم، إزالة",
+  "removeSuccess": "تمت الإزالة من المفضلة",
+  "removeError": "فشل في الإزالة من المفضلة"
+}

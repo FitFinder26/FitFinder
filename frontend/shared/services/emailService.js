@@ -36,7 +36,7 @@ export const emailService = {
     const fallbackMailto = () => {
       try {
         const mailto = `mailto:${toEmail}?subject=${encodeURIComponent(
-          subject
+          subject,
         )}&body=${body}`;
         window.open(mailto, "_blank");
       } catch (_) {
@@ -46,7 +46,7 @@ export const emailService = {
 
     if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
       console.warn(
-        "EmailJS env vars missing: VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID"
+        "EmailJS env vars missing: VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID",
       );
       fallbackMailto();
       return { ok: false, status: 412 };
@@ -65,7 +65,7 @@ export const emailService = {
       const res = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        templateParams
+        templateParams,
       );
       return { ok: true, status: 200, result: res?.status };
     } catch (err) {

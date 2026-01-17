@@ -1,0 +1,16 @@
+{
+  "filters": "عوامل التصفية",
+  "show": "إظهار",
+  "hide": "إخفاء",
+  "category": "الفئة",
+  "store": "المتجر",
+  "sort": "الترتيب:",
+  "sortSimilarity": "التشابه",
+  "sortLowest": "الأقل سعراً",
+  "sortHighest": "الأعلى سعراً",
+  "noImage": "لا توجد صورة",
+  "segmentedImage": "صورة مجزأة",
+  "previewAlt": "معاينة البحث المجزأة",
+  "removeFavoriteLabel": "إزالة من المفضلة",
+  "noResultsAlt": "لا توجد نتائج"
+}

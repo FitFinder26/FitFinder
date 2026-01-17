@@ -1,0 +1,15 @@
+{
+  "title": "History",
+  "filters": "Filters",
+  "show": "Show",
+  "hide": "Hide",
+  "date": "Date",
+  "today": "Today",
+  "last7": "Last 7 days",
+  "last30": "Last 30 days",
+  "specificDate": "Specific date",
+  "sort": "Sort:",
+  "mostRecent": "Most recent",
+  "leastRecent": "Least recent",
+  "imageUnavailable": "Image unavailable"
+}

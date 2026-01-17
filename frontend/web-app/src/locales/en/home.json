@@ -1,0 +1,20 @@
+{
+  "welcomeTo": "Welcome to",
+  "searchWithImage": "Search With Image",
+  "join": "Join",
+  "demo": "Demo",
+  "clickToRefine": "Click to refine",
+  "feedbackTitle": "Tell us what you think about FitFinder",
+  "feedbackMessage": "We'd love to hear your feedback! Click",
+  "feedbackHere": "here",
+  "feedbackMessageEnd": "and drop us a message.",
+  "socialMediaTitle": "Follow us on social media",
+  "socialMediaMessage": "Connect with us on Instagram and stay up to date with our announcements and future updates.",
+  "followUs": "Follow us",
+  "chooseImageSource": "Choose Image Source",
+  "takePhoto": "Take Photo",
+  "uploadFromDevice": "Upload from Device",
+  "cameraIconAlt": "Camera Icon",
+  "recommendationsTitle": "Most Searched for Items",
+  "loadingRecommendations": "Loading recommendations…"
+}
