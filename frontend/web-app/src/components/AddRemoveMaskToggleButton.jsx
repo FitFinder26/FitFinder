@@ -8,47 +8,56 @@ export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
 
   return (
     <Container>
-      <Switch
-        disabled={disabled}
-        role="switch"
-        aria-checked={mode === "remove"}
-      >
-        <input
-          id="switch-opt-1"
-          type="radio"
-          name="flip-switch"
-          checked={mode === "add"}
-          onChange={() => setMode("add")}
+      <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
+        <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>
+          {t('maskToggleLegend')}
+        </legend>
+        <Switch
           disabled={disabled}
-        />
-        <input
-          id="switch-opt-2"
-          type="radio"
-          name="flip-switch"
-          checked={mode === "remove"}
-          onChange={() => setMode("remove")}
-          disabled={disabled}
-        />
+          role="radiogroup"
+          aria-label={t('maskToggleLegend')}
+        >
+          <input
+            id="switch-opt-1"
+            type="radio"
+            name="flip-switch"
+            checked={mode === "add"}
+            onChange={() => setMode("add")}
+            disabled={disabled}
+            aria-checked={mode === "add"}
+            aria-label={t('addMask')}
+          />
+          <input
+            id="switch-opt-2"
+            type="radio"
+            name="flip-switch"
+            checked={mode === "remove"}
+            onChange={() => setMode("remove")}
+            disabled={disabled}
+            aria-checked={mode === "remove"}
+            aria-label={t('removeMask')}
+          />
 
-        <label htmlFor="switch-opt-1" title={t("addMaskTitle")}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-            <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
-          </svg>
-          <span>{t("addMask")}</span>
-        </label>
+          <label htmlFor="switch-opt-1" title={t("addMaskTitle")}> 
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
+            </svg>
+            <span>{t("addMask")}</span>
+          </label>
 
-        <label htmlFor="switch-opt-2" title={t("removeMaskTitle")}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-            <path d="M5 11h14v2H5z" />
-          </svg>
-          <span>{t("removeMask")}</span>
-        </label>
+          <label htmlFor="switch-opt-2" title={t("removeMaskTitle")}> 
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M5 11h14v2H5z" />
+            </svg>
+            <span>{t("removeMask")}</span>
+          </label>
 
-        <SwitchCard aria-hidden="true">
-          <CardFrontFace />
-          <CardBackFace />
-        </SwitchCard>
-      </Switch>
+          <SwitchCard aria-hidden="true">
+            <CardFrontFace />
+            <CardBackFace />
+          </SwitchCard>
+        </Switch>
+      </fieldset>
     </Container>
   );
 }

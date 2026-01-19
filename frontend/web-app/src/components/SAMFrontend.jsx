@@ -494,6 +494,8 @@ export default function SAMFrontend({
         textAlign: "center",
         animation: "fadeIn 0.5s",
       }}
+      role="region"
+      aria-label={t("segmentationRegionLabel", "Segmentation Editor")}
     >
       {!sessionStarted ? (
         <div style={{ position: "relative", display: "inline-block" }}>
@@ -509,9 +511,16 @@ export default function SAMFrontend({
             onMouseLeave={() => setHovered(null)}
             $imageURL={imageURL}
             $loading={loading}
+            role="img"
+            aria-label={t("segmentationCanvasLabel", "Segmentation mask selection canvas")}
+            tabIndex={0}
+            aria-describedby="segmentation-canvas-desc"
           />
+          <span id="segmentation-canvas-desc" className="visually-hidden">
+            {t("segmentationCanvasDesc", "Use your mouse or keyboard to select and toggle mask regions. Press Tab to move to the next control.")}
+          </span>
           {loading && (
-            <Overlay>
+            <Overlay role="status" aria-live="polite">
               <StatusLoader>
                 <HashLoader size={50} color="#fff" />
                 {segmentationStatus === "uploading" && (
@@ -528,6 +537,7 @@ export default function SAMFrontend({
                   }}
                   $bgColor="orange"
                   $bgColorHover="red"
+                  aria-label={t("cancel")}
                 >
                   {t("cancel")}
                 </Button>
@@ -536,7 +546,7 @@ export default function SAMFrontend({
           )}
         </div>
       ) : (
-        <Overlay>
+        <Overlay role="status" aria-live="polite">
           <HashLoader size={50} color="#fff" />
           <p>{t("connectingServer")}</p>
         </Overlay>
@@ -560,6 +570,7 @@ export default function SAMFrontend({
             onClick={sendSelected}
             $bgColor="rgba(255,105,180,1)"
             $marginLeft="1rem"
+            aria-label={t("sendSelected")}
           >
             {t("sendSelected")}
           </Button>
@@ -576,6 +587,7 @@ export default function SAMFrontend({
           disabled={selected.length === 0}
           mode={clickMode}
           setMode={setClickMode}
+          aria-label={t("maskToggleMode")}
         />
       </div>
     </div>

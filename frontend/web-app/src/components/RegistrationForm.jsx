@@ -5,13 +5,10 @@ import styled from "styled-components";
 import { HashLoader } from "react-spinners";
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import showPasswordIcon from "../assets/show-password.png";
-import hidePasswordIcon from "../assets/hide-password.png";
+
 import { Notifier } from "./Notifier";
 import { Eye, EyeClosed } from "lucide-react";
-import { emailService } from "../../../shared/services/emailService";
+
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
 
@@ -89,7 +86,7 @@ export default function RegistrationForm({
       passwordTag.reportValidity();
       return;
     } else if (
-      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:\\|,.<>\/?]).{8,64}$/.test(
+      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:\\|,.<>/?]).{8,64}$/.test(
         signupFormVariables.password
       )
     ) {
@@ -249,200 +246,216 @@ export default function RegistrationForm({
         {/* <!-- SIGN UP --> */}
         <div className="col align-items-center flex-col sign-up">
           <div className="form-wrapper align-items-center">
-            <form onSubmit={handleSignup} className="form sign-up">
-              <div className="input-group">
-                <i className="bx bxs-lock-alt"></i>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder={t("username")}
-                  pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
-                  minLength={3}
-                  maxLength={30}
-                  title={t("usernamePattern")}
-                  onChange={handleSignupFormVariables}
-                  required
-                />
-              </div>
+            <form onSubmit={handleSignup} className="form sign-up" aria-labelledby="signup-title" autoComplete="off">
+              <fieldset>
+                <legend id="signup-title">{t("signUp")}</legend>
+                <div className="input-group">
+                  <i className="bx bxs-lock-alt" aria-hidden="true"></i>
+                  <label htmlFor="signup-username" className="visually-hidden">{t("username")}</label>
+                  <input
+                    id="signup-username"
+                    type="text"
+                    name="username"
+                    placeholder={t("username")}
+                    pattern="^[A-Za-z]+[A-Za-z0-9._]+$"
+                    minLength={3}
+                    maxLength={30}
+                    title={t("usernamePattern")}
+                    onChange={handleSignupFormVariables}
+                    required
+                    aria-required="true"
+                    aria-label={t("username")}
+                  />
+                </div>
 
-              <div className="input-group">
-                <i className="bx bxs-user"></i>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder={t("email")}
-                  pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$"
-                  title={t("emailPattern")}
-                  onChange={handleSignupFormVariables}
+                <div className="input-group">
+                  <i className="bx bxs-user" aria-hidden="true"></i>
+                  <label htmlFor="signup-email" className="visually-hidden">{t("email")}</label>
+                  <input
+                    id="signup-email"
+                    type="email"
+                    name="email"
+                    placeholder={t("email")}
+                    pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$"
+                    title={t("emailPattern")}
+                    onChange={handleSignupFormVariables}
+                    style={{
+                      border: errors.emailAlreadyExist && "1px solid red",
+                    }}
+                    required
+                    aria-required="true"
+                    aria-label={t("email")}
+                    aria-invalid={errors.emailAlreadyExist ? "true" : undefined}
+                  />
+                  {errors.emailAlreadyExist && (
+                    <p style={{ color: "red", textAlign: "start" }} role="alert" aria-live="assertive">
+                      {t("emailAlreadyExistsNote")}
+                    </p>
+                  )}
+                </div>
+
+                <div className="input-group">
+                  <label htmlFor="signup-password" className="visually-hidden">{t("password")}</label>
+                  <input
+                    id="signup-password"
+                    type={passwordVisible ? "text" : "password"}
+                    name="password"
+                    placeholder={t("password")}
+                    title={t("passwordPattern")}
+                    onChange={handleSignupFormVariables}
+                    required
+                    aria-required="true"
+                    aria-label={t("password")}
+                  />
+                  {passwordVisible ? (
+                    <Eye
+                      alt={passwordVisible ? t("showPassword") : t("hidePassword")}
+                      className="password-toggle-icon"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      tabIndex={0}
+                      aria-label={passwordVisible ? t("hidePassword") : t("showPassword")}
+                      role="button"
+                      onKeyDown={e => (e.key === "Enter" || e.key === " ") && setPasswordVisible(!passwordVisible)}
+                    />
+                  ) : (
+                    <EyeClosed
+                      alt={passwordVisible ? t("showPassword") : t("hidePassword")}
+                      className="password-toggle-icon"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      tabIndex={0}
+                      aria-label={passwordVisible ? t("hidePassword") : t("showPassword")}
+                      role="button"
+                      onKeyDown={e => (e.key === "Enter" || e.key === " ") && setPasswordVisible(!passwordVisible)}
+                    />
+                  )}
+                </div>
+                <div
                   style={{
-                    border: errors.emailAlreadyExist && "1px solid red",
+                    display:
+                      (signupFormVariables.password == null ||
+                        signupFormVariables.password.length == 0) &&
+                      "none",
                   }}
-                  required
-                />
-                {errors.emailAlreadyExist && (
-                  <p style={{ color: "red", textAlign: "start" }}>
-                    {t("emailAlreadyExistsNote")}
-                  </p>
-                )}
-              </div>
-
-              <div className="input-group">
-                <input
-                  type={passwordVisible ? "text" : "password"}
-                  name="password"
-                  placeholder={t("password")}
-                  title={t("passwordPattern")}
-                  onChange={handleSignupFormVariables}
-                  required
-                />
-                {passwordVisible ? (
-                  <Eye
-                    alt={
-                      passwordVisible ? t("showPassword") : t("hidePassword")
-                    }
-                    className="password-toggle-icon"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                  />
-                ) : (
-                  <EyeClosed
-                    alt={
-                      passwordVisible ? t("showPassword") : t("hidePassword")
-                    }
-                    className="password-toggle-icon"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                  />
-                )}
-              </div>
-              <div
-                style={{
-                  display:
-                    (signupFormVariables.password == null ||
-                      signupFormVariables.password.length == 0) &&
-                    "none",
-                }}
-              >
-                <ul className="password-requirements">
-                  <li
-                    style={{
-                      color: /.{8,64}/.test(signupFormVariables.password)
-                        ? "green"
-                        : "red",
-                    }}
-                  >
-                    {t("passwordRequirements.length")}
-                  </li>
-                  <li
-                    style={{
-                      color: /[A-Z]/.test(signupFormVariables.password)
-                        ? "green"
-                        : "red",
-                    }}
-                  >
-                    {t("passwordRequirements.uppercase")}
-                  </li>
-                  <li
-                    style={{
-                      color: /[a-z]/.test(signupFormVariables.password)
-                        ? "green"
-                        : "red",
-                    }}
-                  >
-                    {t("passwordRequirements.lowercase")}
-                  </li>
-                  <li
-                    style={{
-                      color: /\d/.test(signupFormVariables.password)
-                        ? "green"
-                        : "red",
-                    }}
-                  >
-                    {t("passwordRequirements.digit")}
-                  </li>
-                  <li
-                    style={{
-                      color: /[!@#$%^&*()_+\-=\[\]{};':",.<>\/?\\|]/.test(
-                        signupFormVariables.password
-                      )
-                        ? "green"
-                        : "red",
-                    }}
-                  >
-                    {t("passwordRequirements.special")}
-                  </li>
-                </ul>
-              </div>
-
-              <div className="input-group">
-                <i className="bx bxs-lock-alt"></i>
-                <input
-                  name="password"
-                  type={passwordVisible ? "text" : "password"}
-                  placeholder={t("confirmPassword")}
-                  pattern={signupFormVariables.password}
-                  title={t("passwordsMustMatch")}
-                  required
-                />
-                {passwordVisible ? (
-                  <Eye
-                    alt={
-                      passwordVisible ? t("showPassword") : t("hidePassword")
-                    }
-                    className="password-toggle-icon"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                  />
-                ) : (
-                  <EyeClosed
-                    alt={
-                      passwordVisible ? t("showPassword") : t("hidePassword")
-                    }
-                    className="password-toggle-icon"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                  />
-                )}
-              </div>
-              <button
-                className="signupButton"
-                type="submit"
-                disabled={disabled}
-              >
-                {disabled ? (
-                  <HashLoader size={20} color={"#fff"} />
-                ) : (
-                  t("signUp")
-                )}
-              </button>
-              <div className="divider">
-                <span>{t("or")}</span>
-              </div>
-              {/* <div className="google-signin">
-                <GoogleLogin
-                  onSuccess={(credentialResponse) => {
-                    const userInfo = jwtDecode(credentialResponse.credential);
-                    console.log("Google user info:", userInfo);
-
-                    // Example: signup/login using Google data
-                    // await signup(userInfo.name, userInfo.email, userInfo.sub);
-                    navigate("/", { state: { cameFrom: "google-signup" } });
-                  }}
-                  onError={() => {
-                    console.log("Google Sign In Failed");
-                  }}
-                />
-              </div> */}
-
-              <p>
-                <span>{t("alreadyHaveAccount")}</span>
-                <Link
-                  onClick={(e) =>
-                    disabled
-                      ? e.preventDefault()
-                      : toggleRegistrationForm("login")
-                  }
-                  className="pointer"
+                  aria-live="polite"
                 >
-                  &nbsp;&nbsp;{t("logInHere")}
-                </Link>
-              </p>
+                  <ul className="password-requirements">
+                    <li
+                      style={{
+                        color: /.{8,64}/.test(signupFormVariables.password)
+                          ? "green"
+                          : "red",
+                      }}
+                    >
+                      {t("passwordRequirements.length")}
+                    </li>
+                    <li
+                      style={{
+                        color: /[A-Z]/.test(signupFormVariables.password)
+                          ? "green"
+                          : "red",
+                      }}
+                    >
+                      {t("passwordRequirements.uppercase")}
+                    </li>
+                    <li
+                      style={{
+                        color: /[a-z]/.test(signupFormVariables.password)
+                          ? "green"
+                          : "red",
+                      }}
+                    >
+                      {t("passwordRequirements.lowercase")}
+                    </li>
+                    <li
+                      style={{
+                        color: /\d/.test(signupFormVariables.password)
+                          ? "green"
+                          : "red",
+                      }}
+                    >
+                      {t("passwordRequirements.digit")}
+                    </li>
+                    <li
+                      style={{
+                        color: /[!@#$%^&*()_+\-=\[\]{};':",.<>/?\\|]/.test(
+                          signupFormVariables.password
+                        )
+                          ? "green"
+                          : "red",
+                      }}
+                    >
+                      {t("passwordRequirements.special")}
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="input-group">
+                  <i className="bx bxs-lock-alt" aria-hidden="true"></i>
+                  <label htmlFor="signup-confirm-password" className="visually-hidden">{t("confirmPassword")}</label>
+                  <input
+                    id="signup-confirm-password"
+                    name="password"
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder={t("confirmPassword")}
+                    pattern={signupFormVariables.password}
+                    title={t("passwordsMustMatch")}
+                    required
+                    aria-required="true"
+                    aria-label={t("confirmPassword")}
+                  />
+                  {passwordVisible ? (
+                    <Eye
+                      alt={passwordVisible ? t("showPassword") : t("hidePassword")}
+                      className="password-toggle-icon"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      tabIndex={0}
+                      aria-label={passwordVisible ? t("hidePassword") : t("showPassword")}
+                      role="button"
+                      onKeyDown={e => (e.key === "Enter" || e.key === " ") && setPasswordVisible(!passwordVisible)}
+                    />
+                  ) : (
+                    <EyeClosed
+                      alt={passwordVisible ? t("showPassword") : t("hidePassword")}
+                      className="password-toggle-icon"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      tabIndex={0}
+                      aria-label={passwordVisible ? t("hidePassword") : t("showPassword")}
+                      role="button"
+                      onKeyDown={e => (e.key === "Enter" || e.key === " ") && setPasswordVisible(!passwordVisible)}
+                    />
+                  )}
+                </div>
+                <button
+                  className="signupButton"
+                  type="submit"
+                  disabled={disabled}
+                  aria-disabled={disabled}
+                >
+                  {disabled ? (
+                    <HashLoader size={20} color={"#fff"} />
+                  ) : (
+                    t("signUp")
+                  )}
+                </button>
+                <div className="divider" aria-hidden="true">
+                  <span>{t("or")}</span>
+                </div>
+
+
+                <p>
+                  <span>{t("alreadyHaveAccount")}</span>
+                  <Link
+                    onClick={(e) =>
+                      disabled
+                        ? e.preventDefault()
+                        : toggleRegistrationForm("login")
+                    }
+                    className="pointer"
+                  >
+                    &nbsp;&nbsp;{t("logInHere")}
+                  </Link>
+                </p>
+              </fieldset>
             </form>
           </div>
         </div>
@@ -476,12 +489,7 @@ export default function RegistrationForm({
                   style={{ border: errors.wrongPassword && "1px solid red" }}
                   required
                 />
-                {/* <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                /> */}
+
                 {passwordVisible ? (
                   <Eye
                     alt={
@@ -528,21 +536,7 @@ export default function RegistrationForm({
               <div className="divider">
                 <span>{t("or")}</span>
               </div>
-              {/* <div className="google-signin">
-                <GoogleLogin
-                  onSuccess={(credentialResponse) => {
-                    const userInfo = jwtDecode(credentialResponse.credential);
-                    console.log("Google user info:", userInfo);
 
-                    // Example: signup/login using Google data
-                    // await signup(userInfo.name, userInfo.email, userInfo.sub);
-                    navigate("/home");
-                  }}
-                  onError={() => {
-                    console.log("Google Sign In Failed");
-                  }}
-                />
-              </div> */}
 
               <p>
                 <span>{t("dontHaveAccount")}</span>

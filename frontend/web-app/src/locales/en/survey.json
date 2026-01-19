@@ -23,5 +23,6 @@
   "styleAlt": "{{style}} example",
   "thanksTitle": "Thanks!",
   "thanksText": "Your preferences have been saved.",
-  "skip": "Skip for now"
+  "skip": "Skip for now",
+  "surveyOptionsLegend": "Survey options group"
 }

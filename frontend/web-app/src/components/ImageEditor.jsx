@@ -54,7 +54,7 @@ export default function ImageEditor({
 
   return (
     <Sheet isOpen={imageUploaded} onClose={handleCloseSegmentationSheet}>
-      <Sheet.Container style={ContainerStyle}>
+      <Sheet.Container style={ContainerStyle} role="dialog" aria-modal="true" aria-label="Segmentation Editor Dialog">
         <Sheet.Header
           style={{
             backgroundColor: "rgba(255, 255, 255, 0.527)",
@@ -62,7 +62,7 @@ export default function ImageEditor({
             borderTopRightRadius: "2rem",
           }}
         />
-        <Sheet.Content ref={scrollRef}>
+        <Sheet.Content ref={scrollRef} tabIndex={0} aria-label="Segmentation Editor Content">
           {isBeingCustomized ? (
             <CustomizeSegment
               imageObj={imageObj}

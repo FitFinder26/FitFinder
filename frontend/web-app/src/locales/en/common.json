@@ -15,4 +15,6 @@
   "close": "Close",
   "error404": "404! This is an empty page",
   "goHome": "Go Home"
+  ,
+  "skipToMainContent": "Skip to main content"
 }

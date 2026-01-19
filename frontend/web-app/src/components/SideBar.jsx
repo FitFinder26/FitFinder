@@ -81,7 +81,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
   };
 
   const sidebarContent = (
-    <>
+    <aside aria-label={t("sidebarMenu") || "Sidebar menu"}>
       {/* User Header */}
       <UserHeader>
         <FileInput
@@ -90,10 +90,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
           accept="image/*"
           onChange={handleFileChange}
         />
-
         <UserSection>
           <AvatarContainer>
-            <AvatarWrap onClick={handleProfilePicClick}>
+            <AvatarWrap onClick={handleProfilePicClick} tabIndex={0} aria-label={t("editProfileImage") || "Edit profile image"}>
               {user && user.profileImageURL && !imgError ? (
                 <AvatarImg
                   src={user.profileImageURL}
@@ -106,78 +105,56 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 </AvatarFallback>
               )}
             </AvatarWrap>
-
             {user && (
               <EditButton
                 $theme={theme}
                 disabled={uploading}
                 onClick={handleProfilePicClick}
+                aria-label={t("editProfileImage") || "Edit profile image"}
               >
                 {uploading ? t("uploading") : <EditIcon size={14} />}
               </EditButton>
             )}
           </AvatarContainer>
-
           <UserName>{user?.userName || t("guest")}</UserName>
         </UserSection>
       </UserHeader>
-
       {/* Menu */}
-      <MenuList>
-        <MenuItemRow onClick={handleHistoryNavigation}>
-          <History /> {t("recentSearches")}
-        </MenuItemRow>
-
-        <MenuItemRow onClick={handleFavoriteNavigation}>
-          <Heart /> {t("savedItems")}
-        </MenuItemRow>
-
-        <MenuItemRow onClick={() => window.open(feedbackFormLink)}>
-          <MessageCircleDashed /> {t("sendFeedback")}
-        </MenuItemRow>
-
-        <SubMenuTitle onClick={() => setIsThemeOpen((v) => !v)}>
-          {theme === "light" ? (
-            <Sun
-              style={{
-                rotate: isThemeOpen ? "90deg" : "0deg",
-                transition: "rotate 0.5s ease-in-out",
-              }}
-            />
-          ) : (
-            <Moon
-              style={{
-                rotate: isThemeOpen ? "90deg" : "0deg",
-                transition: "rotate 0.5s ease-in-out",
-              }}
-            />
-          )}
-          {t("theme")}
-        </SubMenuTitle>
-
-        <SubMenuContent $open={isThemeOpen}>
-          <MenuItemRow onClick={() => setTheme("light")}>
-            {theme === "light" && <FaCheck />} {t("light")}
-          </MenuItemRow>
-
-          <MenuItemRow onClick={() => setTheme("dark")}>
-            {theme === "dark" && <FaCheck />} {t("dark")}
-          </MenuItemRow>
-
-          <MenuItemRow onClick={() => setTheme("system")}>
-            {theme === "system" && <FaCheck />} {t("system")}
-          </MenuItemRow>
-        </SubMenuContent>
-
-        <MenuItemRow>
-          <CgPassword size={20} /> {t("changePassword")}
-        </MenuItemRow>
-
-        <MenuItemRow onClick={handleLogout}>
-          <DoorOpen /> {t("signOut")}
-        </MenuItemRow>
-      </MenuList>
-    </>
+      <nav aria-label={t("sidebarMenu") || "Sidebar menu"}>
+        <MenuList as="ul">
+          <li>
+            <MenuItemRow as="button" onClick={handleHistoryNavigation} aria-label={t("recentSearches")}> <History /> {t("recentSearches")} </MenuItemRow>
+          </li>
+          <li>
+            <MenuItemRow as="button" onClick={handleFavoriteNavigation} aria-label={t("savedItems")}> <Heart /> {t("savedItems")} </MenuItemRow>
+          </li>
+          <li>
+            <MenuItemRow as="button" onClick={() => window.open(feedbackFormLink)} aria-label={t("sendFeedback")}> <MessageCircleDashed /> {t("sendFeedback")} </MenuItemRow>
+          </li>
+          <li>
+            <SubMenuTitle as="button" onClick={() => setIsThemeOpen((v) => !v)} aria-expanded={isThemeOpen} aria-controls="theme-options">
+              {theme === "light" ? (
+                <Sun style={{ rotate: isThemeOpen ? "90deg" : "0deg", transition: "rotate 0.5s ease-in-out" }} />
+              ) : (
+                <Moon style={{ rotate: isThemeOpen ? "90deg" : "0deg", transition: "rotate 0.5s ease-in-out" }} />
+              )}
+              {t("theme")}
+            </SubMenuTitle>
+            <SubMenuContent $open={isThemeOpen} id="theme-options">
+              <MenuItemRow as="button" onClick={() => setTheme("light")} aria-checked={theme === "light"} role="menuitemradio">{theme === "light" && <FaCheck />} {t("light")}</MenuItemRow>
+              <MenuItemRow as="button" onClick={() => setTheme("dark")} aria-checked={theme === "dark"} role="menuitemradio">{theme === "dark" && <FaCheck />} {t("dark")}</MenuItemRow>
+              <MenuItemRow as="button" onClick={() => setTheme("system")} aria-checked={theme === "system"} role="menuitemradio">{theme === "system" && <FaCheck />} {t("system")}</MenuItemRow>
+            </SubMenuContent>
+          </li>
+          <li>
+            <MenuItemRow as="button" aria-label={t("changePassword")}> <CgPassword size={20} /> {t("changePassword")} </MenuItemRow>
+          </li>
+          <li>
+            <MenuItemRow as="button" onClick={handleLogout} aria-label={t("signOut")}> <DoorOpen /> {t("signOut")} </MenuItemRow>
+          </li>
+        </MenuList>
+      </nav>
+    </aside>
   );
 
   return (

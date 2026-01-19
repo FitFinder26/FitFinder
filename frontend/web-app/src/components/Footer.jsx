@@ -8,15 +8,8 @@ import { NAMESPACES } from "../locales/namespaces";
 export default function Footer({ navigationBlocked }) {
   const { t } = useTranslation(NAMESPACES.footer);
   const { t: tCommon } = useTranslation(NAMESPACES.common);
-  const contactEmail = (email, subject = "", body = "") => {
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-  };
-  const navigator = useNavigate();
   const { device } = useDevice();
-
+  // For accessibility, use real <a> with href, and semantic nav/ul/li
   return (
     <FooterContainer device={device}>
       <TopSection device={device}>
@@ -29,56 +22,65 @@ export default function Footer({ navigationBlocked }) {
           <BrandText device={device}>{t("tagline")}</BrandText>
         </BrandSection>
 
-        <Section device={device}>
+        <Section device={device} as="nav" aria-label={t("quickLinks") + ' ' + tCommon("appName")}>
           <SectionTitle device={device}>{t("quickLinks")}</SectionTitle>
-          <LinksList device={device}>
-            <Link
-              device={device}
-              onClick={() => navigator("/")}
-              disabled={navigationBlocked}
-            >
-              {t("home")}
-            </Link>
-            <Link
-              device={device}
-              onClick={() => navigator("/about-us")}
-              disabled={navigationBlocked}
-            >
-              {t("about")}
-            </Link>
-            <Link
-              device={device}
-              onClick={() =>
-                contactEmail(
-                  "fitfindercsed@gmail.com",
-                  t("contactSubject", { appName: tCommon("appName") }),
-                  t("contactBody")
-                )
-              }
-              disabled={navigationBlocked}
-            >
-              {t("contact")}
-            </Link>
+          <LinksList device={device} as="ul">
+            <li>
+              <FooterLink
+                device={device}
+                href="/"
+                tabIndex={navigationBlocked ? -1 : 0}
+                aria-disabled={navigationBlocked}
+              >
+                {t("home")}
+              </FooterLink>
+            </li>
+            <li>
+              <FooterLink
+                device={device}
+                href="/about-us"
+                tabIndex={navigationBlocked ? -1 : 0}
+                aria-disabled={navigationBlocked}
+              >
+                {t("about")}
+              </FooterLink>
+            </li>
+            <li>
+              <FooterLink
+                device={device}
+                href={`mailto:fitfindercsed@gmail.com?subject=${encodeURIComponent(t("contactSubject", { appName: tCommon("appName") }))}&body=${encodeURIComponent(t("contactBody"))}`}
+                tabIndex={navigationBlocked ? -1 : 0}
+                aria-disabled={navigationBlocked}
+              >
+                {t("contact")}
+              </FooterLink>
+            </li>
           </LinksList>
         </Section>
 
-        <Section device={device}>
+        <Section device={device} as="nav" aria-label={t("legal") + ' ' + tCommon("appName")}>
           <SectionTitle device={device}>{t("legal")}</SectionTitle>
-          <LinksList device={device}>
-            <Link
-              device={device}
-              onClick={() => navigator("/privacy-policy")}
-              disabled={navigationBlocked}
-            >
-              {t("privacy")}
-            </Link>
-            <Link
-              device={device}
-              onClick={() => navigator("/terms-of-service")}
-              disabled={navigationBlocked}
-            >
-              {t("terms")}
-            </Link>
+          <LinksList device={device} as="ul">
+            <li>
+              <FooterLink
+                device={device}
+                href="/privacy-policy"
+                tabIndex={navigationBlocked ? -1 : 0}
+                aria-disabled={navigationBlocked}
+              >
+                {t("privacy")}
+              </FooterLink>
+            </li>
+            <li>
+              <FooterLink
+                device={device}
+                href="/terms-of-service"
+                tabIndex={navigationBlocked ? -1 : 0}
+                aria-disabled={navigationBlocked}
+              >
+                {t("terms")}
+              </FooterLink>
+            </li>
           </LinksList>
         </Section>
       </TopSection>
@@ -214,6 +216,7 @@ const LinksList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  list-style-type: none;
   align-items: ${(props) =>
     props.device === "mobile" ? "center" : "flex-start"};
 
@@ -228,7 +231,7 @@ const BottomSection = styled.div`
   text-align: center;
 `;
 
-const Link = styled.a`
+const FooterLink = styled.a`
   color: var(--links-color);
   text-decoration: none;
   cursor: pointer;
@@ -237,11 +240,16 @@ const Link = styled.a`
   line-height: 1.5;
   letter-spacing: 0.005em;
   transition: opacity 0.2s ease;
-
-  &:hover {
+  outline: none;
+  &:hover, &:focus {
     opacity: 0.7;
+    text-decoration: underline;
   }
-
+  &[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.5;
+    text-decoration: none;
+  }
   @media (max-width: var(--mobile)) {
     font-size: 0.875rem;
   }

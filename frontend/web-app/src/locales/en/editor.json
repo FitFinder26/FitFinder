@@ -25,5 +25,7 @@
   "cancel": "Cancel",
   "segment": "Segment",
   "resegment": "Re-segment",
-  "sendSelected": "Send Selected"
+  "sendSelected": "Send Selected",
+  "maskToggleLegend": "Add or remove mask toggle",
+  "promptLegend": "Describe the item you are searching for"
 }

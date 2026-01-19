@@ -11,5 +11,7 @@
   "signOut": "Sign out",
   "profileImageSuccess": "Profile image changed successfully",
   "profileImageFailed": "Profile image upload failed",
-  "uploading": "..."
+  "uploading": "...",
+  "sidebarMenu": "Sidebar menu",
+  "editProfileImage": "Edit profile image"
 }
