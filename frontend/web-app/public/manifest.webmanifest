@@ -4,9 +4,9 @@
   "description": "Discover fashion items with image search and personalized recommendations.",
   "start_url": "/FitFinder/",
   "scope": "/FitFinder/",
-  "display": "standalone",
+  "display": "minimal-ui",
   "background_color": "#ffffff",
-  "theme_color": "#4d96ff",
+  "theme_color": "#181818",
   "orientation": "portrait",
   "icons": [
     {

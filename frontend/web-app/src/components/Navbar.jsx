@@ -84,7 +84,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
       <NavContainer $language={i18n.language}>
         <div
           style={{
-            gridColumn: "1",
+            display: "flex",
             textAlign: i18n.language === "ar" ? "right" : "left",
             cursor: "pointer",
           }}
@@ -96,6 +96,13 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             alt={t("logoAlt", { appName: tCommon("appName") })}
             title={t("logoTitle")}
           />
+          <LanguageToggleButton
+            onClick={handleLanguageToggle}
+            title={t("toggleLanguage")}
+          >
+            <Languages size={20} />
+            {device === "desktop" && <span>{getLanguageDisplayName(currentLang)}</span>}
+          </LanguageToggleButton>
         </div>
 
         <div style={{ gridColumn: "2", textAlign: "center" }}>
@@ -114,9 +121,9 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             style={{ display: "none" }}
             onChange={handleUploadImage}
           />
-          <SearchWithImageButton onClick={handleSearchWithImageClick}>
+          <SearchWithImageButton onClick={handleSearchWithImageClick} title={t("searchWithImage")}>
             <Camera width={24} height={24} />
-            <label
+            {device === "desktop" && <label
               style={{
                 marginLeft: i18n.language === "ar" ? "0" : "0.5rem",
                 marginRight: i18n.language === "ar" ? "0.5rem" : "0",
@@ -124,7 +131,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
               }}
             >
               {t("searchWithImage")}
-            </label>
+            </label>}
           </SearchWithImageButton>
         </div>
 
@@ -138,13 +145,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             alignItems: "center",
           }}
         >
-          <LanguageToggleButton
-            onClick={handleLanguageToggle}
-            title={t("toggleLanguage")}
-          >
-            <Languages size={20} />
-            {device !== "mobile" && <span>{getLanguageDisplayName(currentLang)}</span>}
-          </LanguageToggleButton>
+          
           {isLoggedIn ? (
             <ProfileButton
               $language={i18n.language}

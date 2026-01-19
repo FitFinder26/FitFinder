@@ -36,10 +36,13 @@ export default function UserLayout() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh; /* full viewport height, not min-height */
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
   background-color: var(--bg-color);
   transition: 0.5s ease-in-out;
+  @supports (height: 100dvh) {
+    min-height: 100dvh;
+  }
 `;
 
 const MainContent = styled.main`
