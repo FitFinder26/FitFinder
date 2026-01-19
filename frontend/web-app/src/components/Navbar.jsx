@@ -39,7 +39,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     else setIsLoggedIn(false);
   }, [isAuthenticated]);
 
-  const handleLanguageToggle = async () => {
+  const handleLanguageToggle = async (e) => {
+    e.stopPropagation();
     const newLang = await toggleLanguage();
     setCurrentLang(newLang);
   };
