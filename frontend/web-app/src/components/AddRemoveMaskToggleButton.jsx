@@ -45,7 +45,19 @@ export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
             </svg>
             <span>{t("addMask")}</span>
           </label>
+          <label htmlFor="switch-opt-1" title={t("addMaskTitle")}> 
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
+            </svg>
+            <span>{t("addMask")}</span>
+          </label>
 
+          <label htmlFor="switch-opt-2" title={t("removeMaskTitle")}> 
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M5 11h14v2H5z" />
+            </svg>
+            <span>{t("removeMask")}</span>
+          </label>
           <label htmlFor="switch-opt-2" title={t("removeMaskTitle")}> 
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M5 11h14v2H5z" />

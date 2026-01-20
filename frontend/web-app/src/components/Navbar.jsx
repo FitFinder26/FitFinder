@@ -33,6 +33,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const { t } = useTranslation(NAMESPACES.navbar);
   const { t: tCommon } = useTranslation(NAMESPACES.common);
   const { i18n } = useTranslation();
+
   // Accessibility: focus management for nav
   const navRef = useRef(null);
 
@@ -113,6 +114,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             aria-label={t("toggleLanguage")}
             tabIndex={0}
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleLanguageToggle(e); }}
+           
           >
             <Languages size={20} />
             {device === "desktop" && <span>{getLanguageDisplayName(currentLang)}</span>}
@@ -208,6 +210,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                 aria-label={t("login")}
                 tabIndex={0}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate("/registration", { state: { form: "login" } }); }}
+              
               >
                 {t("login")}
               </NavButton>
@@ -220,6 +223,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                   aria-label={t("join")}
                   tabIndex={0}
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate("/registration", { state: { form: "signup" } }); }}
+                  
                 >
                   {t("join")}
                 </JoinButton>
