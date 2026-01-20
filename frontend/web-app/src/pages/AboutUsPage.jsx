@@ -28,28 +28,84 @@ const AboutUsPage = () => {
         <nav aria-label={t("aboutSidebarNav") || "About page navigation"}>
           <SidebarList>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("hero")} tabIndex={0} aria-label={t("navAbout")}>{t("navAbout")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("hero")}
+                tabIndex={0}
+                aria-label={t("navAbout")}
+              >
+                {t("navAbout")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("introduction")} tabIndex={0} aria-label={t("navIntroduction")}>{t("navIntroduction")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("introduction")}
+                tabIndex={0}
+                aria-label={t("navIntroduction")}
+              >
+                {t("navIntroduction")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("how-it-works")} tabIndex={0} aria-label={t("navHowItWorks")}>{t("navHowItWorks")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("how-it-works")}
+                tabIndex={0}
+                aria-label={t("navHowItWorks")}
+              >
+                {t("navHowItWorks")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("access")} tabIndex={0} aria-label={t("navUserAccess")}>{t("navUserAccess")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("access")}
+                tabIndex={0}
+                aria-label={t("navUserAccess")}
+              >
+                {t("navUserAccess")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("features")} tabIndex={0} aria-label={t("navFeatures")}>{t("navFeatures")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("features")}
+                tabIndex={0}
+                aria-label={t("navFeatures")}
+              >
+                {t("navFeatures")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("personalization")} tabIndex={0} aria-label={t("navPersonalization")}>{t("navPersonalization")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("personalization")}
+                tabIndex={0}
+                aria-label={t("navPersonalization")}
+              >
+                {t("navPersonalization")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("academic")} tabIndex={0} aria-label={t("navAcademic")}>{t("navAcademic")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("academic")}
+                tabIndex={0}
+                aria-label={t("navAcademic")}
+              >
+                {t("navAcademic")}
+              </SidebarButton>
             </li>
             <li>
-              <SidebarButton type="button" onClick={() => scrollToSection("contributors")} tabIndex={0} aria-label={t("navContributors")}>{t("navContributors")}</SidebarButton>
+              <SidebarButton
+                type="button"
+                onClick={() => scrollToSection("contributors")}
+                tabIndex={0}
+                aria-label={t("navContributors")}
+              >
+                {t("navContributors")}
+              </SidebarButton>
             </li>
           </SidebarList>
         </nav>
@@ -228,7 +284,6 @@ const Sidebar = styled.aside`
   }
 `;
 
-
 const SidebarList = styled.ul`
   list-style: none;
   margin: 0;
@@ -249,7 +304,8 @@ const SidebarButton = styled.button`
   border-bottom: 1px solid transparent;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     transform: translateX(5px);
     border-bottom: 1px solid var(--text-color);
   }
