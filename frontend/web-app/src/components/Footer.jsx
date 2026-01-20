@@ -9,6 +9,13 @@ export default function Footer({ navigationBlocked }) {
   const { t } = useTranslation(NAMESPACES.footer);
   const { t: tCommon } = useTranslation(NAMESPACES.common);
   const { device } = useDevice();
+  const navigate = useNavigate();
+
+  const handleNavigation = (e, path) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(path);
+  };
   // For accessibility, use real <a> with href, and semantic nav/ul/li
   return (
     <FooterContainer device={device}>
@@ -29,6 +36,7 @@ export default function Footer({ navigationBlocked }) {
               <FooterLink
                 device={device}
                 href="/"
+                onClick={(e) => handleNavigation(e, "/")}
                 tabIndex={navigationBlocked ? -1 : 0}
                 aria-disabled={navigationBlocked}
               >
@@ -39,6 +47,7 @@ export default function Footer({ navigationBlocked }) {
               <FooterLink
                 device={device}
                 href="/about-us"
+                onClick={(e) => handleNavigation(e, "/about-us")}
                 tabIndex={navigationBlocked ? -1 : 0}
                 aria-disabled={navigationBlocked}
               >
@@ -65,6 +74,7 @@ export default function Footer({ navigationBlocked }) {
               <FooterLink
                 device={device}
                 href="/privacy-policy"
+                onClick={(e) => handleNavigation(e, "/privacy-policy")}
                 tabIndex={navigationBlocked ? -1 : 0}
                 aria-disabled={navigationBlocked}
               >
@@ -75,6 +85,7 @@ export default function Footer({ navigationBlocked }) {
               <FooterLink
                 device={device}
                 href="/terms-of-service"
+                onClick={(e) => handleNavigation(e, "/terms-of-service")}
                 tabIndex={navigationBlocked ? -1 : 0}
                 aria-disabled={navigationBlocked}
               >
