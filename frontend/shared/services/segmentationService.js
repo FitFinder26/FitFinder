@@ -10,7 +10,7 @@ let maskListeners = [];
 
 export const segmentationService = {
   connect: () => {
-    ws = new WebSocket(`${API_BASE_URL.replace(/^https/, "wss")}/ws`);
+    ws = new WebSocket(`${API_BASE_URL.replace(/^https/, "wss")}ws`);
 
     ws.onopen = () => {
       console.log("WebSocket Connected");
