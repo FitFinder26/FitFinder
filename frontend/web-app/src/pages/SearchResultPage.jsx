@@ -21,6 +21,7 @@ function CardImageWithLoader({ src, alt, t }) {
       <img
         src={src}
         alt={alt}
+        loading="lazy"
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
         style={{
@@ -133,7 +134,7 @@ export default function SearchResultPage() {
         <Left device={device}>
           <PreviewCard>
             {searchingPeice ? (
-              <PreviewImage src={searchingPeice} alt={t("previewAlt")} />
+              <PreviewImage src={searchingPeice} alt={t("previewAlt")} loading="lazy" />
             ) : (
               <PreviewPlaceholder>{t("segmentedImage")}</PreviewPlaceholder>
             )}
@@ -251,7 +252,7 @@ export default function SearchResultPage() {
                 ))}
           </Grid>
           {visible.length === 0 && !loading && (
-            <img src={noDataFound} alt={t("noResultsAlt")} />
+            <img src={noDataFound} alt={t("noResultsAlt")} loading="lazy" />
           )}
         </Right>
       </Content>

@@ -33,6 +33,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const { t } = useTranslation(NAMESPACES.navbar);
   const { t: tCommon } = useTranslation(NAMESPACES.common);
   const { i18n } = useTranslation();
+  // Accessibility: focus management for nav
+  const navRef = useRef(null);
 
   useEffect(() => {
     if (isAuthenticated()) setIsLoggedIn(true);
@@ -41,6 +43,7 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
 
   const handleLanguageToggle = async (e) => {
     e.stopPropagation();
+    e.preventDefault();
     const newLang = await toggleLanguage();
     setCurrentLang(newLang);
   };
@@ -72,16 +75,20 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     }
   };
 
-  const handleCameraClick = () => {
+  const handleCameraClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     cameraInputRef.current.click();
   };
 
-  const handleUploadClick = () => {
+  const handleUploadClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     inputRef.current.click();
   };
 
   return (
-    <>
+    <nav ref={navRef} aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })}>
       <NavContainer $language={i18n.language}>
         <div
           style={{
@@ -90,8 +97,11 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             cursor: "pointer",
           }}
           onClick={() => navigate("/", { state: { cameFrom: "navbar" } })}
+          tabIndex={0}
+          role="link"
+          aria-label={t('goHome', { defaultValue: 'Go to home page' })}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate("/", { state: { cameFrom: "navbar" } }); }}
         >
-          {/* <Logo fontSize={70} scale={0.4} variant={0} /> */}
           <LogoIcon
             src={logoSrc}
             alt={t("logoAlt", { appName: tCommon("appName") })}
@@ -100,6 +110,9 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           <LanguageToggleButton
             onClick={handleLanguageToggle}
             title={t("toggleLanguage")}
+            aria-label={t("toggleLanguage")}
+            tabIndex={0}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleLanguageToggle(e); }}
           >
             <Languages size={20} />
             {device === "desktop" && <span>{getLanguageDisplayName(currentLang)}</span>}
@@ -122,7 +135,21 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             style={{ display: "none" }}
             onChange={handleUploadImage}
           />
-          <SearchWithImageButton onClick={handleSearchWithImageClick} title={t("searchWithImage")}>
+          <SearchWithImageButton
+            onClick={device === "desktop" ? handleUploadClick : handleSearchWithImageClick}
+            title={t("searchWithImage")}
+            aria-label={t("searchWithImage")}
+            tabIndex={0}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                if (device === "desktop") {
+                  handleUploadClick(e);
+                } else {
+                  handleSearchWithImageClick();
+                }
+              }
+            }}
+          >
             <Camera width={24} height={24} />
             {device === "desktop" && <label
               style={{
@@ -146,12 +173,14 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             alignItems: "center",
           }}
         >
-          
           {isLoggedIn ? (
             <ProfileButton
               $language={i18n.language}
               onClick={handleProfilePicClick}
               title={t("profileButtonTitle")}
+              aria-label={t("profileButtonTitle")}
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleProfilePicClick(); }}
             >
               <AvatarContainer>
                 <AvatarWrap>
@@ -176,6 +205,9 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                   navigate("/registration", { state: { form: "login" } })
                 }
                 disabled={navigationBlocked}
+                aria-label={t("login")}
+                tabIndex={0}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate("/registration", { state: { form: "login" } }); }}
               >
                 {t("login")}
               </NavButton>
@@ -185,6 +217,9 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
                     navigate("/registration", { state: { form: "signup" } })
                   }
                   disabled={navigationBlocked}
+                  aria-label={t("join")}
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate("/registration", { state: { form: "signup" } }); }}
                 >
                   {t("join")}
                 </JoinButton>
@@ -205,15 +240,18 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
         <ModalOverlay
           $language={i18n.language}
           onClick={() => setShowImageSourceModal(false)}
+          role="presentation"
         >
-          <ModalContent device={device} onClick={(e) => e.stopPropagation()}>
+          <ModalContent device={device} onClick={(e) => { e.stopPropagation(); e.preventDefault(); }} role="dialog" aria-modal="true">
             <ModalTitle device={device}>{t("chooseImageSource")}</ModalTitle>
             <ModalButtonGroup device={device}>
-              <ModalButton device={device} onClick={handleCameraClick}>
+              <ModalButton device={device} onClick={handleCameraClick} aria-label={t("takePhoto")}
+                tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleCameraClick(e); }}>
                 <Camera size={24} />
                 <span>{t("takePhoto")}</span>
               </ModalButton>
-              <ModalButton device={device} onClick={handleUploadClick}>
+              <ModalButton device={device} onClick={handleUploadClick} aria-label={t("uploadFromDevice")}
+                tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleUploadClick(e); }}>
                 <Upload size={24} />
                 <span>{t("uploadFromDevice")}</span>
               </ModalButton>
@@ -221,13 +259,16 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             <CancelButton
               device={device}
               onClick={() => setShowImageSourceModal(false)}
+              aria-label={t("cancel")}
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowImageSourceModal(false); e.preventDefault(); e.stopPropagation(); }}
             >
               {t("cancel")}
             </CancelButton>
           </ModalContent>
         </ModalOverlay>
       )}
-    </>
+    </nav>
   );
 }
 

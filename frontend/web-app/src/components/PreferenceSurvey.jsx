@@ -92,56 +92,51 @@ export default function PreferenceSurvey({ onClose }) {
         <Body>
           {step === 0 && (
             <Section>
-              <Title>{t("genderTitle")}</Title>
-              <Options>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("genderMale")}
-                </PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("genderFemale")}
-                </PrimaryButton>
-                <SecondaryButton onClick={handleAnswer}>
-                  {t("genderPreferNot")}
-                </SecondaryButton>
-              </Options>
+              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
+                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
+                <Title>{t("genderTitle")}</Title>
+                <Options>
+                  <PrimaryButton onClick={handleAnswer}>{t("genderMale")}</PrimaryButton>
+                  <PrimaryButton onClick={handleAnswer}>{t("genderFemale")}</PrimaryButton>
+                  <SecondaryButton onClick={handleAnswer}>{t("genderPreferNot")}</SecondaryButton>
+                </Options>
+              </fieldset>
             </Section>
           )}
 
           {step === 1 && (
             <Section>
-              <Title>{t("colorTitle")}</Title>
-              <Options>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("colors.red")}
-                </PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("colors.blue")}
-                </PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("colors.black")}
-                </PrimaryButton>
-                <PrimaryButton onClick={handleAnswer}>
-                  {t("colors.white")}
-                </PrimaryButton>
-              </Options>
+              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
+                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
+                <Title>{t("colorTitle")}</Title>
+                <Options>
+                  <PrimaryButton onClick={handleAnswer}>{t("colors.red")}</PrimaryButton>
+                  <PrimaryButton onClick={handleAnswer}>{t("colors.blue")}</PrimaryButton>
+                  <PrimaryButton onClick={handleAnswer}>{t("colors.black")}</PrimaryButton>
+                  <PrimaryButton onClick={handleAnswer}>{t("colors.white")}</PrimaryButton>
+                </Options>
+              </fieldset>
             </Section>
           )}
 
           {step === 2 && (
             <Section>
-              <Title>{t("styleTitle")}</Title>
-              <ImageGrid>
-                {styles.map((s) => (
-                  <StyleCard key={s.id} onClick={handleAnswer}>
-                    <ImageWithFallback
-                      src={s.img}
-                      fallback={s.fallback}
-                      alt={t("styleAlt", { style: t(`styles.${s.key}`) })}
-                    />
-                    <StyleLabel>{t(`styles.${s.key}`)}</StyleLabel>
-                  </StyleCard>
-                ))}
-              </ImageGrid>
+              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
+                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
+                <Title>{t("styleTitle")}</Title>
+                <ImageGrid>
+                  {styles.map((s) => (
+                    <StyleCard key={s.id} onClick={handleAnswer}>
+                      <ImageWithFallback
+                        src={s.img}
+                        fallback={s.fallback}
+                        alt={t("styleAlt", { style: t(`styles.${s.key}`) })}
+                      />
+                      <StyleLabel>{t(`styles.${s.key}`)}</StyleLabel>
+                    </StyleCard>
+                  ))}
+                </ImageGrid>
+              </fieldset>
             </Section>
           )}
 

@@ -138,30 +138,35 @@ export default function CustomizeSegment({
   };
 
   return (
-    <Container>
+    <Container role="region" aria-label={t('customizeSegmentRegion', 'Customize Segmentation')}>
       {segmentedImageSrc ? (
         <CroppedImagePreview src={segmentedImageSrc} alt={t("croppedAlt")} />
       ) : (
-        <p>{t("loadingCropped")}</p>
+        <p role="status" aria-live="polite">{t("loadingCropped")}</p>
       )}
 
-      <Prompt
-        value={prompt}
-        onChange={handlePromptChange}
-        placeholder={t("promptPlaceholder")}
-        disabled={isSearching}
-      />
+      <fieldset style={{ border: 0, padding: 0, margin: 0, width: "100%" }}>
+        <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('promptLegend') || 'Describe the item'}</legend>
+        <Prompt
+          value={prompt}
+          onChange={handlePromptChange}
+          placeholder={t("promptPlaceholder")}
+          disabled={isSearching}
+          aria-label={t('promptLegend') || 'Describe the item'}
+          aria-required="true"
+        />
+      </fieldset>
 
       <ButtonsContainer>
-        <BackButton onClick={() => setIsBeingCustomized(false)}>
+        <BackButton onClick={() => setIsBeingCustomized(false)} aria-label={t('back')}>
           <span>{t("back")}</span>
         </BackButton>
-        <SearchButton onClick={handleSearch} disabled={isSearching}>
+        <SearchButton onClick={handleSearch} disabled={isSearching} aria-label={t('search')}>
           {isSearching ? <HashLoader size={20} color="#fff" /> : t("search")}
         </SearchButton>
       </ButtonsContainer>
 
-      <Guide>
+      <Guide as="aside" aria-live="polite" tabIndex={0} aria-label={t('customizeGuideLabel', 'Segmentation Guidance')}>
         <p>
           {t("guideLine1")} <small>{t("guideExamples")}</small>{" "}
           {t("guideLine2")}

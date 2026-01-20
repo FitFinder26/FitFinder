@@ -1,14 +1,25 @@
+
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-export default function MagicButton({ processImage, isDisabled, name }) {
+export default function MagicButton({ processImage, isDisabled, name, ariaLabelKey }) {
+  const { t } = useTranslation();
+  // name is a translation key, ariaLabelKey is optional for more descriptive label
+  const label = ariaLabelKey ? t(ariaLabelKey) : t(name);
   return (
     <Button
-      onClick={processImage}
+      onClick={isDisabled ? undefined : processImage}
       $disabled={isDisabled}
       $buttonDisabled={isDisabled}
+      aria-label={label}
+      aria-disabled={isDisabled}
+      tabIndex={isDisabled ? -1 : 0}
+      type="button"
+      role="button"
     >
-      {name}
-      <div>
+      <span className="visually-hidden">{label}</span>
+      <span aria-hidden="true">{t(name)}</span>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -30,7 +41,7 @@ export default function MagicButton({ processImage, isDisabled, name }) {
           </g>
         </svg>
       </div>
-      <div>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -52,7 +63,7 @@ export default function MagicButton({ processImage, isDisabled, name }) {
           </g>
         </svg>
       </div>
-      <div>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -74,7 +85,7 @@ export default function MagicButton({ processImage, isDisabled, name }) {
           </g>
         </svg>
       </div>
-      <div>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -96,7 +107,7 @@ export default function MagicButton({ processImage, isDisabled, name }) {
           </g>
         </svg>
       </div>
-      <div>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -118,7 +129,7 @@ export default function MagicButton({ processImage, isDisabled, name }) {
           </g>
         </svg>
       </div>
-      <div>
+      <div aria-hidden="true">
         <svg
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 784.11 815.53"
@@ -155,10 +166,32 @@ const Button = styled.button`
   border-radius: 8px;
   box-shadow: 0 0 0 #fec1958c;
   transition: all 0.3s ease-in-out;
-  cursor: ${(props) => !props.$buttonDisabled && "pointer"};
-  opacity: ${(props) => props.$buttonDisabled && "0"};
+  cursor: ${(props) => (!props.$buttonDisabled ? "pointer" : "not-allowed")};
+  opacity: ${(props) => (props.$buttonDisabled ? "0.5" : "1")};
+  outline: none;
 
-  div:nth-child(1) {
+  &:focus {
+    outline: 3px solid #0e3a3a;
+    outline-offset: 2px;
+  }
+  &:active {
+    outline: 3px solid #0e3a3a;
+    outline-offset: 2px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  div:nth-child(3) {
     position: absolute;
     top: 20%;
     left: 20%;
@@ -168,7 +201,7 @@ const Button = styled.button`
     z-index: -5;
     transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
   }
-  div:nth-child(2) {
+  div:nth-child(4) {
     position: absolute;
     top: 45%;
     left: 45%;
@@ -178,8 +211,7 @@ const Button = styled.button`
     z-index: -5;
     transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
   }
-
-  div:nth-child(3) {
+  div:nth-child(5) {
     position: absolute;
     top: 40%;
     left: 40%;
@@ -189,8 +221,7 @@ const Button = styled.button`
     z-index: -5;
     transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
   }
-
-  div:nth-child(4) {
+  div:nth-child(6) {
     position: absolute;
     top: 20%;
     left: 40%;
@@ -200,8 +231,7 @@ const Button = styled.button`
     z-index: -5;
     transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
   }
-
-  div:nth-child(5) {
+  div:nth-child(7) {
     position: absolute;
     top: 25%;
     left: 45%;
@@ -211,8 +241,7 @@ const Button = styled.button`
     z-index: -5;
     transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
   }
-
-  div:nth-child(6) {
+  div:nth-child(8) {
     position: absolute;
     top: 5%;
     left: 50%;
@@ -230,7 +259,7 @@ const Button = styled.button`
     border: 3px solid #fff;
   }
 
-  &:hover div:nth-child(1) {
+  &:hover div:nth-child(3) {
     position: absolute;
     top: -80%;
     left: -30%;
@@ -239,8 +268,7 @@ const Button = styled.button`
     filter: drop-shadow(0 0 10px #fffdef);
     z-index: 2;
   }
-
-  &:hover div:nth-child(2) {
+  &:hover div:nth-child(4) {
     position: absolute;
     top: -25%;
     left: 10%;
@@ -249,8 +277,7 @@ const Button = styled.button`
     filter: drop-shadow(0 0 10px #fffdef);
     z-index: 2;
   }
-
-  &:hover div:nth-child(3) {
+  &:hover div:nth-child(5) {
     position: absolute;
     top: 55%;
     left: 25%;
@@ -259,8 +286,7 @@ const Button = styled.button`
     filter: drop-shadow(0 0 10px #fffdef);
     z-index: 2;
   }
-
-  &:hover div:nth-child(4) {
+  &:hover div:nth-child(6) {
     position: absolute;
     top: 30%;
     left: 80%;
@@ -269,8 +295,7 @@ const Button = styled.button`
     filter: drop-shadow(0 0 10px #fffdef);
     z-index: 2;
   }
-
-  &:hover div:nth-child(5) {
+  &:hover div:nth-child(7) {
     position: absolute;
     top: 25%;
     left: 115%;
@@ -279,8 +304,7 @@ const Button = styled.button`
     filter: drop-shadow(0 0 10px #fffdef);
     z-index: 2;
   }
-
-  &:hover div:nth-child(6) {
+  &:hover div:nth-child(8) {
     position: absolute;
     top: 5%;
     left: 60%;

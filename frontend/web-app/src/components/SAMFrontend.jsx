@@ -494,6 +494,8 @@ export default function SAMFrontend({
         textAlign: "center",
         animation: "fadeIn 0.5s",
       }}
+      role="region"
+      aria-label={t("segmentationRegionLabel")}
     >
       {!sessionStarted ? (
         <div style={{ position: "relative", display: "inline-block" }}>
@@ -509,9 +511,14 @@ export default function SAMFrontend({
             onMouseLeave={() => setHovered(null)}
             $imageURL={imageURL}
             $loading={loading}
+            role="img"
+            aria-label={t("segmentationCanvasLabel")}
+            tabIndex={0}
+            aria-describedby="segmentation-canvas-desc"
           />
+      
           {loading && (
-            <Overlay>
+            <Overlay role="status" aria-live="polite">
               <StatusLoader>
                 <HashLoader size={50} color="#fff" />
                 {segmentationStatus === "uploading" && (
@@ -528,6 +535,7 @@ export default function SAMFrontend({
                   }}
                   $bgColor="orange"
                   $bgColorHover="red"
+                  aria-label={t("cancel")}
                 >
                   {t("cancel")}
                 </Button>
@@ -536,7 +544,7 @@ export default function SAMFrontend({
           )}
         </div>
       ) : (
-        <Overlay>
+        <Overlay role="status" aria-live="polite">
           <HashLoader size={50} color="#fff" />
           <p>{t("connectingServer")}</p>
         </Overlay>
@@ -560,6 +568,7 @@ export default function SAMFrontend({
             onClick={sendSelected}
             $bgColor="rgba(255,105,180,1)"
             $marginLeft="1rem"
+            aria-label={t("sendSelected")}
           >
             {t("sendSelected")}
           </Button>
@@ -576,16 +585,29 @@ export default function SAMFrontend({
           disabled={selected.length === 0}
           mode={clickMode}
           setMode={setClickMode}
+          aria-label={t("maskToggleMode")}
         />
+        <Guide aria-live="polite" tabIndex={0} aria-label={t('customizeGuideLabel', 'Segmentation Guidance')}>
+          <p>
+            {t("segmentationCanvasDesc")}
+          </p>
+        </Guide>
       </div>
     </div>
   );
 }
 
-// Styled Components
+
+// Styled components
 const fadeIn = keyframes`
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+`;
+
+const gleam = keyframes`
+  0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateX(150%) rotate(25deg); opacity: 0; }
 `;
 
 const Canvas = styled.canvas`
@@ -639,4 +661,52 @@ const StatusLoader = styled.div`
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+`;
+
+const Guide = styled.aside`
+  margin-top: 10px;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #f0f8ff72;
+  border-radius: 2rem;
+  animation: ${fadeIn} 1s;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    inset 0 4px 8px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: var(--text-color);
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    opacity: 0;
+  }
+
+  &:hover::after {
+    animation: ${gleam} 1s ease forwards;
+  }
+
+  p {
+    animation: ${fadeIn} 1s;
+    font-family: "Cinzel", "MedievalSharp", serif;
+  }
 `;

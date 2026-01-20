@@ -16,5 +16,6 @@
   "uploadFromDevice": "Upload from Device",
   "cameraIconAlt": "Camera Icon",
   "recommendationsTitle": "Most Searched for Items",
-  "loadingRecommendations": "Loading recommendations…"
+  "loadingRecommendations": "Loading recommendations…",
+  "viewCategory": "View category: {{category}}"
 }

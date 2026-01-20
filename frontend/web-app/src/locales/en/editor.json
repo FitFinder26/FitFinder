@@ -22,8 +22,13 @@
   "uploadingImage": "Uploading image...",
   "segmentingImage": "Segmenting image, please wait...",
   "connectingServer": "Connecting to segmentation server...",
+  "segmentationCanvasDesc": "Use your mouse or keyboard to select and toggle mask regions. Press Tab to move to the next control.",
+  "segmentationCanvasLabel": "Segmentation mask selection canvas",
+  "segmentationRegionLabel": "Segmentation Editor",
   "cancel": "Cancel",
   "segment": "Segment",
   "resegment": "Re-segment",
-  "sendSelected": "Send Selected"
+  "sendSelected": "Send Selected",
+  "maskToggleLegend": "Add or remove mask toggle",
+  "promptLegend": "Describe the item you are searching for"
 }

@@ -11,11 +11,6 @@ export default function Recommendation({
 }) {
   const { t } = useTranslation(NAMESPACES.home);
   const navigator = useNavigate();
-  // const isLoading =
-  //   loading ||
-  //   !categoricalProducts ||
-  //   Object.keys(categoricalProducts).length === 0;
-
   return (
     <LazyMount unmountOnHide={false}>
       <Container aria-busy={loading}>
@@ -25,33 +20,37 @@ export default function Recommendation({
             {t("loadingRecommendations")}
           </VisuallyHidden>
         )}
-
-        <ScrollArea>
-          {loading
-            ? Array.from({ length: 6 }).map((_, i) => (
-                <SkeletonItem key={i} aria-hidden>
-                  <SkeletonImage />
-                  <SkeletonLabel />
-                </SkeletonItem>
-              ))
-            : Object.entries(categoricalProducts).map(([category, items]) => (
-                <Item
-                  key={category}
-                  onClick={() =>
-                    navigator("/search-result", {
-                      state: {
-                        products: categoricalProducts[category],
-                        searchingPeice:
-                          categoricalProducts[category][0].imageURL,
-                      },
-                    })
-                  }
-                >
-                  <ItemImage src={items[0].imageURL} alt={category} />
-                  <ItemLabel>{category}</ItemLabel>
-                </Item>
-              ))}
-        </ScrollArea>
+        <section aria-label={t("recommendationsTitle") || "Recommendations"}>
+          <ScrollArea as="ul">
+            {loading
+              ? Array.from({ length: 6 }).map((_, i) => (
+                  <SkeletonItem as="li" key={i} aria-hidden>
+                    <SkeletonImage />
+                    <SkeletonLabel />
+                  </SkeletonItem>
+                ))
+              : Object.entries(categoricalProducts).map(([category, items]) => (
+                  <Item as="li"
+                    key={category}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={t("viewCategory", { category }) || category}
+                    onClick={() =>
+                      navigator("/search-result", {
+                        state: {
+                          products: categoricalProducts[category],
+                          searchingPeice:
+                            categoricalProducts[category][0].imageURL,
+                        },
+                      })
+                    }
+                  >
+                    <ItemImage src={items[0].imageURL} alt={category} />
+                    <ItemLabel as="h3">{category}</ItemLabel>
+                  </Item>
+                ))}
+          </ScrollArea>
+        </section>
       </Container>
     </LazyMount>
   );
