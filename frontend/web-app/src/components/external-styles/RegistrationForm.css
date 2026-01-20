@@ -25,6 +25,10 @@
   width: 50%;
 }
 
+/* Force LTR direction for registration form regardless of language toggle */
+.container {
+  direction: ltr !important;
+}
 a {
   color: var(--links-color);
 }
@@ -226,7 +230,7 @@ a {
 .text.sign-up h2,
 .text.sign-up p,
 .img.sign-up img {
-  transform: translateX(250%);
+  transform: translateX(280%);
 }
 
 .container.sign-in .text.sign-in h2,
@@ -442,6 +446,7 @@ a {
 
 .signupButton {
   background-color: var(--secondary-color);
+  justify-self: center;
 }
 
 .loginButton:hover,

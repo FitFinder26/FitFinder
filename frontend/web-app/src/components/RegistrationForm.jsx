@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { HashLoader } from "react-spinners";
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
-
+import { emailService } from "../../../shared/services/emailService";
 import { Notifier } from "./Notifier";
 import { Eye, EyeClosed } from "lucide-react";
 
@@ -247,11 +247,11 @@ export default function RegistrationForm({
         <div className="col align-items-center flex-col sign-up">
           <div className="form-wrapper align-items-center">
             <form onSubmit={handleSignup} className="form sign-up" aria-labelledby="signup-title" autoComplete="off">
-              <fieldset>
-                <legend id="signup-title">{t("signUp")}</legend>
+              <fieldset style={{border:"none", width:"100%", padding:0, margin:0}}>
+                <legend id="signup-title" hidden>{t("signUp")}</legend>
                 <div className="input-group">
                   <i className="bx bxs-lock-alt" aria-hidden="true"></i>
-                  <label htmlFor="signup-username" className="visually-hidden">{t("username")}</label>
+                  <label htmlFor="signup-username" hidden>{t("username")}</label>
                   <input
                     id="signup-username"
                     type="text"
@@ -270,7 +270,7 @@ export default function RegistrationForm({
 
                 <div className="input-group">
                   <i className="bx bxs-user" aria-hidden="true"></i>
-                  <label htmlFor="signup-email" className="visually-hidden">{t("email")}</label>
+                  <label htmlFor="signup-email" hidden>{t("email")}</label>
                   <input
                     id="signup-email"
                     type="email"
@@ -295,7 +295,7 @@ export default function RegistrationForm({
                 </div>
 
                 <div className="input-group">
-                  <label htmlFor="signup-password" className="visually-hidden">{t("password")}</label>
+                  <label htmlFor="signup-password" hidden>{t("password")}</label>
                   <input
                     id="signup-password"
                     type={passwordVisible ? "text" : "password"}
@@ -391,7 +391,7 @@ export default function RegistrationForm({
 
                 <div className="input-group">
                   <i className="bx bxs-lock-alt" aria-hidden="true"></i>
-                  <label htmlFor="signup-confirm-password" className="visually-hidden">{t("confirmPassword")}</label>
+                  <label htmlFor="signup-confirm-password" hidden>{t("confirmPassword")}</label>
                   <input
                     id="signup-confirm-password"
                     name="password"
