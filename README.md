@@ -48,11 +48,11 @@ uvicorn app.main:app --reload
 ---
 
 ## 🗺️ Roadmap
-- [ ] Integrate SAM + OpenCLIP for clothing detection & matching  
+- [X] Integrate SAM + OpenCLIP for clothing detection & matching  
 - [ ] Implement wardrobe storage feature  
 - [ ] Basic outfit suggestion engine  
-- [ ] Frontend prototype (React/Angular/Vue)  
-- [ ] Connect with sample clothing dataset  
+- [X] Frontend prototype (React/Angular/Vue)  
+- [X] Connect with sample clothing dataset  
 - [ ] Optimize NLP pipeline for fashion queries  
 - [ ] Full integration testing  
 
