@@ -138,7 +138,7 @@ export const segmentationService = {
       body: JSON.stringify({
         job_id: jobId,
         mask_json: mask,
-        // prompt: prompt
+        prompt: prompt
       }),
       headers: {
         "Content-Type": "application/json",
