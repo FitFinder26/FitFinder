@@ -1,168 +1,68 @@
-import styled, { keyframes } from "styled-components";
 import LazyMount from "./LazyMount";
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function Recommendation({
   categoricalProducts = null,
   loading = false,
 }) {
   const { t } = useTranslation(NAMESPACES.home);
-  const navigator = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <LazyMount unmountOnHide={false}>
-      <Container aria-busy={loading}>
-        <Title>{t("recommendationsTitle")}</Title>
+      <div className="w-full flex flex-col gap-6 animate-in slide-in-from-right-10 duration-1000 p-4 md:p-8" aria-busy={loading}>
+        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">
+          {t("recommendationsTitle")}
+        </h2>
+        
         {loading && (
-          <VisuallyHidden role="status">
+          <span className="sr-only" role="status">
             {t("loadingRecommendations")}
-          </VisuallyHidden>
+          </span>
         )}
-        <section aria-label={t("recommendationsTitle") || "Recommendations"}>
-          <ScrollArea as="ul">
+
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex w-max gap-6 pb-4">
             {loading
-              ? Array.from({ length: 6 }).map((_, i) => (
-                  <SkeletonItem as="li" key={i} aria-hidden>
-                    <SkeletonImage />
-                    <SkeletonLabel />
-                  </SkeletonItem>
+              ? Array.from({ length: 12 }).map((_, i) => (
+                  <div key={i} className="flex flex-col items-center gap-3 w-[140px] md:w-[180px]">
+                    <Skeleton className="w-full aspect-square rounded-2xl" />
+                    <Skeleton className="h-4 w-2/3" />
+                  </div>
                 ))
-              : Object.entries(categoricalProducts).map(([category, items]) => (
-                  <Item as="li"
+              : Object.entries(categoricalProducts || {}).map(([category, items]) => (
+                  <button
                     key={category}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={t("viewCategory", { category }) || category}
+                    className="flex flex-col items-center gap-3 w-[140px] md:w-[180px] group transition-all"
                     onClick={() =>
-                      navigator("/search-result", {
+                      navigate("/search-result", {
                         state: {
-                          products: categoricalProducts[category],
-                          searchingPeice:
-                            categoricalProducts[category][0].imageURL,
+                          products: items,
+                          searchingPeice: items[0].imageURL,
                         },
                       })
                     }
                   >
-                    <ItemImage src={items[0].imageURL} alt={category} />
-                    <ItemLabel as="h3">{category}</ItemLabel>
-                  </Item>
+                    <div className="w-full aspect-square overflow-hidden rounded-2xl shadow-md group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
+                      <img 
+                        src={items[0].imageURL} 
+                        alt={category} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <span className="text-sm md:text-base font-bold text-muted-foreground group-hover:text-primary transition-colors uppercase tracking-wider">
+                      {category}
+                    </span>
+                  </button>
                 ))}
-          </ScrollArea>
-        </section>
-      </Container>
+          </div>
+          <ScrollBar orientation="horizontal" className="hidden md:flex" />
+        </ScrollArea>
+      </div>
     </LazyMount>
   );
 }
-
-const slideLeft = keyframes`
-    from{
-        opacity: 0.5;
-        transform: translateX(10%);
-    }  
-    to{
-        opacity: 1;
-        transform: translateX(0%);
-    }
-`;
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  animation: ${slideLeft} 1s;
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  margin: 1rem;
-`;
-
-const ScrollArea = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 24px;
-  padding: 16px 0;
-  overflow-x: scroll;
-  scrollbar-width: none;
-  width: 100vw;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const Item = styled.div`
-  width: 140px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
-const ItemImage = styled.img`
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 14px;
-`;
-
-const ItemLabel = styled.span`
-  font-size: 14px;
-  color: var(--text-color);
-`;
-
-const shimmer = keyframes`
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-`;
-
-const SkeletonItem = styled.div`
-  width: 140px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-`;
-
-const SkeletonImage = styled.div`
-  width: 100%;
-  height: 140px;
-  border-radius: 14px;
-  background: var(--skeleton-loader-bg);
-  background-size: 200% 100%;
-  animation: ${shimmer} 1.2s linear infinite;
-`;
-
-const SkeletonLabel = styled.div`
-  width: 70px;
-  height: 14px;
-  border-radius: 6px;
-  background: var(--skeleton-loader-bg);
-  background-size: 200% 100%;
-  animation: ${shimmer} 1.2s linear infinite;
-`;
-
-const VisuallyHidden = styled.span`
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-`;

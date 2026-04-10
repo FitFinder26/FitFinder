@@ -1,10 +1,11 @@
 import SAMFrontend from "./SAMFrontend";
-import { Sheet } from "react-modal-sheet";
 import CustomizeSegment from "./CustomizeSegment";
-import { Toaster } from "react-hot-toast";
 import { useEffect, useRef, useState } from "react";
 import { segmentationService } from "../../../shared/services/segmentationService";
 import { useDevice } from "../providers/DeviceProvider";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Toaster } from "react-hot-toast";
+import { cn } from "@/lib/utils";
 
 export default function ImageEditor({
   imageUploaded,
@@ -37,57 +38,45 @@ export default function ImageEditor({
     setIsBeingCustomized(false);
   };
 
-  
-  const ContainerStyle = {
-    borderTopLeftRadius: "2rem",
-    borderTopRightRadius: "2rem",
-    backgroundColor: "transparent",
-    width: device==="mobile"?"100%":"50%",
-    marginLeft: device==="mobile"?"0":"25%",
-    backgroundImage:
-      "repeating-linear-gradient(0deg,rgba(255, 255, 255, 0.08) 0 1px,rgba(0, 0, 0, 0.05) 1px 2px),repeating-linear-gradient(90deg,rgba(255, 255, 255, 0.08) 0 1px,rgba(0, 0, 0, 0.05) 1px 2px),repeating-linear-gradient(45deg,rgba(255, 255, 255, 0.05) 0 2px,rgba(0, 0, 0, 0.05) 2px 4px), linear-gradient(-45deg, var(--bg-color) 0%, #90b9f644 100%)",
-    backgroundSize: "6px 6px, 6px 6px, 12px 12px, cover",
-    backgroundBlendMode: "multiply, multiply, overlay, normal",
-    maskComposite: "intersect",
-  };
-
-
   return (
-    <Sheet isOpen={imageUploaded} onClose={handleCloseSegmentationSheet}>
-      <Sheet.Container style={ContainerStyle} role="dialog" aria-modal="true" aria-label="Segmentation Editor Dialog">
-        <Sheet.Header
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.527)",
-            borderTopLeftRadius: "2rem",
-            borderTopRightRadius: "2rem",
-          }}
-        />
-        <Sheet.Content ref={scrollRef} tabIndex={0} aria-label="Segmentation Editor Content">
-          {isBeingCustomized ? (
-            <CustomizeSegment
-              imageObj={imageObj}
-              setIsBeingCustomized={setIsBeingCustomized}
-              selectedSegments={selectedSegments}
-              setImageUploaded={setImageUploaded}
-              segmentationService={segmentationService}
-              handleCloseSegmentationSheet={handleCloseSegmentationSheet}
-            />
-          ) : (
-            <SAMFrontend
-              imageURL={imageURL}
-              loading={loading}
-              setLoading={setLoading}
-              imageObj={imageObj}
-              setImageObj={setImageObj}
-              setSelectedSegments={setSelectedSegments}
-              setIsBeingCustomized={setIsBeingCustomized}
-              segmentationService={segmentationService}
-            />
-          )}
-          <Toaster />
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop />
-    </Sheet>
+    <Dialog open={imageUploaded} onOpenChange={handleCloseSegmentationSheet}>
+      <DialogContent className={cn(
+        "max-w-4xl p-0 overflow-hidden border-none rounded-[3rem] bg-background/50 backdrop-blur-3xl shadow-[0_50px_100px_rgba(0,0,0,0.5)]",
+        "h-[90vh] md:h-[85vh] flex flex-col"
+      )}>
+        <DialogHeader className="p-8 pb-4 border-b border-border/10 bg-muted/20">
+          <DialogTitle className="text-2xl font-black uppercase tracking-tighter italic text-center">
+            {isBeingCustomized ? "Refine & Search" : "AI Segmentation Editor"}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
+           <div className="max-w-3xl mx-auto h-full flex flex-col justify-center">
+                {isBeingCustomized ? (
+                    <CustomizeSegment
+                        imageObj={imageObj}
+                        setIsBeingCustomized={setIsBeingCustomized}
+                        selectedSegments={selectedSegments}
+                        setImageUploaded={setImageUploaded}
+                        segmentationService={segmentationService}
+                        handleCloseSegmentationSheet={handleCloseSegmentationSheet}
+                    />
+                ) : (
+                    <SAMFrontend
+                        imageURL={imageURL}
+                        loading={loading}
+                        setLoading={setLoading}
+                        imageObj={imageObj}
+                        setImageObj={setImageObj}
+                        setSelectedSegments={setSelectedSegments}
+                        setIsBeingCustomized={setIsBeingCustomized}
+                        segmentationService={segmentationService}
+                    />
+                )}
+           </div>
+        </div>
+        <Toaster />
+      </DialogContent>
+    </Dialog>
   );
 }

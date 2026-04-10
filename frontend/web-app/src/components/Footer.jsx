@@ -1,9 +1,9 @@
-import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { useNavigate } from "react-router-dom";
 import { useDevice } from "../providers/DeviceProvider";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
+import { Button } from "@/components/ui/button";
 
 export default function Footer({ navigationBlocked }) {
   const { t } = useTranslation(NAMESPACES.footer);
@@ -11,282 +11,81 @@ export default function Footer({ navigationBlocked }) {
   const { device } = useDevice();
   const navigate = useNavigate();
 
-  const handleNavigation = (e, path) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleNavigation = (path) => {
     navigate(path);
   };
-  // For accessibility, use real <a> with href, and semantic nav/ul/li
+
   return (
-    <FooterContainer device={device}>
-      <TopSection device={device}>
-        <BrandSection device={device}>
-          <Logo
-            fontSize={device === "mobile" ? 50 : 70}
-            scale={0.3}
-            variant={2}
-          />
-          <BrandText device={device}>{t("tagline")}</BrandText>
-        </BrandSection>
+    <footer className="w-full mt-auto bg-background/50 backdrop-blur-xl border-t border-border/10 py-12 px-6 md:px-12 animate-in slide-in-from-bottom-10 duration-1000">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-border/10">
+          {/* Brand Section */}
+          <div className="lg:col-span-2 space-y-4 text-center md:text-left">
+            <div className="flex justify-center md:justify-start">
+              <Logo
+                fontSize={device === "mobile" ? 50 : 70}
+                scale={0.3}
+                variant={2}
+              />
+            </div>
+            <p className="text-muted-foreground text-lg font-medium max-w-md mx-auto md:mx-0">
+              {t("tagline") || "Redefining fashion scanning with AI."}
+            </p>
+          </div>
 
-        <Section device={device} as="nav" aria-label={t("quickLinks") + ' ' + tCommon("appName")}>
-          <SectionTitle device={device}>{t("quickLinks")}</SectionTitle>
-          <LinksList device={device} as="ul">
-            <li>
-              <FooterLink
-                device={device}
-                href="/"
-                onClick={(e) => handleNavigation(e, "/")}
-                tabIndex={navigationBlocked ? -1 : 0}
-                aria-disabled={navigationBlocked}
-              >
-                {t("home")}
-              </FooterLink>
-            </li>
-            <li>
-              <FooterLink
-                device={device}
-                href="/about-us"
-                onClick={(e) => handleNavigation(e, "/about-us")}
-                tabIndex={navigationBlocked ? -1 : 0}
-                aria-disabled={navigationBlocked}
-              >
-                {t("about")}
-              </FooterLink>
-            </li>
-            <li>
-              <FooterLink
-                device={device}
-                href={`mailto:fitfindercsed@gmail.com?subject=${encodeURIComponent(t("contactSubject", { appName: tCommon("appName") }))}&body=${encodeURIComponent(t("contactBody"))}`}
-                tabIndex={navigationBlocked ? -1 : 0}
-                aria-disabled={navigationBlocked}
-              >
-                {t("contact")}
-              </FooterLink>
-            </li>
-          </LinksList>
-        </Section>
+          {/* Quick Links */}
+          <nav className="space-y-4 text-center md:text-left">
+            <h3 className="text-foreground font-bold text-xl">{t("quickLinks")}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Button variant="link" className="p-0 h-auto text-muted-foreground hover:text-primary transition-colors text-lg" onClick={() => handleNavigation("/")} disabled={navigationBlocked}>
+                  {t("home")}
+                </Button>
+              </li>
+              <li>
+                <Button variant="link" className="p-0 h-auto text-muted-foreground hover:text-primary transition-colors text-lg" onClick={() => handleNavigation("/about-us")} disabled={navigationBlocked}>
+                  {t("about")}
+                </Button>
+              </li>
+              <li>
+                <a 
+                  href={`mailto:fitfindercsed@gmail.com?subject=${encodeURIComponent(t("contactSubject", { appName: tCommon("appName") }))}&body=${encodeURIComponent(t("contactBody"))}`}
+                  className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium inline-block"
+                >
+                  {t("contact")}
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-        <Section device={device} as="nav" aria-label={t("legal") + ' ' + tCommon("appName")}>
-          <SectionTitle device={device}>{t("legal")}</SectionTitle>
-          <LinksList device={device} as="ul">
-            <li>
-              <FooterLink
-                device={device}
-                href="/privacy-policy"
-                onClick={(e) => handleNavigation(e, "/privacy-policy")}
-                tabIndex={navigationBlocked ? -1 : 0}
-                aria-disabled={navigationBlocked}
-              >
-                {t("privacy")}
-              </FooterLink>
-            </li>
-            <li>
-              <FooterLink
-                device={device}
-                href="/terms-of-service"
-                onClick={(e) => handleNavigation(e, "/terms-of-service")}
-                tabIndex={navigationBlocked ? -1 : 0}
-                aria-disabled={navigationBlocked}
-              >
-                {t("terms")}
-              </FooterLink>
-            </li>
-          </LinksList>
-        </Section>
-      </TopSection>
+          {/* Legal */}
+          <nav className="space-y-4 text-center md:text-left">
+            <h3 className="text-foreground font-bold text-xl">{t("legal")}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Button variant="link" className="p-0 h-auto text-muted-foreground hover:text-primary transition-colors text-lg" onClick={() => handleNavigation("/privacy-policy")} disabled={navigationBlocked}>
+                  {t("privacy")}
+                </Button>
+              </li>
+              <li>
+                <Button variant="link" className="p-0 h-auto text-muted-foreground hover:text-primary transition-colors text-lg" onClick={() => handleNavigation("/terms-of-service")} disabled={navigationBlocked}>
+                  {t("terms")}
+                </Button>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-      <BottomSection device={device}>
-        <Copyright device={device}>
-          {t("copyright", {
-            year: new Date().getFullYear(),
-            appName: tCommon("appName"),
-          })}
-        </Copyright>
-      </BottomSection>
-    </FooterContainer>
+        {/* Bottom Section */}
+        <div className="pt-8 text-center">
+          <p className="text-muted-foreground text-sm font-bold opacity-60 uppercase tracking-widest">
+            {t("copyright", {
+              year: new Date().getFullYear(),
+              appName: tCommon("appName"),
+            })}
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
-
-const slideUp = keyframes`
-    from{
-        transform: translateY(10%);
-    }  
-    to{
-        transform: translateY(0%);
-    }
-`;
-
-const FooterContainer = styled.footer`
-  color: var(--text-color);
-  padding: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "2rem 1.5rem";
-      case "tablet":
-        return "2rem 2rem";
-      default:
-        return "2rem 3rem";
-    }
-  }};
-
-  ${(props) => props.device === "mobile" && "padding-bottom: 4.5rem"};
-  width: 100%;
-  max-width: 100%;
-  bottom: 0;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 -2px 5px var(--back-drop-shadow-color);
-  animation: ${slideUp} 1s;
-  margin-top: auto;
-  box-sizing: border-box;
-  background-image: var(--footer-bg-image);
-
-  @media (max-width: var(--tablet)) {
-    padding: 2rem 2rem;
-  }
-
-  @media (max-width: var(--mobile)) {
-    padding: 2rem 1.5rem;
-  }
-`;
-
-const TopSection = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "1fr";
-      case "tablet":
-        return "1fr 1fr";
-      default:
-        return "2fr 1fr 1fr";
-    }
-  }};
-  gap: ${(props) => (props.device === "mobile" ? "2rem" : "3rem")};
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--back-drop-shadow-color);
-
-  @media (max-width: var(--tablet)) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  @media (max-width: var(--mobile)) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-`;
-
-const BrandSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: ${(props) =>
-    props.device === "mobile" ? "center" : "flex-start"};
-  gap: 0.5rem;
-
-  @media (max-width: var(--mobile)) {
-    align-items: center;
-  }
-`;
-
-const BrandText = styled.p`
-  margin: 0;
-  font-size: ${(props) => (props.device === "mobile" ? "0.938rem" : "1rem")};
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
-  color: var(--text-color);
-  opacity: 0.8;
-`;
-
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: ${(props) =>
-    props.device === "mobile" ? "center" : "flex-start"};
-  gap: 1rem;
-
-  @media (max-width: var(--mobile)) {
-    align-items: center;
-  }
-`;
-
-const SectionTitle = styled.h3`
-  margin: 0;
-  font-size: ${(props) =>
-    props.device === "mobile" ? "1.063rem" : "1.125rem"};
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--text-color);
-`;
-
-const LinksList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  list-style-type: none;
-  align-items: ${(props) =>
-    props.device === "mobile" ? "center" : "flex-start"};
-
-  @media (max-width: var(--mobile)) {
-    align-items: center;
-  }
-`;
-
-const BottomSection = styled.div`
-  padding-top: 1.5rem;
-  padding-bottom: 4rem;
-  text-align: center;
-`;
-
-const FooterLink = styled.a`
-  color: var(--links-color);
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 0.938rem;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.005em;
-  transition: opacity 0.2s ease;
-  outline: none;
-  &:hover, &:focus {
-    opacity: 0.7;
-    text-decoration: underline;
-  }
-  &[aria-disabled="true"] {
-    pointer-events: none;
-    opacity: 0.5;
-    text-decoration: none;
-  }
-  @media (max-width: var(--mobile)) {
-    font-size: 0.875rem;
-  }
-`;
-
-const Copyright = styled.span`
-  font-size: ${(props) => {
-    switch (props.device) {
-      case "mobile":
-        return "0.813rem";
-      case "tablet":
-        return "0.875rem";
-      default:
-        return "0.875rem";
-    }
-  }};
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  opacity: 0.75;
-
-  @media (max-width: var(--tablet)) {
-    font-size: 0.875rem;
-  }
-
-  @media (max-width: var(--mobile)) {
-    font-size: 0.813rem;
-  }
-`;

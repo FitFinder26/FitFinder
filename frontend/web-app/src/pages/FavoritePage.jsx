@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import noDataFound from "../assets/noFavorites.svg";
 import { useAuthContext } from "../providers/AuthProvider";
 import { favoriteService } from "../../../shared/services/favoriteService";
@@ -9,28 +8,52 @@ import { Notifier } from "../components/Notifier";
 import { useDevice } from "../providers/DeviceProvider";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Filter, SlidersHorizontal, Heart, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-/* ---------------------------------------------
-   Image with Skeleton + Fade + Error Fallback
-----------------------------------------------*/
 function CardImageWithLoader({ src, alt, t }) {
   const [status, setStatus] = useState("loading");
 
   return (
-    <ImageWrapper>
-      {status === "loading" && <ImageSkeleton />}
-      {status === "error" && <ImageFallback>{t("noImage")}</ImageFallback>}
-
+    <div className="relative w-full aspect-[3/4] overflow-hidden bg-muted group-hover:aspect-[3/4.2] transition-all duration-1000">
+      {status === "loading" && <Skeleton className="absolute inset-0 z-10" />}
+      {status === "error" && (
+        <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
+          {t("noImage")}
+        </div>
+      )}
       <img
         src={src}
         alt={alt}
+        loading="lazy"
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
-        style={{
-          opacity: status === "loaded" ? 1 : 0,
-        }}
+        className={cn(
+          "w-full h-full object-cover transition-all duration-700",
+          status === "loaded" ? "opacity-100 scale-100" : "opacity-0 scale-110"
+        )}
       />
-    </ImageWrapper>
+    </div>
   );
 }
 
@@ -43,8 +66,6 @@ export default function FavoritePage() {
   const [sortOrder, setSortOrder] = useState("similarity");
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const navigator = useNavigate();
-  const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
   const [filters, setFilters] = useState({
@@ -53,7 +74,6 @@ export default function FavoritePage() {
   });
   const [showFilters, setShowFilters] = useState(device !== "mobile");
 
-  // confirmation dialog state for removals
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [pendingRemoveId, setPendingRemoveId] = useState(null);
 
@@ -63,10 +83,9 @@ export default function FavoritePage() {
 
   useEffect(() => {
     if (!isAuthenticated())
-      navigator("/registration", { state: { form: "signup" } });
-  }, []);
+      navigate("/registration", { state: { form: "signup" } });
+  }, [isAuthenticated, navigate]);
 
-  /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
     favoriteService
       .getFavorites()
@@ -82,17 +101,10 @@ export default function FavoritePage() {
       });
   }, []);
 
-  // perform the actual removal (called after confirmation)
   const removeFromFavorite = async (itemId) => {
     try {
       const response = await favoriteService.removeFromFavorite(itemId);
-      if (!response.ok) {
-        const text = await response.text().catch(() => null);
-        throw new Error(
-          `Failed to remove from favorite: ${response.status} ${text || ""}`
-        );
-      }
-      // remove from local state so UI updates immediately
+      if (!response.ok) throw new Error("Failed to remove from favorite");
       setProducts((prev) => prev.filter((p) => p.item_id !== itemId));
       Notifier.notifySuccess(t("removeSuccess"));
     } catch (error) {
@@ -101,10 +113,8 @@ export default function FavoritePage() {
     }
   };
 
-  // Ask user to confirm before removing
   const requestRemoveFromFavorite = (itemId, e) => {
-    // prevent card click navigation
-    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+    e.stopPropagation();
     setPendingRemoveId(itemId);
     setConfirmOpen(true);
   };
@@ -116,513 +126,242 @@ export default function FavoritePage() {
     setPendingRemoveId(null);
   };
 
-  const cancelRemove = () => {
-    setConfirmOpen(false);
-    setPendingRemoveId(null);
-  };
-
   const extractCategoryFromData = (prods) => {
-    const extracted = [];
-    if (prods.length > 0)
-      prods.forEach((p) => {
-        if (p.category && !extracted.includes(p.category)) {
-          extracted.push(p.category);
-        }
-      });
+    const extracted = [...new Set(prods.map(p => p.category).filter(Boolean))];
     setCategories(extracted);
   };
 
   const extractStoresFromData = (prods) => {
-    const extracted = [];
-    if (prods.length > 0)
-      prods.forEach((p) => {
-        if (!extracted.includes(p.seller)) extracted.push(p.seller);
-      });
+    const extracted = [...new Set(prods.map(p => p.seller).filter(Boolean))];
     setStores(extracted);
   };
 
   const getWebsiteName = (url) => {
-    const { hostname } = new URL(url);
-    return hostname
-      .replace(/^www\./, "")
-      .split(".")[0]
-      .replace(/-/g, " ");
+    try {
+      const { hostname } = new URL(url);
+      return hostname.replace(/^www\./, "").split(".")[0].replace(/-/g, " ");
+    } catch {
+      return "store";
+    }
   };
 
   const settingSellers = (prods) => {
-    if (prods.length > 0)
-      prods.forEach((p) => {
-        p.seller = getWebsiteName(p.itemWebURL);
-      });
+    prods.forEach((p) => {
+      p.seller = getWebsiteName(p.itemWebURL);
+    });
   };
 
   const toggleFilter = (group, value) => {
     setFilters((prev) => {
       const next = { ...prev, [group]: new Set(prev[group]) };
-      next[group].has(value)
-        ? next[group].delete(value)
-        : next[group].add(value);
+      next[group].has(value) ? next[group].delete(value) : next[group].add(value);
       return next;
     });
   };
 
-  /* ------------------ Filter + Sort ------------------ */
-  const visible =
-    products.length > 0
-      ? products
-          .filter((p) => {
-            if (filters.store.size && !filters.store.has(p.seller))
-              return false;
-            if (filters.category.size && !filters.category.has(p.category))
-              return false;
-            return true;
-          })
-          .sort((a, b) => {
-            if (sortOrder === "lowest_price") return a.price - b.price;
-            if (sortOrder === "highest_price") return b.price - a.price;
-            return 0;
-          })
-      : [];
+  const visible = products
+    .filter((p) => {
+      if (filters.store.size && !filters.store.has(p.seller)) return false;
+      if (filters.category.size && !filters.category.has(p.category)) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "lowest_price") return a.price - b.price;
+      if (sortOrder === "highest_price") return b.price - a.price;
+      return 0;
+    });
 
-  /* ------------------ Render ------------------ */
   return (
-    <PageWrap>
-      <Content device={device}>
-        <Left device={device}>
-          <h1 style={{ marginBottom: "1rem" }}>{t("title")}</h1>
+    <div className="min-h-screen bg-background pt-[4.5rem] pb-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-16">
+          
+          {/* Sidebar Filters */}
+          <aside className="lg:col-span-1 space-y-12 animate-in slide-in-from-left-10 duration-700">
+            <div className="px-4 space-y-2">
+               <h1 className="text-5xl md:text-6xl font-black tracking-tighter uppercase mb-2">{t("title")}</h1>
+               <div className="h-1.5 w-24 bg-primary rounded-full mb-4" />
+               <p className="text-muted-foreground font-black tracking-[0.2em] uppercase text-[10px] opacity-40">{t("curatedSelection") || "MY STYLE VAULT"}</p>
+            </div>
 
-          <FilterHeader>
-            <h3>{t("filters")}</h3>
-            {device !== "desktop" && (
-              <FilterToggle onClick={() => setShowFilters((v) => !v)}>
-                {showFilters ? t("hide") : t("show")}
-              </FilterToggle>
+            <div className="hidden lg:block space-y-12 px-4 shadow-sm border border-border/10 p-8 rounded-[3rem] bg-muted/5">
+                <div className="flex items-center justify-between border-b border-border/10 pb-6">
+                    <h3 className="text-3xl font-black tracking-tighter uppercase">{t("filters")}</h3>
+                    <Filter size={24} className="opacity-20" />
+                </div>
+                
+                {/* Categories */}
+                <div className="space-y-6">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">{t("category")}</h4>
+                  <div className="space-y-4">
+                    {categories.map((c) => (
+                      <div key={c} className="flex items-center space-x-4 group cursor-pointer" onClick={() => toggleFilter("category", c)}>
+                        <Checkbox checked={filters.category.has(c)} className="w-6 h-6 rounded-lg border-2" />
+                        <span className="text-lg font-bold group-hover:text-primary transition-colors uppercase tracking-tight">{c}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Stores */}
+                <div className="space-y-6">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">{t("store")}</h4>
+                  <div className="space-y-4">
+                    {stores.map((s) => (
+                      <div key={s} className="flex items-center space-x-4 group cursor-pointer" onClick={() => toggleFilter("store", s)}>
+                        <Checkbox checked={filters.store.has(s)} className="w-6 h-6 rounded-lg border-2" />
+                        <span className="text-lg font-bold group-hover:text-primary transition-colors capitalize uppercase tracking-tight">{s}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+            </div>
+
+            {/* Mobile Filter Toggle */}
+            <div className="lg:hidden px-4">
+                <Button 
+                    variant="outline" 
+                    className="w-full h-16 rounded-2xl gap-3 font-black text-xl shadow-xl border-2 uppercase"
+                    onClick={() => setShowFilters(!showFilters)}
+                >
+                    <SlidersHorizontal size={22} />
+                    {showFilters ? tCommon("hide") : tCommon("show")} {t("filters")}
+                </Button>
+            </div>
+          </aside>
+
+          {/* Main Content */}
+          <main className="lg:col-span-3 space-y-16 animate-in slide-in-from-right-10 duration-700">
+             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 border-b border-border/10 pb-10">
+               <div className="space-y-2">
+                <h2 className="text-5xl md:text-7xl font-black tracking-[ -0.05em] uppercase leading-none italic">
+                    {loading ? tCommon("loading") : `${visible.length} FAUX`}
+                </h2>
+                <p className="text-muted-foreground font-black tracking-widest uppercase text-xs opacity-50 ml-1">SAVED PIECES READY FOR PURCHASE</p>
+               </div>
+               
+               <div className="flex items-center gap-4 w-full sm:w-auto">
+                 <Select value={sortOrder} onValueChange={setSortOrder}>
+                   <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-2xl bg-muted/20 border-2 font-black uppercase tracking-tight shadow-sm">
+                     <SelectValue placeholder={t("sortSimilarity")} />
+                   </SelectTrigger>
+                   <SelectContent className="rounded-2xl border-border/50 p-2 shadow-2xl">
+                     <SelectItem value="similarity" className="font-bold py-3 uppercase text-xs">{t("sortSimilarity")}</SelectItem>
+                     <SelectItem value="lowest_price" className="font-bold py-3 uppercase text-xs">{t("sortLowest")}</SelectItem>
+                     <SelectItem value="highest_price" className="font-bold py-3 uppercase text-xs">{t("sortHighest")}</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+            </div>
+
+            {visible.length === 0 && !loading ? (
+              <div className="flex flex-col items-center justify-center py-40 text-center space-y-12 animate-in fade-in zoom-in duration-1000">
+                <div className="relative">
+                    <img src={noDataFound} alt={t("noResultsAlt")} className="w-96 h-96 opacity-5 grayscale brightness-50" />
+                    <Heart size={100} className="absolute inset-0 m-auto text-rose-500 opacity-20 animate-pulse" />
+                </div>
+                <div className="space-y-4">
+                    <h3 className="text-5xl font-black uppercase tracking-tighter opacity-20">Your Closet is Empty</h3>
+                    <p className="text-muted-foreground font-bold max-w-sm mx-auto tracking-tight text-lg opacity-60">Heart pieces while browsing to build your personal style collection here.</p>
+                </div>
+                <Button 
+                    className="rounded-[2.5rem] h-20 px-16 bg-primary text-white font-black border-none uppercase tracking-[0.2em] text-xl hover:scale-110 transition-all shadow-[0_20px_60px_rgba(250,88,126,0.4)]" 
+                    onClick={() => navigate("/")}
+                >
+                    {t("browseNow") || "Start Exploring"}
+                </Button>
+              </div>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12">
+                {loading
+                    ? Array.from({ length: 6 }).map((_, idx) => (
+                        <Card key={idx} className="border-none bg-muted/10 rounded-[4rem] overflow-hidden shadow-none p-4">
+                        <Skeleton className="w-full aspect-[3/4] rounded-[3rem]" />
+                        <CardContent className="p-10 space-y-4">
+                            <Skeleton className="h-6 w-full" />
+                            <div className="flex justify-between items-center">
+                            <Skeleton className="h-10 w-1/3 rounded-xl" />
+                            <Skeleton className="h-6 w-1/4 rounded-lg" />
+                            </div>
+                        </CardContent>
+                        </Card>
+                    ))
+                    : visible.map((p) => (
+                        <Card
+                        key={p.item_id}
+                        className="group border-none bg-muted/5 hover:bg-background transition-all duration-700 rounded-[4rem] overflow-hidden cursor-pointer shadow-none hover:shadow-[0_60px_100px_rgba(0,0,0,0.2)] hover:-translate-y-6 border border-transparent hover:border-border/50"
+                        onClick={() =>
+                            navigate(`/product/${p.item_id}`, {
+                                state: {
+                                    product: p,
+                                    similarProducts: visible.filter((x) => x.category === p.category),
+                                },
+                            })
+                        }
+                        >
+                        <div className="relative overflow-hidden p-3 origin-center">
+                            <CardImageWithLoader src={p.imageURL} alt={p.title} t={t} />
+                            <Button
+                                size="icon"
+                                variant="ghost"
+                                className="absolute top-8 right-8 bg-white/90 backdrop-blur-2xl hover:bg-rose-500 hover:text-white transition-all duration-500 w-16 h-16 rounded-3xl shadow-2xl text-rose-500 z-20 group-hover:scale-110"
+                                onClick={(e) => requestRemoveFromFavorite(p.item_id, e)}
+                            >
+                                <Trash2 size={30} />
+                            </Button>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                        </div>
+                        <CardContent className="p-12 pt-6 space-y-6 text-card-foreground">
+                            <h4 className="font-black text-2xl line-clamp-2 leading-[1.1] group-hover:text-primary transition-all duration-500 h-[2.5em] tracking-tighter uppercase italic">
+                            {p.title}
+                            </h4>
+                            <div className="flex justify-between items-end pt-6 border-t border-border/10">
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-30 mb-2">PRICE</span>
+                                    <span className="text-4xl font-black text-primary -tracking-widest capitalize">${p.price}</span>
+                                </div>
+                                <Badge variant="secondary" className="font-black uppercase tracking-[0.2em] px-6 py-3 rounded-2xl text-[10px] bg-muted/50 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                    {p.seller}
+                                </Badge>
+                            </div>
+                        </CardContent>
+                        </Card>
+                    ))}
+                </div>
             )}
-          </FilterHeader>
+          </main>
+        </div>
+      </div>
 
-          {showFilters && (
-            <Filters device={device}>
-              <FilterSection>
-                <h4>{t("category")}</h4>
-                {categories.map((c) => (
-                  <FilterRow
-                    key={c}
-                    onClick={() => toggleFilter("category", c)}
-                  >
-                    <input
-                      type="checkbox"
-                      readOnly
-                      checked={filters.category.has(c)}
-                    />
-                    <label>{c}</label>
-                  </FilterRow>
-                ))}
-              </FilterSection>
-
-              <FilterSection>
-                <h4>{t("store")}</h4>
-                {stores.map((s) => (
-                  <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
-                    <input
-                      type="checkbox"
-                      readOnly
-                      checked={filters.store.has(s)}
-                    />
-                    <label>{s}</label>
-                  </FilterRow>
-                ))}
-              </FilterSection>
-            </Filters>
-          )}
-        </Left>
-
-        <Right>
-          <ResultsHeader>
-            <SortSelect>
-              <label>{t("sort")}</label>
-              <select
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
-              >
-                <option value="similarity">{t("sortSimilarity")}</option>
-                <option value="lowest_price">{t("sortLowest")}</option>
-                <option value="highest_price">{t("sortHighest")}</option>
-              </select>
-            </SortSelect>
-          </ResultsHeader>
-
-          <Grid device={device}>
-            {loading
-              ? Array.from({ length: 8 }).map((_, idx) => (
-                  <Card key={idx}>
-                    <ImageWrapper>
-                      <ImageSkeleton />
-                    </ImageWrapper>
-                    <CardBody>
-                      <CardTitle>{tCommon("loading")}</CardTitle>
-                      <CardMeta>
-                        <Price>--</Price>
-                        <Seller>--</Seller>
-                      </CardMeta>
-                    </CardBody>
-                  </Card>
-                ))
-              : visible.length > 0 &&
-                visible.map((p) => (
-                  <Card
-                    key={p.item_id}
-                    onClick={() =>
-                      navigate(`/product/${p.item_id}`, {
-                        state: {
-                          product: p,
-                          similarProducts: visible.filter(
-                            (x) => x.category === p.category
-                          ),
-                        },
-                      })
-                    }
-                  >
-                    <CardImageWithLoader src={p.imageURL} alt={p.title} t={t} />
-                    <LikeButton
-                      onClick={(e) => requestRemoveFromFavorite(p.item_id, e)}
-                      aria-label={t("removeButtonLabel")}
-                      title={t("removeButtonLabel")}
-                    >
-                      <AiFillHeart size={25} />
-                    </LikeButton>
-                    <CardBody>
-                      <CardTitle>{p.title}</CardTitle>
-                      <CardMeta>
-                        <Price>
-                          {p.price} {p.currency}
-                        </Price>
-                        <Seller>{p.seller}</Seller>
-                      </CardMeta>
-                    </CardBody>
-                  </Card>
-                ))}
-          </Grid>
-
-          {confirmOpen && (
-            <ModalOverlay
-              role="dialog"
-              aria-modal="true"
-              onClick={cancelRemove}
+      <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <DialogContent className="sm:max-w-[480px] rounded-[4rem] p-12 border-none shadow-[0_50px_100px_rgba(0,0,0,0.4)] bg-background/95 backdrop-blur-3xl">
+          <DialogHeader className="space-y-6">
+            <div className="mx-auto w-24 h-24 bg-rose-500/10 rounded-[2rem] flex items-center justify-center text-rose-500 mb-2">
+                <Trash2 size={48} />
+            </div>
+            <DialogTitle className="text-center text-4xl font-black tracking-tighter uppercase">{t("removeTitle")}</DialogTitle>
+            <DialogDescription className="text-center text-xl font-bold opacity-60 leading-relaxed px-4">
+              {t("removePrompt") || "Are you sure you want to remove this piece from your vault?"}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-col sm:flex-col gap-5 mt-12 pb-4">
+            <Button 
+                variant="destructive" 
+                className="w-full h-20 rounded-3xl font-black text-2xl uppercase tracking-[0.2em] shadow-[0_15px_40px_rgba(244,63,94,0.3)] hover:scale-[1.02] active:scale-95 transition-all"
+                onClick={confirmRemove}
             >
-              <ModalBox onClick={(e) => e.stopPropagation()}>
-                <h3>{t("removeTitle")}</h3>
-                <p>{t("removePrompt")}</p>
-                <ModalActions>
-                  <CancelButton onClick={cancelRemove}>
-                    {tCommon("cancel")}
-                  </CancelButton>
-                  <ConfirmButton onClick={confirmRemove}>
-                    {t("yesRemove")}
-                  </ConfirmButton>
-                </ModalActions>
-              </ModalBox>
-            </ModalOverlay>
-          )}
-
-          {visible.length == 0 && !loading && (
-            <img src={noDataFound} style={{}} />
-          )}
-        </Right>
-      </Content>
-    </PageWrap>
+                {t("yesRemove") || "Remove Piece"}
+            </Button>
+            <Button 
+                variant="ghost" 
+                className="w-full h-16 rounded-3xl font-black text-muted-foreground uppercase tracking-widest text-sm hover:bg-muted"
+                onClick={() => setConfirmOpen(false)}
+            >
+                {tCommon("cancel")}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 }
-
-/* ---------------------------------------------
-   Styled Components
-----------------------------------------------*/
-
-const PageWrap = styled.main`
-  padding-top: 84px;
-  min-height: calc(100vh - 84px);
-  color: var(--text-color);
-`;
-
-const Content = styled.div`
-  max-width: 1200px;
-  margin: 1.2rem auto;
-  display: grid;
-  grid-template-columns: ${({ device }) =>
-    device === "mobile"
-      ? "1fr"
-      : device === "tablet"
-        ? "260px 1fr"
-        : "320px 1fr"};
-  gap: ${({ device }) => (device === "mobile" ? "1.25rem" : "2rem")};
-  padding: 0 1rem;
-`;
-
-const Left = styled.aside`
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  position: ${({ device }) => (device === "desktop" ? "sticky" : "static")};
-  top: 84px;
-  align-self: start;
-`;
-
-const FilterHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-`;
-
-const FilterToggle = styled.button.attrs({ type: "button" })`
-  border: 1px solid var(--text-color);
-  background: transparent;
-  color: var(--text-color);
-  border-radius: 999px;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
-  }
-`;
-
-const Filters = styled.div`
-  background: var(--bg-color);
-  border-radius: 10px;
-  padding: 1rem;
-  color: var(--text-color);
-  transition: 0.3s ease-in-out;
-  box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
-  border: 1px solid var(--text-color);
-`;
-
-const FilterSection = styled.div`
-  margin-top: 1rem;
-`;
-
-const FilterRow = styled.label`
-  display: flex;
-  gap: 0.5rem;
-  cursor: pointer;
-`;
-
-const Right = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const ResultsHeader = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const SortSelect = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  select {
-    padding: 0.2rem;
-    border-radius: 20px;
-  }
-`;
-
-const Grid = styled.div`
-  display: grid;
-  gap: ${({ device }) => (device === "mobile" ? "0.9rem" : "1.1rem")};
-  grid-template-columns: ${({ device }) => {
-    if (device === "mobile") return "1fr";
-    if (device === "tablet") return "repeat(2, 1fr)";
-    return "repeat(4, 1fr)";
-  }};
-`;
-
-const Card = styled.div`
-  position: relative;
-  background-color: var(--card-bg-color);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.25s ease-in-out;
-  transition: background-color 0.5s ease-in-out;
-  color: var(--text-color);
-  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
-  &:hover {
-    transform: scale(1.02);
-  }
-`;
-
-const CardBody = styled.div`
-  padding: 0.8rem;
-`;
-
-const CardTitle = styled.h3`
-  font-size: 0.95rem;
-  height: 40px;
-  overflow: hidden;
-`;
-
-const CardMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Price = styled.span`
-  font-weight: 700;
-`;
-
-const Seller = styled.span`
-  font-size: 0.85rem;
-  color: #666;
-`;
-
-/* ---------------------------------------------
-   Skeleton Styles
-----------------------------------------------*/
-
-const shimmer = keyframes`
-  0% { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
-`;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 200px;
-  background: #f0f0f0;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.3s ease;
-  }
-`;
-
-const ImageSkeleton = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
-  background-size: 400% 100%;
-  animation: ${shimmer} 1.4s infinite;
-`;
-
-const ImageFallback = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: #888;
-`;
-
-const LikeButton = styled.button`
-  position: absolute;
-  top: 0; /* sits over the image */
-  right: 0;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  color: #e63946; /* neutral by default */
-  margin: 1rem;
-  transition:
-    color 160ms ease,
-    transform 120ms ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    color: #bbb; /* heart red */
-    transform: scale(1.08);
-  }
-  &:active {
-    transform: scale(0.96);
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.12);
-    border-radius: 6px;
-  }
-`;
-
-/* Confirmation modal + animations */
-const overlayFade = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`;
-
-const popIn = keyframes`
-  0% { opacity: 0; transform: translateY(12px) scale(0.96); }
-  60% { opacity: 1; transform: translateY(-6px) scale(1.03); }
-  100% { transform: translateY(0) scale(1); }
-`;
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.639);
-  z-index: 1000;
-  animation: ${overlayFade} 220ms ease forwards;
-`;
-
-const ModalBox = styled.div`
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  padding: 1.25rem;
-  border-radius: 8px;
-  width: min(420px, 90%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  will-change: transform, opacity;
-  transform-origin: center center;
-  animation: ${popIn} 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-
-  h3 {
-    margin: 0 0 0.5rem 0;
-  }
-  p {
-    margin: 0 0 1rem 0;
-    color: var(--text-color);
-  }
-`;
-
-const ModalActions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-`;
-
-const ConfirmButton = styled.button.attrs({ type: "button" })`
-  background: #e63946;
-  color: #fff;
-  border: none;
-
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-
-  &:hover {
-    scale: 1.02;
-  }
-`;
-
-const CancelButton = styled.button.attrs({ type: "button" })`
-  border: solid 1px transparent;
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    opacity: 0.95;
-    border-color: black;
-  }
-`;

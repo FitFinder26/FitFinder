@@ -1,13 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
-import styled, { keyframes, css } from "styled-components";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, ArrowLeft, ExternalLink, ShoppingBag } from "lucide-react";
 import { AiFillHeart } from "react-icons/ai";
 import { favoriteService } from "../../../shared/services/favoriteService";
 import { Notifier } from "../components/Notifier";
 import { useAuthContext } from "../providers/AuthProvider";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -15,7 +18,7 @@ export default function ProductPage() {
   const navigate = useNavigate();
   const { t } = useTranslation(NAMESPACES.product);
   const { i18n } = useTranslation();
-  // Prefer product object passed via navigate state to avoid extra API call
+  
   const productFromState = location.state?.product;
   const product = useMemo(() => {
     const base = productFromState || {
@@ -42,42 +45,25 @@ export default function ProductPage() {
   const [liked, setLiked] = useState(product.favorite);
   const [animating, setAnimating] = useState(false);
   const { isAuthenticated } = useAuthContext();
-  const navigator = useNavigate();
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({
-        behavior: "smooth", // animate the scroll
-        block: "start", // scroll to top of element
-      });
-    }
-  };
-
-  useEffect(() => scrollToSection("start"), []);
 
   const features = featuresPart
     .split(/[•🔹]|\s{3}/)
     .map((item) => item.trim())
     .filter(Boolean);
 
-  const toggleFavorite = async () => {
+  const toggleFavorite = async (e) => {
+    e.stopPropagation();
     if (!isAuthenticated()) {
-      navigator("/registration", { state: { form: "signup" } });
+      navigate("/registration", { state: { form: "signup" } });
       return;
     }
 
     try {
-      const response = await favoriteService.toggleFavorite(
-        product.item_id,
-        !liked
-      );
+      const response = await favoriteService.toggleFavorite(product.item_id, !liked);
       if (!response.ok) throw new Error("Failed to toggle favorite");
 
-      // update state and play click animation
       setLiked((prev) => !prev);
       setAnimating(true);
-      // clear animation class after it finishes
       setTimeout(() => setAnimating(false), 480);
     } catch (error) {
       console.error("Something went wrong in setting as favorite: ", error);
@@ -86,392 +72,143 @@ export default function ProductPage() {
   };
 
   return (
-    <PageWrap id="start">
-      <Container>
-        <LeftColumn>
-          <ImageWrapper>
-            <MainImage src={product.imageURL} alt={product.title} />
-            <LikeButton
-              onClick={toggleFavorite}
-              className={animating ? "animating" : ""}
-              aria-label={liked ? t("unlike") : t("like")}
-              aria-pressed={liked}
-            >
-              {!liked ? <Heart /> : <AiFillHeart size={25} />}
-              <Burst className={animating ? "burst" : ""} aria-hidden />
-            </LikeButton>
-          </ImageWrapper>
-        </LeftColumn>
+    <div className="min-h-screen bg-background text-foreground animate-in slide-in-from-bottom-5 duration-700 pb-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+        {/* Breadcrumb / Back Button */}
+        <Button 
+            variant="ghost" 
+            className="mb-8 gap-2 hover:translate-x-[-4px] transition-transform font-bold"
+            onClick={() => navigate(-1)}
+        >
+            <ArrowLeft size={18} />
+            {t("back")}
+        </Button>
 
-        <RightColumn>
-          <TitleRow>
-            <h1>{product.title}</h1>
-            <PriceTag>${product.price}</PriceTag>
-          </TitleRow>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column: Image */}
+          <div className="lg:col-span-7 flex justify-center">
+            <div className="relative w-full max-w-[600px] group">
+              <div className="overflow-hidden rounded-[2.5rem] bg-white p-6 shadow-2xl transition-all duration-500 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.15)] group-hover:-translate-y-2 border border-border/5">
+                <img 
+                    src={product.imageURL} 
+                    alt={product.title} 
+                    className="w-full h-auto max-h-[600px] object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              
+              <Button
+                size="icon"
+                className={cn(
+                    "absolute top-8 right-8 w-16 h-16 rounded-full border-none shadow-2xl transition-all duration-300",
+                    liked ? "bg-rose-500 text-white hover:bg-rose-600" : "bg-white text-rose-500 hover:bg-rose-50"
+                )}
+                onClick={toggleFavorite}
+              >
+                {liked ? <AiFillHeart size={34} className={cn(animating && "animate-in zoom-in-125 duration-300")} /> : <Heart size={32} />}
+                {animating && (
+                    <span className="absolute inset-0 rounded-full animate-ping bg-rose-500/50 opacity-0" />
+                )}
+              </Button>
+            </div>
+          </div>
 
-          <Meta>
-            <span>
-              {t("sellerLabel", {
-                seller: product?.seller || t("unknownSeller"),
-              })}
-            </span>
-          </Meta>
+          {/* Right Column: Details */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            <div className="space-y-4">
+               <div className="flex justify-between items-start gap-4">
+                  <h1 className="text-3xl md:text-5xl font-black tracking-tighter leading-tight uppercase">
+                    {product.title}
+                  </h1>
+               </div>
+               <div className="flex items-center gap-6">
+                 <span className="text-5xl font-black text-primary -tracking-widest capitalize">${product.price}</span>
+                 <Badge variant="secondary" className="px-6 py-2 text-sm font-black rounded-full uppercase tracking-wider">
+                    {t("sellerLabel", { seller: product.seller })}
+                 </Badge>
+               </div>
+            </div>
 
-          <ProductDescription>
-            <FeaturesList $language={i18n.language}>
-              {features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </FeaturesList>
+            <div className="bg-muted/30 rounded-[3rem] p-10 border border-border/50 shadow-inner">
+               <h3 className="text-sm font-black uppercase tracking-[0.3em] mb-8 opacity-40 flex items-center gap-3">
+                 <ShoppingBag size={18} />
+                 {t("productDetails") || "Technical Specifications"}
+               </h3>
+               
+               <ul className="space-y-5 mb-10">
+                  {features.map((feature, index) => (
+                    <li key={index} className="flex gap-5 items-start text-xl font-bold leading-snug">
+                      <span className="w-2.5 h-2.5 rounded-full bg-primary mt-3.5 shrink-0 shadow-[0_0_10px_rgba(250,88,126,0.5)]" />
+                      {feature}
+                    </li>
+                  ))}
+               </ul>
 
-            {paragraphPart && (
-              <DescriptionText>{paragraphPart}</DescriptionText>
-            )}
-          </ProductDescription>
+               {paragraphPart && (
+                 <p className="text-muted-foreground leading-relaxed text-xl italic opacity-80 border-t border-border/10 pt-8 mt-5">
+                    "{paragraphPart}"
+                 </p>
+               )}
+            </div>
 
-          <Actions>
-            <SecondaryButton onClick={() => navigate(-1)}>
-              {t("back")}
-            </SecondaryButton>
-            <PrimaryButton
-              onClick={() =>
-                window.open(product.itemWebURL, "_blank", "noopener,noreferrer")
-              }
-            >
-              {t("goToStore")}
-            </PrimaryButton>
-          </Actions>
-        </RightColumn>
-      </Container>
-      {/* Similar products section */}
-      <SimilarSection>
-        <SectionHeader>
-          <h3>{t("similarProducts")}</h3>
-        </SectionHeader>
+            <div className="flex flex-col sm:flex-row gap-5 pt-6">
+                <Button 
+                    className="flex-1 h-20 rounded-3xl bg-primary text-primary-foreground hover:opacity-95 font-black text-2xl gap-4 shadow-[0_15px_40px_rgba(250,88,126,0.3)] transition-all hover:-translate-y-1.5 active:translate-y-0"
+                    onClick={() => window.open(product.itemWebURL, "_blank", "noopener,noreferrer")}
+                >
+                    <ExternalLink size={28} />
+                    {t("goToStore")}
+                </Button>
+                <Button 
+                    variant="outline"
+                    className="h-20 px-10 rounded-3xl border-2 font-black text-2xl transition-all hover:bg-muted hover:-translate-y-1 active:translate-y-0"
+                    onClick={() => navigate(-1)}
+                >
+                    {t("back")}
+                </Button>
+            </div>
+          </div>
+        </div>
 
-        <SimilarGrid>
-          {similar.map((p) => (
-            <SimilarCard
-              key={p.item_id}
-              onClick={() =>
-                navigate(`/product/${p.item_id}`, {
-                  state: { product: p, similar: similar },
-                })
-              }
-            >
-              <SimilarImg src={p.imageURL} alt={p.title} />
-              <SimilarBody>
-                <SimilarTitle>{p.title}</SimilarTitle>
-                <SimilarMeta>
-                  <span>${p.price}</span>
-                  <small>{t("soldBy", { seller: p.seller })}</small>
-                </SimilarMeta>
-              </SimilarBody>
-            </SimilarCard>
-          ))}
-        </SimilarGrid>
-      </SimilarSection>
-    </PageWrap>
+        {/* Similar Products */}
+        <div className="mt-32 space-y-12">
+          <div className="flex items-center gap-8">
+             <h3 className="text-5xl font-black tracking-tighter uppercase">{t("similarProducts")}</h3>
+             <div className="h-0.5 flex-1 bg-gradient-to-r from-border/50 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {similar.map((p) => (
+              <Card 
+                key={p.item_id} 
+                className="group border-none bg-muted/20 hover:bg-background transition-all duration-500 rounded-[2.5rem] overflow-hidden cursor-pointer shadow-none hover:shadow-2xl hover:-translate-y-3 border border-transparent hover:border-border/50"
+                onClick={() => navigate(`/product/${p.item_id}`, {
+                    state: { product: p, similarProducts: similar },
+                })}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden">
+                   <img src={p.imageURL} alt={p.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                      <Button variant="secondary" className="w-full font-black text-lg h-14 rounded-2xl shadow-xl">
+                        {t("viewProduct") || "Quick View"}
+                      </Button>
+                   </div>
+                </div>
+                <CardContent className="p-8 space-y-4">
+                  <h4 className="font-black text-xl line-clamp-2 leading-tight group-hover:text-primary transition-colors min-h-[3.5rem] uppercase">
+                    {p.title}
+                  </h4>
+                  <div className="flex justify-between items-center pt-2">
+                    <span className="text-3xl font-black text-primary">${p.price}</span>
+                    <Badge variant="outline" className="text-[12px] font-black uppercase tracking-widest opacity-50 px-3 py-1 rounded-lg">
+                        {p.seller}
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-
-/* Styled components */
-
-const PageWrap = styled.main`
-  padding-top: 84px;
-  min-height: calc(100vh - 84px);
-  /* background: #fafafa; */
-  color: var(--text-color);
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 1.2rem auto;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 2rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
-`;
-
-const LeftColumn = styled.div``;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  background: var(--bg-color);
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 10px 0px 20px var(--back-drop-shadow-color);
-  transition: 0.5s ease-in-out;
-`;
-
-const pop = keyframes`
-  0% { transform: scale(1); }
-  35% { transform: scale(1.22); }
-  55% { transform: scale(0.95); }
-  100% { transform: scale(1); }
-`;
-
-const burstAnim = keyframes`
-  0% { transform: scale(0.0); opacity: 0.8; }
-  40% { transform: scale(1.05); opacity: 0.6; }
-  100% { transform: scale(1.8); opacity: 0; }
-`;
-
-const Burst = styled.span`
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: scale(0);
-  opacity: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(239, 68, 68, 0.9) 0%,
-    rgba(239, 68, 68, 0.15) 40%,
-    rgba(239, 68, 68, 0) 60%
-  );
-  filter: blur(6px);
-
-  &.burst {
-    animation: ${burstAnim} 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-`;
-
-const MainImage = styled.img`
-  width: 100%;
-  max-height: 420px; /* <- reduced from 620px */
-  height: auto; /* keep aspect ratio */
-  object-fit: contain;
-  border-radius: 8px;
-`;
-
-const RightColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const TitleRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  h1 {
-    margin: 0;
-    font-size: 1.3rem;
-  }
-`;
-
-const PriceTag = styled.span`
-  font-weight: 800;
-  font-size: 1.2rem;
-`;
-
-const Meta = styled.div`
-  color: var(--meta-text-color);
-  font-size: 0.95rem;
-  display: flex;
-  gap: 1rem;
-`;
-
-const ProductDescription = styled.div`
-  /* background: #ffffff; */
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-`;
-
-const FeaturesList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.25rem 0;
-
-  li {
-    position: relative;
-    ${(props) =>
-      props.$language === "ar"
-        ? `padding-right: 1.5rem;`
-        : `padding-left: 1.5rem;`}
-
-    margin-bottom: 0.6rem;
-    line-height: 1.45;
-
-    &::before {
-      content: "•";
-      position: absolute;
-      ${(props) => (props.$language === "ar" ? `right: 0;` : `left: 0;`)}
-
-      color: #6366f1; /* subtle accent */
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-  }
-`;
-
-const DescriptionText = styled.p`
-  margin: 0;
-  color: #4b5563;
-  font-size: 0.95rem;
-  line-height: 1.6;
-`;
-
-const Actions = styled.div`
-  display: flex;
-  gap: 0.75rem;
-`;
-
-const PrimaryButton = styled.button`
-  background: #4d96ff;
-  color: white;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #2563eb;
-    scale: 1.02;
-  }
-`;
-
-const SecondaryButton = styled.button`
-  background: transparent;
-  border: 1px solid #ddd;
-  padding: 0.55rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--text-color);
-  &:hover {
-    background-color: #f3f4f6;
-    transform: translateX(-1rem);
-    color: var(--hovered-text-color);
-  }
-`;
-
-/* Similar products styles */
-
-const SimilarSection = styled.section`
-  max-width: 1200px;
-  margin: 1rem auto 3rem;
-  padding: 0 0.5rem;
-`;
-
-const SectionHeader = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 0.6rem;
-  h3 {
-    margin: 0;
-    font-size: 1.1rem;
-  }
-`;
-
-const SimilarGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 540px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const SimilarCard = styled.div`
-  position: relative;
-  background-color: var(--card-bg-color);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.25s ease-in-out;
-  transition: background-color 0.5s ease-in-out;
-  color: var(--text-color);
-  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
-  &:hover {
-    transform: scale(1.02);
-  }
-`;
-
-const SimilarImg = styled.img`
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-`;
-
-const SimilarBody = styled.div`
-  padding: 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-`;
-
-const SimilarTitle = styled.h4`
-  margin: 0;
-  font-size: 0.95rem;
-  height: 38px;
-  overflow: hidden;
-`;
-
-const SimilarMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #666;
-  font-size: 0.9rem;
-`;
-
-const LikeButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: white;
-  color: #ef4444; /* red */
-  padding: 8px;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-
-  &:hover {
-    transform: translateY(-3px) scale(1.03);
-  }
-
-  svg {
-    width: 22px;
-    height: 22px;
-    transition:
-      transform 180ms ease,
-      fill 220ms ease,
-      color 220ms ease;
-    color: rgba(239, 68, 68, 0.95);
-  }
-
-  &.animating svg {
-    animation: ${pop} 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-`;

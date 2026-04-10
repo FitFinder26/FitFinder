@@ -3,10 +3,12 @@ import MagicButton from "./MagicButton";
 import { HashLoader } from "react-spinners";
 import { Notifier } from "./Notifier";
 import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
-import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
-// import { bigArray } from "./masks";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { Sparkles, Info, XCircle } from "lucide-react";
 
 export default function SAMFrontend({
   imageURL,
@@ -19,13 +21,12 @@ export default function SAMFrontend({
   segmentationService,
 }) {
   const { t } = useTranslation(NAMESPACES.editor);
-  // const [masks, setMasks] = useState(bigArray); // raw SAM masks
-  const [masks, setMasks] = useState([]); // raw SAM masks
-  const [maskCanvases, setMaskCanvases] = useState([]); // blue overlays
-  const [borderCanvases, setBorderCanvases] = useState([]); // strong pink borders
+  const [masks, setMasks] = useState([]);
+  const [maskCanvases, setMaskCanvases] = useState([]);
+  const [borderCanvases, setBorderCanvases] = useState([]);
   const [selected, setSelected] = useState([]);
   const [hovered, setHovered] = useState(null);
-  const [clickMode, setClickMode] = useState("add"); // "add" or "remove"
+  const [clickMode, setClickMode] = useState("add");
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [deselectedPoints, setDeselectedPoints] = useState([]);
   const [sessionStarted, setSessionStarted] = useState(false);
@@ -33,7 +34,6 @@ export default function SAMFrontend({
   const [segmentationStatus, setSegmentationStatus] = useState("idle");
   const canvasRef = useRef(null);
 
-  // Prevent right-click & start session
   useEffect(() => {
     const sessionId = segmentationService.connect();
     if (sessionId) setSessionStarted(true);
@@ -45,25 +45,17 @@ export default function SAMFrontend({
     return () => canvas.removeEventListener("contextmenu", handleContextMenu);
   }, []);
 
-  // Subscribe to service updates for segmentation
   const unsubscribeFromSegmentation = segmentationService.subscribeToMasks(
     (segmentation) => {
-      // At error
       if (segmentation?.error) {
-        Notifier.notifyError(
-          t("segmentationFailed", { error: segmentation.error })
-        );
+        Notifier.notifyError(t("segmentationFailed", { error: segmentation.error }));
         setSegmentationStatus("idle");
         setLoading(false);
         return;
-
-        // At segmentation (masks + boxes)
       } else if (segmentation?.masks && segmentation?.boxes) {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
         setBoxes(segmentation.boxes);
         setMasks(convertedMasks);
-
-        // At re-segmentation (masks)
       } else {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
         setMasks(convertedMasks);
@@ -73,16 +65,12 @@ export default function SAMFrontend({
     }
   );
 
-  // listening to the websocket and close the websocket on unmount
   useEffect(() => {
-    // listener is already subscribed
     return () => {
-      // cleanup: call unsubscribe
       unsubscribeFromSegmentation();
     };
-  });
+  }, []);
 
-  // Load main image
   useEffect(() => {
     if (!imageURL || !canvasRef.current) return;
     const img = new Image();
@@ -98,7 +86,6 @@ export default function SAMFrontend({
     };
   }, [imageURL]);
 
-  // Pre-render mask canvases and borders
   useEffect(() => {
     if (!masks.length) return;
 
@@ -108,8 +95,6 @@ export default function SAMFrontend({
     masks.forEach((mask) => {
       const h = mask.length;
       const w = mask[0].length;
-
-      // Mask overlay (blue)
       const maskCanvas = document.createElement("canvas");
       maskCanvas.width = w;
       maskCanvas.height = h;
@@ -123,14 +108,13 @@ export default function SAMFrontend({
             imgData.data[i] = 0;
             imgData.data[i + 1] = 150;
             imgData.data[i + 2] = 255;
-            imgData.data[i + 3] = 100; // semi-transparent blue
+            imgData.data[i + 3] = 100;
           } else imgData.data[i + 3] = 0;
         }
       }
       mCtx.putImageData(imgData, 0, 0);
       blueCanvases.push(maskCanvas);
 
-      // Border overlay (strong pink)
       const borderCanvas = document.createElement("canvas");
       borderCanvas.width = w;
       borderCanvas.height = h;
@@ -140,7 +124,6 @@ export default function SAMFrontend({
       for (let y = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
           if (mask[y][x] === 1) {
-            // Only outline pixels (check neighbors)
             const neighbors = [
               mask[y - 1]?.[x] || 0,
               mask[y + 1]?.[x] || 0,
@@ -152,7 +135,7 @@ export default function SAMFrontend({
               bImgData.data[i] = 255;
               bImgData.data[i + 1] = 105;
               bImgData.data[i + 2] = 180;
-              bImgData.data[i + 3] = 255; // full pink
+              bImgData.data[i + 3] = 255;
             }
           }
         }
@@ -166,118 +149,48 @@ export default function SAMFrontend({
   }, [masks]);
 
   const convertMasksToPoints = (masks2DArray) => {
-    if (!Array.isArray(masks2DArray) || masks2DArray.length === 0) {
-      return [];
-    }
-
+    if (!Array.isArray(masks2DArray) || masks2DArray.length === 0) return [];
     const height = masks2DArray.length;
     const width = masks2DArray[0].length;
-
-    // Find the maximum mask index (e.g. 1,2,3...)
     let maxMaskId = 0;
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         maxMaskId = Math.max(maxMaskId, masks2DArray[y][x]);
       }
     }
-
-    // Create empty binary masks
     const masks = Array.from({ length: maxMaskId }, () =>
       Array.from({ length: height }, () => Array(width).fill(0))
     );
-
-    // Fill masks
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const maskId = masks2DArray[y][x];
-        if (maskId > 0) {
-          // maskId starts from 1 → index is maskId - 1
-          masks[maskId - 1][y][x] = 1;
-        }
+        if (maskId > 0) masks[maskId - 1][y][x] = 1;
       }
     }
-
     return masks;
   };
 
-  // Send image to backend SAM API
   const processImage = async () => {
     if (!imageURL) return;
     setSegmentationStatus("uploading");
     setLoading(true);
     const blob = await fetch(imageURL).then((r) => r.blob());
-    const file = new File([blob], "photo.jpg", {
-      type: blob.type || "image/jpeg",
-    });
-
+    const file = new File([blob], "photo.jpg", { type: blob.type || "image/jpeg" });
     const formData = new FormData();
     formData.append("image", file);
 
-    await segmentationService
-      .segment(formData)
-      .then((response) => {
-        if (response?.error) {
-          Notifier.notifyError(
-            t("segmentationFailedShort", { error: response.error })
-          );
-          setSegmentationStatus("idle");
-          setLoading(false);
-        } else setSegmentationStatus("segmenting");
-      })
-      .catch((error) => {
-        Notifier.notifyError(t("segmentationFailed", { error }));
-        setLoading(false);
+    await segmentationService.segment(formData).then((response) => {
+      if (response?.error) {
+        Notifier.notifyError(t("segmentationFailedShort", { error: response.error }));
         setSegmentationStatus("idle");
-      });
-  };
-
-  const getSelectedBoxes = () => {
-    let positiveBoxes = boxes;
-    let negativeBoxes = boxes;
-    let outputBoxes = [];
-    if (selectedPoints.length > 0) {
-      positiveBoxes.filter((box) => {
-        selectedPoints.forEach((point) => {
-          if (
-            point[0] > box[0] &&
-            point[0] < box[2] &&
-            point[1] < box[1] &&
-            point[1] > box[3]
-          ) {
-            return true;
-          }
-        });
-      });
-    }
-
-    if (deselectedPoints.length > 0) {
-      negativeBoxes.filter((box) => {
-        deselectedPoints.forEach((point) => {
-          if (
-            point[0] > box[0] &&
-            point[0] < box[2] &&
-            point[1] < box[1] &&
-            point[1] > box[3]
-          ) {
-            return true;
-          }
-        });
-      });
-    }
-
-    outputBoxes = positiveBoxes;
-    negativeBoxes.forEach((negBox) => {
-      if (!outputBoxes.includes(negBox)) outputBoxes.push(negBox);
+        setLoading(false);
+      } else setSegmentationStatus("segmenting");
+    }).catch((error) => {
+      Notifier.notifyError(t("segmentationFailed", { error }));
+      setLoading(false);
+      setSegmentationStatus("idle");
     });
-
-    return outputBoxes;
   };
-
-  function double2DArrayToInt2DArray(arr) {
-    return arr.map(
-      (row) => row.map((value) => Math.round(value)) // or Math.floor / Math.trunc
-    );
-  }
 
   const reSegmentImage = async () => {
     if (!imageURL) return;
@@ -287,57 +200,37 @@ export default function SAMFrontend({
     }
     setSegmentationStatus("uploading");
     setLoading(true);
-
-    const blob = await fetch(imageURL).then((r) => r.blob());
-    const file = new File([blob], "photo.jpg", {
-      type: blob.type || "image/jpeg",
-    });
-
     const formData = {
-      pos_points: double2DArrayToInt2DArray(selectedPoints),
-      neg_points: double2DArrayToInt2DArray(deselectedPoints),
-      boxes: getSelectedBoxes(),
+      pos_points: selectedPoints.map(p => [Math.round(p[0]), Math.round(p[1])]),
+      neg_points: deselectedPoints.map(p => [Math.round(p[0]), Math.round(p[1])]),
+      boxes: boxes,
     };
 
-    await segmentationService
-      .resegment(formData)
-      .then((response) => {
-        if (response.ok) {
-          setSegmentationStatus("segmenting");
-        } else {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        if (data && data.error) {
-          Notifier.notifyError(
-            t("segmentationFailedShort", { error: data.error })
-          );
-          setSegmentationStatus("idle");
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        Notifier.notifyError(t("segmentationFailed", { error }));
-        setLoading(false);
+    await segmentationService.resegment(formData).then((response) => {
+      if (response.ok) setSegmentationStatus("segmenting");
+      else return response.json();
+    }).then((data) => {
+      if (data && data.error) {
+        Notifier.notifyError(t("segmentationFailedShort", { error: data.error }));
         setSegmentationStatus("idle");
-      });
+        setLoading(false);
+      }
+    }).catch((error) => {
+      Notifier.notifyError(t("segmentationFailed", { error }));
+      setLoading(false);
+      setSegmentationStatus("idle");
+    });
   };
 
-  // Hover detection
   const handleCanvasMove = (e) => {
     const canvas = canvasRef.current;
     if (!canvas || !maskCanvases.length) return;
-
     const rect = canvas.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * canvas.width;
     const y = ((e.clientY - rect.top) / rect.height) * canvas.height;
-
     let hoveredIdx = null;
     for (let i = maskCanvases.length - 1; i >= 0; i--) {
-      const ctx = maskCanvases[i].getContext("2d", {
-        willReadFrequently: true,
-      });
+      const ctx = maskCanvases[i].getContext("2d", { willReadFrequently: true });
       const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
       const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
       const pixel = ctx.getImageData(px, py, 1, 1).data;
@@ -349,20 +242,15 @@ export default function SAMFrontend({
     setHovered(hoveredIdx);
   };
 
-  // Toggle selection
   const toggleMask = (e, mode) => {
     const canvas = canvasRef.current;
     if (!canvas || !maskCanvases.length) return;
-
     const rect = canvas.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * canvas.width;
     const y = ((e.clientY - rect.top) / rect.height) * canvas.height;
-
     let clickedIdx = null;
     for (let i = maskCanvases.length - 1; i >= 0; i--) {
-      const ctx = maskCanvases[i].getContext("2d", {
-        willReadFrequently: true,
-      });
+      const ctx = maskCanvases[i].getContext("2d", { willReadFrequently: true });
       const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
       const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
       const pixel = ctx.getImageData(px, py, 1, 1).data;
@@ -372,7 +260,6 @@ export default function SAMFrontend({
       }
     }
     if (clickedIdx === null) return;
-
     if (mode === "add") {
       if (!selected.includes(clickedIdx)) {
         setSelected([...selected, clickedIdx]);
@@ -381,105 +268,77 @@ export default function SAMFrontend({
       }
     } else {
       setSelected(selected.filter((i) => i !== clickedIdx));
-      setSelectedSegments((prev) =>
-        prev.filter((s) => s !== masks[clickedIdx])
-      );
+      setSelectedSegments((prev) => prev.filter((s) => s !== masks[clickedIdx]));
       setDeselectedPoints((prev) => [...prev, [x, y]]);
     }
   };
 
-  const handleCanvasClick = (e) => toggleMask(e, "add");
-  const handleCanvasUnclick = (e) => toggleMask(e, "remove");
-
-  // Draw everything
   const drawCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas || !imageObj) return;
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
-
-    // 1. Draw main image
     ctx.globalAlpha = 1;
     ctx.drawImage(imageObj, 0, 0, canvas.width, canvas.height);
 
-    // Function to draw a colored mask
     const drawColoredMask = (maskCanvas, color, alpha) => {
       const tmp = document.createElement("canvas");
       tmp.width = maskCanvas.width;
       tmp.height = maskCanvas.height;
       const tmpCtx = tmp.getContext("2d", { willReadFrequently: true });
-
-      // Draw mask
       tmpCtx.drawImage(maskCanvas, 0, 0);
-
-      // Fill with color using source-in
       tmpCtx.globalCompositeOperation = "source-in";
       tmpCtx.fillStyle = color;
       tmpCtx.globalAlpha = alpha;
       tmpCtx.fillRect(0, 0, tmp.width, tmp.height);
-
-      // Draw onto main canvas
       ctx.drawImage(tmp, 0, 0, canvas.width, canvas.height);
     };
 
-    // 2. Unselected masks
     maskCanvases.forEach((mc, idx) => {
-      if (!selected.includes(idx) && hovered !== idx) {
-        drawColoredMask(mc, "rgba(0,150,255,1)", 0.5);
-      }
+      if (!selected.includes(idx) && hovered !== idx) drawColoredMask(mc, "rgba(0,150,255,1)", 0.5);
     });
 
-    // 3. Hovered mask
-    if (hovered !== null && !selected.includes(hovered)) {
-      drawColoredMask(maskCanvases[hovered], "rgba(255,105,180,1)", 0.6);
-    }
+    if (hovered !== null && !selected.includes(hovered)) drawColoredMask(maskCanvases[hovered], "rgba(255,105,180,1)", 0.6);
 
     let colors = ["#00ffd5", "#fc218f", "#ff0000", "#4a4902", "#ff0000"];
-    let colorIndex = 0;
-    // 4. Selected masks + border
-    selected.forEach((idx) => {
-      drawColoredMask(
-        maskCanvases[idx],
-        colors[colorIndex % colors.length],
-        0.95
-      );
+    selected.forEach((idx, i) => {
+      drawColoredMask(maskCanvases[idx], colors[i % colors.length], 0.85);
       const border = borderCanvases[idx];
       if (border) ctx.drawImage(border, 0, 0, canvas.width, canvas.height);
-      colorIndex++;
     });
 
-    // 5. Draw points
     selectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
-      ctx.arc(x, y, 12, 0, 2 * Math.PI);
-      ctx.fillStyle = "rgba(255,105,180,1)";
+      ctx.arc(x, y, 14, 0, 2 * Math.PI);
+      ctx.fillStyle = "#fc218f";
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
       ctx.fill();
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3;
+      ctx.stroke();
     });
 
     deselectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
-      ctx.arc(x, y, 12, 0, 2 * Math.PI);
-      ctx.fillStyle = "rgba(0,150,255,1)";
+      ctx.arc(x, y, 14, 0, 2 * Math.PI);
+      ctx.fillStyle = "#00d2ff";
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
       ctx.fill();
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3;
+      ctx.stroke();
     });
   };
 
-  // Redraw whenever hover/selection changes
   useEffect(() => {
     drawCanvas();
-  }, [
-    hovered,
-    selected,
-    maskCanvases,
-    borderCanvases,
-    imageObj,
-    selectedPoints,
-    deselectedPoints,
-  ]);
+  }, [hovered, selected, maskCanvases, borderCanvases, imageObj, selectedPoints, deselectedPoints]);
 
   const sendSelected = () => {
-    if (selected.length > 1) {
+    if (selected.length !== 1) {
       Notifier.notifyError(t("selectOneSegment"));
       return;
     }
@@ -487,226 +346,89 @@ export default function SAMFrontend({
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        textAlign: "center",
-        animation: "fadeIn 0.5s",
-      }}
-      role="region"
-      aria-label={t("segmentationRegionLabel")}
-    >
-      {!sessionStarted ? (
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <Canvas
-            ref={canvasRef}
-            onClick={
-              clickMode === "add" ? handleCanvasClick : handleCanvasUnclick
-            }
-            onContextMenu={
-              selected.length ? handleCanvasUnclick : handleCanvasClick
-            }
-            onMouseMove={handleCanvasMove}
-            onMouseLeave={() => setHovered(null)}
-            $imageURL={imageURL}
-            $loading={loading}
-            role="img"
-            aria-label={t("segmentationCanvasLabel")}
-            tabIndex={0}
-            aria-describedby="segmentation-canvas-desc"
-          />
-      
-          {loading && (
-            <Overlay role="status" aria-live="polite">
-              <StatusLoader>
-                <HashLoader size={50} color="#fff" />
-                {segmentationStatus === "uploading" && (
-                  <p>{t("uploadingImage")}</p>
-                )}
-                {segmentationStatus === "segmenting" && (
-                  <p>{t("segmentingImage")}</p>
-                )}
-                <Button
-                  onClick={() => {
-                    setLoading(false);
-                    segmentationService.endSession();
-                    setSegmentationStatus("idle");
-                  }}
-                  $bgColor="orange"
-                  $bgColorHover="red"
-                  aria-label={t("cancel")}
-                >
-                  {t("cancel")}
-                </Button>
-              </StatusLoader>
-            </Overlay>
-          )}
-        </div>
-      ) : (
-        <Overlay role="status" aria-live="polite">
-          <HashLoader size={50} color="#fff" />
-          <p>{t("connectingServer")}</p>
-        </Overlay>
-      )}
-      <div style={{ marginTop: 10 }}>
-        {masks.length === 0 ? (
-          <MagicButton
-            processImage={processImage}
-            isDisabled={!imageURL || loading}
-            name={t("segment")}
-          />
+    <div className="relative w-full flex flex-col items-center gap-10 animate-in fade-in zoom-in duration-700">
+      <div className="relative w-full aspect-square md:max-w-xl group">
+        {!sessionStarted ? (
+          <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-border/10 bg-black/20">
+            <canvas
+              ref={canvasRef}
+              onClick={clickMode === "add" ? (e) => toggleMask(e, "add") : (e) => toggleMask(e, "remove")}
+              onContextMenu={(e) => { e.preventDefault(); toggleMask(e, "remove"); }}
+              onMouseMove={handleCanvasMove}
+              onMouseLeave={() => setHovered(null)}
+              className={cn(
+                "w-full h-full object-contain cursor-crosshair transition-all duration-1000",
+                loading ? "blur-xl scale-110 opacity-50" : "blur-0 scale-100 opacity-100"
+              )}
+            />
+            {loading && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-3xl z-30 transition-all duration-500">
+                <div className="bg-background/80 p-12 rounded-[3.5rem] shadow-2xl flex flex-col items-center gap-8 border border-white/10">
+                    <HashLoader size={60} color="var(--primary)" />
+                    <div className="space-y-2 text-center">
+                        <h4 className="font-black uppercase tracking-tighter text-xl italic">
+                            {segmentationStatus === "uploading" ? "Broadcasting Image..." : "AI Vision Segmenting..."}
+                        </h4>
+                        <p className="text-xs font-bold opacity-40 uppercase tracking-widest animate-pulse">Processing Pixel Arrays</p>
+                    </div>
+                    <Button 
+                        variant="destructive" 
+                        size="sm" 
+                        className="rounded-full px-8 h-10 font-black uppercase tracking-widest text-[10px]"
+                        onClick={() => { setLoading(false); segmentationService.endSession(); setSegmentationStatus("idle"); }}
+                    >
+                        Abort Protocol
+                    </Button>
+                </div>
+              </div>
+            )}
+          </div>
         ) : (
-          <MagicButton
-            processImage={reSegmentImage}
-            isDisabled={!imageURL || loading}
-            name={t("resegment")}
-          />
-        )}
-        {selected.length !== 0 && (
-          <Button
-            onClick={sendSelected}
-            $bgColor="rgba(255,105,180,1)"
-            $marginLeft="1rem"
-            aria-label={t("sendSelected")}
-          >
-            {t("sendSelected")}
-          </Button>
+          <div className="w-full h-full bg-muted/20 rounded-[2.5rem] flex flex-col items-center justify-center gap-6 border-2 border-dashed border-border/20">
+             <HashLoader size={40} color="gray" />
+             <p className="font-black uppercase tracking-widest text-xs opacity-30 animate-pulse">{t("connectingServer")}</p>
+          </div>
         )}
       </div>
-      <div
-        style={{
-          marginTop: 10,
-          opacity: masks.length === 0 ? "0" : "1",
-          transition: "all 1s",
-        }}
-      >
-        <AddRemoveMaskToggleButton
-          disabled={selected.length === 0}
-          mode={clickMode}
-          setMode={setClickMode}
-          aria-label={t("maskToggleMode")}
-        />
-        <Guide aria-live="polite" tabIndex={0} aria-label={t('customizeGuideLabel', 'Segmentation Guidance')}>
-          <p>
-            {t("segmentationCanvasDesc")}
-          </p>
-        </Guide>
+
+      <div className="w-full max-w-xl space-y-8">
+        <div className="flex flex-wrap justify-center gap-4">
+          {masks.length === 0 ? (
+            <MagicButton processImage={processImage} isDisabled={!imageURL || loading} name={t("segment")} />
+          ) : (
+            <MagicButton processImage={reSegmentImage} isDisabled={!imageURL || loading} name={t("resegment")} />
+          )}
+          {selected.length !== 0 && (
+            <Button 
+                onClick={sendSelected} 
+                className="h-16 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-black text-lg uppercase tracking-widest shadow-xl animate-in fade-in slide-in-from-left-4 duration-500"
+            >
+                {t("sendSelected")}
+            </Button>
+          )}
+        </div>
+
+        <div className={cn(
+            "space-y-6 transition-all duration-1000",
+            masks.length === 0 ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
+        )}>
+           <div className="flex justify-center">
+            <AddRemoveMaskToggleButton disabled={selected.length === 0} mode={clickMode} setMode={setClickMode} />
+           </div>
+
+           <div className="bg-primary/5 border border-primary/10 p-8 rounded-[2.5rem] flex items-start gap-6 group hover:bg-primary/10 transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <Info size={28} />
+              </div>
+              <div className="space-y-1">
+                <h5 className="font-black text-xs uppercase tracking-widest opacity-30 italic">Segmentation Guide</h5>
+                <p className="font-bold text-sm tracking-tight italic opacity-70">
+                    {t("segmentationCanvasDesc") || "Click parts of your image to define specific clothing items. Right-click to remove points."}
+                </p>
+              </div>
+           </div>
+        </div>
       </div>
     </div>
   );
 }
-
-
-// Styled components
-const fadeIn = keyframes`
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-`;
-
-const gleam = keyframes`
-  0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
-  50% { opacity: 0.6; }
-  100% { transform: translateX(150%) rotate(25deg); opacity: 0; }
-`;
-
-const Canvas = styled.canvas`
-  display: ${(props) => (props.$imageURL ? "block" : "none")};
-  border: none;
-  max-width: 100%;
-  filter: ${(props) => (props.$loading ? "blur(20px)" : "none")};
-  animation: ${fadeIn} 1.5s;
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  color: var(--text-color);
-`;
-
-const Button = styled.button`
-  background: ${(props) => props?.$bgColor || "white"};
-  color: white;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1rem;
-  font-family: inherit;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-bottom: 2px solid transparent;
-  border-radius: 2rem;
-  margin-left: ${(props) => props?.$marginLeft || "0rem"};
-  animation: ${fadeIn} 0.5s;
-
-  &:hover {
-    background-color: ${(props) => props?.$bgColorHover || "#6BCB77"};
-  }
-`;
-
-const StatusLoader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  background: var(--linear-gradiant-bg);
-  opacity: 75%;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-`;
-
-const Guide = styled.aside`
-  margin-top: 10px;
-  padding: 1rem;
-  margin: 1rem;
-  background-color: #f0f8ff72;
-  border-radius: 2rem;
-  animation: ${fadeIn} 1s;
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.37),
-    inset 0 4px 8px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  color: var(--text-color);
-  &:hover {
-    transform: translateY(-5px) scale(1.02);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.6) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-25deg);
-    opacity: 0;
-  }
-
-  &:hover::after {
-    animation: ${gleam} 1s ease forwards;
-  }
-
-  p {
-    animation: ${fadeIn} 1s;
-    font-family: "Cinzel", "MedievalSharp", serif;
-  }
-`;

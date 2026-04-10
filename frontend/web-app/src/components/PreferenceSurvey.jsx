@@ -1,39 +1,21 @@
-import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import { Check, Sparkles, X, User, ShieldCheck } from "lucide-react";
 
-// Component
 export default function PreferenceSurvey({ onClose }) {
   const { t } = useTranslation(NAMESPACES.survey);
   const [step, setStep] = useState(0);
-  const [closing, setClosing] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const styles = [
-    {
-      id: 1,
-      key: "streetwear",
-      img: "https://source.unsplash.com/600x400/?streetwear,fashion,outfit",
-      fallback: "https://loremflickr.com/600/400/streetwear,fashion,outfit",
-    },
-    {
-      id: 2,
-      key: "formal",
-      img: "https://source.unsplash.com/600x400/?suit,formal,blazer,evening-wear",
-      fallback: "https://loremflickr.com/600/400/suit,formal,blazer",
-    },
-    {
-      id: 3,
-      key: "boho",
-      img: "https://source.unsplash.com/600x400/?boho,bohemian,dress,floral",
-      fallback: "https://loremflickr.com/600/400/boho,bohemian,dress,floral",
-    },
-    {
-      id: 4,
-      key: "athleisure",
-      img: "https://source.unsplash.com/600x400/?athleisure,sportswear,hoodie,leggings",
-      fallback: "https://loremflickr.com/600/400/athleisure,sportswear,hoodie",
-    },
+    { id: 1, key: "streetwear", img: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=600&auto=format&fit=crop" },
+    { id: 2, key: "formal", img: "https://images.unsplash.com/photo-1594932224010-3866164ae15a?q=80&w=600&auto=format&fit=crop" },
+    { id: 3, key: "boho", img: "https://images.unsplash.com/photo-1581067723713-35a5d1b7ae99?q=80&w=600&auto=format&fit=crop" },
+    { id: 4, key: "athleisure", img: "https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=600&auto=format&fit=crop" },
   ];
 
   const handleAnswer = () => {
@@ -41,342 +23,135 @@ export default function PreferenceSurvey({ onClose }) {
       setStep(step + 1);
     } else {
       setStep(3);
-      setTimeout(() => closePopup(), 1500);
+      setTimeout(() => {
+          setOpen(false);
+          onClose?.();
+      }, 2500);
     }
   };
 
-  const closePopup = () => {
-    setClosing(true);
-    setTimeout(() => onClose && onClose(), 400);
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {}, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const ImageWithFallback = ({ src, fallback, alt }) => {
-    const [currentSrc, setCurrentSrc] = useState(src);
-    return (
-      <StyleImg
-        src={currentSrc}
-        alt={alt}
-        loading="lazy"
-        referrerPolicy="no-referrer"
-        onError={() => {
-          if (fallback && currentSrc !== fallback) setCurrentSrc(fallback);
-        }}
-      />
-    );
+  const handleClose = () => {
+    setOpen(false);
+    onClose?.();
   };
 
   return (
-    <Overlay>
-      <Dialog role="dialog" aria-modal="true" closing={closing}>
-        <Header>
-          <Heading>{t("heading")}</Heading>
-          <CloseButton aria-label={t("close")} onClick={closePopup}>
-            ×
-          </CloseButton>
-        </Header>
-        <Intro>{t("intro")}</Intro>
+    <Dialog open={open} onOpenChange={handleClose}>
+        <DialogContent className="max-w-2xl p-0 overflow-hidden border-none rounded-[4rem] bg-background/60 backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.4)] md:min-h-[700px] flex flex-col justify-center">
+            <div className="relative p-12 md:p-20 space-y-16">
+                
+                {/* Close absolute */}
+                <Button variant="ghost" size="icon" className="absolute top-10 right-10 rounded-full hover:bg-muted w-12 h-12" onClick={handleClose}>
+                    <X size={24} />
+                </Button>
 
-        {step !== 3 && (
-          <Progress>
-            {[0, 1, 2].map((i) => (
-              <Dot key={i} $active={step === i} />
-            ))}
-          </Progress>
-        )}
+                {/* Header Area */}
+                <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary shadow-lg backdrop-blur-md">
+                            <Sparkles size={24} className="animate-pulse" />
+                        </div>
+                        <h3 className="text-xs font-black uppercase tracking-[0.4em] opacity-30 italic leading-none">{t("heading")}</h3>
+                    </div>
+                    {step < 3 && (
+                        <h2 className="text-5xl md:text-7xl font-black tracking-[-0.05em] uppercase italic leading-[0.8] animate-in slide-in-from-left-10 duration-700">
+                            {step === 0 ? t("genderTitle") : step === 1 ? t("colorTitle") : t("styleTitle")}
+                        </h2>
+                    )}
+                </div>
 
-        <Body>
-          {step === 0 && (
-            <Section>
-              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
-                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
-                <Title>{t("genderTitle")}</Title>
-                <Options>
-                  <PrimaryButton onClick={handleAnswer}>{t("genderMale")}</PrimaryButton>
-                  <PrimaryButton onClick={handleAnswer}>{t("genderFemale")}</PrimaryButton>
-                  <SecondaryButton onClick={handleAnswer}>{t("genderPreferNot")}</SecondaryButton>
-                </Options>
-              </fieldset>
-            </Section>
-          )}
+                {/* Body Area */}
+                <div className="min-h-[350px] flex flex-col justify-center relative">
+                    {step === 0 && (
+                        <div className="grid grid-cols-1 gap-6 animate-in fade-in slide-in-from-bottom-5 duration-700">
+                            {[
+                                { label: t("genderMale"), icon: <User size={28} /> },
+                                { label: t("genderFemale"), icon: <User size={28} /> },
+                                { label: t("genderPreferNot"), icon: <ShieldCheck size={28} /> }
+                            ].map((opt, i) => (
+                                <Button 
+                                    key={i}
+                                    variant="outline" 
+                                    className="h-24 rounded-[2rem] border-2 group hover:border-primary hover:bg-primary/5 transition-all text-2xl font-black uppercase tracking-tighter gap-8 justify-start px-12 italic"
+                                    onClick={handleAnswer}
+                                >
+                                    <span className="opacity-10 group-hover:opacity-100 group-hover:text-primary transition-all duration-500">{opt.icon}</span>
+                                    {opt.label}
+                                </Button>
+                            ))}
+                        </div>
+                    )}
 
-          {step === 1 && (
-            <Section>
-              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
-                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
-                <Title>{t("colorTitle")}</Title>
-                <Options>
-                  <PrimaryButton onClick={handleAnswer}>{t("colors.red")}</PrimaryButton>
-                  <PrimaryButton onClick={handleAnswer}>{t("colors.blue")}</PrimaryButton>
-                  <PrimaryButton onClick={handleAnswer}>{t("colors.black")}</PrimaryButton>
-                  <PrimaryButton onClick={handleAnswer}>{t("colors.white")}</PrimaryButton>
-                </Options>
-              </fieldset>
-            </Section>
-          )}
+                    {step === 1 && (
+                        <div className="grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-right-10 duration-700">
+                             {["red", "blue", "black", "white"].map((colorKey) => (
+                                <Button 
+                                    key={colorKey}
+                                    variant="outline"
+                                    className="h-32 rounded-[2.5rem] border-2 group hover:scale-[1.05] transition-all duration-500 overflow-hidden flex-col gap-0 p-0 shadow-sm border-border/10"
+                                    onClick={handleAnswer}
+                                >
+                                    <div className={cn("w-full h-20 transition-all duration-700 group-hover:h-24", 
+                                        colorKey === 'red' ? 'bg-rose-500' :
+                                        colorKey === 'blue' ? 'bg-blue-600' :
+                                        colorKey === 'black' ? 'bg-stone-900' : 'bg-white border-b'
+                                    )} />
+                                    <div className="w-full flex-1 flex items-center justify-center bg-background group-hover:bg-muted/50 transition-colors">
+                                        <span className="font-black uppercase tracking-[0.3em] text-[10px] italic">{t(`colors.${colorKey}`)}</span>
+                                    </div>
+                                </Button>
+                             ))}
+                        </div>
+                    )}
 
-          {step === 2 && (
-            <Section>
-              <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
-                <legend style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px,1px,1px,1px)' }}>{t('surveyOptionsLegend')}</legend>
-                <Title>{t("styleTitle")}</Title>
-                <ImageGrid>
-                  {styles.map((s) => (
-                    <StyleCard key={s.id} onClick={handleAnswer}>
-                      <ImageWithFallback
-                        src={s.img}
-                        fallback={s.fallback}
-                        alt={t("styleAlt", { style: t(`styles.${s.key}`) })}
-                      />
-                      <StyleLabel>{t(`styles.${s.key}`)}</StyleLabel>
-                    </StyleCard>
-                  ))}
-                </ImageGrid>
-              </fieldset>
-            </Section>
-          )}
+                    {step === 2 && (
+                        <div className="grid grid-cols-2 gap-8 animate-in fade-in zoom-in duration-700">
+                            {styles.map(s => (
+                                <div 
+                                    key={s.id} 
+                                    className="group cursor-pointer space-y-4"
+                                    onClick={handleAnswer}
+                                >
+                                    <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-4 border-transparent group-hover:border-primary transition-all duration-1000 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] bg-muted">
+                                        <img src={s.img} alt={s.key} className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000" />
+                                    </div>
+                                    <span className="block text-center font-black uppercase tracking-[0.2em] italic text-[10px] opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all underline decoration-1 underline-offset-8">{t(`styles.${s.key}`)}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
-          {step === 3 && (
-            <ThankYou>
-              <BigCheck>✔</BigCheck>
-              <ThanksTitle>{t("thanksTitle")}</ThanksTitle>
-              <ThanksText>{t("thanksText")}</ThanksText>
-            </ThankYou>
-          )}
-        </Body>
+                    {step === 3 && (
+                        <div className="flex flex-col items-center justify-center text-center space-y-12 animate-in zoom-in duration-1000">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-primary/20 rounded-[4rem] blur-[60px] animate-pulse" />
+                                <div className="w-40 h-40 bg-primary text-white rounded-[4rem] flex items-center justify-center relative z-10 shadow-2xl">
+                                    <Check size={100} strokeWidth={5} className="animate-in zoom-in spin-in-90 duration-700" />
+                                </div>
+                            </div>
+                            <div className="space-y-4 max-w-sm">
+                                <h2 className="text-5xl font-black uppercase tracking-tighter italic leading-none">{t("thanksTitle")}</h2>
+                                <p className="text-2xl font-bold opacity-50 italic leading-tight tracking-tight">{t("thanksText")}</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
 
-        {step !== 3 && (
-          <Footer>
-            <SkipButton onClick={closePopup}>{t("skip")}</SkipButton>
-          </Footer>
-        )}
-      </Dialog>
-    </Overlay>
+                {/* Footer Area */}
+                {step < 3 && (
+                    <div className="flex items-center justify-between pt-12 border-t-2 border-border/5">
+                        <div className="flex gap-4">
+                            {[0, 1, 2].map(i => (
+                                <div key={i} className={cn("h-2 transition-all duration-700 rounded-full", step === i ? "w-16 bg-primary" : "w-4 bg-muted/50")} />
+                            ))}
+                        </div>
+                        <Button variant="ghost" className="font-black uppercase tracking-[0.4em] text-[10px] opacity-30 hover:opacity-100 hover:bg-transparent decoration-2 underline-offset-8" onClick={handleClose}>
+                            {t("skip")}
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </DialogContent>
+    </Dialog>
   );
 }
-
-// Animations
-const scaleIn = keyframes`
-  from { opacity: 0; transform: translateY(8px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-`;
-
-const scaleOut = keyframes`
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-8px) scale(0.98); }
-`;
-
-// Styled Components
-const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(3px);
-  display: grid;
-  place-items: center;
-  z-index: 9999;
-  padding: 1rem;
-`;
-
-const Dialog = styled.div`
-  width: 100%;
-  max-width: 520px;
-  background: var(--bg-color);
-  color: var(--text-color);
-  border-radius: 16px;
-  padding: 18px 18px 12px 18px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  animation: ${(props) => (props.closing ? scaleOut : scaleIn)} 0.28s ease;
-`;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-`;
-
-const Heading = styled.h3`
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-`;
-
-const CloseButton = styled.button`
-  appearance: none;
-  background: transparent;
-  border: none;
-  color: var(--text-color);
-  font-size: 1.4rem;
-  line-height: 1;
-  padding: 0.25rem 0.4rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
-  &:hover {
-    background: rgba(127, 127, 127, 0.12);
-  }
-  &:active {
-    transform: scale(0.96);
-  }
-`;
-
-const Intro = styled.p`
-  margin: 8px 4px 12px 4px;
-  color: var(--meta-text-color, #8a8a8a);
-  font-size: 0.9rem;
-`;
-
-const Progress = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 4px 14px 4px;
-`;
-
-const Dot = styled.span`
-  width: ${(p) => (p.$active ? "12px" : "8px")};
-  height: ${(p) => (p.$active ? "12px" : "8px")};
-  border-radius: 50%;
-  background: ${(p) =>
-    p.$active ? "var(--primary-color, #4d96ff)" : "rgba(127,127,127,0.35)"};
-  box-shadow: ${(p) => (p.$active ? "0 0 0 3px rgba(77,150,255,0.2)" : "none")};
-  transition: all 0.2s ease;
-`;
-
-const Body = styled.div`
-  padding: 4px;
-`;
-
-const Title = styled.h2`
-  margin: 0 0 10px 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  text-align: center;
-`;
-
-const Options = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 12px;
-
-  @media (max-width: 420px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const baseButton = `
-  width: 100%;
-  padding: 12px 14px;
-  border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
-  outline: none;
-  &:hover { transform: translateY(-1px); }
-  &:active { transform: translateY(0); }
-  &:focus-visible { box-shadow: 0 0 0 3px rgba(77,150,255,0.35); }
-`;
-
-const PrimaryButton = styled.button`
-  ${baseButton}
-  background: linear-gradient(135deg, var(--primary-color, #4d96ff), var(--secondary-color, #6bcb77));
-  color: #ffffff;
-`;
-
-const SecondaryButton = styled.button`
-  ${baseButton}
-  background: rgba(127,127,127,0.12);
-  color: var(--text-color);
-`;
-
-const ImageGrid = styled.div`
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, 1fr);
-  margin-top: 12px;
-`;
-
-const StyleCard = styled.button`
-  border: none;
-  padding: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  color: var(--text-color);
-  background: var(--card-bg, rgba(127, 127, 127, 0.08));
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const StyleImg = styled.img`
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  display: block;
-`;
-
-const StyleLabel = styled.div`
-  padding: 8px 10px;
-  text-align: center;
-  font-size: 0.9rem;
-`;
-
-const SkipButton = styled.button`
-  appearance: none;
-  background: transparent;
-  border: none;
-  color: var(--meta-text-color, #8a8a8a);
-  font-size: 0.9rem;
-  text-decoration: underline;
-  cursor: pointer;
-`;
-
-const Footer = styled.div`
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-  padding: 4px 0 4px 0;
-`;
-
-const ThankYou = styled.div`
-  text-align: center;
-  padding: 18px 0 8px 0;
-`;
-
-const BigCheck = styled.div`
-  font-size: 42px;
-  line-height: 1;
-  color: var(--primary-color, #4d96ff);
-  margin-bottom: 8px;
-`;
-
-const ThanksTitle = styled.div`
-  font-size: 1.4rem;
-  font-weight: 800;
-`;
-
-const ThanksText = styled.div`
-  margin-top: 6px;
-  color: var(--meta-text-color, #8a8a8a);
-  font-size: 0.95rem;
-`;
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-`;
