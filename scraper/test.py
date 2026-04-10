@@ -1,7 +1,9 @@
+from tracemalloc import start
+
 import requests
 import json
 import re
-
+import time
 
 url = "https://www.asos.com/asos-design/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/prd/6262702"
 
@@ -146,13 +148,14 @@ def scrape_product(url):
         "rating": ratings.get("averageOverallRating")
     }
 
+start_time = time.time_ns()
 data = scrape_product(url)
-
+elapsed_seconds = (time.time_ns() - start_time) / 1e9
 
 # print(data)
 with open("data/test.json", "w") as f:
     f.write(json.dumps(data, indent=4))
-print("Done.")
+print(f"Done. Time taken: {elapsed_seconds:.2f} seconds.")
 
 
 # data = json.loads(page_js)
