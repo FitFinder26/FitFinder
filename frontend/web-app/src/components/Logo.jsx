@@ -1,92 +1,54 @@
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import React from "react";
+import { cn } from "@/lib/utils";
 
-export default function Logo({ fontSize = 70, scale = 1, variant = 0 }) {
-  const colors = ["#19029b", "#FFD93D", "#6BCB77", "#4D96FF", "#ae2c2c", "#845EC2"];
-  const columns = 20;
-  const segmentHeight = 50;
-  const textRef = useRef(null);
-  const [box, setBox] = useState({ x: 0, y: 0, width: 100, height: 100 });
-
-  // 🔹 Random deterministic pattern based on variant
-  const rects = useMemo(() => {
-    const arr = [];
-    const rng = (seed) => {
-      let s = Math.sin(seed) * 10000;
-      return s - Math.floor(s);
-    };
-    let seed = variant * 1000;
-
-    for (let i = 0; i < columns; i++) {
-      const x = i * 50;
-      for (let j = 0; j < 8; j++) {
-        seed += 1;
-        const color = colors[Math.floor(rng(seed) * colors.length)];
-        const delay = (rng(seed + 1) * 2).toFixed(2);
-        const duration = (1 + rng(seed + 2)).toFixed(2);
-        const move = (rng(seed + 3) * 40 - 20).toFixed(1);
-
-        arr.push(
-          <rect
-            key={`${i}-${j}`}
-            x={x}
-            y={j * segmentHeight}
-            width="50"
-            height={segmentHeight}
-            fill={color}
-          >
-            <animateTransform
-              attributeName="transform"
-              type="translate"
-              values={`0,0; 0,${move}; 0,0`}
-              dur={`${duration}s`}
-              repeatCount="indefinite"
-              begin={`${delay}s`}
-            />
-          </rect>
-        );
-      }
-    }
-    return arr;
-  }, [variant]);
-
-  // 🔹 Measure text bounds
-  useEffect(() => {
-    if (textRef.current) {
-      const b = textRef.current.getBBox();
-      setBox(b);
-    }
-  }, [fontSize]);
-
+/**
+ * FitFinder Master Logo
+ * A high-end, brutalist-inspired logo using premium typography and geometric accents.
+ */
+export default function Logo({ 
+    fontSize = 32, 
+    className, 
+    showDot = true,
+    variant = "default" 
+}) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={`${box.x} ${box.y} ${box.width} ${box.height}`}
-      preserveAspectRatio="xMinYMin meet"
-      style={{
-        display: "block",
-        background: "transparent",
-        width: `${box.width * scale}px`,
-        height: `${box.height * scale}px`,
-      }}
+    <div 
+        className={cn(
+            "flex items-center gap-0 select-none group",
+            className
+        )}
+        style={{ fontSize: `${fontSize}px` }}
     >
-      <defs>
-        <pattern id="slidePattern" patternUnits="userSpaceOnUse" width="1000" height="400">
-          {rects}
-        </pattern>
-      </defs>
+      <div className="relative flex items-center">
+        {/* The Text Body */}
+        <span className={cn(
+            "font-black tracking-[-0.08em] uppercase italic leading-none transition-all duration-700",
+            variant === "light" ? "text-white" : "text-foreground",
+            "group-hover:text-primary"
+        )}>
+          FitFinder
+        </span>
 
-      <text
-        ref={textRef}
-        x="0"
-        y={fontSize}
-        fontSize={fontSize}
-        fontFamily="sans-serif"
-        fill="url(#slidePattern)"
-        dominantBaseline="alphabetic"
-        textAnchor="start"
-      >
-        FITFINDER
-      </text>
-    </svg>
+        {/* The Geometric 'Neural' Dot */}
+        {showDot && (
+            <div className="relative ml-1 overflow-visible">
+                {/* Dot Base */}
+                <div className={cn(
+                    "w-2 h-2 rounded-full",
+                    variant === "light" ? "bg-white" : "bg-primary",
+                    "transition-transform duration-700 group-hover:scale-150 rotate-45"
+                )} />
+                
+                {/* Dot Glow/Pulse (Hidden by default, active on hover) */}
+                <div className="absolute inset-0 bg-primary rounded-full blur-md opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
+            </div>
+        )}
+
+        {/* Subtle Bottom Accent - Only visible at larger scales */}
+        {fontSize > 50 && (
+            <div className="absolute -bottom-4 left-0 w-1/3 h-1.5 bg-primary/20 rounded-full group-hover:w-full transition-all duration-1000" />
+        )}
+      </div>
+    </div>
   );
 }

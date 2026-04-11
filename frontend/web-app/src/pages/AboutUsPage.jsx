@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../locales/namespaces";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import Logo from "../components/Logo";
 import { PlayCircle, Users, Sparkles, BookOpen, Layers, ShieldCheck, ChevronRight } from "lucide-react";
 
