@@ -10,12 +10,13 @@ import RegistrationPage from "./pages/RegistrationPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import ProductPage from "./pages/ProductPage";
 import { Toaster } from "react-hot-toast";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/homePage/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import FavoritePage from "./pages/FavoritePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import LenisProvider from "./components/LenisProvider";
 
 function App() {
   const router = createBrowserRouter(
@@ -39,10 +40,10 @@ function App() {
   );
 
   return (
-    <>
+    <LenisProvider>
       <RouterProvider router={router} />
       <Toaster />
-    </>
+    </LenisProvider>
   );
 }
 

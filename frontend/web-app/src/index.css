@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "ElMessiri";
+  src: url("./assets/fonts/ar/ElMessiri-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+[lang="ar"], [dir="rtl"], [dir="rtl"] * {
+  font-family: "ElMessiri", ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+}
+
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  
+  --font-sans: "Poppins", "ElMessiri", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -70,9 +81,9 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    /* Keep some custom variables for compatibility during transition */
-    --primary-color: #fa587e;
-    --secondary-color: #2f68c5;
+    color-scheme: light;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   .dark {
@@ -100,6 +111,8 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    color-scheme: dark;
   }
 }
 
@@ -108,7 +121,36 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: transparent;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Global Scrollbar Alignment - Floating Thumb Style */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 100px;
+    transition: background 0.5s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--secondary));
+  }
+
+  /* Firefox Support - Floating Thumb Style */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
   }
 }
 
@@ -116,6 +158,7 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -125,15 +168,19 @@
   .animate-mask-detect {
     animation: maskDetect 2.5s ease-in-out infinite;
   }
+
   .animate-border-detect {
     animation: borderDetect 2.5s ease-in-out infinite;
   }
+
   .animate-point-pulse {
     animation: pointPulse 1.8s ease-in-out infinite;
   }
+
   .animate-shimmer {
     animation: shimmer 3s infinite;
   }
+
   .animate-glow {
     animation: glow 3s ease-in-out infinite;
   }
@@ -144,9 +191,11 @@
     clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
     opacity: 0;
   }
+
   50% {
     opacity: 0.6;
   }
+
   100% {
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     opacity: 0.4;
@@ -159,9 +208,11 @@
     stroke-dashoffset: 1000;
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     stroke-dasharray: 1000;
     stroke-dashoffset: 0;
@@ -174,10 +225,12 @@
     r: 3px;
     opacity: 0;
   }
+
   40% {
     r: 5px;
     opacity: 1;
   }
+
   100% {
     r: 3px;
     opacity: 0.6;
@@ -188,17 +241,38 @@
   0% {
     background-position: -1000px 0;
   }
+
   100% {
     background-position: 1000px 0;
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(0, 150, 255, 0.3), inset 0 0 20px rgba(0, 150, 255, 0.1);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(0, 150, 255, 0.6), inset 0 0 30px rgba(0, 150, 255, 0.2);
   }
 }
 
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

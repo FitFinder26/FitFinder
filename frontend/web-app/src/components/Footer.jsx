@@ -6,7 +6,7 @@ import { NAMESPACES } from "../locales/namespaces";
 import { Button } from "@/components/ui/button";
 
 export default function Footer({ navigationBlocked }) {
-  const { t } = useTranslation(NAMESPACES.footer);
+  const { t, i18n } = useTranslation(NAMESPACES.footer);
   const { t: tCommon } = useTranslation(NAMESPACES.common);
   const { device } = useDevice();
   const navigate = useNavigate();
@@ -28,13 +28,13 @@ export default function Footer({ navigationBlocked }) {
                 variant={2}
               />
             </div>
-            <p className="text-muted-foreground text-lg font-medium max-w-md mx-auto md:mx-0">
+            <p className="text-muted-foreground text-lg text-start font-medium max-w-md mx-auto md:mx-0">
               {t("tagline") || "Redefining fashion scanning with AI."}
             </p>
           </div>
 
           {/* Quick Links */}
-          <nav className="space-y-4 text-center md:text-left">
+          <nav className={`space-y-4 text-center ${i18n.language === "ar" ? "md:text-right" : "md:text-left"}`}>
             <h3 className="text-foreground font-bold text-xl">{t("quickLinks")}</h3>
             <ul className="space-y-2">
               <li>
@@ -48,7 +48,7 @@ export default function Footer({ navigationBlocked }) {
                 </Button>
               </li>
               <li>
-                <a 
+                <a
                   href={`mailto:fitfindercsed@gmail.com?subject=${encodeURIComponent(t("contactSubject", { appName: tCommon("appName") }))}&body=${encodeURIComponent(t("contactBody"))}`}
                   className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium inline-block"
                 >
@@ -59,7 +59,7 @@ export default function Footer({ navigationBlocked }) {
           </nav>
 
           {/* Legal */}
-          <nav className="space-y-4 text-center md:text-left">
+          <nav className={`space-y-4 text-center ${i18n.language === "ar" ? "md:text-right" : "md:text-left"}`}>
             <h3 className="text-foreground font-bold text-xl">{t("legal")}</h3>
             <ul className="space-y-2">
               <li>
