@@ -11,5 +11,9 @@
   "signOut": "تسجيل الخروج",
   "profileImageSuccess": "تم تغيير صورة الملف الشخصي بنجاح",
   "profileImageFailed": "فشل رفع صورة الملف الشخصي",
-  "uploading": "..."
+  "uploading": "...",
+  "memberSince": "عضو متميز في FitFinder",
+  "welcomeGuest": "اكتشف أسلوبك الخاص",
+  "privacyPolicy": "سياسة الخصوصية والأناقة",
+  "copyright": "© 2024 فيت فايندر للذكاء الاصطناعي"
 }

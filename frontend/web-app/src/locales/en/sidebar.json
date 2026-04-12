@@ -13,5 +13,9 @@
   "profileImageFailed": "Profile image upload failed",
   "uploading": "...",
   "sidebarMenu": "Sidebar menu",
-  "editProfileImage": "Edit profile image"
+  "editProfileImage": "Edit profile image",
+  "memberSince": "FitFinder Elite Member",
+  "welcomeGuest": "Discover your style",
+  "privacyPolicy": "Privacy & Style Policy",
+  "copyright": "© 2024 FitFinder AI"
 }

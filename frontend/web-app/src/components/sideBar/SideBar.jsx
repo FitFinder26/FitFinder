@@ -5,18 +5,13 @@ import {
   MessageCircleDashed,
   User as UserIcon,
   Edit2 as EditIcon,
-  Sun,
-  Moon,
   ShieldCheck,
-  ChevronDown,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { useAuthContext } from "../../providers/AuthProvider";
 import { CgPassword } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { Notifier } from "../Notifier";
-import { useTheme } from "../../providers/ThemeProvider";
-import { FaCheck } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../../locales/namespaces";
 import {
@@ -36,9 +31,6 @@ export default function SideBar({ isOpen, setIsOpen }) {
   const [imgError, setImgError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
-  const { theme, setTheme } = useTheme();
-  const [isThemeOpen, setIsThemeOpen] = useState(false);
-  
   const feedbackFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform?usp=dialog";
 
   useEffect(() => {
@@ -90,7 +82,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
         <ScrollArea className="h-full">
           <div className="flex flex-col h-full min-h-[100vh]">
             {/* User Header */}
-            <div className="relative py-12 flex flex-col items-center bg-gradient-to-b from-primary/5 to-transparent border-b border-border/5">
+            <div className="relative py-6 flex flex-col items-center bg-gradient-to-b from-primary/5 to-transparent border-b border-border/5">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -100,7 +92,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
               />
               <div className="relative group">
                 <Avatar 
-                  className="w-28 h-28 border-4 border-background shadow-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-3"
+                  className="w-20 h-20 border-4 border-background shadow-2xl cursor-pointer transition-all duration-300 hover:scale-105"
                   onClick={handleProfilePicClick}
                 >
                   <AvatarImage src={user?.profileImageURL} alt={user?.userName} />
@@ -120,7 +112,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
                     </Button>
                 )}
               </div>
-              <div className="mt-6 text-center space-y-1">
+              <div className="mt-4 text-center space-y-0.5">
                 <h2 className="text-2xl font-black tracking-tight text-foreground">
                     {user?.userName || t("guest")}
                 </h2>
@@ -131,103 +123,72 @@ export default function SideBar({ isOpen, setIsOpen }) {
             </div>
 
             {/* Menu Items */}
-            <div className="flex-1 p-6 space-y-3">
+            <div className="flex-1 p-4 space-y-1">
               <Button 
                 variant="ghost" 
-                className="w-full justify-start gap-4 h-14 text-lg font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
+                className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => handleNavigation("/history")}
               >
-                <div className="w-10 h-10 flex items-center justify-center bg-muted rounded-lg group-hover:bg-primary/20">
-                    <History size={22} />
+                <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg group-hover:bg-primary/20">
+                    <History size={18} />
                 </div>
                 {t("recentSearches")}
               </Button>
 
               <Button 
                 variant="ghost" 
-                className="w-full justify-start gap-4 h-14 text-lg font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
+                className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => handleNavigation("/favorite")}
               >
-                <div className="w-10 h-10 flex items-center justify-center bg-muted rounded-lg">
-                    <Heart size={22} />
+                <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg">
+                    <Heart size={18} />
                 </div>
                 {t("savedItems")}
               </Button>
 
               <Button 
                 variant="ghost" 
-                className="w-full justify-start gap-4 h-14 text-lg font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
+                className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => window.open(feedbackFormLink)}
               >
-                <div className="w-10 h-10 flex items-center justify-center bg-muted rounded-lg">
-                    <MessageCircleDashed size={22} />
+                <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg">
+                    <MessageCircleDashed size={16} />
                 </div>
                 {t("sendFeedback")}
               </Button>
 
-              <div className="space-y-2">
-                <Button 
-                    variant="ghost" 
-                    className="w-full justify-between gap-4 h-14 text-lg font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
-                    onClick={() => setIsThemeOpen(!isThemeOpen)}
-                >
-                    <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 flex items-center justify-center bg-muted rounded-lg">
-                            {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
-                        </div>
-                        {t("theme")}
-                    </div>
-                    <ChevronDown size={20} className={cn("transition-transform duration-300", isThemeOpen && "rotate-180")} />
-                </Button>
-                {isThemeOpen && (
-                    <div className="ml-14 mr-4 p-2 bg-muted/30 rounded-xl space-y-1 animate-in fade-in slide-in-from-top-4 duration-300">
-                        {["light", "dark", "system"].map((tMode) => (
-                            <Button
-                                key={tMode}
-                                variant={theme === tMode ? "secondary" : "ghost"}
-                                size="sm"
-                                className="w-full justify-between h-10 font-bold px-4 rounded-lg capitalize"
-                                onClick={() => setTheme(tMode)}
-                            >
-                                {t(tMode)}
-                                {theme === tMode && <FaCheck size={14} className="text-primary" />}
-                            </Button>
-                        ))}
-                    </div>
-                )}
-              </div>
 
-              <div className="pt-6 mt-6 border-t border-border/10 space-y-3">
+              <div className="pt-4 mt-4 border-t border-border/10 space-y-1">
                 <Button 
                     variant="ghost" 
-                    className="w-full justify-start gap-4 h-12 text-base font-bold text-muted-foreground hover:text-foreground transition-all px-4"
+                    className="w-full justify-start gap-4 h-10 text-sm font-bold text-muted-foreground hover:text-foreground transition-all px-4"
                 >
-                    <CgPassword size={20} />
+                    <CgPassword size={18} />
                     {t("changePassword")}
                 </Button>
                 
                 <Button 
                     variant="ghost" 
-                    className="w-full justify-start gap-4 h-12 text-base font-black text-rose-500 hover:text-rose-600 hover:bg-rose-500/10 transition-all px-4"
+                    className="w-full justify-start gap-4 h-10 text-sm font-black text-rose-500 hover:text-rose-600 hover:bg-rose-500/10 transition-all px-4"
                     onClick={handleLogout}
                 >
-                    <DoorOpen size={20} />
+                    <DoorOpen size={18} />
                     {t("signOut")}
                 </Button>
               </div>
             </div>
             
-            <div className="p-6 bg-muted/20">
+            <div className="p-4 bg-muted/20">
                 <Button 
                     variant="outline" 
-                    className="w-full gap-2 rounded-2xl h-12 border-2 text-sm font-bold shadow-sm"
+                    className="w-full gap-2 rounded-xl h-10 border-2 text-xs font-bold shadow-sm"
                     onClick={() => handleNavigation("/privacy-policy")}
                 >
-                    <ShieldCheck size={18} className="text-primary" />
-                    {t("privacyPolicy") || "Privacy Policy"}
+                    <ShieldCheck size={16} className="text-primary" />
+                    {t("privacyPolicy")}
                 </Button>
-                <p className="mt-4 text-center text-[10px] text-muted-foreground font-medium uppercase tracking-widest opacity-50">
-                    &copy; 2024 FitFinder AI
+                <p className="mt-3 text-center text-[9px] text-muted-foreground font-medium uppercase tracking-widest opacity-50">
+                    {t("copyright")}
                 </p>
             </div>
           </div>

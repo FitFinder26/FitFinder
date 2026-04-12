@@ -15,5 +15,13 @@
   "removePrompt": "Are you sure you want to remove this item from your favorites?",
   "yesRemove": "Yes, remove",
   "removeSuccess": "Removed from favorites",
-  "removeError": "Failed to remove from favorites"
+  "removeError": "Failed to remove from favorites",
+  "curatedSelection": "MY STYLE VAULT",
+  "pieces": "PIECES",
+  "tagline": "SAVED PIECES READY FOR PURCHASE",
+  "price": "PRICE",
+  "emptyTitle": "Your Closet is Empty",
+  "emptyDesc": "Heart pieces while browsing to build your personal style collection here.",
+  "browseNow": "Start Exploring",
+  "noResultsAlt": "No favorites found"
 }
