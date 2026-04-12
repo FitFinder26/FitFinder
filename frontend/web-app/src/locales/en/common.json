@@ -14,7 +14,9 @@
   "confirm": "Confirm",
   "close": "Close",
   "error404": "404! This is an empty page",
-  "goHome": "Go Home"
+  "goHome": "Go Home",
+  "back": "Back",
+  "error": "Error"
   ,
   "skipToMainContent": "Skip to main content"
 }

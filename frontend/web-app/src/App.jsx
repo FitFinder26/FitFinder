@@ -4,19 +4,19 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import EmptyPage from "./pages/EmptyPage";
-import UserLayout from "./layouts/UserLayout";
-import RegistrationPage from "./pages/RegistrationPage";
-import SearchResultPage from "./pages/SearchResultPage";
-import ProductPage from "./pages/ProductPage";
+import EmptyPage from "@/pages/emptyPage/EmptyPage";
+import UserLayout from "@/layouts/UserLayout";
+import RegistrationPage from "@/pages/registrationPage/RegistrationPage";
+import SearchResultPage from "@/pages/searchResultPage/SearchResultPage";
+import ProductPage from "@/pages/productPage/ProductPage";
 import { Toaster } from "react-hot-toast";
-import HomePage from "./pages/homePage/HomePage";
-import HistoryPage from "./pages/HistoryPage";
-import FavoritePage from "./pages/FavoritePage";
-import AboutUsPage from "./pages/AboutUsPage";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import TermsOfServicePage from "./pages/TermsOfServicePage";
-import LenisProvider from "./providers/LenisProvider";
+import HomePage from "@/pages/homePage/HomePage";
+import HistoryPage from "@/pages/HistoryPage";
+import FavoritePage from "@/pages/FavoritePage";
+import AboutUsPage from "@/pages/aboutUsPage/AboutUsPage";
+import PrivacyPolicyPage from "@/pages/privacyPolicyPage/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/termsOfServicesPage/TermsOfServicePage";
+import LenisProvider from "@/providers/LenisProvider";
 
 function App() {
   const router = createBrowserRouter(

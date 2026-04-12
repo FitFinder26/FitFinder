@@ -1,8 +1,8 @@
-import SAMFrontend from "./segmentation/SAMFrontend";
-import CustomizeSegment from "./customization/CustomizeSegment";
+import SAMFrontend from "@/components/segmentation/SAMFrontend";
+import CustomizeSegment from "@/components/customization/CustomizeSegment";
 import { useEffect, useRef, useState } from "react";
-import { segmentationService } from "../../../shared/services/segmentationService";
-import { useDevice } from "../providers/DeviceProvider";
+import { segmentationService } from "@shared/services/segmentationService";
+import { useDevice } from "@/providers/DeviceProvider";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 

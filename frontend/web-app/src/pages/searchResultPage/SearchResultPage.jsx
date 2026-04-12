@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDevice } from "../providers/DeviceProvider";
+import { useDevice } from "@/providers/DeviceProvider";
 import { useTranslation } from "react-i18next";
-import { NAMESPACES } from "../locales/namespaces";
-import { Info } from "lucide-react";
-import Logo from "../components/common/Logo";
+import { NAMESPACES } from "@/locales/namespaces";
 
 // Sub-components
-import SearchSourcePreview from "../components/search/components/SearchSourcePreview";
-import SearchFilters from "../components/search/components/SearchFilters";
-import SearchProductCard from "../components/search/components/SearchProductCard";
-import SearchEmptyState from "../components/search/components/SearchEmptyState";
-import SearchSkeleton from "../components/search/components/SearchSkeleton";
+import SearchSourcePreview from "@/components/search/components/SearchSourcePreview";
+import SearchFilters from "@/components/search/components/SearchFilters";
+import SearchProductCard from "@/components/search/components/SearchProductCard";
+import SearchEmptyState from "@/components/search/components/SearchEmptyState";
+import SearchSkeleton from "@/components/search/components/SearchSkeleton";
 
-import SearchPagination from "../components/search/components/SearchPagination";
+import SearchPagination from "@/components/search/components/SearchPagination";
 
 export default function SearchResultPage() {
     const { device } = useDevice();

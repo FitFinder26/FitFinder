@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { favoriteService } from "../../../shared/services/favoriteService";
-import { Notifier } from "../components/Notifier";
-import { useAuthContext } from "../providers/AuthProvider";
+import { favoriteService } from "@shared/services/favoriteService";
+import { Notifier } from "@/components/Notifier";
+import { useAuthContext } from "@/providers/AuthProvider";
 import { useTranslation } from "react-i18next";
-import { NAMESPACES } from "../locales/namespaces";
+import { NAMESPACES } from "@/locales/namespaces";
 
-import { parseDescription } from "../lib/utils";
+import { parseDescription } from "@/lib/utils";
 
 // Sub-components
-import ProductNavigation from "../components/product/components/ProductNavigation";
-import ProductImageReveal from "../components/product/components/ProductImageReveal";
-import ProductDetails from "../components/product/components/ProductDetails";
-import SimilarProductsGrid from "../components/product/components/SimilarProductsGrid";
+import ProductNavigation from "@/components/product/components/ProductNavigation";
+import ProductImageReveal from "@/components/product/components/ProductImageReveal";
+import ProductDetails from "@/components/product/components/ProductDetails";
+import SimilarProductsGrid from "@/components/product/components/SimilarProductsGrid";
 
 export default function ProductPage() {
     const { id } = useParams();
@@ -93,8 +93,8 @@ export default function ProductPage() {
     return (
         <div className="min-h-screen bg-background text-foreground animate-in slide-in-from-bottom-10 duration-1000 pb-40 selection:bg-primary selection:text-white">
             <div className="max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-16">
-                
-                <ProductNavigation 
+
+                <ProductNavigation
                     liked={liked}
                     onBack={() => navigate(-1)}
                     onShare={handleShare}
@@ -102,13 +102,13 @@ export default function ProductPage() {
                 />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    <ProductImageReveal 
+                    <ProductImageReveal
                         imageURL={product.imageURL}
                         title={product.title}
                         id={id}
                     />
 
-                    <ProductDetails 
+                    <ProductDetails
                         title={product.title}
                         price={product.price}
                         seller={product.seller}
@@ -119,7 +119,7 @@ export default function ProductPage() {
                 </div>
 
                 {similar.length > 0 && (
-                    <SimilarProductsGrid 
+                    <SimilarProductsGrid
                         similar={similar}
                         onProductClick={(p) => navigate(`/product/${p.item_id}`, {
                             state: { product: p, similarProducts: similar },

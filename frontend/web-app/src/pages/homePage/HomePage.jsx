@@ -48,6 +48,11 @@ export default function HomePage() {
     setIsLoggedIn(isAuthenticated());
   }, [isAuthenticated]);
 
+  // Hook components to the top on navigation
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;

@@ -10,7 +10,12 @@
     "liveSegmentation": "تجزئة حية",
     "neuralEngine": "المحرك العصبي نشط",
     "smartExtract": "استخراج ذكي",
-    "aiVisionEngine": "محرك رؤية الذكاء الاصطناعي 5.0"
+    "aiVisionEngine": "محرك رؤية الذكاء الاصطناعي 5.0",
+    "descriptionShort": "دقة مدعومة بالذكاء الاصطناعي. تنسيق راقٍ. أسلوبك، مفكك.",
+    "aiAnalysis": "تحليل ذكي",
+    "styleMatch": "تطابق الأسلوب",
+    "neuralSearch": "بحث عصبي",
+    "fitEngine": "محرك القياس"
   },
   "features": {
     "secureSearch": "بحث آمن",

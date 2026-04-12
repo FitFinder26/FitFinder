@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { NAMESPACES } from "../locales/namespaces";
+import { NAMESPACES } from "@/locales/namespaces";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import Logo from "../components/common/Logo";
+import { cn } from "@/lib/utils";
 import { PlayCircle, Users, Sparkles, BookOpen, Layers, ShieldCheck, ChevronRight } from "lucide-react";
 
 const AboutUsPage = () => {
@@ -13,6 +13,7 @@ const AboutUsPage = () => {
     const { i18n } = useTranslation();
     const location = useLocation();
     const { toSection } = location.state || {};
+    const [activeSection, setActiveSection] = useState("hero");
 
     const scrollToSection = (id) => {
         const el = document.getElementById(id);
@@ -24,31 +25,59 @@ const AboutUsPage = () => {
         else scrollToSection("hero");
     }, [toSection]);
 
+    // Track active section on scroll
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -70% 0px",
+            threshold: 0,
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const sections = document.querySelectorAll("section[id]");
+        sections.forEach((section) => observer.observe(section));
+
+        return () => observer.disconnect();
+    }, []);
+
     const navItems = [
         { id: "hero", label: t("navAbout"), icon: <Sparkles size={18} /> },
         { id: "introduction", label: t("navIntroduction"), icon: <BookOpen size={18} /> },
         { id: "how-it-works", label: t("navHowItWorks"), icon: <PlayCircle size={18} /> },
         { id: "access", label: t("navUserAccess"), icon: <Layers size={18} /> },
         { id: "features", label: t("navFeatures"), icon: <Sparkles size={18} /> },
-        { id: "personalization", label: t("navPersonalization"), icon: <Sparkles size={18} /> },
-        { id: "academic", label: t("navAcademic"), icon: <BookOpen size={18} /> },
         { id: "contributors", label: t("navContributors"), icon: <Users size={18} /> },
     ];
 
     return (
-        <div className="flex bg-background text-foreground animate-in fade-in duration-1000">
+        <div className="flex lg:flex-row flex-col bg-background text-foreground min-h-screen pt-24 animate-in fade-in duration-1000">
             {/* Sticky Sidebar */}
-            <aside className="hidden lg:block sticky top-24 h-[calc(100vh-6rem)] w-72 p-8 border-r border-border/10">
+            <aside className="hidden lg:block sticky top-28 self-start w-72 p-8 border-r border-border/10">
                 <nav className="flex flex-col gap-2">
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] opacity-30 mb-8 ml-4 italic">Directory</h3>
                     {navItems.map((item) => (
                         <Button
                             key={item.id}
                             variant="ghost"
-                            className="justify-start gap-4 h-12 rounded-xl group transition-all hover:bg-muted/50 border-l-2 border-transparent hover:border-primary px-4"
+                            className={cn(
+                                "justify-start gap-4 h-12 rounded-xl group transition-all px-4 border-l-2",
+                                activeSection === item.id
+                                    ? "bg-primary/10 text-primary border-primary"
+                                    : "hover:bg-muted/50 border-transparent"
+                            )}
                             onClick={() => scrollToSection(item.id)}
                         >
-                            <span className="opacity-20 group-hover:opacity-100 group-hover:text-primary transition-all">
+                            <span className={cn(
+                                "transition-all",
+                                activeSection === item.id ? "opacity-100 text-primary" : "opacity-20 group-hover:opacity-100 group-hover:text-primary"
+                            )}>
                                 {item.icon}
                             </span>
                             <span className="font-black tracking-tighter uppercase text-[10px]">{item.label}</span>
@@ -57,17 +86,14 @@ const AboutUsPage = () => {
                 </nav>
             </aside>
 
-            <main className="flex-1 overflow-x-hidden">
+            <main className="flex-1">
                 {/* Section: Hero */}
                 <section id="hero" className="relative min-h-[60vh] flex flex-col items-center justify-center p-12 text-center md:text-left md:items-start lg:p-24 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
                     <div className="max-w-4xl space-y-10 animate-in slide-in-from-bottom-10 duration-1000 z-10">
-                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none px-6 py-2 rounded-full font-black uppercase tracking-[0.2em] mb-4 text-xs italic">
-                            Innovation Lab 2024
-                        </Badge>
-                        <h1 className="text-6xl md:text-9xl font-black tracking-[-0.05em] uppercase italic leading-[0.8]">
+                        <h1 className="text-4xl text-start md:text-6xl font-black tracking-[-0.05em] uppercase italic leading-[0.8]">
                             {t("heroTitle")}
                         </h1>
-                        <p className="text-2xl md:text-4xl font-bold text-muted-foreground max-w-2xl leading-[1.1] tracking-tight">
+                        <p className="text-xl md:text-2xl font-bold text-muted-foreground max-w-2xl leading-[1.1] tracking-tight">
                             {t("heroSubtitle")}
                         </p>
                     </div>
@@ -82,12 +108,12 @@ const AboutUsPage = () => {
                 <section id="introduction" className="py-32 px-12 lg:px-24 bg-muted/10 relative">
                     <div className="max-w-5xl space-y-16">
                         <div className="space-y-4">
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic">
+                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">
                                 {t("introTitle")}
                             </h2>
-                            <div className="h-2.5 w-32 bg-primary rounded-full" />
+                            <div className="h-2 w-24 bg-primary rounded-full" />
                         </div>
-                        <div className="space-y-8 text-2xl md:text-3xl font-bold leading-tight opacity-70 italic border-l-8 border-border pl-12 py-4">
+                        <div className="space-y-6 text-xl md:text-2xl font-bold leading-tight opacity-70 italic border-l-4 border-border pl-8 py-2">
                             <p className="tracking-tighter">{t("introText1")}</p>
                             <p className="tracking-tighter text-muted-foreground">{t("introText2")}</p>
                         </div>
@@ -98,7 +124,7 @@ const AboutUsPage = () => {
                 <section id="how-it-works" className="py-32 px-12 lg:px-24">
                     <div className="max-w-5xl space-y-20">
                         <div className="space-y-4">
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic">
+                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">
                                 {t("howItWorksTitle")}
                             </h2>
                         </div>
@@ -130,7 +156,7 @@ const AboutUsPage = () => {
                 {/* Section: Access */}
                 <section id="access" className="py-32 px-12 lg:px-24 bg-primary/5">
                     <div className="max-w-5xl space-y-16">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic">
+                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">
                             {t("accessTitle")}
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -160,7 +186,7 @@ const AboutUsPage = () => {
                 <section id="features" className="py-32 px-12 lg:px-24">
                     <div className="max-w-5xl space-y-20">
                         <div className="flex items-center gap-10">
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic whitespace-nowrap">
+                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic whitespace-nowrap">
                                 {t("featuresTitle")}
                             </h2>
                             <div className="h-1 bg-border/20 flex-1" />
@@ -182,7 +208,7 @@ const AboutUsPage = () => {
                 <section id="contributors" className="py-32 px-12 lg:px-24 bg-muted/5">
                     <div className="max-w-5xl space-y-20">
                         <div className="space-y-4">
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic">
+                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">
                                 {t("contributorsTitle")}
                             </h2>
                         </div>
@@ -202,22 +228,6 @@ const AboutUsPage = () => {
                         </div>
                     </div>
                 </section>
-
-                <footer className="py-24 px-12 lg:px-24 border-t border-border/10 text-center bg-muted/2">
-                    <div className="max-w-5xl mx-auto space-y-12">
-                        <div className="flex justify-center">
-                            <Logo fontSize={60} />
-                        </div>
-                        <div className="flex flex-col items-center gap-4">
-                            <p className="text-[10px] font-black uppercase tracking-[0.8em] opacity-20 max-w-sm leading-relaxed">
-                                © {new Date().getFullYear()} {t("footerText")} <br />
-                                COMPUTER SCIENCE DEPT | CSED 2026
-                            </p>
-                            <div className="h-8 w-px bg-primary/20" />
-                            <p className="text-[9px] font-black uppercase tracking-widest opacity-10">ALEXANDRIA UNIVERSITY | DESIGNED BY AI</p>
-                        </div>
-                    </div>
-                </footer>
             </main>
         </div>
     );

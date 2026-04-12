@@ -4,7 +4,7 @@ import {
   EMAILJS_SERVICE_ID,
   EMAILJS_TEMPLATE_ID,
   APP_NAME,
-} from "../config/env";
+} from "@shared/config/env";
 
 const FEEDBACK_LINK =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGvtXgGuBytAzt8AqkEdjSzmdoEGDHlA77UC5fb46Su0rNog/viewform";
@@ -27,11 +27,9 @@ export const emailService = {
     if (!toEmail) return { ok: false, status: 400 };
 
     const subject = `Welcome to ${APP_NAME || "FitFinder"} 🎉`;
-    const body = `Hi ${toName || "there"},%0D%0A%0D%0AWelcome to ${
-      APP_NAME || "FitFinder"
-    }! We're excited to have you on board.%0D%0A%0D%0AWe'd love your feedback: ${
-      FEEDBACK_LINK
-    }%0D%0A%0D%0AThanks,%0D%0AThe ${APP_NAME || "FitFinder"} Team`;
+    const body = `Hi ${toName || "there"},%0D%0A%0D%0AWelcome to ${APP_NAME || "FitFinder"
+      }! We're excited to have you on board.%0D%0A%0D%0AWe'd love your feedback: ${FEEDBACK_LINK
+      }%0D%0A%0D%0AThanks,%0D%0AThe ${APP_NAME || "FitFinder"} Team`;
 
     const fallbackMailto = () => {
       try {

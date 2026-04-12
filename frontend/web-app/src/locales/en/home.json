@@ -10,7 +10,12 @@
     "liveSegmentation": "LIVE SEGMENTATION",
     "neuralEngine": "NEURAL ENGINE ACTIVE",
     "smartExtract": "SMART EXTRACT",
-    "aiVisionEngine": "AI VISION ENGINE 5.0"
+    "aiVisionEngine": "AI VISION ENGINE 5.0",
+    "descriptionShort": "AI-Driven Precision. High-End Curation. Your Style, Decoded.",
+    "aiAnalysis": "AI ANALYSIS",
+    "styleMatch": "STYLE MATCH",
+    "neuralSearch": "NEURAL SEARCH",
+    "fitEngine": "FIT ENGINE"
   },
   "features": {
     "secureSearch": "SECURE SEARCH",

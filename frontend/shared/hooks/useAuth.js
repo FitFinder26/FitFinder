@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { authService } from "../services/authService";
-import { tokenService } from "../services/tokenService";
+import { authService } from "@shared/services/authService";
+import { tokenService } from "@shared/services/tokenService";
 
 export const useAuth = () => {
   const [token, setToken] = useState(tokenService.getToken());
