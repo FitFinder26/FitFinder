@@ -1,8 +1,8 @@
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 import { useNavigate } from "react-router-dom";
-import { useDevice } from "../providers/DeviceProvider";
+import { useDevice } from "../../providers/DeviceProvider";
 import { useTranslation } from "react-i18next";
-import { NAMESPACES } from "../locales/namespaces";
+import { NAMESPACES } from "../../locales/namespaces";
 import { Button } from "@/components/ui/button";
 
 export default function Footer({ navigationBlocked }) {

@@ -25,7 +25,7 @@ export default function Logo({
           "font-black tracking-[-0.08em] uppercase italic leading-none transition-all duration-700",
           variant === "light" ? "text-white" : "text-foreground"
         )}>
-          <span className="transition-colors group-hover:text-white">Fit</span>
+          <span className="transition-colors">Fit</span>
           <span className="transition-colors group-hover:text-secondary transition-colors duration-700">Finder</span>
         </span>
 

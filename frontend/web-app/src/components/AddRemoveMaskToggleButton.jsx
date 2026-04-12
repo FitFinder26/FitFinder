@@ -18,7 +18,7 @@ export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
                 {/* Active Indicator Slider */}
                 <div className={cn(
                     "absolute h-[calc(100%-1rem)] w-[calc(50%-0.5rem)] rounded-[2rem] bg-primary shadow-[0_10px_30px_rgba(250,88,126,0.3)] transition-all duration-700 cubic-bezier(0.7, 0, 0.3, 1) z-0",
-                    mode === "add" ? "left-2" : "left-[calc(50%+0.25rem)]"
+                    mode === "add" ? "start-2" : "start-[calc(50%+0.25rem)]"
                 )} />
 
                 <button
@@ -55,7 +55,7 @@ export default function AddRemoveMaskToggleButton({ disabled, mode, setMode }) {
         {!disabled && (
             <div className="flex items-center gap-2 text-primary font-black text-[9px] uppercase tracking-widest opacity-40 italic animate-pulse">
                 <Wand2 size={12} />
-                {mode === 'add' ? 'Mode: Precise Extraction' : 'Mode: Exclusion Filter'}
+                {mode === 'add' ? t('modePrecise') : t('modeExclusion')}
             </div>
         )}
     </div>

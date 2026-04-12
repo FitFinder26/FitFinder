@@ -29,7 +29,7 @@ export default function HeroSection({
     <section
       ref={containerRef}
       dir={i18n.dir()}
-      className="relative w-full min-h-[120vh] flex flex-col items-center justify-start pt-48 pb-12 px-6 md:px-12 box-border overflow-hidden"
+      className="relative w-full min-h-[120vh] flex flex-col items-center justify-start pt-32 pb-12 px-6 md:px-12 box-border overflow-hidden"
     >
       {/* Abstract Background Elements */}
       <motion.div

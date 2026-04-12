@@ -26,7 +26,7 @@ const PrivacyPolicyPage = () => {
   ];
 
   return (
-    <div className="flex bg-background text-foreground min-h-screen pt-20 animate-in fade-in duration-1000 font-sans">
+    <div className="flex flex-col bg-background text-foreground min-h-screen pt-24 animate-in fade-in duration-1000 font-sans">
       {/* Sticky Sidebar */}
       <aside className="hidden lg:block sticky top-24 h-[calc(100vh-6rem)] w-72 p-8 border-r border-border/10">
         <nav className="flex flex-col gap-2">

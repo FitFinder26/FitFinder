@@ -11,14 +11,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { useAuthContext } from "../providers/AuthProvider";
+import { useAuthContext } from "../../providers/AuthProvider";
 import { CgPassword } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import { Notifier } from "./Notifier";
-import { useTheme } from "../providers/ThemeProvider";
+import { Notifier } from "../Notifier";
+import { useTheme } from "../../providers/ThemeProvider";
 import { FaCheck } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { NAMESPACES } from "../locales/namespaces";
+import { NAMESPACES } from "../../locales/namespaces";
 import {
   Sheet,
   SheetContent,

@@ -18,7 +18,7 @@ import HeroSection from "../../components/homePage/HeroSection";
 import FeaturesSection from "../../components/homePage/FeaturesSection";
 import FeedbackSection from "../../components/homePage/FeedbackSection";
 import SocialSection from "../../components/homePage/SocialSection";
-import ImageSourceModal from "../../components/homePage/ImageSourceModal";
+import ImageSourceDialog from "../../components/common/ImageSourceDialog";
 import StoresSection from "../../components/homePage/StoresSection";
 import NeuralBackground from "../../components/homePage/NeuralBackground";
 
@@ -154,11 +154,10 @@ export default function HomePage() {
         <PreferenceSurvey onClose={() => setShowPreferenceSurvey(false)} />
       )}
 
-      <ImageSourceModal
+      <ImageSourceDialog
         open={showImageSourceModal}
         onOpenChange={setShowImageSourceModal}
         t={t}
-        tCommon={tCommon}
         inputRef={inputRef}
         cameraInputRef={cameraInputRef}
       />

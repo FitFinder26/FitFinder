@@ -30,5 +30,22 @@
   "resegment": "Re-segment",
   "sendSelected": "Send Selected",
   "maskToggleLegend": "Add or remove mask toggle",
-  "promptLegend": "Describe the item you are searching for"
+  "promptLegend": "Describe the item you are searching for",
+  "segmentFocused": "Segment Focused",
+  "itemContext": "Item Context",
+  "searchArchitecture": "Search Architecture",
+  "broadcastingImage": "Uploading Image...",
+  "aiVisionSegmenting": "AI Image Segmentation...",
+  "processingPixelArrays": "Processing Pixel Arrays",
+  "abortProtocol": "Abort",
+  "segmentationGuide": "Segmentation Guide",
+  "pointList": "Points Repository",
+  "selectedPointsLabel": "Inclusion Markers",
+  "deselectedPointsLabel": "Exclusion Markers",
+  "removePoint": "Remove Marker",
+  "noPoints": "No refinement markers active.",
+  "modePrecise": "Mode: Precise Extraction",
+  "modeExclusion": "Mode: Exclusion Filter",
+  "aiSegmentationEditor": "AI Segmentation Editor",
+  "refineAndSearch": "Refine & Search"
 }

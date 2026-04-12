@@ -172,7 +172,7 @@ export default function FavoritePage() {
     });
 
   return (
-    <div className="min-h-screen bg-background pt-[4.5rem] pb-24">
+    <div className="min-h-screen bg-background pt-24 pb-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-16">
           

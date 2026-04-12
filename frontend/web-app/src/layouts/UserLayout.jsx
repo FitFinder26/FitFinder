@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 import { useState } from "react";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/sideBar/SideBar";
 import { useAuthContext } from "../providers/AuthProvider";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
@@ -35,7 +35,7 @@ export default function UserLayout() {
 
       <main 
         id="main-content" 
-        className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden no-scrollbar pt-[4.5rem]" 
+        className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden no-scrollbar pt-0" 
         tabIndex={-1} 
         role="main"
       >

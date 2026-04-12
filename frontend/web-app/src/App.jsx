@@ -16,7 +16,7 @@ import FavoritePage from "./pages/FavoritePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
-import LenisProvider from "./components/LenisProvider";
+import LenisProvider from "./providers/LenisProvider";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,7 +42,37 @@ function App() {
   return (
     <LenisProvider>
       <RouterProvider router={router} />
-      <Toaster />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 6000,
+          style: {
+            background: 'rgba(23, 23, 23, 0.8)',
+            color: '#fff',
+            backdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '1.5rem',
+            padding: '1.25rem 2rem',
+            fontSize: '14px',
+            fontWeight: '800',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+          },
+          success: {
+            iconTheme: {
+              primary: 'var(--primary)',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ff4b4b',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
     </LenisProvider>
   );
 }
