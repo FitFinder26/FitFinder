@@ -27,16 +27,14 @@ public class SearchController {
 
   @PostMapping("/search")
   public ResponseEntity<?> searchByImageMask(
-          @RequestBody SearchRequestDTO searchInfo,
-          @RequestHeader("Authorization") String token)
+      @RequestBody SearchRequestDTO searchInfo, @RequestHeader("Authorization") String token)
       throws Exception {
-
 
     try {
       Long userId = jwtService.extractUserFromToken(token);
       List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
       if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
-      return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds,userId));
+      return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds, userId));
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
@@ -51,8 +49,7 @@ public class SearchController {
   }
 
   @PostMapping("/fav/:id")
-  private ResponseEntity<?> addFav(@RequestParam("id") Long item_id){
-    
+  private ResponseEntity<?> addFav(@RequestParam("id") Long item_id) {
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 }

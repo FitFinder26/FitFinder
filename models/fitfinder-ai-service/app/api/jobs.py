@@ -13,6 +13,8 @@ from PIL import Image
 import numpy as np
 
 router = APIRouter()
+image_embedding_ratio = .7
+text_embedding_ratio = .3
 
 # Define our *trusted* image source
 TRUSTED_HOST = "res.cloudinary.com"
@@ -175,6 +177,13 @@ async def search_job(
 
     try:
         embedding = clip_service.get_image_embedding(segmented_image_result)
+        print("embedding = image embedding = ", embedding)
+
+        if body.prompt and body.prompt.strip():
+            text_embedding = clip_service.get_text_embedding([body.prompt])
+            embedding = image_embedding_ratio * embedding + text_embedding_ratio * text_embedding
+            print("text embedding = ", text_embedding)
+            print("final embedding = aggregated version = ", embedding)
 
         FAISS_service = getattr(request.app.state, "faiss_service", None)
         if FAISS_service is None:

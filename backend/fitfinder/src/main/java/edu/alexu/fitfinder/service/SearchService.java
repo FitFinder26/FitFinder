@@ -44,7 +44,8 @@ public class SearchService {
     } catch (Exception e) {
       throw new InvalidInputException("There is no image associated with job Id");
     }
-    System.out.println(searchInfo.getImage_url());
+
+    if (searchInfo.getPrompt() != null) searchInfo.setPrompt(searchInfo.getPrompt().trim());
 
     // Call AI Service
     SearchResponseDTO response =
@@ -58,7 +59,6 @@ public class SearchService {
             .block();
 
     // Validate response
-    System.out.println("response : " + response);
     if (response == null) throw new Exception();
 
     // No matched elements
@@ -68,7 +68,6 @@ public class SearchService {
     // Extract Vector Ids
     for (SearchResponseDTO.Result result : response.getResults())
       vectorIds.add(result.getFaiss_id());
-    System.out.println(vectorIds);
     return vectorIds;
   }
 }
