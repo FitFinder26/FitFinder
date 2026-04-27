@@ -50,9 +50,9 @@ export default function SearchProductCard({ product, idx, onClick }) {
 
                 {/* Visual Layer Indicators */}
                 <div className="absolute top-10 left-10 flex flex-col gap-3">
-                    <Badge className="bg-black/40 text-white backdrop-blur-md px-4 py-2 rounded-2xl font-black text-[9px] uppercase tracking-widest italic border-none shadow-2xl">
+                    {/* <Badge className="bg-black/40 text-white backdrop-blur-md px-4 py-2 rounded-2xl font-black text-[9px] uppercase tracking-widest italic border-none shadow-2xl">
                         {t("matchPercent", { percent: 90 + (idx % 10) }) || `MATCH ${90 + (idx % 10)}%`}
-                    </Badge>
+                    </Badge> */}
                     {product.favorite && (
                         <div className="bg-rose-500 text-white p-2.5 rounded-2xl shadow-2xl animate-in zoom-in duration-700 w-fit">
                             <AiFillHeart size={20} />

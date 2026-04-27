@@ -27,5 +27,11 @@
   "price": "PRICE",
   "showProduct": "SHOW PRODUCT",
   "matchPercent": "MATCH {{percent}}%",
-  "protocol": "ARCHIVE LOOKUP PROTOCOL v5.0.1"
+  "protocol": "ARCHIVE LOOKUP PROTOCOL v5.0.1",
+  "discoveryTitle": "FitFinder Discovery",
+  "gridView": "All Products",
+  "rank": "RANK #{{rank}}",
+  "rateThisProduct": "RATE THIS MATCH",
+  "viewDetails": "VIEW DETAILS",
+  "switchToDiscovery": "Rate Similarity"
 }

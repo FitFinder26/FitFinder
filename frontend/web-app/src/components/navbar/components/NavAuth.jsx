@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -18,16 +18,6 @@ export default function NavAuth({
     <div className="flex justify-end items-center gap-4">
       {isLoggedIn ? (
         <div className="flex items-center gap-6">
-          {!scrolled && (
-            <div className="hidden xl:flex flex-col items-end group transition-opacity duration-500 hover:opacity-100">
-              <span className="text-[8px] font-black uppercase tracking-[0.5em] opacity-20 group-hover:opacity-40 transition-opacity">
-                IDENTITY VERIFIED
-              </span>
-              <span className="text-[11px] font-black italic uppercase tracking-tighter text-primary/80 group-hover:text-primary transition-colors">
-                {user?.userName}
-              </span>
-            </div>
-          )}
           <Avatar
             className={cn(
               "cursor-pointer hover:rotate-12 transition-all duration-700 border-2 hover:border-primary shadow-2xl",
@@ -58,7 +48,7 @@ export default function NavAuth({
               disabled={navigationBlocked}
               className="h-12 px-8 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-xs italic shadow-[0_15px_40px_rgba(250,88,126,0.25)] hover:scale-105 active:scale-95 transition-all gap-4 hidden sm:flex border-none"
             >
-              <Sparkles size={16} />
+              <UserPlus size={16} />
               {t("join")}
             </Button>
           )}

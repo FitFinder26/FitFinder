@@ -12,6 +12,9 @@ import SearchEmptyState from "@/components/search/components/SearchEmptyState";
 import SearchSkeleton from "@/components/search/components/SearchSkeleton";
 
 import SearchPagination from "@/components/search/components/SearchPagination";
+import SearchCardStackView from "@/components/search/components/SearchCardStackView";
+import { Button } from "@/components/ui/button";
+import { Star, X } from "lucide-react";
 
 export default function SearchResultPage() {
     const { device } = useDevice();
@@ -22,7 +25,9 @@ export default function SearchResultPage() {
     const [stores, setStores] = useState([]);
     const [sortOrder, setSortOrder] = useState("similarity");
     const [loading, setLoading] = useState(true);
+    const [viewMode, setViewMode] = useState("stack"); // 'stack' or 'grid'
     const [products, setProducts] = useState([]);
+    const [shuffledProducts, setShuffledProducts] = useState([]);
     const [showFilters, setShowFilters] = useState(device !== "mobile");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -53,12 +58,27 @@ export default function SearchResultPage() {
     useEffect(() => {
         const productsFromState = location.state?.products || [];
         setLoading(true);
+        setProducts([]);
+        setShuffledProducts([]);
+        setViewMode("stack");
+        setFilters({ category: new Set(), store: new Set() });
+        setSortOrder("similarity");
+        setCurrentPage(1);
 
         // Simulation delay for cinematic effect
         const timer = setTimeout(() => {
-            const productsCopy = JSON.parse(JSON.stringify(productsFromState));
-            processProductsData(productsCopy);
-            setProducts(productsCopy);
+            const productsWithRank = productsFromState.map((p, index) => ({
+                ...p,
+                originalRank: index + 1
+            }));
+
+            processProductsData(productsWithRank);
+            setProducts(productsWithRank);
+
+            // For stack view, shuffle the products
+            const shuffled = [...productsWithRank].sort(() => Math.random() - 0.5);
+            setShuffledProducts(shuffled);
+
             setLoading(false);
         }, 1200);
 
@@ -107,7 +127,7 @@ export default function SearchResultPage() {
         .sort((a, b) => {
             if (sortOrder === "lowest_price") return a.price - b.price;
             if (sortOrder === "highest_price") return b.price - a.price;
-            return 0;
+            return a.originalRank - b.originalRank; // Default sort by original rank (similarity)
         });
 
     const totalPages = Math.ceil(visibleProducts.length / itemsPerPage);
@@ -115,6 +135,19 @@ export default function SearchResultPage() {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
+
+    if (viewMode === "stack" && (loading || shuffledProducts.length > 0)) {
+        return (
+            <SearchCardStackView
+                products={shuffledProducts}
+                onClose={() => navigate("/")}
+                onSwitchToGrid={() => setViewMode("grid")}
+                navigate={navigate}
+                searchingPeice={searchingPeice}
+                loading={loading}
+            />
+        );
+    }
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-24 selection:bg-primary selection:text-white">
@@ -124,6 +157,17 @@ export default function SearchResultPage() {
 
                     <aside className="lg:col-span-3 space-y-16 animate-in slide-in-from-left-20 duration-1000">
                         <SearchSourcePreview searchingPeice={searchingPeice} visibleCount={visibleProducts.length} />
+
+                        <div className="flex flex-col gap-4">
+                            <Button
+                                onClick={() => setViewMode("stack")}
+                                variant="outline"
+                                className="h-14 rounded-2xl border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white font-black uppercase text-[10px] tracking-widest gap-4 transition-all"
+                            >
+                                <Star size={18} className="fill-current" />
+                                <span>{t("switchToDiscovery") || "Switch to Discovery"}</span>
+                            </Button>
+                        </div>
 
                         <SearchFilters
                             categories={categories}

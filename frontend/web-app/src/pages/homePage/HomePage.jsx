@@ -59,6 +59,9 @@ export default function HomePage() {
     setImageURL(URL.createObjectURL(file));
     setImageUploaded(true);
     setShowImageSourceModal(false);
+    
+    // Reset the input value so the same file can be selected again
+    e.target.value = "";
   };
 
   const handleSearchWithImageClick = () => {

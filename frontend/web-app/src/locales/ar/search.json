@@ -27,5 +27,11 @@
   "price": "السعر",
   "showProduct": "عرض المنتج",
   "matchPercent": "تطابق {{percent}}%",
-  "protocol": "بروتوكول البحث في الأرشيف v5.0.1"
+  "protocol": "بروتوكول البحث في الأرشيف v5.0.1",
+  "discoveryTitle": "اكتشاف فيت فايندر",
+  "gridView": "عرض جميع المنتجات",
+  "rank": "المرتبة #{{rank}}",
+  "rateThisProduct": "قيم هذا التطابق",
+  "viewDetails": "عرض التفاصيل",
+  "switchToDiscovery": "تقييم نسبة التشابه"
 }

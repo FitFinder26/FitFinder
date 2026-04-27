@@ -75,8 +75,8 @@ export default function SideBar({ isOpen, setIsOpen }) {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent 
-        side={i18n.language === "ar" ? "left" : "right"} 
+      <SheetContent
+        side={i18n.language === "ar" ? "left" : "right"}
         className="w-[300px] sm:w-[350px] p-0 border-none bg-background/95 backdrop-blur-2xl shadow-2xl"
       >
         <ScrollArea className="h-full">
@@ -91,7 +91,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 onChange={handleFileChange}
               />
               <div className="relative group">
-                <Avatar 
+                <Avatar
                   className="w-20 h-20 border-4 border-background shadow-2xl cursor-pointer transition-all duration-300 hover:scale-105"
                   onClick={handleProfilePicClick}
                 >
@@ -101,95 +101,92 @@ export default function SideBar({ isOpen, setIsOpen }) {
                   </AvatarFallback>
                 </Avatar>
                 {user && (
-                    <Button
-                        size="icon"
-                        variant="secondary"
-                        className="absolute bottom-1 right-1 rounded-full w-9 h-9 border-2 border-background shadow-xl hover:bg-primary hover:text-white transition-colors"
-                        disabled={uploading}
-                        onClick={handleProfilePicClick}
-                    >
-                        {uploading ? <div className="w-4 h-4 border-2 border-current border-t-transparent animate-spin rounded-full" /> : <EditIcon size={16} />}
-                    </Button>
+                  <Button
+                    size="icon"
+                    variant="secondary"
+                    className="absolute bottom-1 right-1 rounded-full w-9 h-9 border-2 border-background shadow-xl hover:bg-primary hover:text-white transition-colors"
+                    disabled={uploading}
+                    onClick={handleProfilePicClick}
+                  >
+                    {uploading ? <div className="w-4 h-4 border-2 border-current border-t-transparent animate-spin rounded-full" /> : <EditIcon size={16} />}
+                  </Button>
                 )}
               </div>
               <div className="mt-4 text-center space-y-0.5">
                 <h2 className="text-2xl font-black tracking-tight text-foreground">
-                    {user?.userName || t("guest")}
+                  {user?.userName || t("guest")}
                 </h2>
-                <p className="text-muted-foreground text-sm font-medium opacity-70">
-                    {user ? t("memberSince") || "FitFinder Member" : t("welcomeGuest") || "Welcome to FitFinder"}
-                </p>
               </div>
             </div>
 
             {/* Menu Items */}
             <div className="flex-1 p-4 space-y-1">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => handleNavigation("/history")}
               >
                 <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg group-hover:bg-primary/20">
-                    <History size={18} />
+                  <History size={18} />
                 </div>
                 {t("recentSearches")}
               </Button>
 
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => handleNavigation("/favorite")}
               >
                 <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg">
-                    <Heart size={18} />
+                  <Heart size={18} />
                 </div>
                 {t("savedItems")}
               </Button>
 
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="w-full justify-start gap-4 h-11 text-base font-bold hover:bg-primary/10 hover:text-primary transition-all rounded-xl px-4"
                 onClick={() => window.open(feedbackFormLink)}
               >
                 <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-lg">
-                    <MessageCircleDashed size={16} />
+                  <MessageCircleDashed size={16} />
                 </div>
                 {t("sendFeedback")}
               </Button>
 
 
               <div className="pt-4 mt-4 border-t border-border/10 space-y-1">
-                <Button 
-                    variant="ghost" 
-                    className="w-full justify-start gap-4 h-10 text-sm font-bold text-muted-foreground hover:text-foreground transition-all px-4"
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-4 h-10 text-sm font-bold text-muted-foreground hover:text-foreground transition-all px-4"
                 >
-                    <CgPassword size={18} />
-                    {t("changePassword")}
+                  <CgPassword size={18} />
+                  {t("changePassword")}
                 </Button>
-                
-                <Button 
-                    variant="ghost" 
-                    className="w-full justify-start gap-4 h-10 text-sm font-black text-rose-500 hover:text-rose-600 hover:bg-rose-500/10 transition-all px-4"
-                    onClick={handleLogout}
+
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-4 h-10 text-sm font-black text-rose-500 hover:text-rose-600 hover:bg-rose-500/10 transition-all px-4"
+                  onClick={handleLogout}
                 >
-                    <DoorOpen size={18} />
-                    {t("signOut")}
+                  <DoorOpen size={18} />
+                  {t("signOut")}
                 </Button>
               </div>
             </div>
-            
+
             <div className="p-4 bg-muted/20">
-                <Button 
-                    variant="outline" 
-                    className="w-full gap-2 rounded-xl h-10 border-2 text-xs font-bold shadow-sm"
-                    onClick={() => handleNavigation("/privacy-policy")}
-                >
-                    <ShieldCheck size={16} className="text-primary" />
-                    {t("privacyPolicy")}
-                </Button>
-                <p className="mt-3 text-center text-[9px] text-muted-foreground font-medium uppercase tracking-widest opacity-50">
-                    {t("copyright")}
-                </p>
+              <Button
+                variant="outline"
+                className="w-full gap-2 rounded-xl h-10 border-2 text-xs font-bold shadow-sm"
+                onClick={() => handleNavigation("/privacy-policy")}
+              >
+                <ShieldCheck size={16} className="text-primary" />
+                {t("privacyPolicy")}
+              </Button>
+              <p className="mt-3 text-center text-[9px] text-muted-foreground font-medium uppercase tracking-widest opacity-50">
+                {t("copyright")}
+              </p>
             </div>
           </div>
         </ScrollArea>
