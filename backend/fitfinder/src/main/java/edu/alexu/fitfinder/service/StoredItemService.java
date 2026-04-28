@@ -22,70 +22,45 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class StoredItemService {
 
-    private final ItemRepo itemRepo;
-    private final FavoriteRepo favoriteRepo;
-    private final ItemMapper itemMapper;
+  private final ItemRepo itemRepo;
+  private final FavoriteRepo favoriteRepo;
+  private final ItemMapper itemMapper;
 
-    // REPLACES: getProductsByVectorIds
-    public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds, Long userId) {
-        if (vectorIds == null || vectorIds.isEmpty()) return Collections.emptyList();
+  public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds, Long userId) {
+    if (vectorIds == null || vectorIds.isEmpty()) return Collections.emptyList();
+    List<StoredItem> items = itemRepo.findItemsByVectorIds(vectorIds);
+    return mapItemsToDTOs(items);
+  }
 
-        // 1. Get Entities using the Repository (Native Query)
-        List<StoredItem> items = itemRepo.findItemsByVectorIds(vectorIds);
+  public List<ItemDTO> getProducts(List<Long> itemIds, Long userId) {
+    if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
+    List<StoredItem> items = itemRepo.findAllById(itemIds);
+    List<ItemDTO> dtos = mapItemsToDTOs(items, userId);
+    return preserveOrder(dtos, itemIds);
+  }
 
-        // 2. Map them
-        return mapItemsToDTOs(items, userId);
-    }
+  public List<ItemDTO> getProducts(List<Long> itemIds) {
+    if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
+    List<StoredItem> items = itemRepo.findAllById(itemIds);
+    List<ItemDTO> dtos = mapItemsToDTOs(items);
+    return preserveOrder(dtos, itemIds);
+  }
 
-    public List<ItemDTO> getProducts(List<Long> itemIds, Long userId) {
-        if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
+  private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items, Long userId) {
+    Set<Long> likedIds =
+        (userId != null) ? favoriteRepo.findFavoriteItemIds(userId) : Collections.emptySet();
+    return items.stream()
+        .map(item -> itemMapper.toDTO(item, likedIds.contains(item.getItemId())))
+        .collect(Collectors.toList());
+  }
 
-        // 1. Get Entities using standard JPA
-        List<StoredItem> items = itemRepo.findAllById(itemIds);
+  private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items) {
+    return items.stream().map(itemMapper::toDTO).collect(Collectors.toList());
+  }
 
-        // 2. Map them, respecting the order of input IDs
-        // (Optional: Re-sort items to match 'itemIds' order if strict ordering is needed)
-        List<ItemDTO> dtos = mapItemsToDTOs(items, userId);
-
-        return preserveOrder(dtos, itemIds);
-    }
-
-    public List<ItemDTO> getProducts(List<Long> itemIds) {
-        if (itemIds == null || itemIds.isEmpty()) return Collections.emptyList();
-
-        // 1. Get Entities using standard JPA
-        List<StoredItem> items = itemRepo.findAllById(itemIds);
-
-
-        List<ItemDTO> dtos = mapItemsToDTOs(items);
-
-        return preserveOrder(dtos, itemIds);
-    }
-
-    private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items, Long userId) {
-        Set<Long> likedIds = (userId != null)
-                ? favoriteRepo.findFavoriteItemIds(userId)
-                : Collections.emptySet();
-
-        return items.stream()
-                .map(item -> itemMapper.toDTO(item, likedIds.contains(item.getItemId())))
-                .collect(Collectors.toList());
-    }
-
-    private List<ItemDTO> mapItemsToDTOs(List<StoredItem> items) {
-
-        return items.stream()
-                .map(itemMapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    private List<ItemDTO> preserveOrder(List<ItemDTO> unsortedDtos, List<Long> orderedIds) {
-        Map<Long, ItemDTO> map = unsortedDtos.stream()
-                .collect(Collectors.toMap(ItemDTO::getItem_id, Function.identity()));
-
-        return orderedIds.stream()
-                .filter(map::containsKey)
-                .map(map::get)
-                .collect(Collectors.toList());
-    }
+  private List<ItemDTO> preserveOrder(List<ItemDTO> unsortedDtos, List<Long> orderedIds) {
+    Map<Long, ItemDTO> map =
+        unsortedDtos.stream().collect(Collectors.toMap(ItemDTO::getItem_id, Function.identity()));
+    return orderedIds.stream().filter(map::containsKey).map(map::get).collect(Collectors.toList());
+  }
 }

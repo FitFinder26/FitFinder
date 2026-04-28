@@ -19,70 +19,66 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FavoriteController {
 
-    private final JwtService jwtService;
-    private final FavoriteService favoriteService;
+  private final JwtService jwtService;
+  private final FavoriteService favoriteService;
 
+  @PostMapping("/{itemId}")
+  public ResponseEntity<?> addToFavorites(
+      @PathVariable Long itemId, @RequestHeader("Authorization") String token) {
 
-    @PostMapping("/{itemId}")
-    public ResponseEntity<?> addToFavorites(
-            @PathVariable Long itemId,
-            @RequestHeader("Authorization") String token) {
-
-        try {
-            Long userId = jwtService.extractUserFromToken(token);
-            favoriteService.addFavorite(userId, itemId);
-            return ResponseEntity.ok("Item added to favorites");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+    try {
+      Long userId = jwtService.extractUserFromToken(token);
+      favoriteService.addFavorite(userId, itemId);
+      return ResponseEntity.ok("Item added to favorites");
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+  }
 
-    // FIX: Changed path to avoid conflict with /{itemId}
-    @DeleteMapping("/id/{favId}")
-    public ResponseEntity<?> deleteById(
-            @PathVariable Long favId,
-            @RequestHeader("Authorization") String token) {
+  @DeleteMapping("/id/{favId}")
+  public ResponseEntity<?> deleteById(
+      @PathVariable Long favId, @RequestHeader("Authorization") String token) {
 
-        try {
-            Long userId = jwtService.extractUserFromToken(token);
-            favoriteService.deleteFavoriteById(userId, favId);
-            return ResponseEntity.ok("Item removed from favorites");
+    try {
+      Long userId = jwtService.extractUserFromToken(token);
+      favoriteService.deleteFavoriteById(userId, favId);
+      return ResponseEntity.ok("Item removed from favorites");
 
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        } catch (FavoriteNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (RuntimeException e) {
-            // Catches the "Unauthorized: You do not own this favorite" from Service
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
-        }
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    } catch (FavoriteNotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    } catch (RuntimeException e) {
+      // Catches the "Unauthorized: You do not own this favorite" from Service
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
     }
+  }
 
-    // This handles DELETE /favorites/5 (Assumes 5 is Item ID)
-    @DeleteMapping("/{itemId}")
-    public ResponseEntity<?> deleteByItem(
-            @PathVariable Long itemId,
-            @RequestHeader("Authorization") String token) {
+  // This handles DELETE /favorites/5 (Assumes 5 is Item ID)
+  @DeleteMapping("/{itemId}")
+  public ResponseEntity<?> deleteByItem(
+      @PathVariable Long itemId, @RequestHeader("Authorization") String token) {
 
-        try {
-            Long userId = jwtService.extractUserFromToken(token);
-            favoriteService.deleteFavoriteByItem(userId, itemId);
-            return ResponseEntity.ok("Item removed from favorites");
+    try {
+      Long userId = jwtService.extractUserFromToken(token);
+      favoriteService.deleteFavoriteByItem(userId, itemId);
+      return ResponseEntity.ok("Item removed from favorites");
 
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        } catch (FavoriteNotFoundException | UserNotFoundException | ItemNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    } catch (FavoriteNotFoundException | UserNotFoundException | ItemNotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+  }
 
-    @GetMapping
-    public ResponseEntity<List<ItemDTO>> getAllFavorites(@RequestHeader("Authorization") String token) {
-        try{
-            Long userId = jwtService.extractUserFromToken(token);
-            return ResponseEntity.ok(favoriteService.getUserFavorites(userId));
-        }catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+  @GetMapping
+  public ResponseEntity<List<ItemDTO>> getAllFavorites(
+      @RequestHeader("Authorization") String token) {
+    try {
+      Long userId = jwtService.extractUserFromToken(token);
+      return ResponseEntity.ok(favoriteService.getUserFavorites(userId));
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+  }
 }
