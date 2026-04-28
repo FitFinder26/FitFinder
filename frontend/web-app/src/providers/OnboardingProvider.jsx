@@ -14,12 +14,15 @@ export const ONBOARDING_STEPS = {
   SWITCH_GRID: 8,
   COMPLETED: 9
 };
+const IS_ILLUSTRATION_ENABLED = false; // Set to false to completely disable the illustration system
 
 export function OnboardingProvider({ children }) {
   const [currentStep, setCurrentStep] = useState(-1); // -1 means inactive
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    if (!IS_ILLUSTRATION_ENABLED) return;
+
     const visitedBefore = localStorage.getItem('visitedBefore');
     if (!visitedBefore) {
       // Start onboarding after a small delay to ensure everything is loaded

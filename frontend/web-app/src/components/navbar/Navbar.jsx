@@ -127,8 +127,6 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           <NavBranding 
             scrolled={scrolled}
             device={device}
-            currentLang={currentLang}
-            onLanguageToggle={handleLanguageToggle}
             theme={theme}
             onThemeToggle={toggleTheme}
             navigate={navigate}
@@ -144,6 +142,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             user={user}
             isLoggedIn={isLoggedIn}
             scrolled={scrolled}
+            currentLang={currentLang}
+            onLanguageToggle={handleLanguageToggle}
             navigationBlocked={navigationBlocked}
             onProfileClick={() => setIsSideBarOpen(true)}
             onLoginClick={() => navigate("/registration", { state: { form: "login" } })}

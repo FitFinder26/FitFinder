@@ -43,19 +43,6 @@ export default function NavBranding({
         <Button 
           variant="ghost" 
           size="sm" 
-          onClick={onLanguageToggle}
-          className={cn(
-            "hidden md:flex gap-3 rounded-xl hover:bg-muted/50 group border border-transparent hover:border-border/10",
-            scrolled ? "h-8 px-2" : "h-10 px-4"
-          )}
-        >
-          <Languages size={14} className="group-hover:rotate-180 transition-transform duration-700" />
-          {!scrolled && <span className="font-black text-[10px] uppercase tracking-widest">{getLanguageDisplayName(currentLang)}</span>}
-        </Button>
-
-        <Button 
-          variant="ghost" 
-          size="sm" 
           onClick={onThemeToggle}
           className={cn(
             "flex items-center justify-center rounded-xl hover:bg-muted/50 group border border-transparent hover:border-border/10 transition-all duration-700",

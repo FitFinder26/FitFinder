@@ -1,8 +1,9 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import SegmentationStatusOverlay from "./SegmentationStatusOverlay";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../../../locales/namespaces";
+import { Sparkles } from "lucide-react";
 
 import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
 
@@ -27,6 +28,7 @@ const SegmentationCanvas = forwardRef(({
 }, ref) => {
   const { t } = useTranslation(NAMESPACES.editor);
   const { currentStep, nextStep } = useOnboarding();
+  const [isGlowing, setIsGlowing] = useState(false);
 
   const handleMaskClick = (e) => {
     if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
@@ -38,6 +40,14 @@ const SegmentationCanvas = forwardRef(({
       toggleMask(e, "remove");
     }
   };
+
+  useEffect(() => {
+    if (segmentationStatus === "completed" && maskCanvases.length > 0) {
+      setIsGlowing(true);
+      const timer = setTimeout(() => setIsGlowing(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [segmentationStatus, maskCanvases.length]);
 
   const drawCanvas = () => {
     const canvas = ref.current;
@@ -61,11 +71,19 @@ const SegmentationCanvas = forwardRef(({
       ctx.drawImage(tmp, 0, 0, canvas.width, canvas.height);
     };
 
+    const glowColors = ["#00ffd5", "#fc218f", "#ffff00", "#00ff00", "#ff00ff", "#00ffff", "#ff8800"];
+
     maskCanvases.forEach((mc, idx) => {
-      if (!selected.includes(idx) && hovered !== idx) drawColoredMask(mc, "rgba(0,150,255,1)", 0.5);
+      if (isGlowing) {
+        drawColoredMask(mc, glowColors[idx % glowColors.length], 0.7);
+      } else if (!selected.includes(idx) && hovered !== idx) {
+        drawColoredMask(mc, "rgba(0,150,255,1)", 0.5);
+      }
     });
 
-    if (hovered !== null && !selected.includes(hovered)) drawColoredMask(maskCanvases[hovered], "rgba(255,105,180,1)", 0.6);
+    if (!isGlowing && hovered !== null && !selected.includes(hovered)) {
+      drawColoredMask(maskCanvases[hovered], "rgba(255,105,180,1)", 0.6);
+    }
 
     let colors = ["#00ffd5", "#fc218f", "#ff0000", "#4a4902", "#ff0000"];
     selected.forEach((idx, i) => {
@@ -112,7 +130,7 @@ const SegmentationCanvas = forwardRef(({
 
   useEffect(() => {
     drawCanvas();
-  }, [hovered, selected, maskCanvases, borderCanvases, imageObj, selectedPoints, deselectedPoints]);
+  }, [hovered, selected, maskCanvases, borderCanvases, imageObj, selectedPoints, deselectedPoints, isGlowing]);
 
   return (
     <div className="flex-1 w-full lg:max-w-2xl relative group order-1">
@@ -138,10 +156,21 @@ const SegmentationCanvas = forwardRef(({
               setSegmentationStatus={setSegmentationStatus}
             />
           )}
+
+          {/* Post-segmentation Instruction Overlay */}
+          {!loading && segmentationStatus === "completed" && !isGlowing && selected.length === 0 && (
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center p-8 text-center animate-in fade-in duration-700">
+              <div className="bg-black/40 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl animate-pulse">
+                <Sparkles size={14} className="text-primary" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white italic">
+                  {t("clickToSelect") || "CLICK ANYWHERE TO SELECT ITEM"}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div className="w-full aspect-square bg-muted/20 rounded-[2rem] sm:rounded-[3rem] flex flex-col items-center justify-center gap-6 border-2 border-dashed border-border/20">
-          <HashLoader size={40} color="gray" />
           <p className="font-black uppercase tracking-widest text-xs opacity-30 animate-pulse">{t("connectingServer")}</p>
         </div>
       )}

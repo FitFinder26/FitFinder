@@ -47,5 +47,24 @@
   "modePrecise": "Mode: Precise Extraction",
   "modeExclusion": "Mode: Exclusion Filter",
   "aiSegmentationEditor": "AI Segmentation Editor",
-  "refineAndSearch": "Refine & Search"
+  "refineAndSearch": "Refine & Search",
+  "clickToSelect": "Click anywhere to select item",
+  "tips": {
+    "segmentation": [
+      "Click Segment and the AI will automatically detect the edges of your selection",
+      "In case of failure, please try again by clicking segment again",
+      "After segmentation click anywhere on the image to select a clothing item",
+      "Toggle to 'Remove' mode to filter out unwanted parts",
+      "Right-click on markers to delete them and start over"
+    ],
+    "customization": [
+      "Click Search to start searching for similar items",
+      "In case of failure, please try again by clicking search again",
+      "Describe the material (e.g., 'Cotton', 'Denim', 'Silk')",
+      "Add patterns to your search like 'Striped' or 'Floral'",
+      "Specify the occasion like 'Formal', 'Streetwear', or 'Casual'",
+      "Mention specific cuts like 'Oversized', 'Slim Fit', or 'Cropped'",
+      "The more descriptive you are, the better the AI matches"
+    ]
+  }
 }

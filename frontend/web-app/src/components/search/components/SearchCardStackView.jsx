@@ -13,10 +13,10 @@ import { ratingService } from "@shared/services/ratingService";
 
 import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
 
-export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, prompt, loading }) {
+export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, prompt, loading, initialIndex = 0 }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
     const { currentStep, nextStep, setCurrentStep, isActive } = useOnboarding();
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
     const [direction, setDirection] = useState(0);
     const [ratings, setRatings] = useState({});
     const [ambientColors, setAmbientColors] = useState(null);
@@ -45,8 +45,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
     }, [isActive, loading, currentProduct, currentStep, setCurrentStep]);
 
     useEffect(() => {
-        setCurrentIndex(0);
-    }, [products]);
+        setCurrentIndex(initialIndex);
+    }, [products, initialIndex]);
 
     useEffect(() => {
         if (currentProduct?.imageURL) {

@@ -31,14 +31,6 @@ export default function SegmentationActions({
 
   return (
     <div className="flex flex-col gap-4">
-      <MagicButton 
-        id="segment-button"
-        onClick={handleSegmentClick} 
-        isDisabled={!imageURL} 
-        loading={loading}
-        name={masks.length === 0 ? t("segment") : t("resegment")} 
-      />
-      
       {selected.length !== 0 && (
         <Button
           id="send-selected-button"
@@ -48,6 +40,15 @@ export default function SegmentationActions({
           {t("sendSelected")}
         </Button>
       )}
+      <MagicButton
+        id="segment-button"
+        onClick={handleSegmentClick}
+        isDisabled={!imageURL}
+        loading={loading}
+        name={masks.length === 0 ? t("segment") : t("resegment")}
+      />
+
+
     </div>
   );
 }

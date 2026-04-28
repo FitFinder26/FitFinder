@@ -44,15 +44,23 @@
     "title": "انضم إلينا",
     "message": "إطلالات حصرية، وآخر تحديثات الذكاء الاصطناعي، وإصدارات من الأرشيف على حسابنا في إنستغرام"
   },
-  "modals": {
-    "chooseSource": "اختر المصدر",
-    "selectMethod": "اختر الطريقة التي تريد بها إدخال سياقك البصري.",
-    "takePhoto": "التقاط صورة",
-    "instantCapture": "كاميرا حية",
-    "uploadFromDevice": "رفع من الجهاز",
-    "archivalUpload": "ملف محلي",
-    "cancel": "إلغاء العملية"
-  },
+    "modals": {
+      "chooseSource": "اختر المصدر",
+      "selectMethod": "اختر الطريقة التي تريد بها إدخال سياقك البصري.",
+      "takePhoto": "التقاط صورة",
+      "instantCapture": "كاميرا حية",
+      "uploadFromDevice": "رفع من الجهاز",
+      "archivalUpload": "ملف محلي",
+      "cancel": "إلغاء العملية",
+      "imageSource": {
+        "title": "اختر المصدر",
+        "subtitle": "كيف تود تزويدنا بالصورة؟",
+        "camera": "التقاط صورة",
+        "cameraDesc": "التقاط باستخدام كاميرا الجهاز",
+        "gallery": "رفع صورة",
+        "galleryDesc": "اختيار من معرض الصور الخاص بك"
+      }
+    },
   "stores": {
     "title": "شركاؤنا العالميون",
     "subtitle": "المتاجر المدعومة"

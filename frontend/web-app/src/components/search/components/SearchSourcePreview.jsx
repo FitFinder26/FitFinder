@@ -4,9 +4,42 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { NAMESPACES } from "../../../locales/namespaces";
 
-export default function SearchSourcePreview({ searchingPeice, prompt, visibleCount }) {
+export default function SearchSourcePreview({ searchingPeice, prompt, visibleCount, compact = false }) {
     const { t } = useTranslation(NAMESPACES.search);
     const navigate = useNavigate();
+
+    if (compact) {
+        return (
+            <div className="relative group w-full">
+                <div className="relative bg-muted/5 rounded-2xl p-3 border-2 border-border/5 flex items-center gap-4 group-hover:bg-muted/10 transition-all duration-700 overflow-hidden">
+                    <div className="w-12 h-12 rounded-xl overflow-hidden bg-background border border-white/5 shrink-0 flex items-center justify-center">
+                        {searchingPeice ? (
+                            <img
+                                src={searchingPeice}
+                                alt="Source"
+                                className="w-full h-full object-contain"
+                            />
+                        ) : (
+                            <PackageSearch size={16} className="opacity-20" />
+                        )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 opacity-30 mb-0.5">
+                            <Sparkles size={10} className="fill-current" />
+                            <span className="text-[8px] font-black uppercase tracking-widest truncate">
+                                {t("matchesFound", { count: visibleCount }) || `${visibleCount} MATCHES FOUND`}
+                            </span>
+                        </div>
+                        {prompt ? (
+                            <p className="text-[10px] font-bold truncate opacity-60 italic leading-none">"{prompt}"</p>
+                        ) : (
+                            <p className="text-[10px] font-bold truncate opacity-60 italic leading-none">{t("activeContext") || "Active Context"}</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="relative group">

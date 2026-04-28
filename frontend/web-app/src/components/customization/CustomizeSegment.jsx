@@ -7,7 +7,6 @@ import { NAMESPACES } from "../../locales/namespaces";
 // Sub-components
 import CustomizationPreview from "./components/CustomizationPreview";
 import CustomizationActions from "./components/CustomizationActions";
-import CustomizationGuide from "./components/CustomizationGuide";
 
 // Utils
 import { cropSelectedSegments } from "./utils";
@@ -88,9 +87,9 @@ export default function CustomizeSegment({
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8 sm:space-y-12 animate-in fade-in slide-in-from-bottom-10 duration-700">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-        <CustomizationPreview 
-          segmentedImageSrc={segmentedImageSrc} 
-        />
+          <CustomizationPreview 
+            segmentedImageSrc={segmentedImageSrc} 
+          />
 
         <CustomizationActions 
           prompt={prompt}
@@ -100,8 +99,6 @@ export default function CustomizeSegment({
           setIsBeingCustomized={setIsBeingCustomized}
         />
       </div>
-
-      <CustomizationGuide />
     </div>
   );
 }

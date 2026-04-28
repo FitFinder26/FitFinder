@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import SegmentationCanvas from "./components/SegmentationCanvas";
 import SegmentationActions from "./components/SegmentationActions";
 import PointRepository from "./components/PointRepository";
-import SegmentationGuide from "./components/SegmentationGuide";
 
 import { useOnboarding, ONBOARDING_STEPS } from "../../providers/OnboardingProvider";
 
@@ -307,26 +306,26 @@ export default function SAMFrontend({
 
   return (
     <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-start gap-8 lg:gap-12 animate-in fade-in zoom-in duration-1000">
-      <SegmentationCanvas 
-        ref={canvasRef}
-        loading={loading}
-        clickMode={clickMode}
-        toggleMask={toggleMask}
-        handleCanvasMove={handleCanvasMove}
-        setHovered={setHovered}
-        segmentationStatus={segmentationStatus}
-        setLoading={setLoading}
-        segmentationService={segmentationService}
-        setSegmentationStatus={setSegmentationStatus}
-        sessionStarted={sessionStarted}
-        imageObj={imageObj}
-        maskCanvases={maskCanvases}
-        borderCanvases={borderCanvases}
-        selected={selected}
-        hovered={hovered}
-        selectedPoints={selectedPoints}
-        deselectedPoints={deselectedPoints}
-      />
+        <SegmentationCanvas 
+          ref={canvasRef}
+          loading={loading}
+          clickMode={clickMode}
+          toggleMask={toggleMask}
+          handleCanvasMove={handleCanvasMove}
+          setHovered={setHovered}
+          segmentationStatus={segmentationStatus}
+          setLoading={setLoading}
+          segmentationService={segmentationService}
+          setSegmentationStatus={setSegmentationStatus}
+          sessionStarted={sessionStarted}
+          imageObj={imageObj}
+          maskCanvases={maskCanvases}
+          borderCanvases={borderCanvases}
+          selected={selected}
+          hovered={hovered}
+          selectedPoints={selectedPoints}
+          deselectedPoints={deselectedPoints}
+        />
 
       <div className="w-full lg:w-80 flex flex-col gap-8 lg:gap-10 order-2 lg:sticky lg:top-12">
         <SegmentationActions 
@@ -352,8 +351,6 @@ export default function SAMFrontend({
               deselectedPoints={deselectedPoints}
               removePoint={removePoint}
             />
-
-            <SegmentationGuide />
         </div>
       </div>
     </div>

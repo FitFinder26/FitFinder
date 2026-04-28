@@ -30,6 +30,7 @@ export default function SearchResultPage() {
     const [shuffledProducts, setShuffledProducts] = useState([]);
     const [showFilters, setShowFilters] = useState(device !== "mobile");
     const [currentPage, setCurrentPage] = useState(1);
+    const [initialStackIndex, setInitialStackIndex] = useState(0);
     const itemsPerPage = 10;
 
     const location = useLocation();
@@ -137,6 +138,14 @@ export default function SearchResultPage() {
         currentPage * itemsPerPage
     );
 
+    const handleRateProduct = (product) => {
+        const index = shuffledProducts.findIndex(p => p.item_id === product.item_id);
+        if (index !== -1) {
+            setInitialStackIndex(index);
+            setViewMode("stack");
+        }
+    };
+
     if (viewMode === "stack" && (loading || shuffledProducts.length > 0)) {
         return (
             <SearchCardStackView
@@ -147,6 +156,7 @@ export default function SearchResultPage() {
                 searchingPeice={searchingPeice}
                 prompt={prompt}
                 loading={loading}
+                initialIndex={initialStackIndex}
             />
         );
     }
@@ -157,18 +167,26 @@ export default function SearchResultPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-24">
 
-                    <aside className="lg:col-span-3 space-y-16 animate-in slide-in-from-left-20 duration-1000">
-                        <SearchSourcePreview searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
-
-                        <div className="flex flex-col gap-4">
-                            <Button
-                                onClick={() => setViewMode("stack")}
-                                variant="outline"
-                                className="h-14 rounded-2xl border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white font-black uppercase text-[10px] tracking-widest gap-4 transition-all"
-                            >
-                                <Star size={18} className="fill-current" />
-                                <span>{t("switchToDiscovery") || "Switch to Discovery"}</span>
-                            </Button>
+                    <aside className="lg:col-span-3 space-y-8 lg:space-y-16 animate-in slide-in-from-left-20 duration-1000">
+                        <div className="flex flex-row lg:flex-col items-center lg:items-stretch gap-4 lg:gap-10">
+                            <div className="flex-1 lg:flex-none">
+                                <div className="hidden lg:block">
+                                    <SearchSourcePreview searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
+                                </div>
+                                <div className="lg:hidden">
+                                    <SearchSourcePreview compact searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
+                                </div>
+                            </div>
+                            <div className="shrink-0 lg:w-full">
+                                <Button
+                                    onClick={() => setViewMode("stack")}
+                                    variant="outline"
+                                    className="h-14 lg:h-16 px-4 sm:px-6 lg:px-0 rounded-2xl border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white font-black uppercase text-[10px] tracking-widest gap-3 sm:gap-4 transition-all w-full lg:shadow-none shadow-xl"
+                                >
+                                    <Star size={18} className="fill-current" />
+                                    <span className="hidden sm:inline">{t("switchToDiscovery") || "Discovery Mode"}</span>
+                                </Button>
+                            </div>
                         </div>
 
                         <SearchFilters
@@ -203,6 +221,7 @@ export default function SearchResultPage() {
                                                     },
                                                 })
                                             }
+                                            onRateClick={handleRateProduct}
                                         />
                                     ))}
                                 </div>
