@@ -17,7 +17,7 @@ export default function SearchSourcePreview({ searchingPeice, prompt, visibleCou
                 </span>
             </div>
             <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-1000 rounded-[4rem] blur-[80px]" />
-            <div className="relative bg-muted/5 rounded-[4rem] p-10 md:p-12 border-4 border-border/5 space-y-10 group-hover:bg-muted/10 transition-all duration-700 overflow-hidden">
+            <div className="relative bg-muted/5 rounded-[2.5rem] sm:rounded-[4rem] p-6 sm:p-10 md:p-12 border-4 border-border/5 space-y-6 sm:space-y-10 group-hover:bg-muted/10 transition-all duration-700 overflow-hidden">
                 <div className="flex items-center justify-between border-b border-border/10 pb-8">
                     <div className="space-y-1">
                         <h3 className="text-[10px] font-black uppercase tracking-[0.4em] opacity-30 italic leading-none">{t("segmentedImage") || "VISUAL SOURCE"}</h3>

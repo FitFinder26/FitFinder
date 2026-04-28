@@ -25,7 +25,7 @@ export default function SegmentationActions({
       {selected.length !== 0 && (
         <Button
           onClick={sendSelected}
-          className="h-20 rounded-[2rem] bg-rose-500 hover:bg-rose-600 text-white font-black text-xl uppercase tracking-widest shadow-xl animate-in fade-in slide-in-from-right-4 duration-500"
+          className="h-16 sm:h-20 rounded-[1.5rem] sm:rounded-[2rem] bg-rose-500 hover:bg-rose-600 text-white font-black text-lg sm:text-xl uppercase tracking-widest shadow-xl animate-in fade-in slide-in-from-right-4 duration-500"
         >
           {t("sendSelected")}
         </Button>

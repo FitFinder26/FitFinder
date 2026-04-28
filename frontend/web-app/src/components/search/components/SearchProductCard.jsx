@@ -41,7 +41,7 @@ export default function SearchProductCard({ product, idx, onClick }) {
 
     return (
         <Card
-            className="group border-none bg-muted/2 hover:bg-background transition-all duration-1000 rounded-[4.5rem] overflow-hidden cursor-pointer shadow-none hover:shadow-[0_80px_120px_rgba(0,0,0,0.2)] hover:-translate-y-6 border border-transparent hover:border-border/10 animate-in slide-in-from-bottom-10 duration-1000"
+            className="group border-none bg-muted/2 hover:bg-background transition-all duration-1000 rounded-[2.5rem] sm:rounded-[4.5rem] overflow-hidden cursor-pointer shadow-none hover:shadow-[0_80px_120px_rgba(0,0,0,0.2)] hover:-translate-y-6 border border-transparent hover:border-border/10 animate-in slide-in-from-bottom-10 duration-1000"
             style={{ animationDelay: `${idx * 0.05}s` }}
             onClick={onClick}
         >
@@ -69,11 +69,11 @@ export default function SearchProductCard({ product, idx, onClick }) {
                 </div>
             </div>
 
-            <CardContent className="p-12 space-y-6 bg-muted/1">
-                <h4 className="font-black text-2xl line-clamp-2 leading-[0.9] group-hover:text-primary transition-all duration-700 h-[2.5em] tracking-tighter uppercase italic">
+            <CardContent className="p-6 sm:p-12 space-y-4 sm:space-y-6 bg-muted/1">
+                <h4 className="font-black text-xl sm:text-2xl line-clamp-2 leading-[0.9] group-hover:text-primary transition-all duration-700 h-[2.5em] tracking-tighter uppercase italic">
                     {product.title}
                 </h4>
-                <div className="flex justify-between items-end pt-8 border-t-2 border-border/5">
+                <div className="flex justify-between items-end pt-4 sm:pt-8 border-t-2 border-border/5">
                     <div className="flex flex-col">
                         <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-20 mb-2 italic">
                             {t("price") || "PRICE"}

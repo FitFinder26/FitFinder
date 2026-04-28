@@ -140,15 +140,15 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             setImageURL={setImageURL}
           />
         )}
-
-        <ImageSourceDialog 
-          open={showImageSourceModal}
-          onOpenChange={setShowImageSourceModal}
-          t={tHome}
-          cameraInputRef={cameraInputRef}
-          inputRef={inputRef}
-        />
       </motion.nav>
+
+      <ImageSourceDialog 
+        open={showImageSourceModal}
+        onOpenChange={setShowImageSourceModal}
+        t={tHome}
+        cameraInputRef={cameraInputRef}
+        inputRef={inputRef}
+      />
     </div>
   );
 }

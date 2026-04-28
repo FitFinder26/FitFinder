@@ -6,7 +6,7 @@ export default function SegmentationGuide() {
   const { t } = useTranslation(NAMESPACES.editor);
 
   return (
-    <div className="bg-primary/5 border border-primary/10 p-8 rounded-[2.5rem] flex flex-col gap-6 group hover:bg-primary/10 transition-colors">
+    <div className="bg-primary/5 border border-primary/10 p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex flex-col gap-4 sm:gap-6 group hover:bg-primary/10 transition-colors">
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
           <Info size={22} />

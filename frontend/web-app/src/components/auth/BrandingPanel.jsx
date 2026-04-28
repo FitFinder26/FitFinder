@@ -9,7 +9,7 @@ const BrandingPanel = ({ usedForm, toggleForm, t }) => {
 
     return (
         <div className={cn(
-            "md:w-[45%] bg-primary p-12 md:p-16 text-white flex flex-col justify-between relative overflow-hidden transition-all duration-1000 ease-in-out",
+            "md:w-[45%] bg-primary p-8 sm:p-12 md:p-16 text-white flex flex-col justify-between relative overflow-hidden transition-all duration-1000 ease-in-out",
             usedForm === 'login' ? "md:order-last" : "md:order-first"
         )}>
             <div className="z-10 space-y-6">

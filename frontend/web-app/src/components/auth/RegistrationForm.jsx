@@ -123,7 +123,7 @@ export default function RegistrationForm({
     };
 
     return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-4 md:p-12 pt-32 md:pt-40 overflow-hidden relative font-sans">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4 sm:p-6 md:p-12 pt-24 sm:pt-32 md:pt-40 overflow-hidden relative font-sans">
             {/* Background aesthetics */}
             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary rounded-full blur-[120px] animate-pulse" />
@@ -131,7 +131,7 @@ export default function RegistrationForm({
             </div>
 
             <Card className={cn(
-                "w-full max-w-5xl rounded-[3rem] overflow-hidden border-none shadow-[0_50px_100px_rgba(0,0,0,0.15)] bg-background/60 backdrop-blur-3xl animate-in fade-in zoom-in duration-1000",
+                "w-full max-w-5xl rounded-[2rem] sm:rounded-[3rem] overflow-hidden border-none shadow-[0_50px_100px_rgba(0,0,0,0.15)] bg-background/60 backdrop-blur-3xl animate-in fade-in zoom-in duration-1000",
                 "flex flex-col md:flex-row min-h-[600px] relative z-20"
             )}>
 
@@ -141,8 +141,8 @@ export default function RegistrationForm({
                     t={t}
                 />
 
-                <CardContent 
-                    className="md:w-[55%] p-8 md:p-14 flex flex-col justify-center bg-background/20"
+                <CardContent
+                    className="md:w-[55%] p-6 sm:p-10 md:p-14 flex flex-col justify-center bg-background/20"
                     style={{ perspective: "1200px" }}
                 >
                     <div className="max-w-sm mx-auto w-full space-y-8" style={{ transformStyle: "preserve-3d" }}>
@@ -210,16 +210,9 @@ export default function RegistrationForm({
                                 </motion.div>
                             )}
                         </AnimatePresence>
-
-                        <div className="flex items-center gap-6 py-4">
-                            <div className="h-px flex-1 bg-border/20" />
-                            <div className="text-[10px] font-black uppercase tracking-[0.5em] opacity-10">{t("authService")}</div>
-                            <div className="h-px flex-1 bg-border/20" />
-                        </div>
-
                         <div className="text-center opacity-40 hover:opacity-100 transition-opacity">
                             <p className="text-[10px] font-black uppercase tracking-widest italic group">
-                                {t("legalAgreementStart")} 
+                                {t("legalAgreementStart")}
                                 <Link to="/terms-of-service" className="text-primary hover:underline hover:opacity-100 transition-all mx-1">{t("termsOfStyle")}</Link>
                                 {t("and")}
                                 <Link to="/privacy-policy" className="text-primary hover:underline hover:opacity-100 transition-all mx-1">{t("privacyPolicy")}</Link>

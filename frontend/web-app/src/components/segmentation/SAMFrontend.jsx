@@ -278,7 +278,7 @@ export default function SAMFrontend({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-start gap-12 animate-in fade-in zoom-in duration-1000">
+    <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-start gap-6 sm:gap-12 animate-in fade-in zoom-in duration-1000">
       <SegmentationCanvas 
         ref={canvasRef}
         loading={loading}

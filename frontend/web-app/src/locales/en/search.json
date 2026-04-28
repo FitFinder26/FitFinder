@@ -35,5 +35,6 @@
   "viewDetails": "VIEW DETAILS",
   "switchToDiscovery": "Rate Similarity",
   "customRequest": "CUSTOM REQUEST",
-  "activePrompt": "PROMPT"
+  "activePrompt": "PROMPT",
+  "swipeToBrowse": "SWIPE TO BROWSE"
 }

@@ -102,9 +102,9 @@ const SegmentationCanvas = forwardRef(({
 
   return (
     <div className="flex-1 w-full lg:max-w-2xl relative group order-1">
-      <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-[80px] opacity-10 animate-pulse pointer-events-none" />
+      <div className="absolute inset-0 bg-primary/20 rounded-[2rem] sm:rounded-[3rem] blur-[80px] opacity-10 animate-pulse pointer-events-none" />
       {!sessionStarted ? (
-        <div className="relative w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-4 border-border/10 bg-muted/10 backdrop-blur-3xl group-hover:scale-[1.01] transition-transform duration-700">
+        <div className="relative w-full aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl border-4 border-border/10 bg-muted/10 backdrop-blur-3xl group-hover:scale-[1.01] transition-transform duration-700">
           <canvas
             ref={ref}
             onClick={clickMode === "add" ? (e) => toggleMask(e, "add") : (e) => toggleMask(e, "remove")}
@@ -126,7 +126,7 @@ const SegmentationCanvas = forwardRef(({
           )}
         </div>
       ) : (
-        <div className="w-full aspect-square bg-muted/20 rounded-[3rem] flex flex-col items-center justify-center gap-6 border-2 border-dashed border-border/20">
+        <div className="w-full aspect-square bg-muted/20 rounded-[2rem] sm:rounded-[3rem] flex flex-col items-center justify-center gap-6 border-2 border-dashed border-border/20">
           <HashLoader size={40} color="gray" />
           <p className="font-black uppercase tracking-widest text-xs opacity-30 animate-pulse">{t("connectingServer")}</p>
         </div>

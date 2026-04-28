@@ -125,19 +125,19 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
             </div>
 
             {/* Top Toolbar */}
-            <div className="absolute top-0 start-0 w-full p-8 md:p-12 flex justify-between items-center z-[110]">
-                <div className="flex items-center gap-6">
-                    <Button
+            <div className="absolute top-0 start-0 w-full p-4 sm:p-8 md:p-12 flex justify-between items-center z-[110]">
+                <div className="flex items-center gap-3 sm:gap-6">
+                    {/* <Button
                         variant="ghost"
                         size="icon"
                         onClick={onClose}
-                        className="rounded-full w-14 h-14 bg-muted/20 hover:bg-muted/40 transition-all border border-white/5"
+                        className="rounded-full w-10 h-10 sm:w-14 sm:h-14 bg-muted/20 hover:bg-muted/40 transition-all border border-white/5"
                     >
-                        <X size={28} />
-                    </Button>
+                        <X className="w-5 h-5 sm:w-7 sm:h-7" />
+                    </Button> */}
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 italic">{t("discoveryTitle") || "FitFinder Discovery"}</span>
-                        <span className="font-black text-xl italic">{currentIndex + 1} / {products.length}</span>
+                        <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] opacity-40 italic">{t("discoveryTitle") || "FitFinder Discovery"}</span>
+                        <span className="font-black text-lg sm:text-xl italic">{currentIndex + 1} / {products.length}</span>
                     </div>
 
                     {/* Visual Context Preview */}
@@ -162,9 +162,9 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
 
                 <Button
                     onClick={onSwitchToGrid}
-                    className="h-14 px-8 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 font-black uppercase text-[10px] tracking-[0.3em] gap-4 transition-all"
+                    className="h-10 sm:h-14 px-3 sm:px-8 rounded-xl sm:rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 font-black uppercase text-[8px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] gap-2 sm:gap-4 transition-all"
                 >
-                    <LayoutGrid size={18} />
+                    <LayoutGrid className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>{t("gridView") || "GRID VIEW"}</span>
                 </Button>
             </div>
@@ -227,7 +227,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                         className="absolute inset-0 cursor-grab active:cursor-grabbing"
                     >
                         <div
-                            className="w-full h-full rounded-[4rem] overflow-hidden border-8 border-white/10 shadow-[0_80px_150px_rgba(0,0,0,0.5)] flex flex-col group transition-all duration-1000"
+                            className="w-full h-full rounded-[2.5rem] sm:rounded-[4rem] overflow-hidden border-4 sm:border-8 border-white/10 shadow-[0_80px_150px_rgba(0,0,0,0.5)] flex flex-col group transition-all duration-1000"
                             style={{
                                 background: ambientColors ? `${ambientColors.center}` : 'rgba(255,255,255,0.02)',
                                 backdropFilter: 'blur(20px)'
@@ -250,8 +250,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                                 </Badge> */}
 
                                 {/* Info Overlay on Image */}
-                                <div className="absolute bottom-0 inset-x-0 p-12 space-y-4">
-                                    <h2 className="text-4xl md:text-5xl font-black text-white italic uppercase leading-[0.8] tracking-tight">
+                                <div className="absolute bottom-0 inset-x-0 p-6 sm:p-12 space-y-2 sm:space-y-4">
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white italic uppercase leading-[0.8] tracking-tight">
                                         {currentProduct.title}
                                     </h2>
                                     <div className="flex items-center gap-4">
@@ -267,7 +267,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
 
                             {/* Ratings & Actions Section */}
                             <div
-                                className="p-12 flex flex-col items-center gap-10 border-t border-white/5"
+                                className="p-6 sm:p-12 flex flex-col items-center gap-6 sm:gap-10 border-t border-white/5"
                                 style={{
                                     background: 'rgba(0,0,0,0.1)',
                                     backdropFilter: 'blur(40px)'
@@ -277,7 +277,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                                     <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 italic">
                                         {t("rateThisProduct") || "RATE THIS MATCH"}
                                     </span>
-                                    <div className="flex gap-3" onMouseLeave={() => setHoverRating(0)}>
+                                    <div className="flex gap-2 sm:gap-3" onMouseLeave={() => setHoverRating(0)}>
                                         {[1, 2, 3, 4, 5].map((star) => (
                                             <button
                                                 key={star}
@@ -286,9 +286,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                                                 className="group/star transition-all active:scale-90"
                                             >
                                                 <Star
-                                                    size={32}
                                                     className={cn(
-                                                        "transition-all duration-300 drop-shadow-md",
+                                                        "w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 drop-shadow-md",
                                                         (hoverRating >= star)
                                                             ? "fill-yellow-400 text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]"
                                                             : (ratings[currentProduct.item_id] || 0) >= star
@@ -319,6 +318,30 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                         </div>
                     </motion.div>
                 </AnimatePresence>
+            </div>
+
+            {/* Mobile Swipe Indicator */}
+            <div className="lg:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-[110] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <div className="bg-background/20 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full flex flex-col items-center gap-2 shadow-2xl shadow-black/20">
+                    <div className="flex items-center gap-6">
+                        <motion.div
+                            animate={{ x: [-12, 12, -12] }}
+                            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                            className="flex items-center gap-3"
+                        >
+                            {isRTL ? <ArrowRight size={14} className="text-primary" /> : <ArrowLeft size={14} className="text-primary" />}
+                            <div className="flex gap-1">
+                                <span className="w-1 h-1 rounded-full bg-primary/40" />
+                                <span className="w-1 h-1 rounded-full bg-primary" />
+                                <span className="w-1 h-1 rounded-full bg-primary/40" />
+                            </div>
+                            {isRTL ? <ArrowLeft size={14} className="text-primary" /> : <ArrowRight size={14} className="text-primary" />}
+                        </motion.div>
+                    </div>
+                    <span className="text-[8px] font-black uppercase tracking-[0.3em] italic text-foreground/60 whitespace-nowrap">
+                        {t("swipeToBrowse") || "SWIPE TO BROWSE"}
+                    </span>
+                </div>
             </div>
 
             {/* Bottom Progress Bar */}

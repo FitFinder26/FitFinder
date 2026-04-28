@@ -85,7 +85,7 @@ export default function SearchFilters({
                 </Button>
                 
                 {showFilters && (
-                    <div className="mt-8 p-12 bg-muted/10 rounded-[4rem] space-y-16 border-4 border-border/5 animate-in slide-in-from-top-12 duration-1000 cubic-bezier(0.7, 0, 0.3, 1) shadow-[0_50px_100px_rgba(0,0,0,0.3)]">
+                    <div className="mt-6 p-6 sm:p-12 bg-muted/10 rounded-[2.5rem] sm:rounded-[4rem] space-y-10 sm:space-y-16 border-4 border-border/5 animate-in slide-in-from-top-12 duration-1000 cubic-bezier(0.7, 0, 0.3, 1) shadow-[0_50px_100px_rgba(0,0,0,0.3)]">
                          <div className="space-y-10">
                             <h4 className="text-[10px] font-black uppercase tracking-[0.5em] opacity-30 italic">{t("category")}</h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

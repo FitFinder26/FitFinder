@@ -153,9 +153,9 @@ export default function SearchResultPage() {
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-24 selection:bg-primary selection:text-white">
-            <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-20">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12 md:py-20">
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-24">
 
                     <aside className="lg:col-span-3 space-y-16 animate-in slide-in-from-left-20 duration-1000">
                         <SearchSourcePreview searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
@@ -189,7 +189,7 @@ export default function SearchResultPage() {
                             <SearchEmptyState clearFilters={clearFilters} />
                         ) : (
                             <div className="space-y-24">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 lg:gap-16 pt-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-12 lg:gap-16 pt-4">
                                     {paginatedProducts.map((p, idx) => (
                                         <SearchProductCard
                                             key={p.item_id}

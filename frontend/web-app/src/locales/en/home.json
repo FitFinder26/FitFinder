@@ -4,7 +4,7 @@
     "branding": "PERFECT FIT",
     "description": "Find the best fit for your style across global online stores and seamlessly coordinate your existing wardrobe pieces with our neural intelligence engine.",
     "searchWithImage": "SEARCH WITH IMAGE",
-    "join": "ENTER ARCHIVE",
+    "join": "JOIN US",
     "demo": "HOW IT WORKS",
     "aiPowered": "AI POWERED",
     "liveSegmentation": "LIVE SEGMENTATION",
@@ -50,7 +50,7 @@
     "selectMethod": "Choose how you want to input your visual context.",
     "takePhoto": "TAKE PHOTO",
     "instantCapture": "LIVE CAMERA",
-    "uploadFromDevice": "UPLOAD FROM DEVICE",
+    "uploadFromDevice": "UPLOAD",
     "archivalUpload": "LOCAL FILE",
     "cancel": "ABORT SELECTION"
   },
