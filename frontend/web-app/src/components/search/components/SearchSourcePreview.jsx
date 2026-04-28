@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { NAMESPACES } from "../../../locales/namespaces";
 
-export default function SearchSourcePreview({ searchingPeice, visibleCount }) {
+export default function SearchSourcePreview({ searchingPeice, prompt, visibleCount }) {
     const { t } = useTranslation(NAMESPACES.search);
     const navigate = useNavigate();
 
@@ -41,6 +41,18 @@ export default function SearchSourcePreview({ searchingPeice, visibleCount }) {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 pointer-events-none" />
                 </div>
+
+                {prompt && (
+                    <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-1000 delay-500">
+                        <div className="flex items-center gap-2 opacity-30">
+                            <Sparkles size={12} className="text-primary" />
+                            <span className="text-[9px] font-black uppercase tracking-widest">{t("customRequest") || "CUSTOM REQUEST"}</span>
+                        </div>
+                        <p className="text-sm font-medium leading-relaxed opacity-60 bg-muted/20 p-6 rounded-[2rem] border border-border/5">
+                            "{prompt}"
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );

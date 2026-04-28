@@ -33,5 +33,7 @@
   "rank": "RANK #{{rank}}",
   "rateThisProduct": "RATE THIS MATCH",
   "viewDetails": "VIEW DETAILS",
-  "switchToDiscovery": "Rate Similarity"
+  "switchToDiscovery": "Rate Similarity",
+  "customRequest": "CUSTOM REQUEST",
+  "activePrompt": "PROMPT"
 }

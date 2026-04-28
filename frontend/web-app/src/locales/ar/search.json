@@ -33,5 +33,7 @@
   "rank": "المرتبة #{{rank}}",
   "rateThisProduct": "قيم هذا التطابق",
   "viewDetails": "عرض التفاصيل",
-  "switchToDiscovery": "تقييم نسبة التشابه"
+  "switchToDiscovery": "تقييم نسبة التشابه",
+  "customRequest": "طلب مخصص",
+  "activePrompt": "الوصف"
 }

@@ -58,7 +58,8 @@ export default function CustomizeSegment({
         navigate("/search-result", { 
           state: { 
             products: products, 
-            searchingPeice: segmentedImageSrc 
+            searchingPeice: segmentedImageSrc,
+            prompt: prompt
           } 
         });
       }

@@ -11,7 +11,7 @@ import { getEdgeColors } from "@/lib/imageUtils";
 import { ratingService } from "@shared/services/ratingService";
 
 
-export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, loading }) {
+export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, prompt, loading }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
@@ -43,7 +43,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
 
     const handleRate = (productId, rating) => {
         setRatings(prev => ({ ...prev, [productId]: rating }));
-        
+
         // Find the current product to get its rank
         const product = products.find(p => p.item_id === productId);
         if (product) {
@@ -51,7 +51,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                 productId,
                 product.originalRank,
                 searchingPeice,
-                rating
+                rating,
+                prompt
             ).catch(err => {
                 console.error("Failed to submit rating:", err);
             });
@@ -137,6 +138,25 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                     <div className="flex flex-col">
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 italic">{t("discoveryTitle") || "FitFinder Discovery"}</span>
                         <span className="font-black text-xl italic">{currentIndex + 1} / {products.length}</span>
+                    </div>
+
+                    {/* Visual Context Preview */}
+                    <div className="hidden sm:flex items-center gap-4 bg-white/5 backdrop-blur-xl rounded-3xl p-2 pe-6 border border-white/10 group/context cursor-default">
+                        <div className="w-12 h-12 rounded-2xl overflow-hidden bg-background border border-white/10">
+                            {searchingPeice ? (
+                                <img src={searchingPeice} alt="Source" className="w-full h-full object-contain" />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center opacity-20">
+                                    <Star size={16} />
+                                </div>
+                            )}
+                        </div>
+                        {prompt && (
+                            <div className="max-w-[200px]">
+                                <p className="text-[9px] font-black uppercase tracking-widest opacity-30 leading-none mb-1">{t("activePrompt") || "PROMPT"}</p>
+                                <p className="text-[11px] font-bold truncate opacity-80 italic">"{prompt}"</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 

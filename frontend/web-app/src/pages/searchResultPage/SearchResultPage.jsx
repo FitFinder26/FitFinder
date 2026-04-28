@@ -35,6 +35,7 @@ export default function SearchResultPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const searchingPeice = location.state?.searchingPeice || null;
+    const prompt = location.state?.prompt || "";
 
     const [filters, setFilters] = useState({
         category: new Set(),
@@ -144,6 +145,7 @@ export default function SearchResultPage() {
                 onSwitchToGrid={() => setViewMode("grid")}
                 navigate={navigate}
                 searchingPeice={searchingPeice}
+                prompt={prompt}
                 loading={loading}
             />
         );
@@ -156,7 +158,7 @@ export default function SearchResultPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
                     <aside className="lg:col-span-3 space-y-16 animate-in slide-in-from-left-20 duration-1000">
-                        <SearchSourcePreview searchingPeice={searchingPeice} visibleCount={visibleProducts.length} />
+                        <SearchSourcePreview searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
 
                         <div className="flex flex-col gap-4">
                             <Button
