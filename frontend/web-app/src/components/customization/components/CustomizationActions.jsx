@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../../../locales/namespaces";
 import { ChevronLeft, ChevronRight, Sparkles, Wand2 } from "lucide-react";
 
+import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
+
 export default function CustomizationActions({
   prompt,
   setPrompt,
@@ -13,6 +15,11 @@ export default function CustomizationActions({
   setIsBeingCustomized,
 }) {
   const { t, i18n } = useTranslation(NAMESPACES.editor);
+  const { currentStep, nextStep } = useOnboarding();
+
+  const onSearchClick = () => {
+    handleSearch();
+  };
 
   return (
     <div className="space-y-10">
@@ -26,13 +33,14 @@ export default function CustomizationActions({
           onChange={e => setPrompt(e.target.value)}
           placeholder={t("promptPlaceholder") || "Describe the style, material, or specific details..."}
           disabled={isSearching}
-          className="min-h-[160px] sm:min-h-[220px] rounded-[2rem] sm:rounded-[3rem] bg-muted/10 border-2 border-border/10 focus:border-primary/50 font-bold text-base sm:text-lg p-6 sm:p-10 shadow-inner resize-none transition-all focus:shadow-2xl focus:shadow-primary/5"
+          className="min-h-[120px] sm:min-h-[220px] rounded-[2rem] sm:rounded-[3rem] bg-muted/10 border-2 border-border/10 focus:border-primary/50 font-bold text-base sm:text-lg p-6 sm:p-10 shadow-inner resize-none transition-all focus:shadow-2xl focus:shadow-primary/5"
         />
       </div>
 
       <div className="flex flex-col gap-6">
         <Button
-          onClick={handleSearch}
+          id="customization-search-button"
+          onClick={onSearchClick}
           disabled={isSearching}
           className="h-20 sm:h-28 rounded-[1.5rem] sm:rounded-[2.5rem] bg-primary text-white font-black text-xl sm:text-2xl uppercase tracking-[0.2em] shadow-[0_25px_60px_rgba(250,88,126,0.35)] hover:bg-rose-600 hover:scale-[1.02] active:scale-95 transition-all group w-full"
         >

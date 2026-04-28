@@ -11,6 +11,8 @@ import SegmentationActions from "./components/SegmentationActions";
 import PointRepository from "./components/PointRepository";
 import SegmentationGuide from "./components/SegmentationGuide";
 
+import { useOnboarding, ONBOARDING_STEPS } from "../../providers/OnboardingProvider";
+
 export default function SAMFrontend({
   imageURL,
   loading,
@@ -22,6 +24,7 @@ export default function SAMFrontend({
   segmentationService,
 }) {
   const { t } = useTranslation(NAMESPACES.editor);
+  const { currentStep, setCurrentStep, nextStep } = useOnboarding();
   const [masks, setMasks] = useState([]);
   const [maskCanvases, setMaskCanvases] = useState([]);
   const [borderCanvases, setBorderCanvases] = useState([]);
@@ -39,6 +42,11 @@ export default function SAMFrontend({
     segmentationService.connect();
     setSessionStarted(false); // Service handles internal state, we just reset UI flags
 
+    // Onboarding synchronization
+    if (currentStep === ONBOARDING_STEPS.CHOOSE_SOURCE || currentStep === ONBOARDING_STEPS.NAVBAR_SEARCH) {
+      setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const handleContextMenu = (e) => e.preventDefault();
@@ -53,6 +61,9 @@ export default function SAMFrontend({
           Notifier.notifyError(t("segmentationFailed", { error: segmentation.error }));
           setSegmentationStatus("idle");
           setLoading(false);
+          if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+            setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+          }
           return;
         }
         
@@ -61,10 +72,15 @@ export default function SAMFrontend({
         setMasks(convertedMasks);
         setSegmentationStatus("completed");
         setLoading(false);
+
+        // Advance onboarding
+        if (currentStep === ONBOARDING_STEPS.SEGMENT_IMAGE) {
+            nextStep();
+        }
       }
     );
     return () => unsubscribe();
-  }, [segmentationService, t]);
+  }, [segmentationService, t, currentStep, nextStep]);
 
   useEffect(() => {
     if (!imageURL || !canvasRef.current) return;
@@ -171,11 +187,17 @@ export default function SAMFrontend({
         Notifier.notifyError(t("segmentationFailedShort", { error: response.error }));
         setSegmentationStatus("idle");
         setLoading(false);
+        if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+          setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+        }
       } else setSegmentationStatus("segmenting");
     } catch (error) {
       Notifier.notifyError(t("segmentationFailed", { error: error.message }));
       setLoading(false);
       setSegmentationStatus("idle");
+      if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+        setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+      }
     }
   };
 
@@ -203,12 +225,18 @@ export default function SAMFrontend({
           Notifier.notifyError(t("segmentationFailedShort", { error: data.error }));
           setSegmentationStatus("idle");
           setLoading(false);
+          if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+            setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+          }
         }
       }
     } catch (error) {
       Notifier.notifyError(t("segmentationFailed", { error: error.message }));
       setLoading(false);
       setSegmentationStatus("idle");
+      if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+        setCurrentStep(ONBOARDING_STEPS.SEGMENT_IMAGE);
+      }
     }
   };
 
@@ -278,7 +306,7 @@ export default function SAMFrontend({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-start gap-6 sm:gap-12 animate-in fade-in zoom-in duration-1000">
+    <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-start gap-8 lg:gap-12 animate-in fade-in zoom-in duration-1000">
       <SegmentationCanvas 
         ref={canvasRef}
         loading={loading}
@@ -300,7 +328,7 @@ export default function SAMFrontend({
         deselectedPoints={deselectedPoints}
       />
 
-      <div className="w-full lg:w-80 flex flex-col gap-10 order-2 lg:sticky lg:top-12">
+      <div className="w-full lg:w-80 flex flex-col gap-8 lg:gap-10 order-2 lg:sticky lg:top-12">
         <SegmentationActions 
           masks={masks}
           processImage={processImage}

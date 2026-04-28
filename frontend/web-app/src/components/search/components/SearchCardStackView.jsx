@@ -11,15 +11,38 @@ import { getEdgeColors } from "@/lib/imageUtils";
 import { ratingService } from "@shared/services/ratingService";
 
 
+import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
+
 export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, prompt, loading }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
+    const { currentStep, nextStep, setCurrentStep, isActive } = useOnboarding();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
     const [ratings, setRatings] = useState({});
     const [ambientColors, setAmbientColors] = useState(null);
     const [hoverRating, setHoverRating] = useState(0);
 
+    const onRate = (productId, rating) => {
+        if (currentStep === ONBOARDING_STEPS.RATE_RESULTS) {
+            nextStep();
+        }
+        handleRate(productId, rating);
+    };
+
+    const onGridClick = () => {
+        if (currentStep === ONBOARDING_STEPS.SWITCH_GRID) {
+            nextStep(); // This will reach COMPLETED
+        }
+        onSwitchToGrid();
+    };
+
     const currentProduct = products[currentIndex];
+
+    useEffect(() => {
+        if (isActive && !loading && currentProduct && currentStep < ONBOARDING_STEPS.RATE_RESULTS) {
+            setCurrentStep(ONBOARDING_STEPS.RATE_RESULTS);
+        }
+    }, [isActive, loading, currentProduct, currentStep, setCurrentStep]);
 
     useEffect(() => {
         setCurrentIndex(0);
@@ -141,31 +164,32 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                     </div>
 
                     {/* Visual Context Preview */}
-                    <div className="hidden sm:flex items-center gap-4 bg-white/5 backdrop-blur-xl rounded-3xl p-2 pe-6 border border-white/10 group/context cursor-default">
-                        <div className="w-12 h-12 rounded-2xl overflow-hidden bg-background border border-white/10">
+                    <div className="flex items-center gap-2 sm:gap-4 bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-2 pe-3 sm:pe-6 border border-white/10 group/context cursor-default">
+                        <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-2xl overflow-hidden bg-transparent border border-white/10 shrink-0">
                             {searchingPeice ? (
                                 <img src={searchingPeice} alt="Source" className="w-full h-full object-contain" />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center opacity-20">
-                                    <Star size={16} />
+                                    <Star size={12} className="sm:w-4 sm:h-4" />
                                 </div>
                             )}
                         </div>
                         {prompt && (
-                            <div className="max-w-[200px]">
-                                <p className="text-[9px] font-black uppercase tracking-widest opacity-30 leading-none mb-1">{t("activePrompt") || "PROMPT"}</p>
-                                <p className="text-[11px] font-bold truncate opacity-80 italic">"{prompt}"</p>
+                            <div className="max-w-[80px] sm:max-w-[200px]">
+                                <p className="text-[7px] sm:text-[9px] font-black uppercase tracking-widest opacity-30 leading-none mb-0.5 sm:mb-1">{t("activePrompt") || "PROMPT"}</p>
+                                <p className="text-[9px] sm:text-[11px] font-bold truncate opacity-80 italic leading-none sm:leading-normal">"{prompt}"</p>
                             </div>
                         )}
                     </div>
                 </div>
 
                 <Button
-                    onClick={onSwitchToGrid}
+                    id="grid-view-button"
+                    onClick={onGridClick}
                     className="h-10 sm:h-14 px-3 sm:px-8 rounded-xl sm:rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 font-black uppercase text-[8px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] gap-2 sm:gap-4 transition-all"
                 >
                     <LayoutGrid className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>{t("gridView") || "GRID VIEW"}</span>
+                    <span className="hidden sm:inline">{t("gridView") || "GRID VIEW"}</span>
                 </Button>
             </div>
 
@@ -215,6 +239,9 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={1}
                         onDragEnd={(e, { offset, velocity }) => {
+                            if (currentStep === ONBOARDING_STEPS.SWIPE_CARDS) {
+                                nextStep();
+                            }
                             const swipe = offset.x;
                             if (isRTL) {
                                 if (swipe > 100) paginate(1);
@@ -225,6 +252,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                             }
                         }}
                         className="absolute inset-0 cursor-grab active:cursor-grabbing"
+                        id="search-card-stack"
                     >
                         <div
                             className="w-full h-full rounded-[2.5rem] sm:rounded-[4rem] overflow-hidden border-4 sm:border-8 border-white/10 shadow-[0_80px_150px_rgba(0,0,0,0.5)] flex flex-col group transition-all duration-1000"
@@ -277,11 +305,11 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                                     <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 italic">
                                         {t("rateThisProduct") || "RATE THIS MATCH"}
                                     </span>
-                                    <div className="flex gap-2 sm:gap-3" onMouseLeave={() => setHoverRating(0)}>
+                                    <div className="flex gap-2 sm:gap-3 product-rating-stars" onMouseLeave={() => setHoverRating(0)}>
                                         {[1, 2, 3, 4, 5].map((star) => (
                                             <button
                                                 key={star}
-                                                onClick={() => handleRate(currentProduct.item_id, star)}
+                                                onClick={() => onRate(currentProduct.item_id, star)}
                                                 onMouseEnter={() => setHoverRating(star)}
                                                 className="group/star transition-all active:scale-90"
                                             >
@@ -321,7 +349,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
             </div>
 
             {/* Mobile Swipe Indicator */}
-            <div className="lg:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-[110] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <div className="lg:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-[110] animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <div className="bg-background/20 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full flex flex-col items-center gap-2 shadow-2xl shadow-black/20">
                     <div className="flex items-center gap-6">
                         <motion.div

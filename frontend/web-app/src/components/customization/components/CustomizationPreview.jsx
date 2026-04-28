@@ -8,7 +8,7 @@ export default function CustomizationPreview({ segmentedImageSrc }) {
   const { t } = useTranslation(NAMESPACES.editor);
 
   return (
-    <div className="relative group w-full flex justify-center sticky top-0">
+    <div className="relative group w-full flex justify-center lg:sticky lg:top-12">
       <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-[80px] opacity-20 animate-pulse pointer-events-none" />
       <Card className="relative z-10 w-full aspect-square max-w-md rounded-[3.5rem] bg-muted/20 border-border/10 overflow-hidden shadow-2xl flex items-center justify-center p-8 md:p-12 backdrop-blur-3xl group-hover:scale-[1.02] transition-transform duration-700">
         {segmentedImageSrc ? (

@@ -4,6 +4,8 @@ import SegmentationStatusOverlay from "./SegmentationStatusOverlay";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../../../locales/namespaces";
 
+import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
+
 const SegmentationCanvas = forwardRef(({
   loading,
   clickMode,
@@ -24,6 +26,18 @@ const SegmentationCanvas = forwardRef(({
   deselectedPoints,
 }, ref) => {
   const { t } = useTranslation(NAMESPACES.editor);
+  const { currentStep, nextStep } = useOnboarding();
+
+  const handleMaskClick = (e) => {
+    if (currentStep === ONBOARDING_STEPS.SELECT_MASK) {
+      nextStep();
+    }
+    if (clickMode === "add") {
+      toggleMask(e, "add");
+    } else {
+      toggleMask(e, "remove");
+    }
+  };
 
   const drawCanvas = () => {
     const canvas = ref.current;
@@ -107,12 +121,12 @@ const SegmentationCanvas = forwardRef(({
         <div className="relative w-full aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl border-4 border-border/10 bg-muted/10 backdrop-blur-3xl group-hover:scale-[1.01] transition-transform duration-700">
           <canvas
             ref={ref}
-            onClick={clickMode === "add" ? (e) => toggleMask(e, "add") : (e) => toggleMask(e, "remove")}
+            onClick={handleMaskClick}
             onContextMenu={(e) => { e.preventDefault(); toggleMask(e, "remove"); }}
             onMouseMove={handleCanvasMove}
             onMouseLeave={() => setHovered(null)}
             className={cn(
-              "w-full h-full object-contain cursor-crosshair transition-all duration-1000",
+              "w-full h-full object-contain cursor-crosshair transition-all duration-1000 segmentation-mask",
               loading ? "blur-xl scale-110 opacity-50" : "blur-0 scale-100 opacity-100"
             )}
           />
