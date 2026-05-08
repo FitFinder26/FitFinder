@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { NAMESPACES } from "../../../locales/namespaces";
 
-export default function SearchSourcePreview({ searchingPeice, prompt, visibleCount, compact = false }) {
+export default function SearchSourcePreview({ segmented_image_url, prompt, visibleCount, compact = false }) {
     const { t } = useTranslation(NAMESPACES.search);
     const navigate = useNavigate();
 
@@ -13,9 +13,9 @@ export default function SearchSourcePreview({ searchingPeice, prompt, visibleCou
             <div className="relative group w-full">
                 <div className="relative bg-muted/5 rounded-2xl p-3 border-2 border-border/5 flex items-center gap-4 group-hover:bg-muted/10 transition-all duration-700 overflow-hidden">
                     <div className="w-12 h-12 rounded-xl overflow-hidden bg-background border border-white/5 shrink-0 flex items-center justify-center">
-                        {searchingPeice ? (
+                        {segmented_image_url ? (
                             <img
-                                src={searchingPeice}
+                                src={segmented_image_url}
                                 alt="Source"
                                 className="w-full h-full object-contain"
                             />
@@ -60,9 +60,9 @@ export default function SearchSourcePreview({ searchingPeice, prompt, visibleCou
                 </div>
 
                 <div className="relative aspect-square rounded-[3rem] overflow-hidden bg-background border-4 border-white/5 shadow-2xl flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-1000">
-                    {searchingPeice ? (
+                    {segmented_image_url ? (
                         <img
-                            src={searchingPeice}
+                            src={segmented_image_url}
                             alt={t("previewAlt")}
                             className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] group-hover:rotate-6 transition-all duration-1000"
                         />

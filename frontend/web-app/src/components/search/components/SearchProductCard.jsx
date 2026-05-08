@@ -37,7 +37,7 @@ function CardImageWithLoader({ src, alt, t }) {
     );
 }
 
-export default function SearchProductCard({ product, idx, onClick, onRateClick }) {
+export default function SearchProductCard({ product, idx, onClick, onRateClick, rating }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
     const { device } = useDevice();
 
@@ -63,13 +63,22 @@ export default function SearchProductCard({ product, idx, onClick, onRateClick }
                     <Button 
                         size="icon"
                         variant="ghost"
-                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-primary hover:text-white transition-all shadow-2xl group/rate"
+                        className={cn(
+                            "w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-primary hover:text-white transition-all shadow-2xl group/rate",
+                            Number(rating) > 0 && "bg-primary/20 border-primary/50 text-primary"
+                        )}
                         onClick={(e) => {
                             e.stopPropagation();
                             onRateClick?.(product);
                         }}
                     >
-                        <Star size={device === "mobile" ? 16 : 20} className="fill-current group-hover/rate:scale-110 transition-transform" />
+                        <Star 
+                            size={device === "mobile" ? 16 : 20} 
+                            className={cn(
+                                "fill-current group-hover/rate:scale-110 transition-transform",
+                                Number(rating) > 0 ? "text-yellow-400 fill-yellow-400" : "text-white"
+                            )} 
+                        />
                     </Button>
                 </div>
 
@@ -83,6 +92,25 @@ export default function SearchProductCard({ product, idx, onClick, onRateClick }
             </div>
 
             <CardContent className="p-6 sm:p-12 space-y-4 sm:space-y-6 bg-muted/1">
+                {Number(rating) > 0 && (
+                    <div className="flex items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-700">
+                        <div className="flex gap-1">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <Star
+                                    key={star}
+                                    size={device === "mobile" ? 10 : 14}
+                                    className={cn(
+                                        "transition-all",
+                                        Number(rating) >= star ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/20"
+                                    )}
+                                />
+                            ))}
+                        </div>
+                        <span className="text-[10px] font-black text-primary italic uppercase tracking-tighter opacity-60">
+                            {t("yourRating") || "Your Match Rating"}
+                        </span>
+                    </div>
+                )}
                 <h4 className="font-black text-xl sm:text-2xl line-clamp-2 leading-[0.9] group-hover:text-primary transition-all duration-700 h-[2.5em] tracking-tighter uppercase italic">
                     {product.title}
                 </h4>

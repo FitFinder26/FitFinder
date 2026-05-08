@@ -55,10 +55,10 @@ export default function CustomizeSegment({
     setIsSearching(true);
     try {
       const response = await segmentationService.search(selectedMask[0], prompt);
-      const products = await response.json();
+      const data = await response.json();
       
-      if (products && products?.error) {
-        Notifier.notifyError(t("searchFailed", { reason: products.error }));
+      if (data && data?.error) {
+        Notifier.notifyError(t("searchFailed", { reason: data.error }));
         if (currentStep === ONBOARDING_STEPS.RATE_RESULTS) {
           setCurrentStep(ONBOARDING_STEPS.CUSTOMIZE_SEARCH);
         }
@@ -68,8 +68,8 @@ export default function CustomizeSegment({
         handleCloseSegmentationSheet();
         navigate("/search-result", { 
           state: { 
-            products: products, 
-            searchingPeice: segmentedImageSrc,
+            products: data.items || data, 
+            segmented_image_url: data.segmented_image_url,
             prompt: prompt
           } 
         });

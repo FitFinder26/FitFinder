@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ArrowRight, ArrowLeft, X, LayoutGrid } from "lucide-react";
+import { Star, ArrowRight, ArrowLeft, X, LayoutGrid, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -9,18 +9,41 @@ import { NAMESPACES } from "@/locales/namespaces";
 
 import { getEdgeColors } from "@/lib/imageUtils";
 import { ratingService } from "@shared/services/ratingService";
-
-
+import { Notifier } from "@/components/Notifier";
 import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
 
-export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, searchingPeice, prompt, loading, initialIndex = 0 }) {
+export default function SearchCardStackView({ products, onClose, onSwitchToGrid, navigate, segmented_image_url, prompt, loading, initialIndex = 0, ratings, onRate: onUpdateRating }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
     const { currentStep, nextStep, setCurrentStep, isActive } = useOnboarding();
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
     const [direction, setDirection] = useState(0);
-    const [ratings, setRatings] = useState({});
+    // const [ratings, setRatings] = useState({}); // Removed local state
     const [ambientColors, setAmbientColors] = useState(null);
     const [hoverRating, setHoverRating] = useState(0);
+    const [showGratitude, setShowGratitude] = useState(false);
+
+    const playSuccessSound = () => {
+        try {
+            const context = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, context.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.1);
+
+            gainNode.gain.setValueAtTime(0.05, context.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.2);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+
+            oscillator.start();
+            oscillator.stop(context.currentTime + 0.2);
+        } catch (e) {
+            console.warn("Audio feedback failed", e);
+        }
+    };
 
     const onRate = (productId, rating) => {
         if (currentStep === ONBOARDING_STEPS.RATE_RESULTS) {
@@ -65,7 +88,7 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
     };
 
     const handleRate = (productId, rating) => {
-        setRatings(prev => ({ ...prev, [productId]: rating }));
+        onUpdateRating?.(productId, rating);
 
         // Find the current product to get its rank
         const product = products.find(p => p.item_id === productId);
@@ -73,10 +96,21 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
             ratingService.rateProduct(
                 productId,
                 product.originalRank,
-                searchingPeice,
+                segmented_image_url,
                 rating,
                 prompt
-            ).catch(err => {
+            ).then(() => {
+                playSuccessSound();
+                setShowGratitude(true);
+                
+                // Auto-scroll to next item after a short delay
+                setTimeout(() => {
+                    setShowGratitude(false);
+                    if (currentIndex < products.length - 1) {
+                        paginate(1);
+                    }
+                }, 1200);
+            }).catch(err => {
                 console.error("Failed to submit rating:", err);
             });
         }
@@ -166,8 +200,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                     {/* Visual Context Preview */}
                     <div className="flex items-center gap-2 sm:gap-4 bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-2 pe-3 sm:pe-6 border border-white/10 group/context cursor-default">
                         <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-2xl overflow-hidden bg-transparent border border-white/10 shrink-0">
-                            {searchingPeice ? (
-                                <img src={searchingPeice} alt="Source" className="w-full h-full object-contain" />
+                            {segmented_image_url ? (
+                                <img src={segmented_image_url} alt="Source" className="w-full h-full object-contain" />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center opacity-20">
                                     <Star size={12} className="sm:w-4 sm:h-4" />
@@ -349,8 +383,8 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
             </div>
 
             {/* Mobile Swipe Indicator */}
-            <div className="lg:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-[110] animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                <div className="bg-background/20 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full flex flex-col items-center gap-2 shadow-2xl shadow-black/20">
+            <div className="lg:hidden absolute bottom-2 left-1/2 -translate-x-1/2 z-[110] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <div className="border border-white/10 px-6 py-3 rounded-full flex flex-col items-center gap-2 shadow-2xl shadow-black/20">
                     <div className="flex items-center gap-6">
                         <motion.div
                             animate={{ x: [-12, 12, -12] }}
@@ -366,9 +400,9 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                             {isRTL ? <ArrowLeft size={14} className="text-primary" /> : <ArrowRight size={14} className="text-primary" />}
                         </motion.div>
                     </div>
-                    <span className="text-[8px] font-black uppercase tracking-[0.3em] italic text-foreground/60 whitespace-nowrap">
+                    {/* <span className="text-[8px] font-black uppercase tracking-[0.3em] italic text-foreground/60 whitespace-nowrap">
                         {t("swipeToBrowse") || "SWIPE TO BROWSE"}
-                    </span>
+                    </span> */}
                 </div>
             </div>
 
@@ -384,6 +418,35 @@ export default function SearchCardStackView({ products, onClose, onSwitchToGrid,
                     animate={{ width: `${((currentIndex + 1) / products.length) * 100}%` }}
                 />
             </div>
+
+            {/* Gratitude Overlay */}
+            <AnimatePresence>
+                {showGratitude && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -40, scale: 0.9, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, scale: 0.8, filter: "blur(20px)" }}
+                        className="fixed top-24 sm:top-32 left-1/2 -translate-x-1/2 z-[200] pointer-events-none"
+                    >
+                        <div className="bg-black/20 backdrop-blur-3xl border-2 border-primary/30 p-4 rounded-full shadow-[0_40px_100px_rgba(0,0,0,0.5),0_0_40px_rgba(var(--primary),0.2)]">
+                            <div className="relative">
+                                <motion.div
+                                    animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+                                    transition={{ duration: 0.5 }}
+                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-primary rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(var(--primary),0.4)]"
+                                >
+                                    <Check className="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={4} />
+                                </motion.div>
+                                <motion.div
+                                    animate={{ scale: [1, 2], opacity: [0.5, 0] }}
+                                    transition={{ duration: 1, repeat: Infinity }}
+                                    className="absolute inset-0 bg-primary rounded-full -z-10"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

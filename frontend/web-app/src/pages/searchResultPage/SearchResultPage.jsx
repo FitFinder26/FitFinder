@@ -31,11 +31,19 @@ export default function SearchResultPage() {
     const [showFilters, setShowFilters] = useState(device !== "mobile");
     const [currentPage, setCurrentPage] = useState(1);
     const [initialStackIndex, setInitialStackIndex] = useState(0);
+    const [ratings, setRatings] = useState(() => {
+        try {
+            const saved = localStorage.getItem('product_ratings');
+            return saved ? JSON.parse(saved) : {};
+        } catch {
+            return {};
+        }
+    });
     const itemsPerPage = 10;
 
     const location = useLocation();
     const navigate = useNavigate();
-    const searchingPeice = location.state?.searchingPeice || null;
+    const segmented_image_url = location.state?.segmented_image_url || null;
     const prompt = location.state?.prompt || "";
 
     const [filters, setFilters] = useState({
@@ -146,6 +154,14 @@ export default function SearchResultPage() {
         }
     };
 
+    const handleUpdateRating = (productId, rating) => {
+        setRatings(prev => {
+            const next = { ...prev, [productId]: rating };
+            localStorage.setItem('product_ratings', JSON.stringify(next));
+            return next;
+        });
+    };
+
     if (viewMode === "stack" && (loading || shuffledProducts.length > 0)) {
         return (
             <SearchCardStackView
@@ -153,10 +169,12 @@ export default function SearchResultPage() {
                 onClose={() => navigate("/")}
                 onSwitchToGrid={() => setViewMode("grid")}
                 navigate={navigate}
-                searchingPeice={searchingPeice}
+                segmented_image_url={segmented_image_url}
                 prompt={prompt}
                 loading={loading}
                 initialIndex={initialStackIndex}
+                ratings={ratings}
+                onRate={handleUpdateRating}
             />
         );
     }
@@ -171,10 +189,10 @@ export default function SearchResultPage() {
                         <div className="flex flex-row lg:flex-col items-center lg:items-stretch gap-4 lg:gap-10">
                             <div className="flex-1 lg:flex-none">
                                 <div className="hidden lg:block">
-                                    <SearchSourcePreview searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
+                                    <SearchSourcePreview segmented_image_url={segmented_image_url} prompt={prompt} visibleCount={visibleProducts.length} />
                                 </div>
                                 <div className="lg:hidden">
-                                    <SearchSourcePreview compact searchingPeice={searchingPeice} prompt={prompt} visibleCount={visibleProducts.length} />
+                                    <SearchSourcePreview compact segmented_image_url={segmented_image_url} prompt={prompt} visibleCount={visibleProducts.length} />
                                 </div>
                             </div>
                             <div className="shrink-0 lg:w-full">
@@ -213,6 +231,7 @@ export default function SearchResultPage() {
                                             key={p.item_id}
                                             product={p}
                                             idx={idx}
+                                            rating={ratings[p.item_id] || 0}
                                             onClick={() =>
                                                 navigate(`/product/${p.item_id}`, {
                                                     state: {

@@ -36,5 +36,9 @@
   "switchToDiscovery": "تقييم نسبة التشابه",
   "customRequest": "طلب مخصص",
   "activePrompt": "الوصف",
-  "swipeToBrowse": "اسحب للتصفح"
+  "swipeToBrowse": "اسحب للتصفح",
+  "ratingSuccess": "شكراً لملاحظاتك!",
+  "gratitudeTitle": "تم تطوير الذكاء",
+  "gratitudeDesc": "ملاحظاتك تساعد في تحسين محرك البحث العصبي",
+  "yourRating": "تقييمك للمطابقة"
 }
