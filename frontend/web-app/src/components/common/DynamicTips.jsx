@@ -16,7 +16,7 @@ export default function DynamicTips({ tips }) {
   if (!tips || tips.length === 0) return null;
 
   return (
-    <div className="w-full flex justify-center h-8">
+    <div className="w-full flex justify-center min-h-8 py-1">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -24,10 +24,10 @@ export default function DynamicTips({ tips }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 px-6 py-1.5 rounded-full bg-primary/5 border border-primary/10"
+          className="flex items-center gap-2 px-4 sm:px-6 py-1.5 rounded-2xl sm:rounded-full bg-primary/5 border border-primary/10 max-w-[90vw] sm:max-w-prose"
         >
           <Sparkles size={12} className="text-primary animate-pulse shrink-0" />
-          <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-primary/70 italic whitespace-nowrap overflow-hidden">
+          <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-primary/70 italic leading-relaxed text-center">
             {tips[currentIndex]}
           </p>
         </motion.div>
