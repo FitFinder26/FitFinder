@@ -84,6 +84,7 @@ export default function SearchResultPage() {
 
             processProductsData(productsWithRank);
             setProducts(productsWithRank);
+            clearRating(); // Clear ratings when new products are loaded
 
             // For stack view, shuffle the products
             const shuffled = [...productsWithRank].sort(() => Math.random() - 0.5);
@@ -161,6 +162,11 @@ export default function SearchResultPage() {
             return next;
         });
     };
+
+    const clearRating = () => {
+        setRatings({});
+        localStorage.removeItem('product_ratings');
+    }
 
     if (viewMode === "stack" && (loading || shuffledProducts.length > 0)) {
         return (
