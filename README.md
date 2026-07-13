@@ -1,84 +1,108 @@
 # FitFinder 👕✨
-**AI-Powered Fashion Assistant (Prototype)**
+**AI-Powered Fashion Assistant**
 
-FitFinder is a prototype web application that helps users **find clothes online, manage their digital wardrobe, and get outfit recommendations**.  
-Right now, we are focusing on building the **core AI pipeline** and **basic backend services**.
+FitFinder is an AI-powered fashion assistant that helps users **search for clothes using images and text, and get outfit compatibility recommendations** — built as a graduation project at Alexandria University's Faculty of Engineering (Computer and Systems Engineering Department), **awarded A+**.
+
+The system combines a multimodal visual + text retrieval engine with an image-only outfit compatibility model ("Smart Wardrobe"), built on top of foundation models (Grounded-SAM, OpenCLIP) without fine-tuning the retrieval backbone.
 
 ---
 
-## 🚀 Features (Prototype Stage)
-- Upload a clothing photo → get similar items (CV pipeline).  
-- Add wardrobe items → store your clothes digitally.  
-- Outfit suggestion → basic combinations from database + wardrobe.  
+## 🚀 Features
+
+- **Visual + text search** — upload an inspiration image, refine it with text edits (e.g. "change color to red"), and retrieve visually and stylistically similar items.
+- **Garment segmentation** — Grounded-SAM isolates individual clothing items from an uploaded photo for open-vocabulary detection.
+- **Human-in-the-loop (HITL) refinement** — an interactive step lets users correct segmentation, improving accuracy by ~15% on challenging cases.
+- **Bilingual UI** — English/Arabic support via `react-i18next`.
+- **Smart Wardrobe (outfit compatibility)** — an image-only compatibility model that scores how well garments go together, with no text input required at inference time.
+- **Large-scale retrieval index** — ~25,000 visual embeddings generated from ~7,000 real fashion products, scaled via automated XML sitemap parsing.
 
 ---
 
 ## 🛠️ Tech Stack
-- **Backend Frameworks:** Spring Boot, FastAPI  
-- **Computer Vision:** SAM (Segment Anything Model), OpenCLIP  
-- **NLP:** FAISS for handling fashion-related queries  
+
+**Frontend**
+- React.js (single-page application, component-based architecture)
+- React Context API + hooks for state management
+- react-i18next for bilingual (EN/AR) support
+- Hosted on GitHub Pages
+
+**Backend**
+- Spring Boot (Java) — core backend, modular service structure, containerized with Docker
+- Deployed on Hugging Face Spaces
+
+**AI Services**
+- FastAPI (Python) — distributed microservice for AI inference
+- Grounded-SAM — open-vocabulary garment segmentation
+- OpenCLIP — vision-language embeddings for image + text fusion
+- FAISS — vector similarity search over ~25,000 embeddings
+
+**Storage**
+- PostgreSQL (hosted on Aiven.io) — relational metadata, item↔vector cross-reference tables
+- Cloudinary — image/media storage
+- FAISS — vector database for nearest-neighbor search
 
 ---
 
-## ⚙️ Setup (Prototype)
+## 📊 Smart Wardrobe: Results
+
+An image-only, CLIP-enhanced transformer for outfit compatibility, using two custom adaptation techniques (Constant Learnable Text Embedding and a Dictionary Retrieval Technique) so no text is needed at inference time.
+
+| Metric | Result |
+|---|---|
+| Compatibility Prediction AUC | **0.8996** |
+| Fill-in-the-Blank (FITB) Accuracy | **~59-60%** |
+
+These results are competitive with established multimodal baselines (e.g. SCE-Net, OutfitTransformer) that rely on both images *and* text — despite using image-only input.
+
+---
+
+## ⚙️ Setup
+
 1. Clone the repo:
 ```bash
 git clone https://github.com/your-username/FitFinder.git
 cd FitFinder
 ```
-
-2. Run FastAPI service:
+2. Run the FastAPI AI service:
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
-
-3. Run Spring Boot service:
+3. Run the Spring Boot backend:
 ```bash
 ./mvnw spring-boot:run
+```
+4. Run the React frontend:
+```bash
+cd frontend
+npm install
+npm start
 ```
 
 ---
 
 ## 📌 Current Status
-✅ Initial prototype in progress  
-🔄 Integrating CV + NLP models  
-🔜 Frontend & full UI will come later  
 
----
-
-## 🗺️ Roadmap
-- [ ] Integrate SAM + OpenCLIP for clothing detection & matching  
-- [ ] Implement wardrobe storage feature  
-- [ ] Basic outfit suggestion engine  
-- [ ] Frontend prototype (React/Angular/Vue)  
-- [ ] Connect with sample clothing dataset  
-- [ ] Optimize NLP pipeline for fashion queries  
-- [ ] Full integration testing  
+✅ Functional end-to-end system: image upload → segmentation → feature extraction → retrieval
+✅ HITL refinement interface implemented
+✅ Bilingual (English/Arabic) UI implemented
+✅ Smart Wardrobe compatibility model trained and evaluated (standalone module)
 
 ---
 
 ## 👨‍💻 Team
+
 - **Creators:**
-  - [Omnia Karem](https://github.com/OmniaKarem)  
-  - [Mohamed Abdel-Moneim](https://github.com/MohamedAbdo37)  
-  - [Ibrahim Mohamed](https://github.com/zoaa3054)  
+  - [Omnia Karem](https://github.com/OmniaKarem)
+  - [Mohamed Abdel-Moneim](https://github.com/MohamedAbdo37)
+  - [Ibrahim Mohamed](https://github.com/zoaa3054)
   - [Nira Ibrahem](https://github.com/NiraIbrahem)
-  - [Ali Hassan](https://github.com/alihassann191)  
-
-- **Supervisor:**  
-  - Name: Dr. Walid Gomaa  
-  - Email: walid.gomaa@gmail.com 
-
----
-
-## 🔮 Future Work
-- Full-featured frontend  
-- Advanced outfit recommendation engine  
-- Integration with real e-commerce APIs  
-- Mobile app version  
+  - [Ali Hassan](https://github.com/alihassann191)
+- **Supervisor:**
+  - Dr. Walid Gomaa
 
 ---
 
 ## 📜 License
+
 This project is licensed under the [MIT License](LICENSE).
