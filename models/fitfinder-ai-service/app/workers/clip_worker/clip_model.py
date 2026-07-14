@@ -4,7 +4,10 @@ import torch.nn.functional as F
 from PIL import Image
 import open_clip
 import io
-import base64
+import httpx
+from pathlib import Path
+
+http_client = httpx.AsyncClient(timeout=30.0)
 
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 _model = None
@@ -17,7 +20,7 @@ def get_model():
     if _model is None:
         print("🔹 Loading OpenCLIP model...")
         _model, _, _preprocess = open_clip.create_model_and_transforms(
-            'ViT-B-32', 
+            'ViT-B-32',
             pretrained='laion2b_s34b_b79k'
         )
         _tokenizer = open_clip.get_tokenizer('ViT-B-32')
@@ -71,3 +74,48 @@ def get_embeddings(data, mode="image"):
         return get_text_embedding(data)
     else:
         raise ValueError("Invalid mode: must be 'image' or 'text'")
+
+async def generate_embedding(image_url, text):
+    try:
+        response = await http_client.get(image_url)
+
+        response.raise_for_status()
+
+        image_bytes = response.content
+        image = Image.open(io.BytesIO(image_bytes))
+
+    except httpx.HTTPStatusError as e:
+        print(f"---  ERROR: HTTP error while downloading: {e} ---")
+        return
+    except httpx.RequestError as e:
+        print(f"---  ERROR: Network error while downloading: {e} ---")
+        return
+    except Exception as e:
+        print(f"---  ERROR: Unexpected error while downloading: {e} ---")
+        return
+
+    # TODO: replace with your CLIP embedding code
+
+    if text[-1] != '.':
+        text += '.'
+
+    masks = None
+    embeddings = []
+
+    try:
+        masks , boxes, scores= sam.segment_with_prompt(image, text.lower())
+
+        segmented_items = []
+
+        for mask in masks:
+            segmented_image = sam.get_segmented_image(image, mask)
+            segmented_items.append(segmented_image)
+            embeddings.append(get_image_embedding(segmented_image))
+
+    except Exception as e:
+        print(f"---  ERROR: {e} ---")
+        traceback.print_exc()
+        return
+
+
+    return embeddings
