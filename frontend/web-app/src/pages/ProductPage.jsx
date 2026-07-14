@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 
@@ -6,38 +6,35 @@ export default function ProductPage() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
   // Prefer product object passed via navigate state to avoid extra API call
   const product = location.state?.product || {
-    id,
+    item_id: id,
     title: `Product ${id}`,
     price: "0.00",
     seller: "Unknown",
-    img: `https://picsum.photos/seed/product-${id}/600/720`,
+    imageURL: `https://picsum.photos/seed/product-${id}/600/720`,
     description:
       "No description available. In a real app fetch product details from the backend using the id.",
   };
 
-  // mock similar products (replace with API call as needed)
-  const similar = useMemo(() => {
-    return new Array(8).fill(0).map((_, i) => {
-      const pid = `${id}-s-${i + 1}`;
-      return {
-        id: pid,
-        title: `Similar Shirt ${i + 1}`,
-        price: (15 + i).toFixed(2),
-        seller: ["Amazon", "Shein", "Noon"][i % 3],
-        img: `https://picsum.photos/seed/sim-${pid}/300/360`,
-      };
-    });
-  }, [id]);
+  const similar = location.state?.similarProducts || [];
+
+  console.log("Product data:", product);
+
+  const rawDescription = product.description;
+  const [featuresPart, paragraphPart] = rawDescription.split(" Description ");
+
+  const features = featuresPart
+    .split("•")
+    .map((item) => item.trim())
+    .filter(Boolean);
 
   return (
     <PageWrap>
       <Container>
         <LeftColumn>
           <ImageWrapper>
-            <MainImage src={product.img} alt={product.title} />
+            <MainImage src={product.imageURL} alt={product.title} />
           </ImageWrapper>
         </LeftColumn>
 
@@ -48,19 +45,33 @@ export default function ProductPage() {
           </TitleRow>
 
           <Meta>
-            <span>Seller: {product.seller}</span>
+            <span>Seller: {product?.seller || "Unknown"}</span>
           </Meta>
 
-          <Description>{product.description}</Description>
+          <ProductDescription>
+            <FeaturesList>
+              {features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </FeaturesList>
+
+            {paragraphPart && (
+              <DescriptionText>{paragraphPart}</DescriptionText>
+            )}
+          </ProductDescription>
 
           <Actions>
-            <PrimaryButton onClick={() => alert("Add to cart (mock)")}>
-              Add to Cart
+            <SecondaryButton onClick={() => navigate(-1)}>Back</SecondaryButton>
+            <PrimaryButton
+              onClick={() =>
+                window.open(product.itemWebURL, "_blank", "noopener,noreferrer")
+              }
+            >
+              Go to Store
             </PrimaryButton>
           </Actions>
         </RightColumn>
       </Container>
-
       {/* Similar products section */}
       <SimilarSection>
         <SectionHeader>
@@ -71,9 +82,13 @@ export default function ProductPage() {
           {similar.map((p) => (
             <SimilarCard
               key={p.id}
-              onClick={() => navigate(`/product/${p.id}`, { state: { product: p } })}
+              onClick={() =>
+                navigate(`/product/${p.id}`, {
+                  state: { product: p, similar: similar },
+                })
+              }
             >
-              <SimilarImg src={p.img} alt={p.title} />
+              <SimilarImg src={p.imageURL} alt={p.title} />
               <SimilarBody>
                 <SimilarTitle>{p.title}</SimilarTitle>
                 <SimilarMeta>
@@ -122,7 +137,7 @@ const ImageWrapper = styled.div`
 const MainImage = styled.img`
   width: 100%;
   max-height: 420px; /* <- reduced from 620px */
-  height: auto;     /* keep aspect ratio */
+  height: auto; /* keep aspect ratio */
   object-fit: contain;
   border-radius: 8px;
 `;
@@ -155,13 +170,41 @@ const Meta = styled.div`
   gap: 1rem;
 `;
 
-const Description = styled.p`
+const ProductDescription = styled.div`
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+`;
 
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-  line-height: 1.45;
+const FeaturesList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.45;
+    color: #374151;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #6366f1; /* subtle accent */
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+  }
+`;
+
+const DescriptionText = styled.p`
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
 `;
 
 const Actions = styled.div`
@@ -176,6 +219,12 @@ const PrimaryButton = styled.button`
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #2563eb;
+    scale: 1.02;
+  }
 `;
 
 const SecondaryButton = styled.button`
@@ -184,6 +233,12 @@ const SecondaryButton = styled.button`
   padding: 0.55rem 1rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #f3f4f6;
+    transform: translateX(-1rem);
+  }
 `;
 
 /* Similar products styles */
@@ -229,6 +284,12 @@ const SimilarCard = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+
+  &:hover {
+    scale: 1.02;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const SimilarImg = styled.img`
