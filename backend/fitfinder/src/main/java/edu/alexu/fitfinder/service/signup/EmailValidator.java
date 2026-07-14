@@ -1,9 +1,8 @@
 package edu.alexu.fitfinder.service.signup;
 
 import edu.alexu.fitfinder.dto.UserDTO;
-import edu.alexu.fitfinder.entity.UserEntity;
-import edu.alexu.fitfinder.exception.InvalidInputException;
-import edu.alexu.fitfinder.exception.UserAlreadyExistsException;
+import edu.alexu.fitfinder.entity.User;
+import edu.alexu.fitfinder.exception.ValidatorException;
 import edu.alexu.fitfinder.repository.UserRepo;
 import lombok.AllArgsConstructor;
 
@@ -27,7 +26,7 @@ public class EmailValidator extends Validator {
       throw new InvalidInputException("Email isn't valid");
     }
 
-    UserEntity existingUser = userRepo.findByEmail(email);
+    User existingUser = userRepo.findByEmail(email);
     if (existingUser != null) {
       throw new UserAlreadyExistsException("Email already exists.");
     }
