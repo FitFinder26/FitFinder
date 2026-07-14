@@ -1,0 +1,496 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-overlay-lace-dress-with-scuba-skirt/prd/5938842",
+    "id": 5938842,
+    "name": "ASOS Overlay Lace Dress With Scuba Skirt",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Dresses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 36.32,
+    "previousPrice": 60.01,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-the-turtle-neck-body-in-rib/prd/6056612",
+    "id": 6056612,
+    "name": "ASOS The Turtle Neck Body In Rib",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 12.63,
+    "previousPrice": 18.95,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-jumper-in-cable-stitch-with-cold-shoulder/prd/6463850",
+    "id": 6463850,
+    "name": "ASOS Jumper in Cable Stitch with Cold Shoulder",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Jumpers",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 22.9,
+    "previousPrice": 55.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-serina-eyelash-lace-high-apex-bra/prd/6975184",
+    "id": 6975184,
+    "name": "ASOS Serina Eyelash Lace High Apex Bra",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bras",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 27.63,
+    "previousPrice": 28.42,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-sleeveless-one-shoulder-top-2-pack-save-10/prd/7774832",
+    "id": 7774832,
+    "name": "ASOS Sleeveless One Shoulder Top 2 Pack Save 10%",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Blouses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 29,
+    "previousPrice": 29,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-high-neck-sleeveless-blouse-with-lace-trims/prd/8174105",
+    "id": 8174105,
+    "name": "ASOS High Neck Sleeveless Blouse with Lace Trims",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Blouses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 13.42,
+    "previousPrice": 44.21,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-waterfall-mac/prd/8426018",
+    "id": 8426018,
+    "name": "ASOS Waterfall Mac",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Coats",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 39.48,
+    "previousPrice": 102.64,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-petite/asos-petite-geo-embellished-maxi-dress/prd/8587305",
+    "id": 8587305,
+    "name": "ASOS Petite Geo Embellished  Maxi Dress",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Petite",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Dresses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 90.01,
+    "previousPrice": 118.43,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-denim-overshirt-with-zip-through-in-black/prd/8657396",
+    "id": 8657396,
+    "name": "ASOS DESIGN denim overshirt with zip through in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Shirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 42.64,
+    "previousPrice": 44.21,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-tall/asos-storm-velvet-bodysuit/prd/8798437",
+    "id": 8798437,
+    "name": "ASOS Storm Velvet bodysuit",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Tall",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 35,
+    "previousPrice": 35,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-v-neck-smock-top-with-lace-insert/prd/9029559",
+    "id": 9029559,
+    "name": "ASOS DESIGN V-Neck Smock Top with Lace Insert",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tunics",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 20.53,
+    "previousPrice": 47.37,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-cord-original-skirt-in-pale-pink/prd/9494064",
+    "id": 9494064,
+    "name": "ASOS DESIGN cord original skirt in pale pink",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Skirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 11.05,
+    "previousPrice": 44.21,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tall-occasion-oversized-tie-front-wide-leg-trousers/prd/9739327",
+    "id": 9739327,
+    "name": "ASOS DESIGN Tall Occasion Oversized Tie Front Wide Leg Trousers",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Trousers",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 63.16,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-broderie-button-through-tea-dress/prd/9841318",
+    "id": 9841318,
+    "name": "ASOS DESIGN broderie button through tea dress",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Dresses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 22.11,
+    "previousPrice": 50.53,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-regular-fit-floral-shirt-with-revere-collar-in-black/prd/10247221",
+    "id": 10247221,
+    "name": "ASOS DESIGN regular fit floral shirt with revere collar in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Shirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 39.48,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-curve/asos-design-curve-basic-microfibre-triangle-bra-in-tonal-rust/prd/10267457",
+    "id": 10267457,
+    "name": "ASOS DESIGN Curve basic microfibre triangle bra in tonal rust",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Curve",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bras",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 11.37,
+    "previousPrice": 12.63,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-double-breasted-blazer-in-burgundy-with-dogtooth-check/prd/10749438",
+    "id": 10749438,
+    "name": "ASOS DESIGN slim double breasted blazer in burgundy with dogtooth check",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Blazers",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 44.21,
+    "previousPrice": 110.54,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-beret-in-red-with-slogan/prd/10791960",
+    "id": 10791960,
+    "name": "ASOS DESIGN beret in red with slogan",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Hats",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 18.79,
+    "previousPrice": 22.11,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-strawberry-check-suit-mini-skirt/prd/11285153",
+    "id": 11285153,
+    "name": "ASOS DESIGN strawberry check suit mini skirt",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Skirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 39.48,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tie-shoulder-strappy-jumpsuit-with-cut-out/prd/12143329",
+    "id": 12143329,
+    "name": "ASOS DESIGN tie shoulder strappy jumpsuit with cut out",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Jumpsuits",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 14.21,
+    "previousPrice": 44.21,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tank-vest-in-linen-mix-in-black/prd/12497077",
+    "id": 12497077,
+    "name": "ASOS DESIGN tank vest in linen mix in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Vests",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 11.37,
+    "previousPrice": 15.79,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-relaxed-t-shirt-with-retro-purple-stipes/prd/12661304",
+    "id": 12661304,
+    "name": "ASOS DESIGN relaxed t-shirt with retro purple stipes",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "T-shirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 22.11,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pointelle-v-neck-cardigan/prd/12779532",
+    "id": 12779532,
+    "name": "ASOS DESIGN pointelle v neck cardigan",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Cardigans",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 22.9,
+    "previousPrice": 34.74,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-stretch-stripe-shirt-in-navy/prd/13188564",
+    "id": 13188564,
+    "name": "ASOS DESIGN slim stretch stripe shirt in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Shirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 31.58,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-chunky-mini-dress-with-roll-neck-with-open-back/prd/13272808",
+    "id": 13272808,
+    "name": "ASOS DESIGN chunky mini dress with roll neck with open back",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Dresses",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 26.06,
+    "previousPrice": 60.01,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-t-shirt-in-acid-wash-with-exposed-seams/prd/13312852",
+    "id": 13312852,
+    "name": "ASOS DESIGN t-shirt in acid wash with exposed seams",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "T-shirts",
+    "images": [
+      "https://images.asos-media.com/products/missing/missing-1-none.svg"
+    ],
+    "currentPrice": 17.37,
+    "previousPrice": 22.11,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

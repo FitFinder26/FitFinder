@@ -1,0 +1,23 @@
+{
+  "productFallbackTitle": "Archival Item {{id}}",
+  "fallbackDescription": "Neural analysis suggests no detailed description is currently available in the active product. Proceed to retail lookup for full documentation.",
+  "sellerLabel": "{{seller}}",
+  "unknownSeller": "product Unknown",
+  "back": "Back",
+  "goToStore": "GO TO STORE",
+  "similarProducts": "Similar products",
+  "soldBy": "Sold by {{seller}}",
+  "favoriteError": "Sync failure: Unable to update favorites product.",
+  "like": "Mark as favorite",
+  "unlike": "Remove from product",
+  "linkCopied": "Style link captured to clipboard",
+  "curatedLookbook": "CURATED LOOKBOOK",
+  "retailValue": "Price",
+  "technicalproduct": "TECHNICAL product",
+  "productDetails": "Specifications & Materials",
+  "safeCheckout": "SECURE RE-DIRECT",
+  "exploreAll": "VIEW ALL product",
+  "viewProduct": "OPEN product",
+  "archivalItem": "ARCHIVAL ITEM #{{id}}",
+  "matchPercent": "MATCH {{percent}}%"
+}

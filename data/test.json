@@ -1,0 +1,25 @@
+{
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/prd/6262702",
+    "id": 6262702,
+    "name": "ASOS DESIGN skinny wool tuxedo suit jacket in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": {
+        "id": 8655,
+        "name": "Suit Jackets"
+    },
+    "images": [
+        "https://images.asos-media.com/products/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/6262702-1-navy",
+        "https://images.asos-media.com/products/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/6262702-2",
+        "https://images.asos-media.com/products/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/6262702-3",
+        "https://images.asos-media.com/products/asos-design-skinny-wool-tuxedo-suit-jacket-in-navy/6262702-4"
+    ],
+    "alternative": [],
+    "currentPrice": 43.03,
+    "previousPrice": 110.54,
+    "currency": "USD",
+    "rating": 4.8
+}

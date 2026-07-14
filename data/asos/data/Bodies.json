@@ -1,0 +1,998 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-sienna-lace-underwired-body-in-cornflower-blue/prd/204411336",
+    "id": 204411336,
+    "name": "ASOS DESIGN Sienna lace underwired body in cornflower blue",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-sienna-lace-underwired-body-in-cornflower-blue/204411336-1-cornflowerblue",
+      "https://images.asos-media.com/products/asos-design-sienna-lace-underwired-body-in-cornflower-blue/204411336-2",
+      "https://images.asos-media.com/products/asos-design-sienna-lace-underwired-body-in-cornflower-blue/204411336-3",
+      "https://images.asos-media.com/products/asos-design-sienna-lace-underwired-body-in-cornflower-blue/204411336-4"
+    ],
+    "currentPrice": 26.84,
+    "previousPrice": 44.21,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-petite/asos-design-petite-mesh-long-sleeve-bodysuit-in-black/prd/204542089",
+    "id": 204542089,
+    "name": "ASOS DESIGN Petite mesh long sleeve bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Petite",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-petite-mesh-long-sleeve-bodysuit-in-black/204542089-1-black",
+      "https://images.asos-media.com/products/asos-design-petite-mesh-long-sleeve-bodysuit-in-black/204542089-2",
+      "https://images.asos-media.com/products/asos-design-petite-mesh-long-sleeve-bodysuit-in-black/204542089-3",
+      "https://images.asos-media.com/products/asos-design-petite-mesh-long-sleeve-bodysuit-in-black/204542089-4"
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-fit-t-shirt-bodysuit-in-black/prd/204898505",
+    "id": 204898505,
+    "name": "ASOS DESIGN skinny fit t-shirt bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-fit-t-shirt-bodysuit-in-black/204898505-1-black",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-t-shirt-bodysuit-in-black/204898505-2",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-t-shirt-bodysuit-in-black/204898505-3",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-t-shirt-bodysuit-in-black/204898505-4"
+    ],
+    "currentPrice": 13.42,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": 4.1,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/prd/205199748",
+    "id": 205199748,
+    "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-1-black",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-2",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-3",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-4"
+    ],
+    "currentPrice": 42,
+    "previousPrice": 42,
+    "currency": "USD",
+    "rating": 4.3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203667542,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 205199748,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-tall/asos-design-tall-sweetheart-neckline-bodysuit-with-mesh-sleeve/prd/205409251",
+    "id": 205409251,
+    "name": "ASOS DESIGN Tall sweetheart neckline bodysuit with mesh sleeve",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Tall",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tall-sweetheart-neckline-bodysuit-with-mesh-sleeve/205409251-1-black",
+      "https://images.asos-media.com/products/asos-design-tall-sweetheart-neckline-bodysuit-with-mesh-sleeve/205409251-2",
+      "https://images.asos-media.com/products/asos-design-tall-sweetheart-neckline-bodysuit-with-mesh-sleeve/205409251-3",
+      "https://images.asos-media.com/products/asos-design-tall-sweetheart-neckline-bodysuit-with-mesh-sleeve/205409251-4"
+    ],
+    "currentPrice": 38,
+    "previousPrice": 38,
+    "currency": "USD",
+    "rating": 3.9,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-fuller-bust-rib-bodysuit-with-bust-seams-and-long-sleeve-in-black/prd/205436660",
+    "id": 205436660,
+    "name": "ASOS DESIGN Fuller Bust rib bodysuit with bust seams and long sleeve in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-fuller-bust-rib-bodysuit-with-bust-seams-and-long-sleeve-in-black/205436660-1-black",
+      "https://images.asos-media.com/products/asos-design-fuller-bust-rib-bodysuit-with-bust-seams-and-long-sleeve-in-black/205436660-2",
+      "https://images.asos-media.com/products/asos-design-fuller-bust-rib-bodysuit-with-bust-seams-and-long-sleeve-in-black/205436660-3",
+      "https://images.asos-media.com/products/asos-design-fuller-bust-rib-bodysuit-with-bust-seams-and-long-sleeve-in-black/205436660-4"
+    ],
+    "currentPrice": 19.9,
+    "previousPrice": 33.16,
+    "currency": "USD",
+    "rating": 2.5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-double-layer-racer-bodysuit-in-black/prd/206039362",
+    "id": 206039362,
+    "name": "ASOS DESIGN slinky double layer racer bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-double-layer-racer-bodysuit-in-black/206039362-1-black",
+      "https://images.asos-media.com/products/asos-design-slinky-double-layer-racer-bodysuit-in-black/206039362-2",
+      "https://images.asos-media.com/products/asos-design-slinky-double-layer-racer-bodysuit-in-black/206039362-3",
+      "https://images.asos-media.com/products/asos-design-slinky-double-layer-racer-bodysuit-in-black/206039362-4"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 4.5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-double-layer-slinky-open-back-racer-bodysuit-in-black/prd/206170223",
+    "id": 206170223,
+    "name": "ASOS DESIGN double layer slinky open back racer bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-double-layer-slinky-open-back-racer-bodysuit-in-black/206170223-1-black",
+      "https://images.asos-media.com/products/asos-design-double-layer-slinky-open-back-racer-bodysuit-in-black/206170223-2",
+      "https://images.asos-media.com/products/asos-design-double-layer-slinky-open-back-racer-bodysuit-in-black/206170223-3",
+      "https://images.asos-media.com/products/asos-design-double-layer-slinky-open-back-racer-bodysuit-in-black/206170223-4"
+    ],
+    "currentPrice": 23.69,
+    "previousPrice": 31.58,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mesh-long-sleeve-bodysuit-in-black/prd/206697887",
+    "id": 206697887,
+    "name": "ASOS DESIGN mesh long sleeve bodysuit in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/206697887-1-black",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/206697887-2",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/206697887-3",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/206697887-4"
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204542243,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mesh long sleeve bodysuit in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206697887,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mesh long sleeve bodysuit in black  - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black-black/206697887-1-black",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-petite/asos-design-petite-satin-cowl-bodysuit-in-cream/prd/207021316",
+    "id": 207021316,
+    "name": "ASOS DESIGN Petite satin cowl bodysuit in cream",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Petite",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-petite-satin-cowl-bodysuit-in-cream/207021316-1-cream",
+      "https://images.asos-media.com/products/asos-design-petite-satin-cowl-bodysuit-in-cream/207021316-2",
+      "https://images.asos-media.com/products/asos-design-petite-satin-cowl-bodysuit-in-cream/207021316-3",
+      "https://images.asos-media.com/products/asos-design-petite-satin-cowl-bodysuit-in-cream/207021316-4"
+    ],
+    "currentPrice": 32.72,
+    "previousPrice": 58.43,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-cleo-premium-embroidery-soft-body-in-pink/prd/207276263",
+    "id": 207276263,
+    "name": "ASOS DESIGN Cleo premium embroidery soft body in pink",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-cleo-premium-embroidery-soft-body-in-pink/207276263-1-babypink",
+      "https://images.asos-media.com/products/asos-design-cleo-premium-embroidery-soft-body-in-pink/207276263-2",
+      "https://images.asos-media.com/products/asos-design-cleo-premium-embroidery-soft-body-in-pink/207276263-3",
+      "https://images.asos-media.com/products/asos-design-cleo-premium-embroidery-soft-body-in-pink/207276263-4"
+    ],
+    "currentPrice": 35.44,
+    "previousPrice": 53.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-sweetheart-neck-puff-sleeve-dobby-mesh-bodysuit-in-black/prd/208072668",
+    "id": 208072668,
+    "name": "ASOS DESIGN sweetheart neck puff sleeve dobby mesh bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-sweetheart-neck-puff-sleeve-dobby-mesh-bodysuit-in-black/208072668-1-black",
+      "https://images.asos-media.com/products/asos-design-sweetheart-neck-puff-sleeve-dobby-mesh-bodysuit-in-black/208072668-2",
+      "https://images.asos-media.com/products/asos-design-sweetheart-neck-puff-sleeve-dobby-mesh-bodysuit-in-black/208072668-3",
+      "https://images.asos-media.com/products/asos-design-sweetheart-neck-puff-sleeve-dobby-mesh-bodysuit-in-black/208072668-4"
+    ],
+    "currentPrice": 42.64,
+    "previousPrice": 47.37,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-burgundy/prd/208099884",
+    "id": 208099884,
+    "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in burgundy ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-burgundy/208099884-1-wine",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-burgundy/208099884-2",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-burgundy/208099884-3",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-burgundy/208099884-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208099884,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in wine",
+            "description": "Wine",
+            "imageUrl": "images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-wine/208099884-1-wine",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208099993,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in brown - BROWN",
+            "description": "Chocolate",
+            "imageUrl": "images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown-brown/208099993-1-chocolate",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 9.47,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown/prd/208099993",
+    "id": 208099993,
+    "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in brown ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown/208099993-1-chocolate",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown/208099993-2",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown/208099993-3",
+      "https://images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown/208099993-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208099884,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in wine",
+            "description": "Wine",
+            "imageUrl": "images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-wine/208099884-1-wine",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208099993,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN ruched side bandeau bodysuit in slinky in brown - BROWN",
+            "description": "Chocolate",
+            "imageUrl": "images.asos-media.com/products/asos-design-ruched-side-bandeau-bodysuit-in-slinky-in-brown-brown/208099993-1-chocolate",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 17.76,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-plunge-long-sleeve-top-with-scarf-detail-in-black/prd/208104821",
+    "id": 208104821,
+    "name": "ASOS DESIGN slinky plunge long sleeve top with scarf detail in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-plunge-long-sleeve-top-with-scarf-detail-in-black/208104821-1-black",
+      "https://images.asos-media.com/products/asos-design-slinky-plunge-long-sleeve-top-with-scarf-detail-in-black/208104821-2",
+      "https://images.asos-media.com/products/asos-design-slinky-plunge-long-sleeve-top-with-scarf-detail-in-black/208104821-3",
+      "https://images.asos-media.com/products/asos-design-slinky-plunge-long-sleeve-top-with-scarf-detail-in-black/208104821-4"
+    ],
+    "alternative": [],
+    "currentPrice": 28.74,
+    "previousPrice": 41.06,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/prd/208176540",
+    "id": 208176540,
+    "name": "ASOS DESIGN slinky lace trim bodysuit in pale yellow ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-1-buttermilk",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-2",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-3",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207947253,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-1-white",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207947265,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208176540,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in pale yellow ",
+            "description": "Buttermilk",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-1-buttermilk",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208176546,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in berry",
+            "description": "Berry",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-1-berry",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-lace-trim-bodysuit-in-berry/prd/208176546",
+    "id": 208176546,
+    "name": "ASOS DESIGN slinky lace trim bodysuit in berry",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-1-berry",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-2",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-3",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207947253,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-1-white",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207947265,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208176540,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in pale yellow ",
+            "description": "Buttermilk",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-pale-yellow/208176540-1-buttermilk",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208176546,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in berry",
+            "description": "Berry",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-berry/208176546-1-berry",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": 4.3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/prd/208182917",
+    "id": 208182917,
+    "name": "ASOS DESIGN Claudia rib & lace body with open back in lilac",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-1-lilac",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-2",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-3",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207513999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib and lace body in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208182917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in lilac",
+            "description": "Lilac",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-1-lilac",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208784096,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in ivory",
+            "description": "IVORY",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-1-ivory",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-one-shoulder-gold-detail-mesh-bodysuit-in-chocolate/prd/208238807",
+    "id": 208238807,
+    "name": "ASOS DESIGN one shoulder gold detail mesh bodysuit in chocolate",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-one-shoulder-gold-detail-mesh-bodysuit-in-chocolate/208238807-1-chocolate",
+      "https://images.asos-media.com/products/asos-design-one-shoulder-gold-detail-mesh-bodysuit-in-chocolate/208238807-2",
+      "https://images.asos-media.com/products/asos-design-one-shoulder-gold-detail-mesh-bodysuit-in-chocolate/208238807-3",
+      "https://images.asos-media.com/products/asos-design-one-shoulder-gold-detail-mesh-bodysuit-in-chocolate/208238807-4"
+    ],
+    "alternative": [],
+    "currentPrice": 18.95,
+    "previousPrice": 41.06,
+    "currency": "USD",
+    "rating": 4.7,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-halter-neck-cut-out-slinky-bodysuit-with-gold-detail-in-black/prd/208248157",
+    "id": 208248157,
+    "name": "ASOS DESIGN halter neck cut out slinky bodysuit with gold detail in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-halter-neck-cut-out-slinky-bodysuit-with-gold-detail-in-black/208248157-1-black",
+      "https://images.asos-media.com/products/asos-design-halter-neck-cut-out-slinky-bodysuit-with-gold-detail-in-black/208248157-2",
+      "https://images.asos-media.com/products/asos-design-halter-neck-cut-out-slinky-bodysuit-with-gold-detail-in-black/208248157-3",
+      "https://images.asos-media.com/products/asos-design-halter-neck-cut-out-slinky-bodysuit-with-gold-detail-in-black/208248157-4"
+    ],
+    "alternative": [],
+    "currentPrice": 17.37,
+    "previousPrice": 41.06,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-flocked-mesh-short-sleeve-bodysuit-with-ruffle-detail-in-black/prd/208256358",
+    "id": 208256358,
+    "name": "ASOS DESIGN floral flocked mesh short sleeve bodysuit with ruffle detail in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-flocked-mesh-short-sleeve-bodysuit-with-ruffle-detail-in-black/208256358-1-black",
+      "https://images.asos-media.com/products/asos-design-floral-flocked-mesh-short-sleeve-bodysuit-with-ruffle-detail-in-black/208256358-2",
+      "https://images.asos-media.com/products/asos-design-floral-flocked-mesh-short-sleeve-bodysuit-with-ruffle-detail-in-black/208256358-3",
+      "https://images.asos-media.com/products/asos-design-floral-flocked-mesh-short-sleeve-bodysuit-with-ruffle-detail-in-black/208256358-4"
+    ],
+    "alternative": [],
+    "currentPrice": 10.26,
+    "previousPrice": 41.06,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/prd/203667542",
+    "id": 203667542,
+    "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-1-black",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-2",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-3",
+      "https://images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203667542,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/203667542-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 205199748,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN corset style sweetheart neck mesh bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-corset-style-sweetheart-neck-mesh-bodysuit-in-black/205199748-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 38.37,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.6,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mesh-long-sleeve-bodysuit-in-black/prd/204542243",
+    "id": 204542243,
+    "name": "ASOS DESIGN mesh long sleeve bodysuit in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-1-black",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-2",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-3",
+      "https://images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204542243,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mesh long sleeve bodysuit in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black/204542243-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 206697887,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mesh long sleeve bodysuit in black  - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mesh-long-sleeve-bodysuit-in-black-black/206697887-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 21.32,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 4.5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-lace-trim-bodysuit-in-white/prd/207947253",
+    "id": 207947253,
+    "name": "ASOS DESIGN slinky lace trim bodysuit in white",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-1-white",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-2",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-3",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207947253,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-1-white",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 207947265,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-1-black",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 17.76,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slinky-lace-trim-bodysuit-in-black/prd/207947265",
+    "id": 207947265,
+    "name": "ASOS DESIGN slinky lace trim bodysuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-1-black",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-2",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-3",
+      "https://images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207947253,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-white/207947253-1-white",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207947265,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slinky lace trim bodysuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-slinky-lace-trim-bodysuit-in-black/207947265-1-black",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-claudia-rib-and-lace-body-in-black/prd/207513999",
+    "id": 207513999,
+    "name": "ASOS DESIGN Claudia rib and lace body in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-1-black",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-2",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-3",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207513999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib and lace body in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 208182917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in lilac",
+            "description": "Lilac",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-1-lilac",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208784096,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in ivory",
+            "description": "IVORY",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-1-ivory",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-claudia-rib-&-lace-body-with-open-back-in-ivory/prd/208784096",
+    "id": 208784096,
+    "name": "ASOS DESIGN Claudia rib & lace body with open back in ivory",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bodies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-1-ivory",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-2",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-3",
+      "https://images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207513999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib and lace body in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-and-lace-body-in-black/207513999-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208182917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in lilac",
+            "description": "Lilac",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-lilac/208182917-1-lilac",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208784096,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN Claudia rib & lace body with open back in ivory",
+            "description": "IVORY",
+            "imageUrl": "images.asos-media.com/products/asos-design-claudia-rib-lace-body-with-open-back-in-ivory/208784096-1-ivory",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

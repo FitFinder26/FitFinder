@@ -1,0 +1,49 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-strappy-soft-touch-unitard-playsuit-in-black/prd/205166350",
+    "id": 205166350,
+    "name": "ASOS DESIGN strappy soft touch unitard playsuit in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Unitards",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-black/205166350-1-black",
+      "https://images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-black/205166350-2",
+      "https://images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-black/205166350-3",
+      "https://images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-black/205166350-4"
+    ],
+    "currentPrice": 14.92,
+    "previousPrice": 33.16,
+    "currency": "USD",
+    "rating": 3.9,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204786492,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN strappy soft touch unitard playsuit in bright pink",
+            "description": "Bright Pink",
+            "imageUrl": "images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-bright-pink/204786492-1-brightpink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 205166350,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN strappy soft touch unitard playsuit in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-strappy-soft-touch-unitard-playsuit-in-black/205166350-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  }
+]

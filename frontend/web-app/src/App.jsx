@@ -1,0 +1,85 @@
+import {
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+import EmptyPage from "@/pages/emptyPage/EmptyPage";
+import UserLayout from "@/layouts/UserLayout";
+import RegistrationPage from "@/pages/registrationPage/RegistrationPage";
+import SearchResultPage from "@/pages/searchResultPage/SearchResultPage";
+import ProductPage from "@/pages/productPage/ProductPage";
+import { Toaster } from "react-hot-toast";
+import HomePage from "@/pages/homePage/HomePage";
+import HistoryPage from "@/pages/historyPage/HistoryPage";
+import FavoritePage from "@/pages/favoritePage/FavoritePage";
+import AboutUsPage from "@/pages/aboutUsPage/AboutUsPage";
+import PrivacyPolicyPage from "@/pages/privacyPolicyPage/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/termsOfServicesPage/TermsOfServicePage";
+import LenisProvider from "@/providers/LenisProvider";
+import { OnboardingProvider } from "@/providers/OnboardingProvider";
+import WalkthroughOverlay from "@/components/common/WalkthroughOverlay";
+
+function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<UserLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="registration" element={<RegistrationPage />} />
+        <Route path="search-result" element={<SearchResultPage />} />
+        <Route path="product/:id" element={<ProductPage />} />
+        <Route path="history" element={<HistoryPage />} />
+        <Route path="favorite" element={<FavoritePage />} />
+        <Route path="about-us" element={<AboutUsPage />} />
+        <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="*" element={<EmptyPage />} />
+      </Route>
+    ),
+    {
+      basename: import.meta.env.BASE_URL,
+    }
+  );
+
+  return (
+    <OnboardingProvider>
+      <LenisProvider>
+        <RouterProvider router={router} />
+        <WalkthroughOverlay />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            duration: 6000,
+            style: {
+              background: 'rgba(23, 23, 23, 0.8)',
+              color: '#fff',
+              backdropFilter: 'blur(16px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '1.5rem',
+              padding: '1.25rem 2rem',
+              fontSize: '14px',
+              fontWeight: '800',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            },
+            success: {
+              iconTheme: {
+                primary: 'var(--primary)',
+                secondary: '#fff',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#ff4b4b',
+                secondary: '#fff',
+              },
+            },
+          }}
+        />
+      </LenisProvider>
+    </OnboardingProvider>
+  );
+}
+
+export default App;

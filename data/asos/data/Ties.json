@@ -1,0 +1,1216 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slub-textured-tie-in-pink/prd/207588295",
+    "id": 207588295,
+    "name": "ASOS DESIGN slub textured tie in pink",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-pink/207588295-1-lightpink",
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-pink/207588295-2",
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-pink/207588295-3"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 28.42,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slub-textured-tie-in-blue/prd/207588298",
+    "id": 207588298,
+    "name": "ASOS DESIGN slub textured tie in blue",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-blue/207588298-1-lightblue",
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-blue/207588298-2",
+      "https://images.asos-media.com/products/asos-design-slub-textured-tie-in-blue/207588298-3"
+    ],
+    "currentPrice": 8.69,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-paisley-print-tie-and-pocket-square-in-blue/prd/207985630",
+    "id": 207985630,
+    "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-2",
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-3"
+    ],
+    "currentPrice": 16.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-satin-tie-and-pocket-square-in-beige/prd/207985633",
+    "id": 207985633,
+    "name": "ASOS DESIGN satin tie and pocket square in beige",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-1-beige",
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-2",
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-3"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985633,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-1-beige",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208766236,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with mono print in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209115909,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-satin-tie-in-brown/prd/207985636",
+    "id": 207985636,
+    "name": "ASOS DESIGN satin tie in brown",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-1-brown",
+      "https://images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-2",
+      "https://images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-3"
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985636,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-1-brown",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208909012,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim tie in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209460952,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie with pattern in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-1-red",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-linen-tie-in-burgundy/prd/208030301",
+    "id": 208030301,
+    "name": "ASOS DESIGN linen tie in burgundy",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-linen-tie-in-burgundy/208030301-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-linen-tie-in-burgundy/208030301-2",
+      "https://images.asos-media.com/products/asos-design-linen-tie-in-burgundy/208030301-3"
+    ],
+    "currentPrice": 11.05,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-print-tie-and-pocket-square-in-pink/prd/208766202",
+    "id": 208766202,
+    "name": "ASOS DESIGN floral print tie and pocket square in pink",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+      "https://images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-2",
+      "https://images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 18.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-tie-and-pocket-square-in-navy/prd/209028650",
+    "id": 209028650,
+    "name": "ASOS DESIGN floral tie and pocket square in navy",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+      "https://images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-2",
+      "https://images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/prd/209028812",
+    "id": 209028812,
+    "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-2",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 19.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tie-and-pocket-square-in-burgundy-stripe/prd/209028904",
+    "id": 209028904,
+    "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-2",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 22.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-tie-and-pocket-square-in-stone/prd/209115795",
+    "id": 209115795,
+    "name": "ASOS DESIGN textured tie and pocket square in stone",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+      "https://images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-2",
+      "https://images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 7.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/prd/209115946",
+    "id": 209115946,
+    "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+      "https://images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-2",
+      "https://images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 22.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-paisley-print-tie-with-pocket-square-in-brown/prd/209460962",
+    "id": 209460962,
+    "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-2",
+      "https://images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985630,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie and pocket square in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-and-pocket-square-in-blue/207985630-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766202,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral print tie and pocket square in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-print-tie-and-pocket-square-in-pink/208766202-1-pink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028650,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral tie and pocket square in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-tie-and-pocket-square-in-navy/209028650-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028812,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with paisley print in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-paisley-print-in-blue/209028812-1-blue",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209028904,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in burgundy stripe",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-burgundy-stripe/209028904-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115795,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN textured tie and pocket square in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-textured-tie-and-pocket-square-in-stone/209115795-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209115946,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin paisley tie and pocket square with paisley print in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-paisley-tie-and-pocket-square-with-paisley-print-in-brown/209115946-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209460962,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN paisley print tie with pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-paisley-print-tie-with-pocket-square-in-brown/209460962-1-brown",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tie-and-pocket-square-with-mono-print-in-navy/prd/208766236",
+    "id": 208766236,
+    "name": "ASOS DESIGN tie and pocket square with mono print in navy",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-1-navy",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-2",
+      "https://images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985633,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766236,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with mono print in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-1-navy",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209115909,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 210137389,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in dark brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-dark-brown/210137389-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 14.76,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-satin-tie-and-pocket-square-in-brown/prd/209115909",
+    "id": 209115909,
+    "name": "ASOS DESIGN satin tie and pocket square in brown",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-1-brown",
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-2",
+      "https://images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985633,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-beige/207985633-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208766236,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square with mono print in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-with-mono-print-in-navy/208766236-1-navy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209115909,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie and pocket square in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-and-pocket-square-in-brown/209115909-1-brown",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 210137389,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie and pocket square in dark brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-and-pocket-square-in-dark-brown/210137389-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 14.76,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-tie-in-black/prd/208909012",
+    "id": 208909012,
+    "name": "ASOS DESIGN slim tie in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-1-black",
+      "https://images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-2",
+      "https://images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985636,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208909012,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim tie in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209460952,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie with pattern in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-1-red",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tie-with-pattern-in-red/prd/209460952",
+    "id": 209460952,
+    "name": "ASOS DESIGN tie with pattern in red",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-1-red",
+      "https://images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-2",
+      "https://images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207985636,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN satin tie in brown",
+            "description": "BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-satin-tie-in-brown/207985636-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208909012,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim tie in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-tie-in-black/208909012-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209460952,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tie with pattern in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-tie-with-pattern-in-red/209460952-1-red",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "navAcceptance": "Acceptance of Terms",
+  "navPurpose": "Purpose of the Application",
+  "navResponsibilities": "User Responsibilities",
+  "navUsage": "Account Usage",
+  "navExternalLinks": "External Links",
+  "navLiability": "Limitation of Liability",
+  "navChanges": "Changes to These Terms",
+  "heroTitle": "Terms of Service",
+  "heroSubtitle": "Please read these terms carefully before using {{appName}}.",
+  "acceptanceTitle": "Acceptance of Terms",
+  "acceptanceBody": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree, please do not use the application.",
+  "purposeTitle": "Purpose of the Application",
+  "purposeBody": "{{appName}} is an academic graduation project designed for research, learning, and demonstration purposes. It is not a commercial service.",
+  "responsibilitiesTitle": "User Responsibilities",
+  "responsibilitiesItems": [
+    "Do not upload illegal or inappropriate content",
+    "Use the application for personal and academic purposes only",
+    "Respect intellectual property rights"
+  ],
+  "usageTitle": "Account Usage",
+  "usageBody": "Users may use {{appName}} with or without an account. Logged-in users are responsible for maintaining the confidentiality of their account information.",
+  "externalLinksTitle": "External Links",
+  "externalLinksBody": "{{appName}} may provide links to third-party websites. We do not control and are not responsible for the content or practices of those websites.",
+  "liabilityTitle": "Limitation of Liability",
+  "liabilityBody": "{{appName}} is provided 'as is' without warranties of any kind. The developers are not liable for any damages arising from the use of this application.",
+  "changesTitle": "Changes to These Terms",
+  "changesBody": "These terms may be updated as the project evolves. Continued use of {{appName}} implies acceptance of the updated terms.",
+  "footer": "© {{year}} {{appName}} — Terms of Service"
+}

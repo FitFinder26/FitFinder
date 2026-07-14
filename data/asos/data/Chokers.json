@@ -1,0 +1,25 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-choker-necklace-with-crystal-cupchain-and-faux-pearl-design-in-silver-tone/prd/207240832",
+    "id": 207240832,
+    "name": "ASOS DESIGN choker necklace with crystal cupchain and faux pearl design in silver tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chokers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-choker-necklace-with-crystal-cupchain-and-faux-pearl-design-in-silver-tone/207240832-1-silver",
+      "https://images.asos-media.com/products/asos-design-choker-necklace-with-crystal-cupchain-and-faux-pearl-design-in-silver-tone/207240832-2",
+      "https://images.asos-media.com/products/asos-design-choker-necklace-with-crystal-cupchain-and-faux-pearl-design-in-silver-tone/207240832-3",
+      "https://images.asos-media.com/products/asos-design-choker-necklace-with-crystal-cupchain-and-faux-pearl-design-in-silver-tone/207240832-4"
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": []
+  }
+]

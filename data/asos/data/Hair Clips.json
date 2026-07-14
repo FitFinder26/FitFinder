@@ -1,0 +1,94 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-hair-claw-with-bow-design-in-burgundy/prd/207639004",
+    "id": 207639004,
+    "name": "ASOS DESIGN hair claw with bow design in burgundy",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Hair Clips",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-hair-claw-with-bow-design-in-burgundy/207639004-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-hair-claw-with-bow-design-in-burgundy/207639004-2",
+      "https://images.asos-media.com/products/asos-design-hair-claw-with-bow-design-in-burgundy/207639004-3"
+    ],
+    "currentPrice": 10.5,
+    "previousPrice": 10.5,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207639004,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN hair claw with bow design in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-hair-claw-with-bow-design-in-burgundy/207639004-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207909670,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN XL hair claw with wave detail in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/207909670-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/prd/207909670",
+    "id": 207909670,
+    "name": "ASOS DESIGN XL hair claw with wave detail in burgundy",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Hair Clips",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/207909670-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/207909670-2",
+      "https://images.asos-media.com/products/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/207909670-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207639004,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN hair claw with bow design in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-hair-claw-with-bow-design-in-burgundy/207639004-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207909670,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN XL hair claw with wave detail in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-xl-hair-claw-with-wave-detail-in-burgundy/207909670-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 15.5,
+    "previousPrice": 15.5,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos"
+  }
+]

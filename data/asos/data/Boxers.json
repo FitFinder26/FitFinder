@@ -1,0 +1,513 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-5-pack-boxers-in-black/prd/205998532",
+    "id": 205998532,
+    "name": "ASOS DESIGN 5 pack boxers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-1-black",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-2",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-3",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-4"
+    ],
+    "currentPrice": 48,
+    "previousPrice": 48,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-3-pack-boxers-in-black/prd/205998596",
+    "id": 205998596,
+    "name": "ASOS DESIGN 3 pack boxers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-1-black",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-2",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-3",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-4"
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": 1.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998596,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 206254992,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "BLK/WHT/GRY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-1-blkwhtgry",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209145736,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209706441,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack jersey boxer in multi",
+            "description": "GREY, KHAKI, NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-1-greykhakinavy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-3-pack-boxers-in-multi/prd/206254992",
+    "id": 206254992,
+    "name": "ASOS DESIGN 3 pack boxers in multi",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-1-blkwhtgry",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-2",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-3",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-4"
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998596,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206254992,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "BLK/WHT/GRY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-1-blkwhtgry",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209145736,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209706441,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack jersey boxer in multi",
+            "description": "GREY, KHAKI, NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-1-greykhakinavy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-5-pack-boxers-in-multi/prd/207983684",
+    "id": 207983684,
+    "name": "ASOS DESIGN 5 pack boxers in multi",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-1-multi",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-2",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-3"
+    ],
+    "currentPrice": 48,
+    "previousPrice": 48,
+    "currency": "USD",
+    "rating": 2.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998532,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207983684,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-1-multi",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209145683,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209706491,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack jersey boxer in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-3-pack-boxers-in-black/prd/209145736",
+    "id": 209145736,
+    "name": "ASOS DESIGN 3 pack boxers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-1-black",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-2",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-3",
+      "https://images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998596,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206254992,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "BLK/WHT/GRY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-1-blkwhtgry",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209145736,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209706441,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack jersey boxer in multi",
+            "description": "GREY, KHAKI, NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-1-greykhakinavy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 210047409,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/210047409-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": 3.5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-3-pack-jersey-boxer-in-multi/prd/209706441",
+    "id": 209706441,
+    "name": "ASOS DESIGN 3 pack jersey boxer in multi",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-1-greykhakinavy",
+      "https://images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-2",
+      "https://images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998596,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/205998596-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206254992,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "BLK/WHT/GRY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/206254992-1-blkwhtgry",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209145736,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-black/209145736-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209706441,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack jersey boxer in multi",
+            "description": "GREY, KHAKI, NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-jersey-boxer-in-multi/209706441-1-greykhakinavy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 210047409,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 3 pack boxers in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-3-pack-boxers-in-multi/210047409-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-5-pack-boxers-in-black/prd/209145683",
+    "id": 209145683,
+    "name": "ASOS DESIGN 5 pack boxers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-1-black",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-2",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-3",
+      "https://images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998532,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207983684,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209145683,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209706491,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack jersey boxer in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 210047455,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxer in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxer-in-multi/210047455-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 48,
+    "previousPrice": 48,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-5-pack-jersey-boxer-in-multi/prd/209706491",
+    "id": 209706491,
+    "name": "ASOS DESIGN 5 pack jersey boxer in multi",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Boxers",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-1-multi",
+      "https://images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-2",
+      "https://images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205998532,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/205998532-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207983684,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-multi/207983684-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209145683,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxers-in-black/209145683-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209706491,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack jersey boxer in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-jersey-boxer-in-multi/209706491-1-multi",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 210047455,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 5 pack boxer in multi",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-5-pack-boxer-in-multi/210047455-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 48,
+    "previousPrice": 48,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

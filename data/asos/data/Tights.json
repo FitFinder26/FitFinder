@@ -1,0 +1,1555 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pelerine-tights-in-black/prd/202253996",
+    "id": 202253996,
+    "name": "ASOS DESIGN pelerine tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pelerine-tights-in-black/202253996-1-black",
+      "https://images.asos-media.com/products/asos-design-pelerine-tights-in-black/202253996-2",
+      "https://images.asos-media.com/products/asos-design-pelerine-tights-in-black/202253996-3",
+      "https://images.asos-media.com/products/asos-design-pelerine-tights-in-black/202253996-4"
+    ],
+    "currentPrice": 9.4,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": 4.3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-80-denier-tights-in-black/prd/203120664",
+    "id": 203120664,
+    "name": "ASOS DESIGN 2 pack 80 denier tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-4"
+    ],
+    "currentPrice": 17.76,
+    "previousPrice": 19.74,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203120664,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack 80 denier tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207207082,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack  80 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black-black/207207082-1-black",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-40-denier-tights-in-black/prd/205087863",
+    "id": 205087863,
+    "name": "ASOS DESIGN 2 Pack 40 denier tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-4"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087863,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 206910645,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208968057,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-lace-tights-in-black/prd/206898651",
+    "id": 206898651,
+    "name": "ASOS DESIGN floral lace tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-1-black",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-2",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-3",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-4"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 2.6,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206898651,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208985423,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-1-burgundy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208985485,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in light pink",
+            "description": "Light Pink",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-1-lightpink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208985628,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in dark brown",
+            "description": "Brown",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-1-brown",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-120-denier-tights-in-black/prd/206910627",
+    "id": 206910627,
+    "name": "ASOS DESIGN 2 pack 120 denier tights in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-120-denier-tights-in-black/206910627-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-120-denier-tights-in-black/206910627-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-120-denier-tights-in-black/206910627-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-120-denier-tights-in-black/206910627-4"
+    ],
+    "currentPrice": 15.0,
+    "previousPrice": 22.11,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/prd/206910636",
+    "id": 206910636,
+    "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/206910636-1-black",
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/206910636-2",
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/206910636-3"
+    ],
+    "currentPrice": 11.05,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": 2.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910636,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/206910636-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208966811,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/208966811-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-of-40-denier-tights-in-black/prd/206910645",
+    "id": 206910645,
+    "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-4"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087863,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206910645,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208968057,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mini-dot-tights-in-black/prd/206910646",
+    "id": 206910646,
+    "name": "ASOS DESIGN mini dot tights in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mini-dot-tights-in-black/206910646-1-black",
+      "https://images.asos-media.com/products/asos-design-mini-dot-tights-in-black/206910646-2",
+      "https://images.asos-media.com/products/asos-design-mini-dot-tights-in-black/206910646-3",
+      "https://images.asos-media.com/products/asos-design-mini-dot-tights-in-black/206910646-4"
+    ],
+    "currentPrice": 12.08,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910646,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-tights-in-black-black/206910646-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208966875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209066849,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/prd/206910655",
+    "id": 206910655,
+    "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/206910655-1-black",
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/206910655-2",
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/206910655-3"
+    ],
+    "currentPrice": 11.29,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 3.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910655,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/206910655-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208966658,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/208966658-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-20-denier-all-over-heart-tights-in-black/prd/206911780",
+    "id": 206911780,
+    "name": "ASOS DESIGN 20 denier all over heart tights in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-1-black",
+      "https://images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-2",
+      "https://images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-3",
+      "https://images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-4"
+    ],
+    "currentPrice": 17,
+    "previousPrice": 17,
+    "currency": "USD",
+    "rating": 1.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206911780,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 20 denier all over heart tights in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208966917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-1-white",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208970607,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-1-black",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-of-15-denier-tights-in-bronze/prd/207207081",
+    "id": 207207081,
+    "name": "ASOS DESIGN 2 pack of 15 denier tights in bronze",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-1-bronze",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-4"
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in golden bronze",
+            "description": "GOLDEN BRONZE",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-1-goldenbronze",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206910618,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in umber",
+            "description": "Umber",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-1-umber",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206912044,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black-black/206912044-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207207081,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 15 denier tights in bronze",
+            "description": "Bronze",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-1-bronze",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pattern-stitch-tights-in-black/prd/207705170",
+    "id": 207705170,
+    "name": "ASOS DESIGN pattern stitch tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pattern-stitch-tights-in-black/207705170-1-black",
+      "https://images.asos-media.com/products/asos-design-pattern-stitch-tights-in-black/207705170-2",
+      "https://images.asos-media.com/products/asos-design-pattern-stitch-tights-in-black/207705170-3"
+    ],
+    "currentPrice": 4.74,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-medium-polka-dot-tights-in-black/prd/207705174",
+    "id": 207705174,
+    "name": "ASOS DESIGN medium polka dot tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-1-black",
+      "https://images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-2",
+      "https://images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-3"
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 201975020,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/201975020-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207705174,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209030040,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209078362,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN flocked polka dot tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack--80-denier-tights-in-black---black/prd/207207082",
+    "id": 207207082,
+    "name": "ASOS DESIGN 2 pack  80 denier tights in black - BLACK",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black-black/207207082-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black-black/207207082-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black-black/207207082-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203120664,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack 80 denier tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black/203120664-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207207082,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack  80 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-80-denier-tights-in-black-black/207207082-1-black",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 10.77,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-of-40-denier-tights-in-black/prd/208968057",
+    "id": 208968057,
+    "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087863,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-40-denier-tights-in-black/205087863-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206910645,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/206910645-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208968057,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 40 denier tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-40-denier-tights-in-black/208968057-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-lace-tights-in-burgundy/prd/208985423",
+    "id": 208985423,
+    "name": "ASOS DESIGN floral lace tights in burgundy",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-2",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206898651,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208985423,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-1-burgundy",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 208985485,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in light pink",
+            "description": "Light Pink",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-1-lightpink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208985628,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in dark brown",
+            "description": "Brown",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-lace-tights-in-light-pink/prd/208985485",
+    "id": 208985485,
+    "name": "ASOS DESIGN floral lace tights in light pink",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-1-lightpink",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-2",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206898651,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208985423,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-1-burgundy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208985485,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in light pink",
+            "description": "Light Pink",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-1-lightpink",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 208985628,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in dark brown",
+            "description": "Brown",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-1-brown",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 15.79,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 2.3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-floral-lace-tights-in-dark-brown/prd/208985628",
+    "id": 208985628,
+    "name": "ASOS DESIGN floral lace tights in dark brown",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-1-brown",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-2",
+      "https://images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206898651,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-black/206898651-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208985423,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in burgundy",
+            "description": "Burgundy",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-burgundy/208985423-1-burgundy",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208985485,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in light pink",
+            "description": "Light Pink",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-light-pink/208985485-1-lightpink",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208985628,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN floral lace tights in dark brown",
+            "description": "Brown",
+            "imageUrl": "images.asos-media.com/products/asos-design-floral-lace-tights-in-dark-brown/208985628-1-brown",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 1.5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/prd/208966811",
+    "id": 208966811,
+    "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/208966811-1-black",
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/208966811-2",
+      "https://images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/208966811-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910636,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/206910636-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966811,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 40 denier tights with bum tum thigh support in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-40-denier-tights-with-bum-tum-thigh-support-in-black/208966811-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 12.63,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mini-dot-pattern-tights-in-black/prd/208966875",
+    "id": 208966875,
+    "name": "ASOS DESIGN mini dot pattern tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-1-black",
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-2",
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910646,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-tights-in-black-black/206910646-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209066849,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mini-dot-pattern-tights-in-burgundy/prd/209066849",
+    "id": 209066849,
+    "name": "ASOS DESIGN mini dot pattern tights in burgundy",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-2",
+      "https://images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910646,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-tights-in-black-black/206910646-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-black/208966875-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209066849,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mini dot pattern tights in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-mini-dot-pattern-tights-in-burgundy/209066849-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 14.92,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/prd/208966658",
+    "id": 208966658,
+    "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/208966658-1-black",
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/208966658-2",
+      "https://images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/208966658-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206910655,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/206910655-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966658,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN mock over the knee tights with bum and tum support in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-mock-over-the-knee-tights-with-bum-and-tum-support-in-black/208966658-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 14.09,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-heart-pattern-tights-in-white/prd/208966917",
+    "id": 208966917,
+    "name": "ASOS DESIGN heart pattern tights in white",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": true,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-1-white",
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-2",
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206911780,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 20 denier all over heart tights in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-1-white",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 208970607,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-1-black",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.26,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-heart-pattern-tights-in-black/prd/208970607",
+    "id": 208970607,
+    "name": "ASOS DESIGN heart pattern tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": true,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-1-black",
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-2",
+      "https://images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206911780,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 20 denier all over heart tights in black ",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-20-denier-all-over-heart-tights-in-black/206911780-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208966917,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in white",
+            "description": "White",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-white/208966917-1-white",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208970607,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN heart pattern tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-heart-pattern-tights-in-black/208970607-1-black",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 17,
+    "previousPrice": 17,
+    "currency": "USD",
+    "rating": 1.5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-15-denier-tights-in-golden-bronze/prd/205087875",
+    "id": 205087875,
+    "name": "ASOS DESIGN 2 Pack 15 denier tights in golden bronze",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-1-goldenbronze",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in golden bronze",
+            "description": "GOLDEN BRONZE",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-1-goldenbronze",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 206910618,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in umber",
+            "description": "Umber",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-1-umber",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206912044,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black-black/206912044-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207207081,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 15 denier tights in bronze",
+            "description": "Bronze",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-1-bronze",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 1.5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-15-denier-tights-in-umber/prd/206910618",
+    "id": 206910618,
+    "name": "ASOS DESIGN 2 Pack 15 denier tights in umber",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-1-umber",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in golden bronze",
+            "description": "GOLDEN BRONZE",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-1-goldenbronze",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206910618,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in umber",
+            "description": "Umber",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-1-umber",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 206912044,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black-black/206912044-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207207081,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 15 denier tights in bronze",
+            "description": "Bronze",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-1-bronze",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 2.4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-15-denier-tights-in-black---black/prd/206912044",
+    "id": 206912044,
+    "name": "ASOS DESIGN 2 Pack 15 denier tights in black ",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black/206912044-1-black",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black/206912044-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black/206912044-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black/206912044-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205087875,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in golden bronze",
+            "description": "GOLDEN BRONZE",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-golden-bronze/205087875-1-goldenbronze",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206910618,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in umber",
+            "description": "Umber",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-umber/206910618-1-umber",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206912044,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 Pack 15 denier tights in black - BLACK",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-15-denier-tights-in-black-black/206912044-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 207207081,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack of 15 denier tights in bronze",
+            "description": "Bronze",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-of-15-denier-tights-in-bronze/207207081-1-bronze",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-medium-dot-pattern-tights-in-black/prd/209030040",
+    "id": 209030040,
+    "name": "ASOS DESIGN medium dot pattern tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-1-black",
+      "https://images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-2",
+      "https://images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 201975020,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/201975020-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207705174,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209030040,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209078362,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN flocked polka dot tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 10.74,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-flocked-polka-dot-tights-in-black/prd/209078362",
+    "id": 209078362,
+    "name": "ASOS DESIGN flocked polka dot tights in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Tights",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-1-black",
+      "https://images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-2",
+      "https://images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 201975020,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/201975020-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207705174,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium polka dot tights in black",
+            "description": "black",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-polka-dot-tights-in-black/207705174-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209030040,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN medium dot pattern tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-medium-dot-pattern-tights-in-black/209030040-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209078362,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN flocked polka dot tights in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-flocked-polka-dot-tights-in-black/209078362-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 11.61,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

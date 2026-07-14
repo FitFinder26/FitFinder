@@ -1,0 +1,724 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/prd/201245483",
+    "id": 201245483,
+    "name": "ASOS DESIGN pack of 4 fine chain bracelets in gold tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-1-gold",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-3",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-4"
+    ],
+    "currentPrice": 10.5,
+    "previousPrice": 10.5,
+    "currency": "USD",
+    "rating": 3.8,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 201245483,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 fine chain bracelets in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-1-gold",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204074802,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 fine chain bracelets in silver tone",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-waterproof-stainless-steel-chain-bracelet-in-silver/prd/203235549",
+    "id": 203235549,
+    "name": "ASOS DESIGN waterproof stainless steel chain bracelet in silver     ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-chain-bracelet-in-silver/203235549-1-silver",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-chain-bracelet-in-silver/203235549-2",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-chain-bracelet-in-silver/203235549-3",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-chain-bracelet-in-silver/203235549-4"
+    ],
+    "currentPrice": 31,
+    "previousPrice": 31,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/prd/204074906",
+    "id": 204074906,
+    "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in gold tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-1-gold",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-3",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-4"
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204074906,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-1-gold",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 206316181,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in silver tone",
+            "description": "Silver",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-chunky-chain-bracelet-in-silver/prd/204345445",
+    "id": 204345445,
+    "name": "ASOS DESIGN chunky chain bracelet in silver   ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-silver/204345445-1-silver",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-silver/204345445-2",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-silver/204345445-3",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-silver/204345445-4",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-silver/204345445-5"
+    ],
+    "currentPrice": 8.05,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": 1.3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204345445,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN midweight chain bracelet in silver tone",
+            "description": "Silver",
+            "imageUrl": "images.asos-media.com/products/asos-design-midweight-chain-bracelet-in-silver-tone/204345445-2-silver",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 206180425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN midweight chain bracelet in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-midweight-chain-bracelet-in-gold-tone/206180425-1-gold",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/prd/205515599",
+    "id": 205515599,
+    "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in gold tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-1-gold",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-3",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-4"
+    ],
+    "currentPrice": 21.32,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 3.8,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205515599,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in gold tone",
+            "description": "Gold",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-1-gold",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208540282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208983353,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve pack of 4 shiny gold bangles",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-1-gold",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209181722,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangles in brushed gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-waterproof-stainless-steel-flat-chain-bracelet-in-silver/prd/207252308",
+    "id": 207252308,
+    "name": "ASOS DESIGN waterproof stainless steel flat chain bracelet in silver   ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-flat-chain-bracelet-in-silver/207252308-1-silver",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-flat-chain-bracelet-in-silver/207252308-2",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-flat-chain-bracelet-in-silver/207252308-3",
+      "https://images.asos-media.com/products/asos-design-waterproof-stainless-steel-flat-chain-bracelet-in-silver/207252308-4"
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-beaded-and-chain-4-pack-bracelets-in-black/prd/207826624",
+    "id": 207826624,
+    "name": "ASOS DESIGN beaded and chain 4 pack bracelets in black ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-beaded-and-chain-4-pack-bracelets-in-black/207826624-1-black",
+      "https://images.asos-media.com/products/asos-design-beaded-and-chain-4-pack-bracelets-in-black/207826624-2",
+      "https://images.asos-media.com/products/asos-design-beaded-and-chain-4-pack-bracelets-in-black/207826624-3"
+    ],
+    "currentPrice": 13.03,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207763379,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN beaded and cord 4 pack bracelets in multi ",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/207763379-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207826624,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN beaded and chain 4 pack bracelets in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-beaded-and-chain-4-pack-bracelets-in-black/207826624-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-faux-shell-bracelet-in-cream/prd/208119199",
+    "id": 208119199,
+    "name": "ASOS DESIGN faux shell bracelet in cream ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-faux-shell-bracelet-in-cream/208119199-1-cream",
+      "https://images.asos-media.com/products/asos-design-faux-shell-bracelet-in-cream/208119199-2",
+      "https://images.asos-media.com/products/asos-design-faux-shell-bracelet-in-cream/208119199-3"
+    ],
+    "alternative": [],
+    "currentPrice": 12.43,
+    "previousPrice": 16.58,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-faux-cowrie-shell-multiwear-cord-puller-bracelet-with-in-black/prd/208119394",
+    "id": 208119394,
+    "name": "ASOS DESIGN faux cowrie shell multiwear cord puller bracelet with in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-faux-cowrie-shell-multiwear-cord-puller-bracelet-with-in-black/208119394-1-black",
+      "https://images.asos-media.com/products/asos-design-faux-cowrie-shell-multiwear-cord-puller-bracelet-with-in-black/208119394-2",
+      "https://images.asos-media.com/products/asos-design-faux-cowrie-shell-multiwear-cord-puller-bracelet-with-in-black/208119394-3"
+    ],
+    "alternative": [],
+    "currentPrice": 10.74,
+    "previousPrice": 13.42,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/prd/204074802",
+    "id": 204074802,
+    "name": "ASOS DESIGN pack of 4 fine chain bracelets in silver tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-1-silver",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-3",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 201245483,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 fine chain bracelets in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-gold-tone/201245483-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204074802,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 fine chain bracelets in silver tone",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-fine-chain-bracelets-in-silver-tone/204074802-1-silver",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 7.18,
+    "previousPrice": 10.26,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/prd/206316181",
+    "id": 206316181,
+    "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in silver tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-1-silver",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-3",
+      "https://images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204074906,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-gold-tone/204074906-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206316181,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 2 bracelets with simple toggle detail in silver tone",
+            "description": "Silver",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-2-bracelets-with-simple-toggle-detail-in-silver-tone/206316181-1-silver",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-midweight-chain-bracelet-in-gold-tone/prd/206180425",
+    "id": 206180425,
+    "name": "ASOS DESIGN chunky chain bracelet in gold  ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-gold/206180425-1-gold",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-gold/206180425-2",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-gold/206180425-3",
+      "https://images.asos-media.com/products/asos-design-chunky-chain-bracelet-in-gold/206180425-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204345445,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN midweight chain bracelet in silver tone",
+            "description": "Silver",
+            "imageUrl": "images.asos-media.com/products/asos-design-midweight-chain-bracelet-in-silver-tone/204345445-2-silver",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206180425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN midweight chain bracelet in gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-midweight-chain-bracelet-in-gold-tone/206180425-1-gold",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/prd/208540282",
+    "id": 208540282,
+    "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in silver",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-1-silver",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205515599,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in gold tone",
+            "description": "Gold",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208540282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-1-silver",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 208983353,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve pack of 4 shiny gold bangles",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-1-gold",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209181722,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangles in brushed gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-curve/asos-design-curve-pack-of-4-shiny-gold-bangles/prd/208983353",
+    "id": 208983353,
+    "name": "ASOS DESIGN Curve pack of 4 shiny gold bangles",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS Curve",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-1-gold",
+      "https://images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-2",
+      "https://images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205515599,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in gold tone",
+            "description": "Gold",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208540282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208983353,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve pack of 4 shiny gold bangles",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-1-gold",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 209181722,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangles in brushed gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 21.32,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-4-bangles-in-brushed-gold-tone/prd/209181722",
+    "id": 209181722,
+    "name": "ASOS DESIGN pack of 4 bangles in brushed gold tone",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-1-gold",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205515599,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in gold tone",
+            "description": "Gold",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-gold-tone/205515599-1-gold",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208540282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangle bracelets in mixed design in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangle-bracelets-in-mixed-design-in-silver/208540282-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 208983353,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve pack of 4 shiny gold bangles",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-pack-of-4-shiny-gold-bangles/208983353-1-gold",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209181722,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pack of 4 bangles in brushed gold tone",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-pack-of-4-bangles-in-brushed-gold-tone/209181722-1-gold",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/prd/207763379",
+    "id": 207763379,
+    "name": "ASOS DESIGN beaded and cord 4 pack bracelets in multi ",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bracelets",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/207763379-1-multi",
+      "https://images.asos-media.com/products/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/207763379-2",
+      "https://images.asos-media.com/products/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/207763379-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207763379,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN beaded and cord 4 pack bracelets in multi ",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-beaded-and-cord-4-pack-bracelets-in-multi/207763379-1-multi",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 207826624,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN beaded and chain 4 pack bracelets in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-beaded-and-chain-4-pack-bracelets-in-black/207826624-1-black",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

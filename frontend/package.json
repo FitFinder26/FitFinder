@@ -1,0 +1,10 @@
+{
+  "name": "frontend",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1"
+  }
+}

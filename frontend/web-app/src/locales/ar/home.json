@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "welcomeTo": "اكتشف",
+    "aiPowered": "مدعوم بالذكاء الاصطناعي",
+    "branding": "تناسبك المثالي",
+    "description": "اعثر على أفضل تناسب للموضة التي تتمناها بأسعار و جودات مختلفة عبر المتاجر العالمية على الإنترنت ونسق قطع خزانة ملابسك بسلاسة مع محرك الذكاء الاصطناعي الخاص بنا.",
+    "searchWithImage": "البحث باستخدام صورة",
+    "join": "انضم الآن",
+    "demo": "كيف يعمل",
+    "liveSegmentation": "تجزئة حية",
+    "neuralEngine": "المحرك العصبي نشط",
+    "smartExtract": "استخراج ذكي",
+    "aiVisionEngine": "محرك رؤية الذكاء الاصطناعي 5.0",
+    "descriptionShort": "دقة مدعومة بالذكاء الاصطناعي. تنسيق راقٍ. أسلوبك، مفكك.",
+    "aiAnalysis": "تحليل ذكي",
+    "styleMatch": "تطابق الأسلوب",
+    "neuralSearch": "بحث عصبي",
+    "fitEngine": "محرك القياس"
+  },
+  "features": {
+    "secureSearch": "بحث آمن",
+    "secureSearchDesc": "حيث تكون صورك المرفوعة آمنة وخصوصية بنسبة 100%.",
+    "instantLookup": "بحث فوري",
+    "instantLookupDesc": "تجزئة سريعة ونتائج بحث تتراوح بين 5 إلى 10 ثوانٍ.",
+    "learnable": "قابل للتعلم",
+    "learnableDesc": "يتعلم نموذجنا باستمرار من عمليات البحث والتعليقات الجديدة من جميع أنحاء العالم."
+  },
+  "recommendations": {
+    "title": "الأكثر بحثاً",
+    "neuralCuration": "مختارات مخصصة",
+    "collections": "{{count}} مجموعات",
+    "piecesAuthenticated": "{{count}} قطع",
+    "exploreCollection": "استكشف المجموعة",
+    "loading": "جاري تحميل التوصيات…",
+    "collectionLabel": "المجموعة"
+  },
+  "feedback": {
+    "title": "شاركنا رؤيتك",
+    "communityInsights": "رؤى المجتمع",
+    "message": "صوتك يشكل مستقبل ",
+    "submitReview": "إرسال مراجعة"
+  },
+  "social": {
+    "title": "انضم إلينا",
+    "message": "إطلالات حصرية، وآخر تحديثات الذكاء الاصطناعي، وإصدارات من الأرشيف على حسابنا في إنستغرام"
+  },
+    "modals": {
+      "chooseSource": "اختر المصدر",
+      "selectMethod": "اختر الطريقة التي تريد بها إدخال سياقك البصري.",
+      "takePhoto": "التقاط صورة",
+      "instantCapture": "كاميرا حية",
+      "uploadFromDevice": "رفع من الجهاز",
+      "archivalUpload": "ملف محلي",
+      "cancel": "إلغاء العملية",
+      "imageSource": {
+        "title": "اختر المصدر",
+        "subtitle": "كيف تود تزويدنا بالصورة؟",
+        "camera": "التقاط صورة",
+        "cameraDesc": "التقاط باستخدام كاميرا الجهاز",
+        "gallery": "رفع صورة",
+        "galleryDesc": "اختيار من معرض الصور الخاص بك"
+      }
+    },
+  "stores": {
+    "title": "شركاؤنا العالميون",
+    "subtitle": "المتاجر المدعومة"
+  }
+}

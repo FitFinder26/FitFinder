@@ -1,0 +1,43 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
+import { useState } from "react";
+import SideBar from "../components/sideBar/SideBar";
+import { useAuthContext } from "../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+
+export default function UserLayout() {
+  const [navigationBlocked, setNavigationBlocked] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const { isAuthenticated } = useAuthContext();
+  const { t } = useTranslation("common");
+
+  return (
+    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background text-foreground transition-colors duration-500">
+
+      <header className="w-full z-40 fixed top-0" role="banner">
+        <Navbar
+          navigationBlocked={navigationBlocked}
+          setIsSideBarOpen={setIsSideBarOpen}
+        />
+      </header>
+
+      {isAuthenticated() && (
+        <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen} />
+      )}
+
+      <main
+        id="main-content"
+        className="flex-1 flex flex-col no-scrollbar pt-0"
+        tabIndex={-1}
+        role="main"
+      >
+        <div className="flex-1 relative">
+          <Outlet context={{ setNavigationBlocked }} />
+        </div>
+        <Footer navigationBlocked={navigationBlocked} />
+      </main>
+    </div>
+  );
+}

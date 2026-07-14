@@ -1,0 +1,66 @@
+{
+  "appName": "FitFinder",
+  "loading": "Loading...",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "ctaGetStarted": "Get started",
+  "welcome": "Welcome",
+  "login": "Login",
+  "logout": "Logout",
+  "save": "Save",
+  "cancel": "Cancel",
+  "submit": "Submit",
+  "edit": "Edit",
+  "delete": "Delete",
+  "confirm": "Confirm",
+  "close": "Close",
+  "error404": "404! This is an empty page",
+  "goHome": "Go Home",
+  "back": "Back",
+  "error": "Error",
+  "skipToMainContent": "Skip to main content",
+  "onboarding": {
+    "tutorial": "Tutorial",
+    "gotIt": "Got it",
+    "finish": "Finish",
+    "awaitingAction": "Awaiting Action",
+    "autoAdvancing": "Auto-Advancing...",
+    "steps": {
+      "navbarSearch": {
+        "title": "Start Your Search",
+        "description": "Click here to upload an image of any fashion item you want to find."
+      },
+      "chooseSource": {
+        "title": "Choose Source",
+        "description": "On mobile, you can either take a fresh photo or upload from your gallery."
+      },
+      "segmentImage": {
+        "title": "Analyze Item",
+        "description": "Click segment to let our AI isolate the clothing item. If it fails, just try again!"
+      },
+      "selectMask": {
+        "title": "Select Item",
+        "description": "After analyzing the image, click on the highlighted part of the image you want to search for."
+      },
+      "sendSelected": {
+        "title": "Confirm Selection",
+        "description": "Once you have selected the item, click here to proceed to styling context."
+      },
+      "customizeSearch": {
+        "title": "Final Search",
+        "description": "Describe the style or click search to find matching items in our global archives."
+      },
+      "rateResults": {
+        "title": "Rate Matches",
+        "description": "Rate each result to help the AI understand your style better."
+      },
+      "swipeCards": {
+        "title": "Discover More",
+        "description": "Swipe left or right to explore more matching pieces."
+      },
+      "switchGrid": {
+        "title": "Grid Overview",
+        "description": "Switch to grid view to see all discovered matches at once."
+      }
+    }
+  }
+}

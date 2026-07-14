@@ -1,0 +1,56 @@
+name: Deploy Frontend (web-app) to gh-pages
+
+on:
+  push:
+    branches:
+      - 2025-10-05-fit-finder-prototype
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend/web-app
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/web-app/package-lock.json
+
+      - name: Install parent dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ensure Rollup native binary for linux
+        run: npm install @rollup/rollup-linux-x64-gnu@4.52.4 --no-save
+
+      - name: Build
+        run: npm run build
+        env:
+          # Pass environment variables needed at build time
+          VITE_BASE_PATH: /FitFinder/
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
+          VITE_CLINT_ID: ${{ secrets.VITE_CLINT_ID }}
+
+      - name: Add SPA fallback page
+        run: cp dist/index.html dist/404.html
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: frontend/web-app/dist
+          # keep_files: true  # uncomment if you want to keep existing files

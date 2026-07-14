@@ -1,0 +1,22 @@
+{
+  "title": "السجل",
+  "filters": "الفلاتر",
+  "show": "إظهار",
+  "hide": "إخفاء",
+  "date": "التاريخ",
+  "today": "اليوم",
+  "last7": "آخر 7 أيام",
+  "last30": "آخر 30 يومًا",
+  "specificDate": "تاريخ محدد",
+  "sort": "الترتيب:",
+  "mostRecent": "الأحدث",
+  "leastRecent": "الأقدم",
+  "imageUnavailable": "الصورة غير متاحة",
+  "archives": "الأرشيف",
+  "styleJourney": "تطور أسلوبك الخاص",
+  "timeframe": "النطاق الزمني",
+  "engagement": "التفاعل",
+  "entry": "مدخل",
+  "viewDetails": "إعادة تفعيل التصميم",
+  "tagline": "صُمم عبر الزمن"
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pocket-square-in-white/prd/206804198",
+    "id": 206804198,
+    "name": "ASOS DESIGN pocket square in white",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Pocket Squares",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pocket-square-in-white/206804198-1-white",
+      "https://images.asos-media.com/products/asos-design-pocket-square-in-white/206804198-2",
+      "https://images.asos-media.com/products/asos-design-pocket-square-in-white/206804198-3",
+      "https://images.asos-media.com/products/asos-design-pocket-square-in-white/206804198-4"
+    ],
+    "currentPrice": 10.5,
+    "previousPrice": 10.5,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  }
+]

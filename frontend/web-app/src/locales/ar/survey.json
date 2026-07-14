@@ -1,0 +1,27 @@
+{
+  "heading": "تفضيلات سريعة",
+  "close": "إغلاق",
+  "intro": "مرحباً أيها المستخدم الجديد 👋. بعض الأسئلة السريعة لتخصيص التوصيات لك.",
+  "genderTitle": "جنسك",
+  "genderMale": "ذكر",
+  "genderFemale": "أنثى",
+  "genderPreferNot": "أفضل عدم الإفصاح",
+  "colorTitle": "لونك المفضل",
+  "colors": {
+    "red": "أحمر",
+    "blue": "أزرق",
+    "black": "أسود",
+    "white": "أبيض"
+  },
+  "styleTitle": "أسلوبك المفضل",
+  "styles": {
+    "streetwear": "ستريت وير",
+    "formal": "رسمي",
+    "boho": "بوهيمي",
+    "athleisure": "رياضي كاجوال"
+  },
+  "styleAlt": "مثال على {{style}}",
+  "thanksTitle": "شكراً!",
+  "thanksText": "تم حفظ تفضيلاتك.",
+  "skip": "تخطي الآن"
+}

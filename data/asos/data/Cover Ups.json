@@ -1,0 +1,48 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-kayla-mix-and-match-long-sleeve-tie-front-beach-top-in-khaki/prd/206656926",
+    "id": 206656926,
+    "name": "ASOS DESIGN Kayla mix and match long sleeve tie front beach top in khaki",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Cover Ups",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-kayla-mix-and-match-long-sleeve-tie-front-beach-top-in-khaki/206656926-1-khaki",
+      "https://images.asos-media.com/products/asos-design-kayla-mix-and-match-long-sleeve-tie-front-beach-top-in-khaki/206656926-2",
+      "https://images.asos-media.com/products/asos-design-kayla-mix-and-match-long-sleeve-tie-front-beach-top-in-khaki/206656926-3",
+      "https://images.asos-media.com/products/asos-design-kayla-mix-and-match-long-sleeve-tie-front-beach-top-in-khaki/206656926-4"
+    ],
+    "currentPrice": 42,
+    "previousPrice": 42,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-hand-crocheted-premium-tassle-knitted-beach-sarong/prd/208268810",
+    "id": 208268810,
+    "name": "ASOS DESIGN hand crocheted premium tassle knitted beach sarong",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Cover Ups",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-hand-crocheted-premium-tassle-knitted-beach-sarong/208268810-1-green",
+      "https://images.asos-media.com/products/asos-design-hand-crocheted-premium-tassle-knitted-beach-sarong/208268810-2",
+      "https://images.asos-media.com/products/asos-design-hand-crocheted-premium-tassle-knitted-beach-sarong/208268810-3",
+      "https://images.asos-media.com/products/asos-design-hand-crocheted-premium-tassle-knitted-beach-sarong/208268810-4"
+    ],
+    "alternative": [],
+    "currentPrice": 64,
+    "previousPrice": 64,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

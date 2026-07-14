@@ -1,0 +1,117 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-cross-body-bum-bag-with-contrast-puller-in-black/prd/205990883",
+    "id": 205990883,
+    "name": "ASOS DESIGN cross body bum bag with contrast puller in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": true,
+    "isDiscontinued": false,
+    "productType": "Bum Bags",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-cross-body-bum-bag-with-contrast-puller-in-black/205990883-1-black",
+      "https://images.asos-media.com/products/asos-design-cross-body-bum-bag-with-contrast-puller-in-black/205990883-2",
+      "https://images.asos-media.com/products/asos-design-cross-body-bum-bag-with-contrast-puller-in-black/205990883-3",
+      "https://images.asos-media.com/products/asos-design-cross-body-bum-bag-with-contrast-puller-in-black/205990883-4"
+    ],
+    "currentPrice": 15.4,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 2.3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-faux-leather-embossed-cross-body-bag-in-black/prd/207845812",
+    "id": 207845812,
+    "name": "ASOS DESIGN faux leather embossed cross body bag in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bum Bags",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-faux-leather-embossed-cross-body-bag-in-black/207845812-1-black",
+      "https://images.asos-media.com/products/asos-design-faux-leather-embossed-cross-body-bag-in-black/207845812-2",
+      "https://images.asos-media.com/products/asos-design-faux-leather-embossed-cross-body-bag-in-black/207845812-3",
+      "https://images.asos-media.com/products/asos-design-faux-leather-embossed-cross-body-bag-in-black/207845812-4"
+    ],
+    "currentPrice": 26.06,
+    "previousPrice": 37.9,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-nylon-cross-body-bag-in-black/prd/207845928",
+    "id": 207845928,
+    "name": "ASOS DESIGN nylon cross body bag in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bum Bags",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-nylon-cross-body-bag-in-black/207845928-1-black",
+      "https://images.asos-media.com/products/asos-design-nylon-cross-body-bag-in-black/207845928-2",
+      "https://images.asos-media.com/products/asos-design-nylon-cross-body-bag-in-black/207845928-3",
+      "https://images.asos-media.com/products/asos-design-nylon-cross-body-bag-in-black/207845928-4"
+    ],
+    "currentPrice": 17.45,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-bumbag-with-shirring-detail-in-khaki-nylon/prd/207985615",
+    "id": 207985615,
+    "name": "ASOS DESIGN bumbag with shirring detail in khaki nylon",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bum Bags",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-bumbag-with-shirring-detail-in-khaki-nylon/207985615-1-khaki",
+      "https://images.asos-media.com/products/asos-design-bumbag-with-shirring-detail-in-khaki-nylon/207985615-2",
+      "https://images.asos-media.com/products/asos-design-bumbag-with-shirring-detail-in-khaki-nylon/207985615-3",
+      "https://images.asos-media.com/products/asos-design-bumbag-with-shirring-detail-in-khaki-nylon/207985615-4"
+    ],
+    "currentPrice": 12.08,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-8-ball-bumbag-in-black/prd/208041802",
+    "id": 208041802,
+    "name": "ASOS DESIGN 8 ball bumbag in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bum Bags",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-8-ball-bumbag-in-black/208041802-1-black",
+      "https://images.asos-media.com/products/asos-design-8-ball-bumbag-in-black/208041802-2",
+      "https://images.asos-media.com/products/asos-design-8-ball-bumbag-in-black/208041802-3",
+      "https://images.asos-media.com/products/asos-design-8-ball-bumbag-in-black/208041802-4"
+    ],
+    "currentPrice": 11.05,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  }
+]
