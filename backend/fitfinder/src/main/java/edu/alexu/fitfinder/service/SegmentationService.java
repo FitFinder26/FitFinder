@@ -9,6 +9,7 @@ import edu.alexu.fitfinder.exception.SocketException;
 import edu.alexu.fitfinder.handler.MyWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,7 +73,7 @@ public class SegmentationService {
     return response;
   }
 
-  private void validatePointsAndBoxes(int[][] posPoints, int[][] negPoints, int[][] boxses)
+  private void validatePointsAndBoxes(int[][] posPoints, int[][] negPoints, int[][] boxes)
       throws InvalidInputException {
     if ((negPoints == null || negPoints.length == 0)
         && (posPoints == null || posPoints.length == 0)) {
@@ -88,7 +89,7 @@ public class SegmentationService {
       throw new InvalidInputException("Pos points and neg points should be of shape (N,2)");
     }
 
-    if (boxses != null && boxses.length != 0 && boxses[0].length != 4) {
+    if (boxes != null && boxes.length != 0 && boxes[0].length != 4) {
       throw new InvalidInputException("Boxes should be of shape (N,4)");
     }
   }
