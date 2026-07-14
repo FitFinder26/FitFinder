@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController()
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -51,6 +51,9 @@ public class UserController {
     try {
       if (token != null && token.startsWith("Bearer ")) {
         token = token.substring(7);
+      }
+      else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
       }
 
       user = userService.getUser(token);

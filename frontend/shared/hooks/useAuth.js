@@ -10,6 +10,7 @@ export const useAuth = () => {
     const data = await authService.signup(username, email, password);
     setToken(tokenService.getToken());
     scheduleRefresh(); // start auto-refresh timer
+    await getProfile();
     return data;
   };
 
@@ -17,6 +18,7 @@ export const useAuth = () => {
     const data = await authService.login(email, password);
     setToken(tokenService.getToken());
     scheduleRefresh(); // start auto-refresh timer
+    await getProfile();
     return data;
   };
 
@@ -37,6 +39,30 @@ export const useAuth = () => {
 
   const isAuthenticated = () => {
     return !tokenService.isExpired();
+  };
+
+  const getProfile = async () => {
+    try {
+      const res = await authService.getProfile();
+      if (res && res.ok) {
+        const data = await res.json();
+        setUser(data);
+      } else {
+        console.error("getProfile failed", res && res.status);
+        setUser(null);
+      }
+    } catch (error) {
+      console.error("getProfile error", error);
+      setUser(null);
+    }
+  };
+
+  const refreshUser = () => {
+    getProfile();
+  };
+
+  const updateProfileImage = async () => {
+    return await authService.updateProfileImage();
   };
 
   // Background refresh scheduling
@@ -72,6 +98,8 @@ export const useAuth = () => {
     isAuthenticated,
     sendCode,
     updatePassword,
+    refreshUser,
+    updateProfileImage,
     user,
   };
 };

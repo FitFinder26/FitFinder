@@ -23,7 +23,6 @@ export default function Navbar({ navigationBlocked }) {
   useEffect(() => {
     setIsLoggedIn(() => {
       let res = isAuthenticated();
-      // alert(res);
       return res;
     });
   }, [isAuthenticated]);

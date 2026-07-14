@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
-import { MdNoAdultContent } from "react-icons/md";
-import noDataFound from "../assets/noDataFound.svg";
+import noDataFound from "../assets/noFavorites.svg";
+import { useAuthContext } from "../providers/AuthProvider";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -28,22 +28,26 @@ function CardImageWithLoader({ src, alt }) {
   );
 }
 
-export default function SearchResultPage() {
+export default function FavoritePage() {
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-
+  const navigator = useNavigate();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const searchingPeice = location.state?.searchingPeice || null;
+  const { isAuthenticated } = useAuthContext();
 
   const [filters, setFilters] = useState({
     category: new Set(),
     store: new Set(),
   });
+
+  useEffect(() => {
+    if (!isAuthenticated())
+      navigator("/registration", { state: { form: "signup" } });
+  }, []);
 
   /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
@@ -120,13 +124,7 @@ export default function SearchResultPage() {
     <PageWrap>
       <Content>
         <Left>
-          <PreviewCard>
-            {searchingPeice ? (
-              <PreviewImage src={searchingPeice} />
-            ) : (
-              <PreviewPlaceholder>Segmented Image</PreviewPlaceholder>
-            )}
-          </PreviewCard>
+          <h1 style={{ marginBottom: "1rem" }}>Favorites</h1>
 
           <Filters>
             <h3>Filters</h3>
@@ -255,26 +253,6 @@ const Left = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-`;
-
-const PreviewCard = styled.div`
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  min-height: 360px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PreviewImage = styled.img`
-  max-width: 100%;
-  max-height: 320px;
-  object-fit: contain;
-`;
-
-const PreviewPlaceholder = styled.div`
-  color: #777;
 `;
 
 const Filters = styled.div`

@@ -24,10 +24,14 @@ public class User {
   private String password;
   private String email;
 
-  private String profileImageURL;
+  @Column(nullable = false)
+  private String profileImageURL = "";
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<UploadedImage> images;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Favorite> favorites;
 
   public User(String userName, String password, String email) {
     this.userName = userName;
