@@ -2,6 +2,7 @@ package edu.alexu.fitfinder.controller;
 
 import edu.alexu.fitfinder.dto.UserDTO;
 import edu.alexu.fitfinder.exception.UserNotFoundException;
+import edu.alexu.fitfinder.service.ImageService;
 import edu.alexu.fitfinder.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController()
@@ -62,5 +65,54 @@ public class UserController {
     }
 
     return ResponseEntity.ok(user);
+  }
+
+  @PutMapping("/profile/photo")
+  public ResponseEntity<?> uploadImageProfile(
+          @RequestParam MultipartFile image,
+          @RequestHeader("Authorization") String token) {
+
+    UserDTO user;
+    try {
+      if (token != null && token.startsWith("Bearer ")) {
+        token = token.substring(7);
+      }
+      else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      }
+
+      user = userService.getUser(token);
+      userService.updateImageProfile(user.getId(), image);
+      return ResponseEntity.ok("Profile image Uploaded");
+    } catch (UserNotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    } catch (IOException e){
+      return ResponseEntity.internalServerError().body(e.getMessage());
+    }
+  }
+
+  @DeleteMapping("/profile/photo")
+  public ResponseEntity<?> deleteImageProfile(
+          @RequestParam MultipartFile image,
+          @RequestHeader("Authorization") String token) {
+
+    UserDTO user;
+    try {
+      if (token != null && token.startsWith("Bearer ")) {
+        token = token.substring(7);
+      }
+      else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      }
+
+      user = userService.getUser(token);
+
+      userService.deleteImageProfile(user.getId());
+      return ResponseEntity.ok("Profile image Uploaded");
+    } catch (UserNotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    } catch (IOException e){
+      return ResponseEntity.internalServerError().body(e.getMessage());
+    }
   }
 }

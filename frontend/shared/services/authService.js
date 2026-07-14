@@ -87,11 +87,17 @@ export const authService = {
   },
 
   logout: async () => {
-    await apiClient("/api/v1/auth/logout", {
-      method: "POST",
-      skipAuth: true,
-    });
-    tokenService.clearToken();
+    try {
+      await apiClient("/api/v1/auth/logout", {
+        method: "POST",
+        skipAuth: true,
+      });
+    } catch (err) {
+      // don't prevent client-side logout if server call fails
+      console.warn("Logout request failed:", err);
+    } finally {
+      tokenService.clearToken();
+    }
   },
 
   sendCode: async (email) => {

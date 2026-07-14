@@ -15,19 +15,24 @@ import edu.alexu.fitfinder.service.signup.UserNameValidator;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-  @Autowired UserRepo userRepo;
-  @Autowired JwtService jwtService;
-  @Autowired UserMapper userMapper;
+  private final UserRepo userRepo;
+  private final JwtService jwtService;
+  private final UserMapper userMapper;
+  private final ImageService imageService;
+
 
   private final int REFRESH_TOKEN_MAX_AGE = 3 * 60 * 60; // 3 hours
   private final String REFRESH_TOKEN_PATH = "/auth";
@@ -143,5 +148,24 @@ public class UserService {
             .orElseThrow(() -> new UserNotFoundException("User not found"));
 
       return userMapper.toDTO(user);
+  }
+
+  public void updateImageProfile(Long userId, MultipartFile image) throws IOException {
+    User user = userRepo.findById(userId)
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+    String imageName = user.getUserId() + "_0";
+    user.setProfileImageURL(imageService.uploadImage(image, imageName));
+    userRepo.save(user);
+  }
+
+  public void deleteImageProfile(Long id) throws IOException {
+    User user = userRepo.findById(id)
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+    String imageName = user.getUserId() + "_0";
+    imageService.deleteImage(imageName);
+    user.setProfileImageURL("");
+    userRepo.save(user);
   }
 }
