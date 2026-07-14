@@ -1,7 +1,9 @@
 import { apiClient } from "./apiClient";
 import { API_BASE_URL } from "../config/env";
+import search_request from "../constants/search_request.json";
 
 let sessionId = null;
+let jobId = null;
 let ws = null;
 let masks = null;
 let maskListeners = [];
@@ -20,18 +22,35 @@ export const segmentationService = {
       try {
         const data = JSON.parse(event.data);
 
-        if (data.sessionId) {
+        if (data?.sessionId) {
           console.log("Session ID:", data.sessionId);
           // store it properly
           sessionId = data.sessionId;
-        } else {
+        } else if (data?.masks && data?.boxes) {
           masks = data;
           console.log("Masks array updated in the service:", masks);
           // 🔥 notify all listeners
           maskListeners.forEach((cb) => cb(masks));
+        } else {
+          // 🔥 notify all listeners
+          maskListeners.forEach((cb) =>
+            cb({
+              error:
+                "Something is wrong with the segementation, please try again.",
+            })
+          );
+          throw new Error("Unknown message format");
         }
       } catch (error) {
-        console.error("Invalid JSON:", event.data);
+        console.error("Something is wrong with the response: ", event.data);
+        console.error(error);
+        // 🔥 notify all listeners
+        maskListeners.forEach((cb) =>
+          cb({
+            error:
+              "Something is wrong with the segementation, please try again.",
+          })
+        );
         throw error;
       }
     };
@@ -66,25 +85,66 @@ export const segmentationService = {
   },
 
   segment: async (formData) => {
+    const isConnected = () => ws && ws.readyState === WebSocket.OPEN;
+    if (!isConnected || !sessionId) {
+      segmentationService.connect();
+    }
     formData.append("sessionId", sessionId);
     console.log(formData.get("sessionId"));
-    return await apiClient("/segment/upload", {
+    let data;
+    await apiClient("/segment/upload", {
       method: "POST",
       body: formData,
       skipAuth: true,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Segmentation request failed");
+        }
+        return response.json();
+      })
+      .then((resData) => {
+        if (resData?.job_id) jobId = resData.job_id;
+        data = resData;
+      })
+      .catch((error) => {
+        console.error("Segmentation error:", error);
+        throw error;
+      });
+
+    return data;
+  },
+
+  resegment: async (formData) => {
+    const isConnected = () => ws && ws.readyState === WebSocket.OPEN;
+    if (!isConnected || !sessionId) {
+      segmentationService.connect();
+    }
+
+    formData = { ...formData, job_id: jobId };
+
+    console.log(formData);
+    return await apiClient(`/re-segment?sessionId=${sessionId}`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      skipAuth: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   },
 
   search: async (mask, prompt) => {
-    const formData = new FormData();
-    formData.append("job_id", sessionId);
-    formData.append("mask_json", JSON.stringify(mask));
-    // formData.append("prompt", prompt);
-    console.log(formData.get("job_id"));
-    console.log(formData.get("mask_json"));
-    return await apiClient("/search", {
+    return await apiClient("/api/v1/items/search", {
       method: "POST",
-      body: formData,
+      body: JSON.stringify({
+        job_id: jobId,
+        mask_json: mask,
+        // prompt: prompt
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
       skipAuth: true,
     });
   },

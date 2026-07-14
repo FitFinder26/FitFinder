@@ -11,8 +11,7 @@ export default function LazyMount({ children }) {
         if (entry.isIntersecting) {
           setIsVisible(true);
           // observer.disconnect(); // mount only once
-        }
-        else setIsVisible(false);
+        } else setIsVisible(false);
       },
       {
         threshold: 0.1, // Trigger when 10% of the element is visible

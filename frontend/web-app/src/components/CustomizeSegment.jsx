@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Notifier } from "./Notifier";
 import { segmentationService } from "../../../shared/services/segmentationService";
 import products from "./searchResponse.json";
+import { HashLoader } from "react-spinners";
 
 // Crop SAM masks from the original image
 const cropSelectedSegments = (imageObj, masks) => {
@@ -62,9 +63,12 @@ export default function CustomizeSegment({
   selectedSegments,
   setIsBeingCustomized,
   setImageUploaded,
+  segmentationService,
+  handleCloseSegmentationSheet,
 }) {
   const [segmentedImageSrc, setSegmentedImageSrc] = useState(null);
   const [selectedMask, setSelectedMask] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   const [prompt, setPrompt] = useState("");
   const navigate = useNavigate();
 
@@ -102,6 +106,7 @@ export default function CustomizeSegment({
       Notifier.notifyError("Segmented image not ready.");
       return;
     }
+    setIsSearching(true);
     await segmentationService
       .search(selectedMask[0], prompt)
       .then((response) => response.json())
@@ -110,6 +115,8 @@ export default function CustomizeSegment({
           Notifier.notifyError(`Search failed: ${products.error}`);
         } else {
           setImageUploaded(false);
+          segmentationService.endSession();
+          handleCloseSegmentationSheet();
           navigate("/search-result", {
             state: { products: products, searchingPeice: segmentedImageSrc },
           });
@@ -124,6 +131,8 @@ export default function CustomizeSegment({
     // navigate("/search-result", {
     //   state: { products: products, searchingPeice: segmentedImageSrc },
     // });
+
+    setIsSearching(false);
   };
 
   return (
@@ -144,7 +153,9 @@ export default function CustomizeSegment({
         <BackButton onClick={() => setIsBeingCustomized(false)}>
           <span>Back</span>
         </BackButton>
-        <SearchButton onClick={handleSearch}>Search</SearchButton>
+        <SearchButton onClick={handleSearch} disabled={isSearching}>
+          {isSearching ? <HashLoader size={20} color="#fff" /> : "Search"}
+        </SearchButton>
       </ButtonsContainer>
 
       <Guide>

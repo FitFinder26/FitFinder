@@ -27,3 +27,4 @@ dist-ssr
 
 # test files
 src/components/masks.js
+../shared/constants/search_request.json

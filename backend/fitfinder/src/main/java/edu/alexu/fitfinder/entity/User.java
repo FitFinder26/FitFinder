@@ -24,6 +24,8 @@ public class User {
   private String password;
   private String email;
 
+  private String profileImageURL;
+
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<UploadedImage> images;
 

@@ -4,6 +4,7 @@ import { tokenService } from "../services/tokenService";
 
 export const useAuth = () => {
   const [token, setToken] = useState(tokenService.getToken());
+  const [user, setUser] = useState(null);
 
   const signup = async (username, email, password) => {
     const data = await authService.signup(username, email, password);
@@ -64,5 +65,13 @@ export const useAuth = () => {
     return () => clearTimeout(refreshTimer);
   }, [token]);
 
-  return { signup, login, logout, isAuthenticated, sendCode, updatePassword  };
+  return {
+    signup,
+    login,
+    logout,
+    isAuthenticated,
+    sendCode,
+    updatePassword,
+    user,
+  };
 };

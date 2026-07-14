@@ -4,7 +4,6 @@ import { HashLoader } from "react-spinners";
 import { Notifier } from "./Notifier";
 import AddRemoveMaskToggleButton from "./AddRemoveMaskToggleButton";
 import styled, { keyframes } from "styled-components";
-import { segmentationService } from "../../../shared/services/segmentationService";
 // import { bigArray } from "./masks";
 
 export default function SAMFrontend({
@@ -15,6 +14,7 @@ export default function SAMFrontend({
   setImageObj,
   setSelectedSegments,
   setIsBeingCustomized,
+  segmentationService,
 }) {
   // const [masks, setMasks] = useState(bigArray); // raw SAM masks
   const [masks, setMasks] = useState([]); // raw SAM masks
@@ -26,6 +26,7 @@ export default function SAMFrontend({
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [deselectedPoints, setDeselectedPoints] = useState([]);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [boxes, setBoxes] = useState([]);
   const [segmentationStatus, setSegmentationStatus] = useState("idle");
   const canvasRef = useRef(null);
 
@@ -41,23 +42,49 @@ export default function SAMFrontend({
     return () => canvas.removeEventListener("contextmenu", handleContextMenu);
   }, []);
 
-  // receive masks from segmentationService and close the websocket on unmount
-  useEffect(() => {
-    // Subscribe to service updates
-    const unsubscribe = segmentationService.subscribeToMasks((newMasks) => {
-      const convertedMasks = convertMasksToPoints(newMasks);
-      console.log(
-        "number of masks received in SAMFrontend:",
-        convertedMasks.length
-      );
-      setMasks(convertedMasks);
-      console.log("Masks received in SAMFrontend:", newMasks);
+  // Subscribe to service updates for segmentation
+  const unsubscribeFromSegmentation = segmentationService.subscribeToMasks(
+    (segmentation) => {
+      if (segmentation?.error) {
+        Notifier.notifyError(
+          `Segmentation failed. Please try again.\n${segmentation.error}`
+        );
+        setSegmentationStatus("idle");
+        setLoading(false);
+        return;
+      } else if (segmentation?.masks && segmentation?.boxes) {
+        const convertedMasks = convertMasksToPoints(segmentation.masks);
+        setBoxes(segmentation.boxes);
+        console.log(
+          "number of masks received in SAMFrontend Segmentation:",
+          convertedMasks.length
+        );
+        console.log(
+          "number of boxes received in SAMFrontend Segmentation:",
+          segmentation.boxes.length
+        );
+        setMasks(convertedMasks);
+      } else {
+        const convertedMasks = convertMasksToPoints(segmentation.masks);
+        console.log(
+          "number of masks received in SAMFrontend Re-segmentation:",
+          convertedMasks.length
+        );
+        setMasks(convertedMasks);
+      }
       setSegmentationStatus("completed");
       setLoading(false);
-    });
+    }
+  );
 
-    return () => unsubscribe();
-  }, []);
+  // listening to the websocket and close the websocket on unmount
+  useEffect(() => {
+    // listener is already subscribed
+    return () => {
+      // cleanup: call unsubscribe
+      unsubscribeFromSegmentation();
+    };
+  });
 
   // Load main image
   useEffect(() => {
@@ -142,12 +169,46 @@ export default function SAMFrontend({
     setBorderCanvases(pinkBorderCanvases);
   }, [masks]);
 
+  const convertMasksToPoints = (masks2DArray) => {
+    if (!Array.isArray(masks2DArray) || masks2DArray.length === 0) {
+      return [];
+    }
+
+    const height = masks2DArray.length;
+    const width = masks2DArray[0].length;
+
+    // Find the maximum mask index (e.g. 1,2,3...)
+    let maxMaskId = 0;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        maxMaskId = Math.max(maxMaskId, masks2DArray[y][x]);
+      }
+    }
+
+    // Create empty binary masks
+    const masks = Array.from({ length: maxMaskId }, () =>
+      Array.from({ length: height }, () => Array(width).fill(0))
+    );
+
+    // Fill masks
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const maskId = masks2DArray[y][x];
+        if (maskId > 0) {
+          // maskId starts from 1 → index is maskId - 1
+          masks[maskId - 1][y][x] = 1;
+        }
+      }
+    }
+
+    return masks;
+  };
+
   // Send image to backend SAM API
   const processImage = async () => {
     if (!imageURL) return;
     setSegmentationStatus("uploading");
     setLoading(true);
-
     const blob = await fetch(imageURL).then((r) => r.blob());
     const file = new File([blob], "photo.jpg", {
       type: blob.type || "image/jpeg",
@@ -158,6 +219,95 @@ export default function SAMFrontend({
 
     await segmentationService
       .segment(formData)
+      .then((response) => {
+        if (response?.error) {
+          Notifier.notifyError(`Segmentation failed: ${response.error}`);
+          setSegmentationStatus("idle");
+          setLoading(false);
+        } else setSegmentationStatus("segmenting");
+      })
+      .catch((error) => {
+        Notifier.notifyError(
+          `Segmentation failed. Please try again.\n${error}`
+        );
+        setLoading(false);
+        setSegmentationStatus("idle");
+      });
+  };
+
+  const getSelectedBoxes = () => {
+    let positiveBoxes = boxes;
+    let negativeBoxes = boxes;
+    let outputBoxes = [];
+    if (selectedPoints.length > 0) {
+      positiveBoxes.filter((box) => {
+        selectedPoints.forEach((point) => {
+          if (
+            point[0] > box[0] &&
+            point[0] < box[2] &&
+            point[1] < box[1] &&
+            point[1] > box[3]
+          ) {
+            return true;
+          }
+        });
+      });
+    }
+
+    if (deselectedPoints.length > 0) {
+      negativeBoxes.filter((box) => {
+        deselectedPoints.forEach((point) => {
+          if (
+            point[0] > box[0] &&
+            point[0] < box[2] &&
+            point[1] < box[1] &&
+            point[1] > box[3]
+          ) {
+            return true;
+          }
+        });
+      });
+    }
+
+    outputBoxes = positiveBoxes;
+    negativeBoxes.forEach((negBox) => {
+      if (!outputBoxes.includes(negBox)) outputBoxes.push(negBox);
+    });
+
+    console.log("Selected boxes:", outputBoxes);
+    return outputBoxes;
+  };
+
+  function double2DArrayToInt2DArray(arr) {
+    return arr.map(
+      (row) => row.map((value) => Math.round(value)) // or Math.floor / Math.trunc
+    );
+  }
+
+  const reSegmentImage = async () => {
+    if (!imageURL) return;
+    if (selectedPoints.length === 0 && deselectedPoints.length === 0) {
+      Notifier.notifyError(
+        "Please provide selected or deselected points for re-segmentation."
+      );
+      return;
+    }
+    setSegmentationStatus("uploading");
+    setLoading(true);
+
+    const blob = await fetch(imageURL).then((r) => r.blob());
+    const file = new File([blob], "photo.jpg", {
+      type: blob.type || "image/jpeg",
+    });
+
+    const formData = {
+      pos_points: double2DArrayToInt2DArray(selectedPoints),
+      neg_points: double2DArrayToInt2DArray(deselectedPoints),
+      boxes: getSelectedBoxes(),
+    };
+
+    await segmentationService
+      .resegment(formData)
       .then((response) => {
         if (response.ok) {
           setSegmentationStatus("segmenting");
@@ -172,7 +322,7 @@ export default function SAMFrontend({
           setLoading(false);
         }
       })
-      .catch(() => {
+      .catch((error) => {
         Notifier.notifyError(
           `Segmentation failed. Please try again.\n${error}`
         );
@@ -230,14 +380,14 @@ export default function SAMFrontend({
       if (!selected.includes(clickedIdx)) {
         setSelected([...selected, clickedIdx]);
         setSelectedSegments((prev) => [...prev, masks[clickedIdx]]);
-        setSelectedPoints((prev) => [...prev, { x, y }]);
+        setSelectedPoints((prev) => [...prev, [x, y]]);
       }
     } else {
       setSelected(selected.filter((i) => i !== clickedIdx));
       setSelectedSegments((prev) =>
         prev.filter((s) => s !== masks[clickedIdx])
       );
-      setDeselectedPoints((prev) => [...prev, { x, y }]);
+      setDeselectedPoints((prev) => [...prev, [x, y]]);
     }
   };
 
@@ -303,14 +453,14 @@ export default function SAMFrontend({
     });
 
     // 5. Draw points
-    selectedPoints.forEach(({ x, y }) => {
+    selectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
       ctx.arc(x, y, 12, 0, 2 * Math.PI);
       ctx.fillStyle = "rgba(255,105,180,1)";
       ctx.fill();
     });
 
-    deselectedPoints.forEach(({ x, y }) => {
+    deselectedPoints.forEach(([x, y]) => {
       ctx.beginPath();
       ctx.arc(x, y, 12, 0, 2 * Math.PI);
       ctx.fillStyle = "rgba(0,150,255,1)";
@@ -395,11 +545,19 @@ export default function SAMFrontend({
         </Overlay>
       )}
       <div style={{ marginTop: 10 }}>
-        <MagicButton
-          processImage={processImage}
-          isDisabled={!imageURL || loading}
-          name={masks.length === 0 ? "Segment" : "Re-segment"}
-        />
+        {masks.length === 0 ? (
+          <MagicButton
+            processImage={processImage}
+            isDisabled={!imageURL || loading}
+            name={"Segment"}
+          />
+        ) : (
+          <MagicButton
+            processImage={reSegmentImage}
+            isDisabled={!imageURL || loading}
+            name={"Re-segment"}
+          />
+        )}
         {selected.length !== 0 && (
           <Button
             onClick={sendSelected}
@@ -450,7 +608,7 @@ const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #f994ac;
+  color: black;
 `;
 
 const Button = styled.button`
@@ -476,7 +634,9 @@ const StatusLoader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   background: linear-gradient(135deg, #e0e7ff 0%, #f3e7e9 50%, #e0e7ff 100%);
+  opacity: 75%;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 1rem;

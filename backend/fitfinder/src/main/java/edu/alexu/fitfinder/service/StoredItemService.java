@@ -48,4 +48,40 @@ public class StoredItemService {
               rs.getString("title"));
         });
   }
+
+    public List<ItemDTO> getRandomProducts(List<Long> vectorIds) {
+
+        String sql =
+                """
+                SELECT DISTINCT
+                    si.item_id,
+                    si.category,
+                    si.currency,
+                    si.description,
+                    si.imageurl,
+                    si.item_weburl,
+                    si.price,
+                    si.title
+                FROM STORED_ITEMS si
+                WHERE si.item_id IN (:vectorIds)
+                """;
+
+        MapSqlParameterSource params = new MapSqlParameterSource("vectorIds", vectorIds);
+
+        return namedJdbcTemplate.query(
+                sql,
+                params,
+                (rs, rowNum) -> {
+                    return new ItemDTO(
+                            rs.getLong("item_id"),
+                            rs.getString("category"),
+                            rs.getString("currency"),
+                            rs.getString("description"),
+                            rs.getString("imageurl"),
+                            rs.getString("item_weburl"),
+                            rs.getFloat("price"),
+                            rs.getString("title"));
+                });
+    }
+
 }

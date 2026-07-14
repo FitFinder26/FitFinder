@@ -2,7 +2,8 @@ import SAMFrontend from "./SAMFrontend";
 import { Sheet } from "react-modal-sheet";
 import CustomizeSegment from "./CustomizeSegment";
 import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { segmentationService } from "../../../shared/services/segmentationService";
 
 export default function ImageEditor({
   imageUploaded,
@@ -14,6 +15,12 @@ export default function ImageEditor({
   const [imageObj, setImageObj] = useState(null);
   const [selectedSegments, setSelectedSegments] = useState([]);
   const [isBeingCustomized, setIsBeingCustomized] = useState(false);
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    if (scrollRef.current)
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+  }, [loading]);
 
   useEffect(() => {
     setSelectedSegments([]);
@@ -42,13 +49,15 @@ export default function ImageEditor({
             borderTopRightRadius: "2rem",
           }}
         />
-        <Sheet.Content>
+        <Sheet.Content ref={scrollRef}>
           {isBeingCustomized ? (
             <CustomizeSegment
               imageObj={imageObj}
               setIsBeingCustomized={setIsBeingCustomized}
               selectedSegments={selectedSegments}
               setImageUploaded={setImageUploaded}
+              segmentationService={segmentationService}
+              handleCloseSegmentationSheet={handleCloseSegmentationSheet}
             />
           ) : (
             <SAMFrontend
@@ -59,6 +68,7 @@ export default function ImageEditor({
               setImageObj={setImageObj}
               setSelectedSegments={setSelectedSegments}
               setIsBeingCustomized={setIsBeingCustomized}
+              segmentationService={segmentationService}
             />
           )}
           <Toaster />
