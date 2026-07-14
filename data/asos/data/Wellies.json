@@ -1,0 +1,25 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design-wide-fit/asos-design-wide-fit-gadget-chunky-chelsea-rain-boots-in-black/prd/202466864",
+    "id": 202466864,
+    "name": "ASOS DESIGN Wide Fit Gadget chunky chelsea rain boots in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN Wide Fit",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Wellies",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-wide-fit-gadget-chunky-chelsea-rain-boots-in-black/202466864-1-black",
+      "https://images.asos-media.com/products/asos-design-wide-fit-gadget-chunky-chelsea-rain-boots-in-black/202466864-2",
+      "https://images.asos-media.com/products/asos-design-wide-fit-gadget-chunky-chelsea-rain-boots-in-black/202466864-3",
+      "https://images.asos-media.com/products/asos-design-wide-fit-gadget-chunky-chelsea-rain-boots-in-black/202466864-4"
+    ],
+    "currentPrice": 32.37,
+    "previousPrice": 41.06,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": []
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-pack-of-3-satin-scrunchies-in-ivory/prd/208220443",
+    "id": 208220443,
+    "name": "ASOS DESIGN pack of 3 satin scrunchies in ivory",
+    "gender": "Women",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Hairbands",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-pack-of-3-satin-scrunchies-in-ivory/208220443-1-ivory",
+      "https://images.asos-media.com/products/asos-design-pack-of-3-satin-scrunchies-in-ivory/208220443-2",
+      "https://images.asos-media.com/products/asos-design-pack-of-3-satin-scrunchies-in-ivory/208220443-3"
+    ],
+    "alternative": [],
+    "currentPrice": 11.29,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-linen-look-short-co-ord-in-fruit-print/prd/207923879",
+    "id": 207923879,
+    "name": "ASOS DESIGN linen look short co-ord in fruit print",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Board Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-ord-in-fruit-print/207923879-1-fruitprint",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-ord-in-fruit-print/207923879-2",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-ord-in-fruit-print/207923879-3",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-ord-in-fruit-print/207923879-4"
+    ],
+    "currentPrice": 20.53,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-linen-look-shorts-co-ord-in-postcard-print/prd/207923891",
+    "id": 207923891,
+    "name": "ASOS DESIGN linen look shorts co-ord in postcard print",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Board Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-linen-look-shorts-co-ord-in-postcard-print/207923891-1-postcardprint",
+      "https://images.asos-media.com/products/asos-design-linen-look-shorts-co-ord-in-postcard-print/207923891-2",
+      "https://images.asos-media.com/products/asos-design-linen-look-shorts-co-ord-in-postcard-print/207923891-3",
+      "https://images.asos-media.com/products/asos-design-linen-look-shorts-co-ord-in-postcard-print/207923891-4"
+    ],
+    "currentPrice": 24.48,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-linen-look-short-co-rd-in-pink-shell-print/prd/207923897",
+    "id": 207923897,
+    "name": "ASOS DESIGN linen look short co-rd in pink shell print",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Board Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-rd-in-pink-shell-print/207923897-1-shellprint",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-rd-in-pink-shell-print/207923897-2",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-rd-in-pink-shell-print/207923897-3",
+      "https://images.asos-media.com/products/asos-design-linen-look-short-co-rd-in-pink-shell-print/207923897-4"
+    ],
+    "currentPrice": 13.42,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  }
+]

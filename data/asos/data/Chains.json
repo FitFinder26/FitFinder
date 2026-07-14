@@ -1,0 +1,75 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-link-chain-jeans-chain-in-silver/prd/210137408",
+    "id": 210137408,
+    "name": "ASOS DESIGN link chain jeans chain in silver",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chains",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-link-chain-jeans-chain-in-silver/210137408-1-silver",
+      "https://images.asos-media.com/products/asos-design-link-chain-jeans-chain-in-silver/210137408-2",
+      "https://images.asos-media.com/products/asos-design-link-chain-jeans-chain-in-silver/210137408-3"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 210137408,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN link chain jeans chain in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-link-chain-jeans-chain-in-silver/210137408-1-silver",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208118503,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN chunky jeans chain in silver   ",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-chunky-jeans-chain-in-silver/208118503-1-silver",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208920288,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN molten link jeans chain in silver ",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-molten-link-jeans-chain-in-silver/208920288-1-silver",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 209904553,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN crystal star and pearl jeans chain",
+            "description": "GOLD",
+            "imageUrl": "images.asos-media.com/products/asos-design-crystal-star-and-pearl-jeans-chain/209904553-1-gold",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 210393927,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pointed oval link jeans chain in silver",
+            "description": "SILVER",
+            "imageUrl": "images.asos-media.com/products/asos-design-pointed-oval-link-jeans-chain-in-silver/210393927-1-silver",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 27,
+    "previousPrice": 27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]

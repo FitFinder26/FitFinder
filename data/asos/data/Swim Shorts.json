@@ -1,0 +1,2485 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-sage/prd/205375116",
+    "id": 205375116,
+    "name": "ASOS DESIGN swim shorts in mid length in sage",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/205375116-1-sage",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/205375116-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/205375116-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/205375116-4"
+    ],
+    "currentPrice": 14.65,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-burgundy/prd/205375232",
+    "id": 205375232,
+    "name": "ASOS DESIGN swim shorts in mid length in burgundy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/205375232-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/205375232-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/205375232-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/205375232-4"
+    ],
+    "currentPrice": 17.69,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-light-brown/prd/207350380",
+    "id": 207350380,
+    "name": "ASOS DESIGN swim shorts in short length in light brown",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-4"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-grey/prd/207350399",
+    "id": 207350399,
+    "name": "ASOS DESIGN swim shorts in mid length in grey",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-4"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-dark-green/prd/207350415",
+    "id": 207350415,
+    "name": "ASOS DESIGN swim shorts in mid length in dark green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-green/207350415-1-darkgreen",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-green/207350415-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-green/207350415-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-green/207350415-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-dark-brown/prd/207350425",
+    "id": 207350425,
+    "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-4"
+    ],
+    "currentPrice": 20.53,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-dark-brown/prd/207350443",
+    "id": 207350443,
+    "name": "ASOS DESIGN swim shorts in short length in dark brown",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-4"
+    ],
+    "currentPrice": 20.21,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-dark-stone/prd/207350469",
+    "id": 207350469,
+    "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-4"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-burgundy/prd/207350479",
+    "id": 207350479,
+    "name": "ASOS DESIGN swim shorts in short length in burgundy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-4"
+    ],
+    "currentPrice": 20.53,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-light-stone/prd/207350496",
+    "id": 207350496,
+    "name": "ASOS DESIGN swim shorts in mid length in light stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-4"
+    ],
+    "currentPrice": 21.48,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-khaki/prd/207350509",
+    "id": 207350509,
+    "name": "ASOS DESIGN swim shorts in short length in khaki",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-4"
+    ],
+    "currentPrice": 15.16,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-light-stone/prd/207350527",
+    "id": 207350527,
+    "name": "ASOS DESIGN swim shorts in short length in light stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-4"
+    ],
+    "currentPrice": 21.48,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-dark-stone/prd/207350586",
+    "id": 207350586,
+    "name": "ASOS DESIGN swim shorts in short length in dark stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-4"
+    ],
+    "currentPrice": 15.16,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350380,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light brown",
+            "description": "LIGHT BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-brown/207350380-1-lightbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350443,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-brown/207350443-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350479,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-burgundy/207350479-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350509,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-khaki/207350509-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350527,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-light-stone/207350527-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350586,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-dark-stone/207350586-1-darkstone",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-with-floral-print-in-green/prd/207372106",
+    "id": 207372106,
+    "name": "ASOS DESIGN swim shorts in short length with floral print in green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-with-floral-print-in-green/207372106-1-lightgreen",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-with-floral-print-in-green/207372106-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-with-floral-print-in-green/207372106-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-with-floral-print-in-green/207372106-4"
+    ],
+    "currentPrice": 21.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/prd/207372235",
+    "id": 207372235,
+    "name": "ASOS DESIGN seersucker swim shorts in super short length in red stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/207372235-1-redwhite",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/207372235-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/207372235-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/207372235-4"
+    ],
+    "currentPrice": 22.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207372235,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in super short length in red stripe",
+            "description": "RED/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-super-short-length-in-red-stripe/207372235-1-redwhite",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207855766,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim short in super short length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-short-in-super-short-length-in-pink/207855766-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-super-short-length-in-stone/prd/207398110",
+    "id": 207398110,
+    "name": "ASOS DESIGN swim shorts in super short length in stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-stone/207398110-1-darkstone",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-stone/207398110-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-stone/207398110-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-stone/207398110-4"
+    ],
+    "currentPrice": 22.74,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-with-embroidery-in-green/prd/207398195",
+    "id": 207398195,
+    "name": "ASOS DESIGN swim shorts in mid length with embroidery in green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-with-embroidery-in-green/207398195-1-green",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-with-embroidery-in-green/207398195-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-with-embroidery-in-green/207398195-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-with-embroidery-in-green/207398195-4"
+    ],
+    "currentPrice": 24.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-super-short-length-in-black/prd/207398219",
+    "id": 207398219,
+    "name": "ASOS DESIGN swim shorts in super short length in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-black/207398219-1-black",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-black/207398219-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-black/207398219-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-black/207398219-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 4.3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-super-short-length-in-sage/prd/207398283",
+    "id": 207398283,
+    "name": "ASOS DESIGN swim shorts in super short length in sage ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-sage/207398283-1-sage",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-sage/207398283-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-sage/207398283-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-super-short-length-in-sage/207398283-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-brown-stripe/prd/207587885",
+    "id": 207587885,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in brown stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-brown-stripe/207587885-1-brown",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-brown-stripe/207587885-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-brown-stripe/207587885-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-brown-stripe/207587885-4"
+    ],
+    "currentPrice": 24.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-blue/prd/207587895",
+    "id": 207587895,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-4"
+    ],
+    "currentPrice": 27.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/prd/207587954",
+    "id": 207587954,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-4"
+    ],
+    "currentPrice": 25.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-short-in-mid-length-with-ornate-floral-in-blue/prd/207588588",
+    "id": 207588588,
+    "name": "ASOS DESIGN swim short in mid length with ornate floral in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-short-in-mid-length-with-ornate-floral-in-blue/207588588-1-blue",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-mid-length-with-ornate-floral-in-blue/207588588-2",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-mid-length-with-ornate-floral-in-blue/207588588-3",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-mid-length-with-ornate-floral-in-blue/207588588-4"
+    ],
+    "currentPrice": 25.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-black/prd/207589632",
+    "id": 207589632,
+    "name": "ASOS DESIGN swim shorts in mid length in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-1-black",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207589632,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207589642,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696462,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696478,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in sage",
+            "description": "SAGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-1-sage",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-navy/prd/207589642",
+    "id": 207589642,
+    "name": "ASOS DESIGN swim shorts in mid length in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-1-navy",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207589632,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207589642,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207696462,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696478,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in sage",
+            "description": "SAGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-1-sage",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-black/prd/207589652",
+    "id": 207589652,
+    "name": "ASOS DESIGN swim shorts in short length in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-1-black",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207582689,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in white",
+            "description": "WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-1-white",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207589652,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207882786,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-co-ord-swim-shorts-in-short-length-in-burgundy-stripe/prd/207607984",
+    "id": 207607984,
+    "name": "ASOS DESIGN co-ord swim shorts in short length in burgundy stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-burgundy-stripe/207607984-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-burgundy-stripe/207607984-2",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-burgundy-stripe/207607984-3",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-burgundy-stripe/207607984-4"
+    ],
+    "currentPrice": 24.48,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-co-ord-swim-shorts-in-short-length-in-blue-stripe/prd/207607985",
+    "id": 207607985,
+    "name": "ASOS DESIGN co-ord swim shorts in short length in blue stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-blue-stripe/207607985-1-blue",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-blue-stripe/207607985-2",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-blue-stripe/207607985-3",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-in-blue-stripe/207607985-4"
+    ],
+    "currentPrice": 22.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-short-in-super-short-length-in-navy-and-white-pin-stripe/prd/207654443",
+    "id": 207654443,
+    "name": "ASOS DESIGN swim short in super short length in navy and white pin stripe ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-short-in-super-short-length-in-navy-and-white-pin-stripe/207654443-1-navy",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-super-short-length-in-navy-and-white-pin-stripe/207654443-2",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-super-short-length-in-navy-and-white-pin-stripe/207654443-3",
+      "https://images.asos-media.com/products/asos-design-swim-short-in-super-short-length-in-navy-and-white-pin-stripe/207654443-4"
+    ],
+    "currentPrice": 17.45,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/prd/207694912",
+    "id": 207694912,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-4"
+    ],
+    "currentPrice": 22.8,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-purple/prd/207694922",
+    "id": 207694922,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-4"
+    ],
+    "currentPrice": 18.79,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-khaki/prd/207696462",
+    "id": 207696462,
+    "name": "ASOS DESIGN swim shorts in mid length in khaki",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-1-khaki",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 4.7,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207589632,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207589642,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696462,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-1-khaki",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207696478,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in sage",
+            "description": "SAGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-1-sage",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-burgundy/prd/207696470",
+    "id": 207696470,
+    "name": "ASOS DESIGN swim shorts in mid length in burgundy ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/207696470-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/207696470-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/207696470-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-burgundy/207696470-4"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 2.7,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-sage/prd/207696478",
+    "id": 207696478,
+    "name": "ASOS DESIGN swim shorts in mid length in sage",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-1-sage",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-4"
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207589632,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-black/207589632-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207589642,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-navy/207589642-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696462,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-khaki/207696462-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207696478,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in sage",
+            "description": "SAGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-sage/207696478-1-sage",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-beige/prd/207825437",
+    "id": 207825437,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-4"
+    ],
+    "currentPrice": 27.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-shorts-in-short-length-in-green/prd/207825438",
+    "id": 207825438,
+    "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-4"
+    ],
+    "currentPrice": 25.5,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207587895,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-blue/207587895-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587954,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in burgundy",
+            "description": "BURGUNDY",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-burgundy/207587954-1-burgundy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694922,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in purple ",
+            "description": "PURPLE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-purple/207694922-1-purple",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207694912,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in yellow ",
+            "description": "YELLOW",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-yellow/207694912-1-yellow",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825437,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-beige/207825437-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207825438,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN seersucker swim shorts in short length in green",
+            "description": "GREEN",
+            "imageUrl": "images.asos-media.com/products/asos-design-seersucker-swim-shorts-in-short-length-in-green/207825438-1-green",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-co-ord-swim-shorts-in-short-length-with-border-print-in-white/prd/208000903",
+    "id": 208000903,
+    "name": "ASOS DESIGN co-ord swim shorts in short length with border print in white",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-with-border-print-in-white/208000903-1-cream",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-with-border-print-in-white/208000903-2",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-with-border-print-in-white/208000903-3",
+      "https://images.asos-media.com/products/asos-design-co-ord-swim-shorts-in-short-length-with-border-print-in-white/208000903-4"
+    ],
+    "currentPrice": 18.0,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-pink/prd/207582720",
+    "id": 207582720,
+    "name": "ASOS DESIGN swim shorts in mid length in pink",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 13.9,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-mid-blue/prd/207582740",
+    "id": 207582740,
+    "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 22.74,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-mid-length-in-grey/prd/207584498",
+    "id": 207584498,
+    "name": "ASOS DESIGN swim shorts in mid length in grey",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207350399,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207350399-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350425,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark brown",
+            "description": "DARK BROWN",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-brown/207350425-1-darkbrown",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350469,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in dark stone",
+            "description": "DARK STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-dark-stone/207350469-1-darkstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207350496,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in light stone",
+            "description": "LIGHT STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-light-stone/207350496-1-lightstone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582720,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in pink",
+            "description": "PINK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-pink/207582720-1-pink",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207582740,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in mid blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-mid-blue/207582740-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207584498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in mid length in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-mid-length-in-grey/207584498-1-grey",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-seersucker-swim-short-in-super-short-length-in-pink/prd/207855766",
+    "id": 207855766,
+    "name": "ASOS DESIGN seersucker swim short in super short length in pink",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-short-in-super-short-length-in-pink/207855766-1-pink",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-short-in-super-short-length-in-pink/207855766-2",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-short-in-super-short-length-in-pink/207855766-3",
+      "https://images.asos-media.com/products/asos-design-seersucker-swim-short-in-super-short-length-in-pink/207855766-4"
+    ],
+    "alternative": [],
+    "currentPrice": 21.3,
+    "previousPrice": 30.0,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-white/prd/207582689",
+    "id": 207582689,
+    "name": "ASOS DESIGN swim shorts in short length in white",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-1-white",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207582689,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in white",
+            "description": "WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-1-white",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207589652,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207882786,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 26,
+    "previousPrice": 26,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-shorts-in-short-length-in-navy/prd/207882786",
+    "id": 207882786,
+    "name": "ASOS DESIGN swim shorts in short length in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Shorts",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-1-navy",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-2",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-3",
+      "https://images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207582689,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in white",
+            "description": "WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-white/207582689-1-white",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207589652,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-black/207589652-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207882786,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim shorts in short length in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-shorts-in-short-length-in-navy/207882786-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 25.27,
+    "currency": "USD",
+    "rating": 4.7,
+    "provider": "asos"
+  }
+]

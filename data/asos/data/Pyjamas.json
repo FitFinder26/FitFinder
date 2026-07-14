@@ -1,0 +1,96 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-oversized-pyjama-set-in-blue/prd/206023085",
+    "id": 206023085,
+    "name": "ASOS DESIGN oversized pyjama set in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Pyjamas",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-set-in-blue/206023085-1-navy",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-set-in-blue/206023085-2",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-set-in-blue/206023085-3",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-set-in-blue/206023085-4"
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206023085,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pyjama set with oversized t-shirt and shorts in jersey in blue - MBLUE",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-pyjama-set-with-oversized-t-shirt-and-shorts-in-jersey-in-blue-mblue/206023085-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 206026751,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pyjama set with oversized t-shirt and shorts in jersey in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-pyjama-set-with-oversized-t-shirt-and-shorts-in-jersey-in-black/206026751-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-oversized-pyjama-sets-in-black/prd/206026751",
+    "id": 206026751,
+    "name": "ASOS DESIGN oversized pyjama sets in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Pyjamas",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-sets-in-black/206026751-1-black",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-sets-in-black/206026751-2",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-sets-in-black/206026751-3",
+      "https://images.asos-media.com/products/asos-design-oversized-pyjama-sets-in-black/206026751-4"
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 206023085,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pyjama set with oversized t-shirt and shorts in jersey in blue - MBLUE",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-pyjama-set-with-oversized-t-shirt-and-shorts-in-jersey-in-blue-mblue/206023085-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 206026751,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN pyjama set with oversized t-shirt and shorts in jersey in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-pyjama-set-with-oversized-t-shirt-and-shorts-in-jersey-in-black/206026751-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  }
+]

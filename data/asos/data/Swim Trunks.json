@@ -1,0 +1,693 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-blue/prd/207372117",
+    "id": 207372117,
+    "name": "ASOS DESIGN swim briefs in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-4"
+    ],
+    "currentPrice": 15.4,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-navy/prd/207372205",
+    "id": 207372205,
+    "name": "ASOS DESIGN swim briefs in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-4"
+    ],
+    "currentPrice": 11.29,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-red/prd/207372255",
+    "id": 207372255,
+    "name": "ASOS DESIGN swim briefs in red",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-4"
+    ],
+    "currentPrice": 14.37,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-black/prd/207372275",
+    "id": 207372275,
+    "name": "ASOS DESIGN swim briefs in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-4"
+    ],
+    "currentPrice": 15.4,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-green/prd/207587875",
+    "id": 207587875,
+    "name": "ASOS DESIGN swim briefs in green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green/207587875-1-green",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green/207587875-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green/207587875-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green/207587875-4"
+    ],
+    "currentPrice": 14.37,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-green/prd/207587914",
+    "id": 207587914,
+    "name": "ASOS DESIGN textured swim brief in green",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-green/207587914-1-green",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-green/207587914-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-green/207587914-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-green/207587914-4"
+    ],
+    "currentPrice": 13.42,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-green-and-white-stripe/prd/207587915",
+    "id": 207587915,
+    "name": "ASOS DESIGN swim briefs in green and white stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green-and-white-stripe/207587915-1-greenwhite",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green-and-white-stripe/207587915-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green-and-white-stripe/207587915-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-green-and-white-stripe/207587915-4"
+    ],
+    "currentPrice": 13.03,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-brown/prd/207587934",
+    "id": 207587934,
+    "name": "ASOS DESIGN textured swim brief in brown",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207587934-1-brown",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207587934-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207587934-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207587934-4"
+    ],
+    "currentPrice": 8.05,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-blue/prd/207587935",
+    "id": 207587935,
+    "name": "ASOS DESIGN swim briefs in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-4"
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-burgundy/prd/207654413",
+    "id": 207654413,
+    "name": "ASOS DESIGN textured swim brief in burgundy ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207654413-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207654413-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207654413-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207654413-4"
+    ],
+    "currentPrice": 19.06,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-brief-in-burgundy-and-white-stripe/prd/207825439",
+    "id": 207825439,
+    "name": "ASOS DESIGN swim brief in burgundy and white stripe",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-burgundy-and-white-stripe/207825439-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-burgundy-and-white-stripe/207825439-2",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-burgundy-and-white-stripe/207825439-3",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-burgundy-and-white-stripe/207825439-4"
+    ],
+    "currentPrice": 16.58,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-charcoal/prd/207825467",
+    "id": 207825467,
+    "name": "ASOS DESIGN textured swim brief in charcoal",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-charcoal/207825467-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-charcoal/207825467-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-charcoal/207825467-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-charcoal/207825467-4"
+    ],
+    "currentPrice": 13.42,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-brief-in-green-and-white-geo-print/prd/207825468",
+    "id": 207825468,
+    "name": "ASOS DESIGN swim brief in green and white geo print",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-green-and-white-geo-print/207825468-1-greenwhite",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-green-and-white-geo-print/207825468-2",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-green-and-white-geo-print/207825468-3",
+      "https://images.asos-media.com/products/asos-design-swim-brief-in-green-and-white-geo-print/207825468-4"
+    ],
+    "currentPrice": 18.95,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-stretch-trunk-in-navy/prd/207825469",
+    "id": 207825469,
+    "name": "ASOS DESIGN stretch trunk in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-stretch-trunk-in-navy/207825469-1-navy",
+      "https://images.asos-media.com/products/asos-design-stretch-trunk-in-navy/207825469-2",
+      "https://images.asos-media.com/products/asos-design-stretch-trunk-in-navy/207825469-3",
+      "https://images.asos-media.com/products/asos-design-stretch-trunk-in-navy/207825469-4"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-blue/prd/207825488",
+    "id": 207825488,
+    "name": "ASOS DESIGN textured swim brief in blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-blue/207825488-1-blue",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-blue/207825488-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-blue/207825488-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-blue/207825488-4"
+    ],
+    "currentPrice": 14.76,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-burgundy/prd/207825512",
+    "id": 207825512,
+    "name": "ASOS DESIGN textured swim brief in burgundy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207825512-1-burgundy",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207825512-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207825512-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-burgundy/207825512-4"
+    ],
+    "currentPrice": 20.13,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-textured-swim-brief-in-brown/prd/207825521",
+    "id": 207825521,
+    "name": "ASOS DESIGN textured swim brief in brown",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Trunks",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207825521-1-brown",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207825521-2",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207825521-3",
+      "https://images.asos-media.com/products/asos-design-textured-swim-brief-in-brown/207825521-4"
+    ],
+    "currentPrice": 14.76,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  }
+]

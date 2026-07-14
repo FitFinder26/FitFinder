@@ -1,0 +1,287 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-halloween-legging-with-high-waist-in-matte-sheen-in-orange/prd/23012512",
+    "id": 23012512,
+    "name": " ASOS DESIGN Halloween legging with high waist in matte sheen in orange",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-halloween-legging-with-high-waist-in-matte-sheen-in-orange/23012512-1-orange",
+      "https://images.asos-media.com/products/asos-design-halloween-legging-with-high-waist-in-matte-sheen-in-orange/23012512-2",
+      "https://images.asos-media.com/products/asos-design-halloween-legging-with-high-waist-in-matte-sheen-in-orange/23012512-3",
+      "https://images.asos-media.com/products/asos-design-halloween-legging-with-high-waist-in-matte-sheen-in-orange/23012512-4"
+    ],
+    "currentPrice": 8.69,
+    "previousPrice": 26.84,
+    "currency": "USD",
+    "rating": 3.3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-maternity/asos-design-maternity-over-the-bump-premium-supersoft-leggings-in-cotton-modal/prd/203581870",
+    "id": 203581870,
+    "name": "ASOS DESIGN Maternity over the bump premium supersoft leggings in cotton modal",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Maternity",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-premium-supersoft-leggings-in-cotton-modal/203581870-1-black",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-premium-supersoft-leggings-in-cotton-modal/203581870-2",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-premium-supersoft-leggings-in-cotton-modal/203581870-3",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-premium-supersoft-leggings-in-cotton-modal/203581870-4"
+    ],
+    "currentPrice": 24,
+    "previousPrice": 24,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-tall/asos-design-tall-leggings-in-black/prd/207148789",
+    "id": 207148789,
+    "name": "ASOS DESIGN Tall leggings in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Tall",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-1-black",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-2",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-3",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-4",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-5"
+    ],
+    "currentPrice": 21,
+    "previousPrice": 21,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203401030,
+            "brandName": "ASOS Tall",
+            "name": "ASOS DESIGN Tall leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207148789,
+            "brandName": "ASOS Tall",
+            "name": "ASOS DESIGN Tall leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-curve/asos-design-curve-supersoft-leggings-in-cotton-modal/prd/207151517",
+    "id": 207151517,
+    "name": "ASOS DESIGN Curve supersoft leggings in cotton modal",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Curve",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-curve-supersoft-leggings-in-cotton-modal/207151517-1-black",
+      "https://images.asos-media.com/products/asos-design-curve-supersoft-leggings-in-cotton-modal/207151517-2",
+      "https://images.asos-media.com/products/asos-design-curve-supersoft-leggings-in-cotton-modal/207151517-3",
+      "https://images.asos-media.com/products/asos-design-curve-supersoft-leggings-in-cotton-modal/207151517-4",
+      "https://images.asos-media.com/products/asos-design-curve-supersoft-leggings-in-cotton-modal/207151517-5"
+    ],
+    "currentPrice": 11.84,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-curve/asos-design-curve-2-pack-leggings-in-black/prd/207247504",
+    "id": 207247504,
+    "name": "ASOS DESIGN Curve 2 pack leggings in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Curve",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-1-black",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-2",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-3",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-4",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-5"
+    ],
+    "currentPrice": 28.42,
+    "previousPrice": 33.16,
+    "currency": "USD",
+    "rating": 1.8,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207247504,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve 2 pack leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 209440737,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve 2 pack leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-maternity/asos-design-maternity-over-the-bump-leggings-in-black/prd/207986936",
+    "id": 207986936,
+    "name": "ASOS DESIGN Maternity over the bump leggings in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Maternity",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-leggings-in-black/207986936-1-black",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-leggings-in-black/207986936-2",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-leggings-in-black/207986936-3",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-leggings-in-black/207986936-4",
+      "https://images.asos-media.com/products/asos-design-maternity-over-the-bump-leggings-in-black/207986936-5"
+    ],
+    "currentPrice": 17.37,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 2,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-tall/asos-design-tall-leggings-in-black/prd/203401030",
+    "id": 203401030,
+    "name": "ASOS DESIGN Tall leggings in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Tall",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-1-black",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-2",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-3",
+      "https://images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-4"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 203401030,
+            "brandName": "ASOS Tall",
+            "name": "ASOS DESIGN Tall leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-tall-leggings-in-black/203401030-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 207148789,
+            "brandName": "ASOS Tall",
+            "name": "ASOS DESIGN Tall leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-tall-leggings-in-black/207148789-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 18.48,
+    "previousPrice": 20.53,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-curve/asos-design-curve-2-pack-leggings-in-black/prd/209440737",
+    "id": 209440737,
+    "name": "ASOS DESIGN Curve 2 pack leggings in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS Curve",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Leggings",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-1-black",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-2",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-3",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-4",
+      "https://images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207247504,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve 2 pack leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/207247504-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 209440737,
+            "brandName": "ASOS Curve",
+            "name": "ASOS DESIGN Curve 2 pack leggings in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-curve-2-pack-leggings-in-black/209440737-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 34,
+    "previousPrice": 34,
+    "currency": "USD",
+    "rating": 2.5,
+    "provider": "asos"
+  }
+]

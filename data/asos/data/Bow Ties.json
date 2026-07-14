@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-satin-bow-tie-in-black/prd/202842993",
+    "id": 202842993,
+    "name": "ASOS DESIGN satin bow tie in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": true,
+    "isDiscontinued": false,
+    "productType": "Bow Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-satin-bow-tie-in-black/202842993-1-black",
+      "https://images.asos-media.com/products/asos-design-satin-bow-tie-in-black/202842993-2",
+      "https://images.asos-media.com/products/asos-design-satin-bow-tie-in-black/202842993-3"
+    ],
+    "currentPrice": 17,
+    "previousPrice": 17,
+    "currency": "USD",
+    "rating": 4.7,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-velvet-bow-tie-with-satin-detail-in-black/prd/207305995",
+    "id": 207305995,
+    "name": "ASOS DESIGN velvet bow tie with satin detail in black",
+    "gender": "Men",
+    "isNoSize": true,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Bow Ties",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-velvet-bow-tie-with-satin-detail-in-black/207305995-1-black",
+      "https://images.asos-media.com/products/asos-design-velvet-bow-tie-with-satin-detail-in-black/207305995-2",
+      "https://images.asos-media.com/products/asos-design-velvet-bow-tie-with-satin-detail-in-black/207305995-3",
+      "https://images.asos-media.com/products/asos-design-velvet-bow-tie-with-satin-detail-in-black/207305995-4"
+    ],
+    "currentPrice": null,
+    "previousPrice": null,
+    "currency": null,
+    "rating": 5,
+    "provider": "asos",
+    "alternative": []
+  }
+]

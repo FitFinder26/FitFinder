@@ -1,0 +1,25 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-arm-cuff-with-wraparound-design-with-ball-ends-in-gold-tone/prd/206490916",
+    "id": 206490916,
+    "name": "ASOS DESIGN arm cuff with wraparound design with ball ends in gold tone",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Arm Cuffs",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-arm-cuff-with-wraparound-design-with-ball-ends-in-gold-tone/206490916-1-gold",
+      "https://images.asos-media.com/products/asos-design-arm-cuff-with-wraparound-design-with-ball-ends-in-gold-tone/206490916-2",
+      "https://images.asos-media.com/products/asos-design-arm-cuff-with-wraparound-design-with-ball-ends-in-gold-tone/206490916-3",
+      "https://images.asos-media.com/products/asos-design-arm-cuff-with-wraparound-design-with-ball-ends-in-gold-tone/206490916-4"
+    ],
+    "currentPrice": 13.5,
+    "previousPrice": 13.5,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  }
+]

@@ -1,0 +1,1640 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-cigarette-fit-chinos-in-washed-brown-and-black-save/prd/200458164",
+    "id": 200458164,
+    "name": "ASOS DESIGN 2 pack cigarette fit chinos in washed brown and black save",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-cigarette-fit-chinos-in-washed-brown-and-black-save/200458164-1-multi",
+      "https://images.asos-media.com/products/asos-design-2-pack-cigarette-fit-chinos-in-washed-brown-and-black-save/200458164-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-cigarette-fit-chinos-in-washed-brown-and-black-save/200458164-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-cigarette-fit-chinos-in-washed-brown-and-black-save/200458164-4"
+    ],
+    "currentPrice": 56.37,
+    "previousPrice": 80.53,
+    "currency": "USD",
+    "rating": 3.5,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-beige/prd/204802741",
+    "id": 204802741,
+    "name": "ASOS DESIGN skinny chinos in beige ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/204802741-1-beige",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/204802741-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/204802741-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/204802741-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/204802741-5"
+    ],
+    "currentPrice": 29.84,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-khaki/prd/204802770",
+    "id": 204802770,
+    "name": "ASOS DESIGN skinny chinos in khaki",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-5"
+    ],
+    "currentPrice": 34.11,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tapered-chinos-in-navy/prd/204807902",
+    "id": 204807902,
+    "name": "ASOS DESIGN tapered chinos in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-navy/204807902-1-navy",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-navy/204807902-2",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-navy/204807902-3",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-navy/204807902-4",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-navy/204807902-5"
+    ],
+    "currentPrice": 22.6,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.6,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-chinos-in-dark-khaki/prd/204808094",
+    "id": 204808094,
+    "name": "ASOS DESIGN slim chinos in dark khaki",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-1-khaki",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-2",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-3",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-4",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-5"
+    ],
+    "currentPrice": 29.84,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808094,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in dark khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-1-khaki",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204808388,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-navy/204808388-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204834999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204963879,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-1-stone",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-black/prd/204808162",
+    "id": 204808162,
+    "name": "ASOS DESIGN skinny chinos in black ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/204808162-1-black",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/204808162-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/204808162-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/204808162-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/204808162-5"
+    ],
+    "currentPrice": 34.11,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.1,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/prd/204808457",
+    "id": 204808457,
+    "name": "ASOS DESIGN tapered pull on trouser with elasticated waist  in black ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-1-black",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-2",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-3",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-4",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-5"
+    ],
+    "currentPrice": 23.45,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.7,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808457,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered pull on trouser with elasticated waist  in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204808446,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered pull on trouser with elasticated waist in grey ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-1-charcoal",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-charcoal/prd/204830672",
+    "id": 204830672,
+    "name": "ASOS DESIGN skinny chinos in charcoal ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-5"
+    ],
+    "currentPrice": 34.11,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.9,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-navy/prd/204830700",
+    "id": 204830700,
+    "name": "ASOS DESIGN skinny chinos in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-5"
+    ],
+    "currentPrice": 34.11,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-chinos-in-black/prd/204834999",
+    "id": 204834999,
+    "name": "ASOS DESIGN slim chinos in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-1-black",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-2",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-3",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-4",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-5"
+    ],
+    "currentPrice": 34.11,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 2.8,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808094,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in dark khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808388,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-navy/204808388-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204834999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204963879,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-1-stone",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-skinny-chinos-in-black-and-navy/prd/204918190",
+    "id": 204918190,
+    "name": "ASOS DESIGN 2 pack skinny chinos in black and navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-1-multi",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-4",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-5"
+    ],
+    "currentPrice": 49.27,
+    "previousPrice": 75.8,
+    "currency": "USD",
+    "rating": 4.2,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204918190,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack skinny chinos in black and navy",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-1-multi",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 204918227,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack skinny chinos in navy and stone",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-2-pack-skinny-chinos-in-navy-and-stone/prd/204918227",
+    "id": 204918227,
+    "name": "ASOS DESIGN 2 pack skinny chinos in navy and stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-1-multi",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-2",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-3",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-4",
+      "https://images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-5"
+    ],
+    "currentPrice": 37.9,
+    "previousPrice": 75.8,
+    "currency": "USD",
+    "rating": 3.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204918190,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack skinny chinos in black and navy",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-black-and-navy/204918190-1-multi",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204918227,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN 2 pack skinny chinos in navy and stone",
+            "description": "MULTI",
+            "imageUrl": "images.asos-media.com/products/asos-design-2-pack-skinny-chinos-in-navy-and-stone/204918227-1-multi",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tapered-chinos-in-black/prd/204951898",
+    "id": 204951898,
+    "name": "ASOS DESIGN tapered chinos in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-1-black",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-2",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-3",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-4",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-5"
+    ],
+    "currentPrice": 38.37,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4.5,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808417,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered chinos in charcoal",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-1-charcoal",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 204951898,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-1-black",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-chinos-in-grey/prd/208066004",
+    "id": 208066004,
+    "name": "ASOS DESIGN slim chinos in grey",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-grey/208066004-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-grey/208066004-2",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-grey/208066004-3",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-grey/208066004-4",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-grey/208066004-5"
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208066004,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in grey",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-grey/208066004-1-charcoal",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208066045,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-navy/208066045-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208066133,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-stone/208066133-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208066174,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-black/208066174-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-chinos-in-navy/prd/208066045",
+    "id": 208066045,
+    "name": "ASOS DESIGN slim chinos in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-navy/208066045-1-navy",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-navy/208066045-2",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-navy/208066045-3",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-navy/208066045-4",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-navy/208066045-5"
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 3.6,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208066004,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in grey",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-grey/208066004-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208066045,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-navy/208066045-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208066133,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-stone/208066133-1-stone",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208066174,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim fit chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-fit-chinos-in-black/208066174-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-charcoal/prd/208135282",
+    "id": 208135282,
+    "name": "ASOS DESIGN skinny chinos in charcoal ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207924782,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924819,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924858,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208135282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-1-charcoal",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208237067,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/208237067-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 4.6,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-fit-chinos-in-khaki/prd/207295855",
+    "id": 207295855,
+    "name": "ASOS DESIGN skinny fit chinos in khaki",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-2",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-3",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-4",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-5",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-6"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204802741,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-beige/204802741-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204802770,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/204802770-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808162,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN essential skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-essential-skinny-chinos-in-black/204808162-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830672,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/204830672-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204830700,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-navy/204830700-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207295855,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-khaki/207295855-1-khaki",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 206200814,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/206200814-1-khaki",
+            "isSelected": false,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 23.88,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-slim-chinos-in-stone/prd/204963879",
+    "id": 204963879,
+    "name": "ASOS DESIGN slim chinos in stone",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-1-stone",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-2",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-3",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-4",
+      "https://images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808094,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in dark khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-dark-khaki/204808094-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808388,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-navy/204808388-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204834999,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-black/204834999-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204963879,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN slim chinos in stone",
+            "description": "STONE",
+            "imageUrl": "images.asos-media.com/products/asos-design-slim-chinos-in-stone/204963879-1-stone",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 38.37,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/prd/204808446",
+    "id": 204808446,
+    "name": "ASOS DESIGN tapered pull on trouser with elasticated waist in grey ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-2",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-3",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-4",
+      "https://images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808457,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered pull on trouser with elasticated waist  in black ",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-black/204808457-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 204808446,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered pull on trouser with elasticated waist in grey ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-pull-on-trouser-with-elasticated-waist-in-grey/204808446-1-charcoal",
+            "isSelected": true,
+            "isInStock": false
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31.98,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 3.3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-tapered-chinos-in-charcoal/prd/204808417",
+    "id": 204808417,
+    "name": "ASOS DESIGN tapered chinos in charcoal",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-1-charcoal",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-2",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-3",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-4",
+      "https://images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 204808417,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered chinos in charcoal",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-chinos-in-charcoal/204808417-1-charcoal",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 204951898,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN tapered chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-tapered-chinos-in-black/204951898-1-black",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 38.37,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-black/prd/207924782",
+    "id": 207924782,
+    "name": "ASOS DESIGN skinny chinos in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-1-black",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207924782,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207924819,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924858,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208135282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208237067,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/208237067-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 4.3,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-chinos-in-beige/prd/207924819",
+    "id": 207924819,
+    "name": "ASOS DESIGN skinny chinos in beige",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-1-beige",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-2",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-3",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-4",
+      "https://images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207924782,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924819,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-1-beige",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207924858,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208135282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208237067,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/208237067-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-fit-chinos-in-navy/prd/207924858",
+    "id": 207924858,
+    "name": "ASOS DESIGN skinny fit chinos in navy",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-1-navy",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-2",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-3",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-4",
+      "https://images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207924782,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-black/207924782-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924819,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in beige",
+            "description": "BEIGE",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-beige/207924819-1-beige",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207924858,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny fit chinos in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-fit-chinos-in-navy/207924858-1-navy",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208135282,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in charcoal ",
+            "description": "CHARCOAL",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-charcoal/208135282-1-charcoal",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208237067,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny chinos in khaki",
+            "description": "KHAKI",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-chinos-in-khaki/208237067-1-khaki",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 43,
+    "previousPrice": 43,
+    "currency": "USD",
+    "rating": 4.1,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-cargo-trousers-in-black/prd/205206595",
+    "id": 205206595,
+    "name": "ASOS DESIGN skinny cargo trousers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-1-black",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-2",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-3",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-4",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205206595,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 207910498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 205206919,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-grey/205206919-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 27.71,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-skinny-cargo-trousers-in-black/prd/207910498",
+    "id": 207910498,
+    "name": "ASOS DESIGN skinny cargo trousers in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Chinos",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-1-black",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-2",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-3",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-4",
+      "https://images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 205206595,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/205206595-1-black",
+            "isSelected": false,
+            "isInStock": false
+          },
+          {
+            "productId": 207910498,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-black/207910498-1-black",
+            "isSelected": true,
+            "isInStock": false
+          },
+          {
+            "productId": 205206919,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN skinny cargo trousers in grey",
+            "description": "GREY",
+            "imageUrl": "images.asos-media.com/products/asos-design-skinny-cargo-trousers-in-grey/205206919-1-grey",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 31.98,
+    "previousPrice": 42.64,
+    "currency": "USD",
+    "rating": 4.4,
+    "provider": "asos"
+  }
+]

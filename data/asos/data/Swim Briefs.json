@@ -1,0 +1,85 @@
+[
+  {
+    "url": "https://www.asos.com/asos-design/asos-design-swim-briefs-in-navy-and-white-stripe/prd/207694942",
+    "id": 207694942,
+    "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS DESIGN",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Swim Briefs",
+    "images": [
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-2",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-3",
+      "https://images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-4"
+    ],
+    "currentPrice": 20.13,
+    "previousPrice": 23.69,
+    "currency": "USD",
+    "rating": 3,
+    "provider": "asos",
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 207694942,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy and white stripe ",
+            "description": "NAVY/ WHITE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy-and-white-stripe/207694942-1-navywhite",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 207372117,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207372117-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372205,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in navy",
+            "description": "NAVY",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-navy/207372205-1-navy",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372255,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in red",
+            "description": "RED",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-red/207372255-1-red",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207372275,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in black",
+            "description": "BLACK",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-black/207372275-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 207587935,
+            "brandName": "ASOS DESIGN",
+            "name": "ASOS DESIGN swim briefs in blue",
+            "description": "BLUE",
+            "imageUrl": "images.asos-media.com/products/asos-design-swim-briefs-in-blue/207587935-1-blue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ]
+  }
+]

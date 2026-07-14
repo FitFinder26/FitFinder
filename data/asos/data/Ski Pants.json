@@ -1,0 +1,194 @@
+[
+  {
+    "url": "https://www.asos.com/asos-4505-ski-snow/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/prd/206139299",
+    "id": 206139299,
+    "name": "4505 Ski Icon water repellent skinny leg ski pant in black ",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS 4505 Ski & Snow",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ski Pants",
+    "images": [
+      "https://images.asos-media.com/products/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/206139299-1-black",
+      "https://images.asos-media.com/products/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/206139299-2",
+      "https://images.asos-media.com/products/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/206139299-3",
+      "https://images.asos-media.com/products/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/206139299-4",
+      "https://images.asos-media.com/products/4505-ski-icon-water-repellent-skinny-leg-ski-pant-in-black/206139299-5"
+    ],
+    "currentPrice": 58.43,
+    "previousPrice": 116.85,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos",
+    "alternative": []
+  },
+  {
+    "url": "https://www.asos.com/asos-4505-ski-snow/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/prd/208169071",
+    "id": 208169071,
+    "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS 4505 Ski & Snow",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ski Pants",
+    "images": [
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-1-black",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-2",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-3",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-4",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208169071,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208169102,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black and light blue",
+            "description": "Black & Light Blue",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-1-blacklightblue",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 120.8,
+    "previousPrice": 142.12,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-4505-ski-snow/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/prd/208169102",
+    "id": 208169102,
+    "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black and light blue",
+    "gender": "Men",
+    "isNoSize": false,
+    "brand": "ASOS 4505 Ski & Snow",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ski Pants",
+    "images": [
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-1-blacklightblue",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-2",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-3",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-4",
+      "https://images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208169071,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black/208169071-1-black",
+            "isSelected": false,
+            "isInStock": true
+          },
+          {
+            "productId": 208169102,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski water repellent ski pants with straight leg in black and light blue",
+            "description": "Black & Light Blue",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-water-repellent-ski-pants-with-straight-leg-in-black-and-light-blue/208169102-1-blacklightblue",
+            "isSelected": true,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 63.95,
+    "previousPrice": 142.12,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-4505-ski-snow/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/prd/208170730",
+    "id": 208170730,
+    "name": "ASOS 4505 Ski soft shell water repellent skinny ski pants in black",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS 4505 Ski & Snow",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ski Pants",
+    "images": [
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-1-black",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-2",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-3",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-4",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-5"
+    ],
+    "alternative": [
+      {
+        "type": "SupplierColour",
+        "products": [
+          {
+            "productId": 208170730,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski soft shell water repellent skinny ski pants in black",
+            "description": "Black",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-black/208170730-1-black",
+            "isSelected": true,
+            "isInStock": true
+          },
+          {
+            "productId": 208396692,
+            "brandName": "ASOS 4505 Ski & Snow",
+            "name": "ASOS 4505 Ski soft shell water repellent skinny ski pants in plum",
+            "description": "Plum",
+            "imageUrl": "images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-1-plum",
+            "isSelected": false,
+            "isInStock": true
+          }
+        ]
+      }
+    ],
+    "currentPrice": 99.33,
+    "previousPrice": 116.85,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  },
+  {
+    "url": "https://www.asos.com/asos-4505-ski-&-snow/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/prd/208396692",
+    "id": 208396692,
+    "name": "ASOS 4505 Ski soft shell water repellent skinny ski pants in plum",
+    "gender": "Women",
+    "isNoSize": false,
+    "brand": "ASOS 4505 Ski & Snow",
+    "isOneSize": false,
+    "isDiscontinued": false,
+    "productType": "Ski Pants",
+    "images": [
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-1-plum",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-2",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-3",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-4",
+      "https://images.asos-media.com/products/asos-4505-ski-soft-shell-water-repellent-skinny-ski-pants-in-plum/208396692-5"
+    ],
+    "alternative": [],
+    "currentPrice": 99.33,
+    "previousPrice": 116.85,
+    "currency": "USD",
+    "rating": null,
+    "provider": "asos"
+  }
+]
