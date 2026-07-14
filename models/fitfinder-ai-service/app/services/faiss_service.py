@@ -85,3 +85,37 @@ class FaissService:
     def save_index(self) -> None:
         faiss.write_index(self.index, self.index_path)
         print(f"[FAISS] Index saved: {self.index_path}")
+
+    def remove_embedding(self, faiss_id: int) -> int:
+        """
+        Remove the embedding at `faiss_id` by reconstructing the index
+        without it.  Returns the new total number of vectors.
+
+        ⚠️  Because FAISS flat indexes use sequential integer IDs, every
+        ID *after* the removed one shifts down by 1.  Make sure to update
+        your own database accordingly.
+        """
+        total = self.index.ntotal
+        if total == 0:
+            raise ValueError("Index is empty – nothing to remove.")
+        if faiss_id < 0 or faiss_id >= total:
+            raise ValueError(
+                f"faiss_id {faiss_id} is out of range (valid: 0 – {total - 1})."
+            )
+
+        # Reconstruct all stored vectors into a (total, dim) numpy array
+        all_vectors = self.index.reconstruct_n(0, total)  # (total, EMBEDDING_DIM)
+
+        # Drop the row that corresponds to the requested id
+        remaining = np.delete(all_vectors, faiss_id, axis=0)  # (total-1, EMBEDDING_DIM)
+
+        # Clear the live index and re-add the surviving vectors
+        self.index.reset()
+        if remaining.shape[0] > 0:
+            self.index.add(remaining)
+
+        print(
+            f"[FAISS] Removed embedding {faiss_id}. "
+            f"Index now has {self.index.ntotal} vector(s)."
+        )
+        return self.index.ntotal

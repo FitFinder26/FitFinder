@@ -15,9 +15,9 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Download the SAM 2.1 Checkpoint
+# Download the SAM 2.1 small checkpoint
 RUN mkdir -p /app/checkpoints
-RUN wget -P /app/checkpoints https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt
+RUN wget -P /app/checkpoints https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt
 
 # Install Poetry
 RUN pip install poetry
@@ -27,6 +27,9 @@ COPY pyproject.toml poetry.lock* README.md ./
 
 # Install dependencies system-wide (no virtualenv inside container)
 RUN poetry config virtualenvs.create false
+
+# Regenerate the lock inside the build so Poetry sees the current pyproject metadata.
+RUN poetry lock
 
 # Install dependencies (no root install)
 RUN poetry install --no-root --no-interaction --no-ansi

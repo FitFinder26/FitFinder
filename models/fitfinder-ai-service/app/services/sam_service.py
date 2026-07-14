@@ -197,8 +197,15 @@ class SAM_service():
         if len(mask.shape) > 2:
             mask = mask[0]
 
-        # Create RGBA
+        # Resize mask if it doesn't match the image size
         h, w, c = image_np.shape
+        if mask.shape != (h, w):
+            mask_uint8 = (mask > 0).astype(np.uint8) * 255
+            mask_pil = Image.fromarray(mask_uint8, mode="L")
+            mask_pil = mask_pil.resize((w, h), resample=Image.NEAREST)
+            mask = np.array(mask_pil)
+
+        # Create RGBA
         rgba_image = np.zeros((h, w, 4), dtype=np.uint8)
 
         # Copy RGB channels

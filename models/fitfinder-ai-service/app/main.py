@@ -1,12 +1,15 @@
 # main.py
+import os
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .api.test import router as test_api
 from .api.connection import route as health_api
 from .api.jobs import router as jobs_api
+from .api.faiss import router as faiss_api
 from .services.sam_service import SAM_service
 from .services.clip_service import CLIPService
 from app.services.faiss_service import FaissService
+from .services.cloudinary_service import CloudinaryService
 
 import torch
 
@@ -35,11 +38,11 @@ async def lifespan(app: FastAPI):
     print("Starting up the FitFinder AI Service...")
 
     device = get_default_device()
-    checkpoint_path = "/app/checkpoints/sam2.1_hiera_large.pt"
-    config_path = "configs/sam2.1/sam2.1_hiera_l.yaml"
+    checkpoint_path = os.getenv("SAM2_CHECKPOINT_PATH", "/app/checkpoints/sam2.1_hiera_small.pt")
+    config_path = os.getenv("SAM2_CONFIG_PATH", "configs/sam2.1/sam2.1_hiera_s.yaml")
     d_model_id = "IDEA-Research/grounding-dino-tiny"
 
-    print("Loading SAM2 Model...")
+    print(f"Loading SAM2 Model with checkpoint='{checkpoint_path}' and config='{config_path}'...")
     app.state.sam_service = SAM_service(
         checkpoint_path,
         model_cfg=config_path,
@@ -55,12 +58,19 @@ async def lifespan(app: FastAPI):
 
     app.state.faiss_service = FaissService(index_type="stored_item")
     print("FAISS Service initialized.")
+    try:
+        app.state.cloudinary_service = CloudinaryService()
+        print("Cloudinary Service initialized.")
+    except Exception as e:
+        app.state.cloudinary_service = None
+        print("Cloudinary Service not initialized:", str(e))
     yield
 
     print("Shutting down the FitFinder AI Service...")
     app.state.sam_service = None
     app.state.clip_service = None
     app.state.faiss_service = None
+    app.state.cloudinary_service = None
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 
@@ -76,3 +86,4 @@ app = FastAPI(
 app.include_router(jobs_api, prefix="/api/v1/job")
 app.include_router(health_api, prefix="/api/v1/health")
 app.include_router(test_api, prefix="/api/test")
+app.include_router(faiss_api, prefix="/api/v1/faiss")

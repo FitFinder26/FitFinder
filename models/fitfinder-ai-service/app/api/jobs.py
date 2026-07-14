@@ -5,6 +5,7 @@ from re import L
 from typing import Any, List, Optional
 from pydantic import BaseModel
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query, Request
+import uuid
 
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
 from app.db import get_items_by_faiss_ids
@@ -13,8 +14,8 @@ from PIL import Image
 import numpy as np
 
 router = APIRouter()
-image_embedding_ratio = .7
-text_embedding_ratio = .3
+image_embedding_ratio = .5
+text_embedding_ratio = .5
 
 # Define our *trusted* image source
 TRUSTED_HOST = "res.cloudinary.com"
@@ -166,6 +167,20 @@ async def search_job(
         image=image_bytes,
         mask=mask
     )
+    # Try uploading segmented image if Cloudinary service is available
+    segmented_image_url = None
+    segmented_image_id = None
+    cloudinary_service = getattr(request.app.state, "cloudinary_service", None)
+    if cloudinary_service is not None:
+        try:
+            # use job_id as public_id to make it easier to find
+            segmented_image_id = str(uuid.uuid4())
+            segmented_image_url = cloudinary_service.upload_image(
+                segmented_image_result,
+                public_id=segmented_image_id,
+            )
+        except Exception as e:
+            print("Cloudinary upload failed:", str(e))
     # Placeholder: In a real implementation, this would query a database or index.
 
     clip_service = getattr(request.app.state, "clip_service", None)
@@ -177,13 +192,13 @@ async def search_job(
 
     try:
         embedding = clip_service.get_image_embedding(segmented_image_result)
-        print("embedding = image embedding = ", embedding)
+        # print("embedding = image embedding = ", embedding)
 
         if body.prompt and body.prompt.strip():
             text_embedding = clip_service.get_text_embedding([body.prompt])
             embedding = image_embedding_ratio * embedding + text_embedding_ratio * text_embedding
-            print("text embedding = ", text_embedding)
-            print("final embedding = aggregated version = ", embedding)
+            # print("text embedding = ", text_embedding)
+            # print("final embedding = aggregated version = ", embedding)
 
         FAISS_service = getattr(request.app.state, "faiss_service", None)
         if FAISS_service is None:
@@ -205,6 +220,8 @@ async def search_job(
 
         return {
                 "job_id": body.job_id,
+                "segmented_image_url": segmented_image_url,
+                "segmented_image_id": segmented_image_id,
                 "results": [
                     {
                         "faiss_id": int(item),
