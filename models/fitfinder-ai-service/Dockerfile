@@ -31,6 +31,9 @@ RUN poetry config virtualenvs.create false
 # Install dependencies (no root install)
 RUN poetry install --no-root --no-interaction --no-ansi
 
+RUN pip install open_clip_torch
+
+RUN pip install faiss-cpu
 # Install SAM 2 directly from GitHub
 RUN pip install 'git+https://github.com/facebookresearch/sam2.git'
 
