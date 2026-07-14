@@ -31,11 +31,23 @@ public class SecurityConfig {
                 cors.configurationSource(
                     request -> {
                       var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
-                      corsConfiguration.setAllowedOrigins(List.of("*"));
+                      // Allow common frontend origins (GitHub Pages, local dev) and ngrok domain
+                      corsConfiguration.setAllowedOriginPatterns(
+                          List.of(
+                              "https://*.github.io",
+                              "https://*.githubusercontent.com",
+                              "http://localhost:*",
+                              "http://127.0.0.1:*",
+                              "http://192.168.*.*",
+                              "https://*.ngrok-free.dev",
+                              "https://*.ngrok-free.app",
+                              "https://telescopic-ungodlily-wilbert.ngrok-free.dev"
+                          ));
+                      corsConfiguration.setAllowCredentials(true); // allow cookies/authorization
                       corsConfiguration.setAllowedMethods(
                           List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                       corsConfiguration.setAllowedHeaders(List.of("*"));
-                      corsConfiguration.setAllowCredentials(false);
+                      corsConfiguration.setExposedHeaders(List.of("*"));
                       return corsConfiguration;
                     }))
         .authorizeHttpRequests(

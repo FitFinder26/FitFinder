@@ -8,7 +8,6 @@ import { HashLoader } from "react-spinners";
 
 // Crop SAM masks from the original image
 const cropSelectedSegments = (imageObj, masks) => {
-  console.log("cropSelectedSegments called");
   if (!imageObj) {
     console.error("No imageObj provided!");
     return null;
@@ -50,7 +49,6 @@ const cropSelectedSegments = (imageObj, masks) => {
     ctx.drawImage(maskCanvas, 0, 0, canvas.width, canvas.height);
 
     const result = canvas.toDataURL();
-    console.log("Cropped segment generated successfully");
     return result;
   } catch (err) {
     console.error("Error in cropSelectedSegments:", err);
@@ -147,6 +145,7 @@ export default function CustomizeSegment({
         value={prompt}
         onChange={handlePromptChange}
         placeholder="Enter any additional details..."
+        disabled={isSearching}
       />
 
       <ButtonsContainer>
@@ -205,7 +204,8 @@ const Prompt = styled.textarea`
   font-size: 1rem;
   resize: vertical;
   transition: border-color 0.3s ease;
-
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
   &:focus {
     outline: none;
     border-color: #6bcb77;
@@ -226,7 +226,7 @@ const ButtonsContainer = styled.div`
 `;
 
 const BackButton = styled.button`
-  color: black;
+  color: var(--text-color);
   cursor: pointer;
   font-weight: 500;
   font-size: 1rem;
@@ -283,7 +283,7 @@ const Guide = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
-
+  color: var(--text-color);
   &:hover {
     transform: translateY(-5px) scale(1.02);
   }

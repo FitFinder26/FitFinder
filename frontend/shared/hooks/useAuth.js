@@ -57,12 +57,8 @@ export const useAuth = () => {
     }
   };
 
-  const refreshUser = () => {
-    getProfile();
-  };
-
-  const updateProfileImage = async () => {
-    return await authService.updateProfileImage();
+  const updateProfileImage = async (file) => {
+    return await authService.updateProfileImage(file);
   };
 
   // Background refresh scheduling
@@ -91,6 +87,11 @@ export const useAuth = () => {
     return () => clearTimeout(refreshTimer);
   }, [token]);
 
+  // refreshing user
+  useEffect(() => {
+    getProfile();
+  }, [user]);
+
   return {
     signup,
     login,
@@ -98,7 +99,6 @@ export const useAuth = () => {
     isAuthenticated,
     sendCode,
     updatePassword,
-    refreshUser,
     updateProfileImage,
     user,
   };

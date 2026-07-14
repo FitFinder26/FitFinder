@@ -3,6 +3,10 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import noDataFound from "../assets/noFavorites.svg";
 import { useAuthContext } from "../providers/AuthProvider";
+import { favoriteService } from "../../../shared/services/favoriteService";
+import { AiFillHeart } from "react-icons/ai";
+import { Notifier } from "../components/Notifier";
+import { useDevice } from "../providers/DeviceProvider";
 
 /* ---------------------------------------------
    Image with Skeleton + Fade + Error Fallback
@@ -29,6 +33,7 @@ function CardImageWithLoader({ src, alt }) {
 }
 
 export default function FavoritePage() {
+  const { device } = useDevice();
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
   const [sortOrder, setSortOrder] = useState("similarity");
@@ -38,11 +43,19 @@ export default function FavoritePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
-
   const [filters, setFilters] = useState({
     category: new Set(),
     store: new Set(),
   });
+  const [showFilters, setShowFilters] = useState(device !== "mobile");
+
+  // confirmation dialog state for removals
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [pendingRemoveId, setPendingRemoveId] = useState(null);
+
+  useEffect(() => {
+    setShowFilters(device !== "mobile");
+  }, [device]);
 
   useEffect(() => {
     if (!isAuthenticated())
@@ -51,33 +64,76 @@ export default function FavoritePage() {
 
   /* ------------------ Simulate fetching products ------------------ */
   useEffect(() => {
-    const productsFromState = location.state?.products || [];
-    // simulate async fetch
-    setTimeout(() => {
-      const productsCopy = JSON.parse(JSON.stringify(productsFromState));
-      settingSellers(productsCopy);
-      extractCategoryFromData(productsCopy);
-      extractStoresFromData(productsCopy);
-      setProducts(productsCopy);
-      setLoading(false);
-    }, 500); // simulate delay
+    favoriteService
+      .getFavorites()
+      .then((data) => {
+        settingSellers(data);
+        extractCategoryFromData(data);
+        extractStoresFromData(data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error in retreiving favorites: ", error);
+      });
   }, []);
+
+  // perform the actual removal (called after confirmation)
+  const removeFromFavorite = async (itemId) => {
+    try {
+      const response = await favoriteService.removeFromFavorite(itemId);
+      if (!response.ok) {
+        const text = await response.text().catch(() => null);
+        throw new Error(
+          `Failed to remove from favorite: ${response.status} ${text || ""}`
+        );
+      }
+      // remove from local state so UI updates immediately
+      setProducts((prev) => prev.filter((p) => p.item_id !== itemId));
+      Notifier.notifySuccess("Removed from favorites");
+    } catch (error) {
+      Notifier.notifyError("Failed to remove from favorites");
+      console.error(error);
+    }
+  };
+
+  // Ask user to confirm before removing
+  const requestRemoveFromFavorite = (itemId, e) => {
+    // prevent card click navigation
+    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+    setPendingRemoveId(itemId);
+    setConfirmOpen(true);
+  };
+
+  const confirmRemove = async () => {
+    setConfirmOpen(false);
+    if (!pendingRemoveId) return;
+    await removeFromFavorite(pendingRemoveId);
+    setPendingRemoveId(null);
+  };
+
+  const cancelRemove = () => {
+    setConfirmOpen(false);
+    setPendingRemoveId(null);
+  };
 
   const extractCategoryFromData = (prods) => {
     const extracted = [];
-    prods.forEach((p) => {
-      if (p.category && !extracted.includes(p.category)) {
-        extracted.push(p.category);
-      }
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        if (p.category && !extracted.includes(p.category)) {
+          extracted.push(p.category);
+        }
+      });
     setCategories(extracted);
   };
 
   const extractStoresFromData = (prods) => {
     const extracted = [];
-    prods.forEach((p) => {
-      if (!extracted.includes(p.seller)) extracted.push(p.seller);
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        if (!extracted.includes(p.seller)) extracted.push(p.seller);
+      });
     setStores(extracted);
   };
 
@@ -90,9 +146,10 @@ export default function FavoritePage() {
   };
 
   const settingSellers = (prods) => {
-    prods.forEach((p) => {
-      p.seller = getWebsiteName(p.itemWebURL);
-    });
+    if (prods.length > 0)
+      prods.forEach((p) => {
+        p.seller = getWebsiteName(p.itemWebURL);
+      });
   };
 
   const toggleFilter = (group, value) => {
@@ -106,57 +163,73 @@ export default function FavoritePage() {
   };
 
   /* ------------------ Filter + Sort ------------------ */
-  const visible = products
-    .filter((p) => {
-      if (filters.store.size && !filters.store.has(p.seller)) return false;
-      if (filters.category.size && !filters.category.has(p.category))
-        return false;
-      return true;
-    })
-    .sort((a, b) => {
-      if (sortOrder === "lowest_price") return a.price - b.price;
-      if (sortOrder === "highest_price") return b.price - a.price;
-      return 0;
-    });
+  const visible =
+    products.length > 0
+      ? products
+          .filter((p) => {
+            if (filters.store.size && !filters.store.has(p.seller))
+              return false;
+            if (filters.category.size && !filters.category.has(p.category))
+              return false;
+            return true;
+          })
+          .sort((a, b) => {
+            if (sortOrder === "lowest_price") return a.price - b.price;
+            if (sortOrder === "highest_price") return b.price - a.price;
+            return 0;
+          })
+      : [];
 
   /* ------------------ Render ------------------ */
   return (
     <PageWrap>
-      <Content>
-        <Left>
+      <Content device={device}>
+        <Left device={device}>
           <h1 style={{ marginBottom: "1rem" }}>Favorites</h1>
 
-          <Filters>
+          <FilterHeader>
             <h3>Filters</h3>
+            {device !== "desktop" && (
+              <FilterToggle onClick={() => setShowFilters((v) => !v)}>
+                {showFilters ? "Hide" : "Show"}
+              </FilterToggle>
+            )}
+          </FilterHeader>
 
-            <FilterSection>
-              <h4>Category</h4>
-              {categories.map((c) => (
-                <FilterRow key={c} onClick={() => toggleFilter("category", c)}>
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={filters.category.has(c)}
-                  />
-                  <label>{c}</label>
-                </FilterRow>
-              ))}
-            </FilterSection>
+          {showFilters && (
+            <Filters device={device}>
+              <FilterSection>
+                <h4>Category</h4>
+                {categories.map((c) => (
+                  <FilterRow
+                    key={c}
+                    onClick={() => toggleFilter("category", c)}
+                  >
+                    <input
+                      type="checkbox"
+                      readOnly
+                      checked={filters.category.has(c)}
+                    />
+                    <label>{c}</label>
+                  </FilterRow>
+                ))}
+              </FilterSection>
 
-            <FilterSection>
-              <h4>Store</h4>
-              {stores.map((s) => (
-                <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={filters.store.has(s)}
-                  />
-                  <label>{s}</label>
-                </FilterRow>
-              ))}
-            </FilterSection>
-          </Filters>
+              <FilterSection>
+                <h4>Store</h4>
+                {stores.map((s) => (
+                  <FilterRow key={s} onClick={() => toggleFilter("store", s)}>
+                    <input
+                      type="checkbox"
+                      readOnly
+                      checked={filters.store.has(s)}
+                    />
+                    <label>{s}</label>
+                  </FilterRow>
+                ))}
+              </FilterSection>
+            </Filters>
+          )}
         </Left>
 
         <Right>
@@ -174,7 +247,7 @@ export default function FavoritePage() {
             </SortSelect>
           </ResultsHeader>
 
-          <Grid>
+          <Grid device={device}>
             {loading
               ? Array.from({ length: 8 }).map((_, idx) => (
                   <Card key={idx}>
@@ -190,7 +263,8 @@ export default function FavoritePage() {
                     </CardBody>
                   </Card>
                 ))
-              : visible.map((p) => (
+              : visible.length > 0 &&
+                visible.map((p) => (
                   <Card
                     key={p.item_id}
                     onClick={() =>
@@ -205,7 +279,13 @@ export default function FavoritePage() {
                     }
                   >
                     <CardImageWithLoader src={p.imageURL} alt={p.title} />
-
+                    <LikeButton
+                      onClick={(e) => requestRemoveFromFavorite(p.item_id, e)}
+                      aria-label="Remove from favorites"
+                      title="Remove from favorites"
+                    >
+                      <AiFillHeart size={25} />
+                    </LikeButton>
                     <CardBody>
                       <CardTitle>{p.title}</CardTitle>
                       <CardMeta>
@@ -218,7 +298,29 @@ export default function FavoritePage() {
                   </Card>
                 ))}
           </Grid>
-          {visible.length === 0 && !loading && (
+
+          {confirmOpen && (
+            <ModalOverlay
+              role="dialog"
+              aria-modal="true"
+              onClick={cancelRemove}
+            >
+              <ModalBox onClick={(e) => e.stopPropagation()}>
+                <h3>Remove from favorites?</h3>
+                <p>
+                  Are you sure you want to remove this item from your favorites?
+                </p>
+                <ModalActions>
+                  <CancelButton onClick={cancelRemove}>Cancel</CancelButton>
+                  <ConfirmButton onClick={confirmRemove}>
+                    Yes, remove
+                  </ConfirmButton>
+                </ModalActions>
+              </ModalBox>
+            </ModalOverlay>
+          )}
+
+          {visible.length == 0 && !loading && (
             <img src={noDataFound} style={{}} />
           )}
         </Right>
@@ -234,31 +336,63 @@ export default function FavoritePage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  color: var(--text-color);
 `;
 
 const Content = styled.div`
   max-width: 1200px;
   margin: 1.2rem auto;
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 2rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: ${({ device }) =>
+    device === "mobile"
+      ? "1fr"
+      : device === "tablet"
+        ? "260px 1fr"
+        : "320px 1fr"};
+  gap: ${({ device }) => (device === "mobile" ? "1.25rem" : "2rem")};
+  padding: 0 1rem;
 `;
 
 const Left = styled.aside`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  position: ${({ device }) => (device === "desktop" ? "sticky" : "static")};
+  top: 84px;
+  align-self: start;
+`;
+
+const FilterHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+`;
+
+const FilterToggle = styled.button.attrs({ type: "button" })`
+  border: 1px solid var(--text-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+  }
 `;
 
 const Filters = styled.div`
-  background: white;
+  background: var(--bg-color);
   border-radius: 10px;
   padding: 1rem;
+  color: var(--text-color);
+  transition: 0.3s ease-in-out;
+  box-shadow: 4px 4px 10px var(--back-drop-shadow-color);
+  border: 1px solid var(--text-color);
 `;
 
 const FilterSection = styled.div`
@@ -293,27 +427,24 @@ const SortSelect = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
+  gap: ${({ device }) => (device === "mobile" ? "0.9rem" : "1.1rem")};
+  grid-template-columns: ${({ device }) => {
+    if (device === "mobile") return "1fr";
+    if (device === "tablet") return "repeat(2, 1fr)";
+    return "repeat(4, 1fr)";
+  }};
 `;
 
 const Card = styled.div`
-  background: white;
+  position: relative;
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.25s ease;
-
+  transition: transform 0.25s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  color: var(--text-color);
+  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
   &:hover {
     transform: scale(1.02);
   }
@@ -382,4 +513,112 @@ const ImageFallback = styled.div`
   justify-content: center;
   font-size: 0.85rem;
   color: #888;
+`;
+
+const LikeButton = styled.button`
+  position: absolute;
+  top: 0; /* sits over the image */
+  right: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #e63946; /* neutral by default */
+  margin: 1rem;
+  transition:
+    color 160ms ease,
+    transform 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #bbb; /* heart red */
+    transform: scale(1.08);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.12);
+    border-radius: 6px;
+  }
+`;
+
+/* Confirmation modal + animations */
+const overlayFade = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+const popIn = keyframes`
+  0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+  60% { opacity: 1; transform: translateY(-6px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.639);
+  z-index: 1000;
+  animation: ${overlayFade} 220ms ease forwards;
+`;
+
+const ModalBox = styled.div`
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 1.25rem;
+  border-radius: 8px;
+  width: min(420px, 90%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  animation: ${popIn} 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+  }
+  p {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+  }
+`;
+
+const ModalActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+`;
+
+const ConfirmButton = styled.button.attrs({ type: "button" })`
+  background: #e63946;
+  color: #fff;
+  border: none;
+
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.02;
+  }
+`;
+
+const CancelButton = styled.button.attrs({ type: "button" })`
+  border: solid 1px transparent;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    opacity: 0.95;
+    border-color: black;
+  }
 `;

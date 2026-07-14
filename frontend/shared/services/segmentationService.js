@@ -23,12 +23,10 @@ export const segmentationService = {
         const data = JSON.parse(event.data);
 
         if (data?.sessionId) {
-          console.log("Session ID:", data.sessionId);
           // store it properly
           sessionId = data.sessionId;
         } else if (data?.masks && data?.boxes) {
           masks = data;
-          console.log("Masks array updated in the service:", masks);
           // 🔥 notify all listeners
           maskListeners.forEach((cb) => cb(masks));
         } else {
@@ -90,12 +88,11 @@ export const segmentationService = {
       segmentationService.connect();
     }
     formData.append("sessionId", sessionId);
-    console.log(formData.get("sessionId"));
     let data;
     await apiClient("/segment/upload", {
       method: "POST",
       body: formData,
-      skipAuth: true,
+      skipAuth: false,
     })
       .then((response) => {
         if (!response.ok) {
@@ -123,11 +120,10 @@ export const segmentationService = {
 
     formData = { ...formData, job_id: jobId };
 
-    console.log(formData);
     return await apiClient(`/re-segment?sessionId=${sessionId}`, {
       method: "POST",
       body: JSON.stringify(formData),
-      skipAuth: true,
+      skipAuth: false,
       headers: {
         "Content-Type": "application/json",
       },
@@ -137,6 +133,8 @@ export const segmentationService = {
   search: async (mask, prompt) => {
     return await apiClient("/api/v1/items/search", {
       method: "POST",
+      skipAuth: false,
+
       body: JSON.stringify({
         job_id: jobId,
         mask_json: mask,
@@ -145,7 +143,6 @@ export const segmentationService = {
       headers: {
         "Content-Type": "application/json",
       },
-      skipAuth: true,
     });
   },
 };

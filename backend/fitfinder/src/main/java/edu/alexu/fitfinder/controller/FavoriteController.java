@@ -1,5 +1,6 @@
 package edu.alexu.fitfinder.controller;
 
+import edu.alexu.fitfinder.dto.ItemDTO;
 import edu.alexu.fitfinder.exception.FavoriteNotFoundException;
 import edu.alexu.fitfinder.exception.ItemNotFoundException;
 import edu.alexu.fitfinder.exception.UserNotFoundException;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/favorites")
 @CrossOrigin
@@ -19,14 +22,6 @@ public class FavoriteController {
     private final JwtService jwtService;
     private final FavoriteService favoriteService;
 
-    private Long extractUserFromToken(String token) {
-        if (token == null || !token.startsWith("Bearer ")) {
-            throw new IllegalArgumentException("Invalid Token");
-        }
-        // Clean the token once
-        String cleanToken = token.substring(7);
-        return Long.parseLong(jwtService.extractUserId(cleanToken));
-    }
 
     @PostMapping("/{itemId}")
     public ResponseEntity<?> addToFavorites(
@@ -34,7 +29,7 @@ public class FavoriteController {
             @RequestHeader("Authorization") String token) {
 
         try {
-            Long userId = extractUserFromToken(token);
+            Long userId = jwtService.extractUserFromToken(token);
             favoriteService.addFavorite(userId, itemId);
             return ResponseEntity.ok("Item added to favorites");
         } catch (IllegalArgumentException e) {
@@ -49,7 +44,7 @@ public class FavoriteController {
             @RequestHeader("Authorization") String token) {
 
         try {
-            Long userId = extractUserFromToken(token);
+            Long userId = jwtService.extractUserFromToken(token);
             favoriteService.deleteFavoriteById(userId, favId);
             return ResponseEntity.ok("Item removed from favorites");
 
@@ -70,7 +65,7 @@ public class FavoriteController {
             @RequestHeader("Authorization") String token) {
 
         try {
-            Long userId = extractUserFromToken(token);
+            Long userId = jwtService.extractUserFromToken(token);
             favoriteService.deleteFavoriteByItem(userId, itemId);
             return ResponseEntity.ok("Item removed from favorites");
 
@@ -78,6 +73,16 @@ public class FavoriteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (FavoriteNotFoundException | UserNotFoundException | ItemNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ItemDTO>> getAllFavorites(@RequestHeader("Authorization") String token) {
+        try{
+            Long userId = jwtService.extractUserFromToken(token);
+            return ResponseEntity.ok(favoriteService.getUserFavorites(userId));
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }

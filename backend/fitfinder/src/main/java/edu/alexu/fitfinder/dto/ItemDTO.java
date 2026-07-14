@@ -18,4 +18,5 @@ public class ItemDTO {
   private String itemWebURL;
   private float price;
   private String title;
+  private boolean isFavorite;
 }

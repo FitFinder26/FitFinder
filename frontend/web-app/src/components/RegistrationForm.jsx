@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./external-styles/RegistrationForm.css";
+import styled from "styled-components";
 import { HashLoader } from "react-spinners";
 import { flushSync } from "react-dom";
 import { useAuthContext } from "../providers/AuthProvider";
@@ -9,6 +10,7 @@ import { jwtDecode } from "jwt-decode";
 import showPasswordIcon from "../assets/show-password.png";
 import hidePasswordIcon from "../assets/hide-password.png";
 import { Notifier } from "./Notifier";
+import { Eye, EyeClosed } from "lucide-react";
 
 export default function RegistrationForm({
   usedForm,
@@ -283,12 +285,19 @@ export default function RegistrationForm({
                   onChange={handleSignupFormVariables}
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <div
                 style={{
@@ -360,12 +369,19 @@ export default function RegistrationForm({
                   title="Your passwords must match"
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <button
                 className="signupButton"
@@ -439,12 +455,25 @@ export default function RegistrationForm({
                   style={{ border: errors.wrongPassword && "1px solid red" }}
                   required
                 />
-                <img
+                {/* <img
                   src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
                   alt={passwordVisible ? "Show password" : "Hide password"}
                   className="password-toggle-icon"
                   onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                /> */}
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               {errors.wrongPassword && (
                 <p style={{ color: "red", textAlign: "start" }}>
@@ -592,12 +621,19 @@ export default function RegistrationForm({
                   onChange={handleForgotPasswordVariables}
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <div
                 style={{
@@ -669,12 +705,19 @@ export default function RegistrationForm({
                   title="Your passwords must match"
                   required
                 />
-                <img
-                  src={passwordVisible ? showPasswordIcon : hidePasswordIcon}
-                  alt={passwordVisible ? "Show password" : "Hide password"}
-                  className="password-toggle-icon"
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
+                {passwordVisible ? (
+                  <Eye
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                ) : (
+                  <EyeClosed
+                    alt={passwordVisible ? "Show password" : "Hide password"}
+                    className="password-toggle-icon"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  />
+                )}
               </div>
               <button className="loginButton" type="submit" disabled={disabled}>
                 {disabled ? (
@@ -691,7 +734,7 @@ export default function RegistrationForm({
       </div>
       {/* <!-- END FORM SECTION --> */}
       {/* <!-- CONTENT SECTION --> */}
-      <div className="row content-row">
+      <ContentRow className="row content-row">
         {/* <!-- SIGN IN CONTENT --> */}
         <div className="col align-items-center flex-col">
           <div className="text sign-in">
@@ -708,8 +751,21 @@ export default function RegistrationForm({
           </div>
         </div>
         {/* <!-- END SIGN UP CONTENT --> */}
-      </div>
+      </ContentRow>
       {/* <!-- END CONTENT SECTION --> */}
     </div>
   );
 }
+
+const ContentRow = styled.div`
+  @media (max-width: var(--mobile)) {
+    .container.sign-in .text.sign-in h2,
+    .container.sign-in .text.sign-in p,
+    .container.sign-in .img.sign-in img,
+    .container.sign-up .text.sign-up h2,
+    .container.sign-up .text.sign-up p,
+    .container.sign-up .img.sign-up img {
+      transform: translateY(150%) !important;
+    }
+  }
+`;

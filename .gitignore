@@ -1,8 +1,8 @@
 frontend/web-app/node_modules
 frontend/web-app/dist
 models/fitfinder-ai-service/venv
-
-data/raw/*.json
+node_modules
+frontend/node_modules
 *.env
 *__pycache__/
 *.env.example

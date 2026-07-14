@@ -5,13 +5,19 @@ import App from "./App.jsx";
 import { AuthProvider } from "./providers/AuthProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { VITE_CLINT_ID } from "../../shared/config/env.js";
+import { ThemeProvider } from "./providers/ThemeProvider.jsx";
+import { DeviceProvider } from "./providers/DeviceProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
   <GoogleOAuthProvider clientId={VITE_CLINT_ID}>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <DeviceProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
+    </DeviceProvider>
   </GoogleOAuthProvider>
   // </StrictMode>,
 );

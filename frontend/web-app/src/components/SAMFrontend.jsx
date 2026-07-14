@@ -45,6 +45,7 @@ export default function SAMFrontend({
   // Subscribe to service updates for segmentation
   const unsubscribeFromSegmentation = segmentationService.subscribeToMasks(
     (segmentation) => {
+      // At error
       if (segmentation?.error) {
         Notifier.notifyError(
           `Segmentation failed. Please try again.\n${segmentation.error}`
@@ -52,24 +53,16 @@ export default function SAMFrontend({
         setSegmentationStatus("idle");
         setLoading(false);
         return;
+
+        // At segmentation (masks + boxes)
       } else if (segmentation?.masks && segmentation?.boxes) {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
         setBoxes(segmentation.boxes);
-        console.log(
-          "number of masks received in SAMFrontend Segmentation:",
-          convertedMasks.length
-        );
-        console.log(
-          "number of boxes received in SAMFrontend Segmentation:",
-          segmentation.boxes.length
-        );
         setMasks(convertedMasks);
+
+        // At re-segmentation (masks)
       } else {
         const convertedMasks = convertMasksToPoints(segmentation.masks);
-        console.log(
-          "number of masks received in SAMFrontend Re-segmentation:",
-          convertedMasks.length
-        );
         setMasks(convertedMasks);
       }
       setSegmentationStatus("completed");
@@ -95,7 +88,7 @@ export default function SAMFrontend({
       const canvas = canvasRef.current;
       canvas.width = img.width;
       canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       setImageObj(img);
@@ -117,7 +110,7 @@ export default function SAMFrontend({
       const maskCanvas = document.createElement("canvas");
       maskCanvas.width = w;
       maskCanvas.height = h;
-      const mCtx = maskCanvas.getContext("2d");
+      const mCtx = maskCanvas.getContext("2d", { willReadFrequently: true });
       const imgData = mCtx.createImageData(w, h);
 
       for (let y = 0; y < h; y++) {
@@ -138,7 +131,7 @@ export default function SAMFrontend({
       const borderCanvas = document.createElement("canvas");
       borderCanvas.width = w;
       borderCanvas.height = h;
-      const bCtx = borderCanvas.getContext("2d");
+      const bCtx = borderCanvas.getContext("2d", { willReadFrequently: true });
       const bImgData = bCtx.createImageData(w, h);
 
       for (let y = 0; y < h; y++) {
@@ -274,7 +267,6 @@ export default function SAMFrontend({
       if (!outputBoxes.includes(negBox)) outputBoxes.push(negBox);
     });
 
-    console.log("Selected boxes:", outputBoxes);
     return outputBoxes;
   };
 
@@ -342,7 +334,9 @@ export default function SAMFrontend({
 
     let hoveredIdx = null;
     for (let i = maskCanvases.length - 1; i >= 0; i--) {
-      const ctx = maskCanvases[i].getContext("2d");
+      const ctx = maskCanvases[i].getContext("2d", {
+        willReadFrequently: true,
+      });
       const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
       const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
       const pixel = ctx.getImageData(px, py, 1, 1).data;
@@ -365,7 +359,9 @@ export default function SAMFrontend({
 
     let clickedIdx = null;
     for (let i = maskCanvases.length - 1; i >= 0; i--) {
-      const ctx = maskCanvases[i].getContext("2d");
+      const ctx = maskCanvases[i].getContext("2d", {
+        willReadFrequently: true,
+      });
       const px = Math.floor((x * maskCanvases[i].width) / canvas.width);
       const py = Math.floor((y * maskCanvases[i].height) / canvas.height);
       const pixel = ctx.getImageData(px, py, 1, 1).data;
@@ -398,7 +394,7 @@ export default function SAMFrontend({
   const drawCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas || !imageObj) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
 
@@ -411,7 +407,7 @@ export default function SAMFrontend({
       const tmp = document.createElement("canvas");
       tmp.width = maskCanvas.width;
       tmp.height = maskCanvas.height;
-      const tmpCtx = tmp.getContext("2d");
+      const tmpCtx = tmp.getContext("2d", { willReadFrequently: true });
 
       // Draw mask
       tmpCtx.drawImage(maskCanvas, 0, 0);
@@ -510,8 +506,8 @@ export default function SAMFrontend({
             }
             onMouseMove={handleCanvasMove}
             onMouseLeave={() => setHovered(null)}
-            imageURL={imageURL}
-            loading={loading}
+            $imageURL={imageURL}
+            $loading={loading}
           />
           {loading && (
             <Overlay>
@@ -529,8 +525,8 @@ export default function SAMFrontend({
                     segmentationService.endSession();
                     setSegmentationStatus("idle");
                   }}
-                  bgColor="orange"
-                  bgColorHover="red"
+                  $bgColor="orange"
+                  $bgColorHover="red"
                 >
                   Cancel
                 </Button>
@@ -561,8 +557,8 @@ export default function SAMFrontend({
         {selected.length !== 0 && (
           <Button
             onClick={sendSelected}
-            bgColor="rgba(255,105,180,1)"
-            marginLeft="1rem"
+            $bgColor="rgba(255,105,180,1)"
+            $marginLeft="1rem"
           >
             Send Selected
           </Button>
@@ -592,10 +588,10 @@ const fadeIn = keyframes`
 `;
 
 const Canvas = styled.canvas`
-  display: ${({ imageURL }) => (imageURL ? "block" : "none")};
+  display: ${(props) => (props.$imageURL ? "block" : "none")};
   border: none;
   max-width: 100%;
-  filter: ${({ loading }) => (loading ? "blur(20px)" : "none")};
+  filter: ${(props) => (props.$loading ? "blur(20px)" : "none")};
   animation: ${fadeIn} 1.5s;
 `;
 
@@ -608,12 +604,12 @@ const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: black;
+  color: var(--text-color);
 `;
 
 const Button = styled.button`
-  background: ${(props) => props.bgColor || "white"};
-  color: ${(props) => props.color || "white"};
+  background: ${(props) => props?.$bgColor || "white"};
+  color: white;
   cursor: pointer;
   font-weight: 500;
   font-size: 1rem;
@@ -622,11 +618,11 @@ const Button = styled.button`
   border: none;
   border-bottom: 2px solid transparent;
   border-radius: 2rem;
-  margin-left: ${(props) => props.marginLeft || "0rem"};
+  margin-left: ${(props) => props?.$marginLeft || "0rem"};
   animation: ${fadeIn} 0.5s;
 
   &:hover {
-    background-color: ${(props) => props.bgColorHover || "#6BCB77"};
+    background-color: ${(props) => props?.$bgColorHover || "#6BCB77"};
   }
 `;
 
@@ -635,7 +631,7 @@ const StatusLoader = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3e7e9 50%, #e0e7ff 100%);
+  background: var(--linear-gradiant-bg);
   opacity: 75%;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);

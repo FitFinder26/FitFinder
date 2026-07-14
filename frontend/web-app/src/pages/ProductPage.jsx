@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { AiFillHeart } from "react-icons/ai";
+import { favoriteService } from "../../../shared/services/favoriteService";
+import { Notifier } from "../components/Notifier";
+import { useAuthContext } from "../providers/AuthProvider";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -10,6 +13,7 @@ export default function ProductPage() {
   const navigate = useNavigate();
   // Prefer product object passed via navigate state to avoid extra API call
   const product = location.state?.product || {
+    favorite: false,
     item_id: id,
     title: `Product ${id}`,
     price: "0.00",
@@ -20,17 +24,41 @@ export default function ProductPage() {
   };
 
   const similar = location.state?.similarProducts || [];
-
-  console.log("Product data:", product);
-
   const rawDescription = product.description;
   const [featuresPart, paragraphPart] = rawDescription.split(" Description ");
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(product.favorite);
+  const [animating, setAnimating] = useState(false);
+  const { isAuthenticated } = useAuthContext();
+  const navigator = useNavigate();
 
   const features = featuresPart
-    .split("•")
+    .split(/[•🔹]|\s{3}/)
     .map((item) => item.trim())
     .filter(Boolean);
+
+  const toggleFavorite = async () => {
+    if (!isAuthenticated()) {
+      navigator("/registration", { state: { form: "signup" } });
+      return;
+    }
+
+    try {
+      const response = await favoriteService.toggleFavorite(
+        product.item_id,
+        !liked
+      );
+      if (!response.ok) throw new Error("Failed to toggle favorite");
+
+      // update state and play click animation
+      setLiked((prev) => !prev);
+      setAnimating(true);
+      // clear animation class after it finishes
+      setTimeout(() => setAnimating(false), 480);
+    } catch (error) {
+      console.error("Something went wrong in setting as favorite: ", error);
+      Notifier.notifyError("Failed to add to favorites");
+    }
+  };
 
   return (
     <PageWrap>
@@ -38,8 +66,14 @@ export default function ProductPage() {
         <LeftColumn>
           <ImageWrapper>
             <MainImage src={product.imageURL} alt={product.title} />
-            <LikeButton onClick={() => setLiked((prev) => !prev)}>
+            <LikeButton
+              onClick={toggleFavorite}
+              className={animating ? "animating" : ""}
+              aria-label={liked ? "Unlike" : "Like"}
+              aria-pressed={liked}
+            >
               {!liked ? <Heart /> : <AiFillHeart size={25} />}
+              <Burst className={animating ? "burst" : ""} aria-hidden />
             </LikeButton>
           </ImageWrapper>
         </LeftColumn>
@@ -87,9 +121,9 @@ export default function ProductPage() {
         <SimilarGrid>
           {similar.map((p) => (
             <SimilarCard
-              key={p.id}
+              key={p.item_id}
               onClick={() =>
-                navigate(`/product/${p.id}`, {
+                navigate(`/product/${p.item_id}`, {
                   state: { product: p, similar: similar },
                 })
               }
@@ -115,7 +149,8 @@ export default function ProductPage() {
 const PageWrap = styled.main`
   padding-top: 84px;
   min-height: calc(100vh - 84px);
-  background: #fafafa;
+  /* background: #fafafa; */
+  color: var(--text-color);
 `;
 
 const Container = styled.div`
@@ -134,10 +169,48 @@ const Container = styled.div`
 const LeftColumn = styled.div``;
 
 const ImageWrapper = styled.div`
-  background: white;
+  position: relative;
+  background: var(--bg-color);
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 10px 0px 20px var(--back-drop-shadow-color);
+  transition: 0.5s ease-in-out;
+`;
+
+const pop = keyframes`
+  0% { transform: scale(1); }
+  35% { transform: scale(1.22); }
+  55% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+`;
+
+const burstAnim = keyframes`
+  0% { transform: scale(0.0); opacity: 0.8; }
+  40% { transform: scale(1.05); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+`;
+
+const Burst = styled.span`
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(239, 68, 68, 0.9) 0%,
+    rgba(239, 68, 68, 0.15) 40%,
+    rgba(239, 68, 68, 0) 60%
+  );
+  filter: blur(6px);
+
+  &.burst {
+    animation: ${burstAnim} 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 `;
 
 const MainImage = styled.img`
@@ -170,17 +243,19 @@ const PriceTag = styled.span`
 `;
 
 const Meta = styled.div`
-  color: #666;
+  color: var(--meta-text-color);
   font-size: 0.95rem;
   display: flex;
   gap: 1rem;
 `;
 
 const ProductDescription = styled.div`
-  background: #ffffff;
+  /* background: #ffffff; */
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
 `;
 
 const FeaturesList = styled.ul`
@@ -193,7 +268,6 @@ const FeaturesList = styled.ul`
     padding-left: 1.5rem;
     margin-bottom: 0.6rem;
     line-height: 1.45;
-    color: #374151;
 
     &::before {
       content: "•";
@@ -240,10 +314,11 @@ const SecondaryButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-
+  color: var(--text-color);
   &:hover {
     background-color: #f3f4f6;
     transform: translateX(-1rem);
+    color: var(--hovered-text-color);
   }
 `;
 
@@ -283,18 +358,17 @@ const SimilarGrid = styled.div`
 `;
 
 const SimilarCard = styled.div`
-  background: white;
+  position: relative;
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-
+  transition: transform 0.25s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  color: var(--text-color);
+  box-shadow: 0 0 2px 5px rgba(255, 255, 255, 0.2);
   &:hover {
-    scale: 1.02;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
   }
 `;
 
@@ -327,10 +401,41 @@ const SimilarMeta = styled.div`
 `;
 
 const LikeButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: transparent;
-  color: red;
-  margin: 1rem;
+  background-color: white;
+  color: #ef4444; /* red */
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    transition:
+      transform 180ms ease,
+      fill 220ms ease,
+      color 220ms ease;
+    color: rgba(239, 68, 68, 0.95);
+  }
+
+  &.animating svg {
+    animation: ${pop} 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 `;
