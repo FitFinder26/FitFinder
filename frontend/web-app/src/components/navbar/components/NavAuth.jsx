@@ -1,13 +1,15 @@
-import React from "react";
-import { UserPlus } from "lucide-react";
+import { UserPlus, Languages, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { getLanguageDisplayName } from "../../../locales/languageHelper";
 
 export default function NavAuth({
   user,
   isLoggedIn,
   scrolled,
+  currentLang,
+  onLanguageToggle,
   navigationBlocked,
   onProfileClick,
   onLoginClick,
@@ -15,7 +17,21 @@ export default function NavAuth({
   t
 }) {
   return (
-    <div className="flex justify-end items-center gap-4">
+    <div className="flex justify-end items-center gap-2 sm:gap-4">
+      {/* Language Toggle */}
+      <Button 
+        variant="ghost" 
+        size="sm" 
+        onClick={onLanguageToggle}
+        className={cn(
+          "flex gap-3 rounded-xl hover:bg-muted/50 group border border-transparent hover:border-border/10",
+          scrolled ? "h-8 px-2" : "h-10 px-4"
+        )}
+      >
+        <Languages size={14} className="group-hover:rotate-180 transition-transform duration-700" />
+        {!scrolled && <span className="hidden md:inline font-black text-[10px] uppercase tracking-widest">{getLanguageDisplayName(currentLang)}</span>}
+      </Button>
+
       {isLoggedIn ? (
         <div className="flex items-center gap-6">
           <Avatar
@@ -30,17 +46,18 @@ export default function NavAuth({
           </Avatar>
         </div>
       ) : (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             variant="ghost"
             onClick={onLoginClick}
             disabled={navigationBlocked}
             className={cn(
-              "font-black uppercase tracking-widest text-[10px] rounded-xl hover:bg-muted/50",
-              scrolled ? "h-8 px-4" : "h-10 px-6"
+              "font-black uppercase tracking-widest text-[10px] rounded-xl hover:bg-muted/50 transition-all",
+              scrolled ? "h-8 w-8 p-0 sm:h-8 sm:px-4" : "h-10 w-10 p-0 sm:h-10 sm:px-6"
             )}
           >
-            {t("login")}
+            <span className="hidden sm:inline">{t("login")}</span>
+            <LogIn size={16} className="sm:hidden" />
           </Button>
           {!scrolled && (
             <Button

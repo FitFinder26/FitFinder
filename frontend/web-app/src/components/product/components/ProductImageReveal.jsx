@@ -16,10 +16,6 @@ export default function ProductImageReveal({ imageURL, title, id }) {
                         alt={title}
                         className="w-full h-auto max-h-[500px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.2)]"
                     />
-
-                    <Badge className="absolute top-12 left-12 px-6 py-2 rounded-full font-black uppercase tracking-widest text-[9px] italic bg-white/10 backdrop-blur-md text-foreground border-foreground/5 shadow-2xl">
-                        {t("archivalItem", { id: id?.slice(-6).toUpperCase() })}
-                    </Badge>
                 </div>
             </div>
 

@@ -33,5 +33,12 @@
   "rank": "RANK #{{rank}}",
   "rateThisProduct": "RATE THIS MATCH",
   "viewDetails": "VIEW DETAILS",
-  "switchToDiscovery": "Rate Similarity"
+  "switchToDiscovery": "Rate Similarity",
+  "customRequest": "CUSTOM REQUEST",
+  "activePrompt": "PROMPT",
+  "swipeToBrowse": "SWIPE TO BROWSE",
+  "ratingSuccess": "Thank you for your feedback!",
+  "gratitudeTitle": "Intelligence Evolved",
+  "gratitudeDesc": "Your feedback is optimizing the neural engine",
+  "yourRating": "Your Match Rating"
 }

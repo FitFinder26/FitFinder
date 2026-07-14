@@ -50,8 +50,8 @@ export const apiClient = async (endpoint, options = {}) => {
   };
 
   const response = await fetch(buildUrl(API_BASE_URL, endpoint), {
-    mode: "cors",
-    credentials: "include", // allow refresh-token cookies when present
+    // mode: "cors",
+    // credentials: "include",
     ...fetchOptions,
     headers,
   });

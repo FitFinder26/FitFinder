@@ -18,6 +18,7 @@ import NavBranding from "./components/NavBranding";
 import NavSearch from "./components/NavSearch";
 import NavAuth from "./components/NavAuth";
 import ImageSourceDialog from "../common/ImageSourceDialog";
+import { useOnboarding, ONBOARDING_STEPS } from "../../providers/OnboardingProvider";
 
 export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const { user, isAuthenticated } = useAuthContext();
@@ -33,6 +34,8 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
   const { t } = useTranslation(NAMESPACES.navbar);
   const { t: tHome } = useTranslation(NAMESPACES.home);
   const { theme, setTheme } = useTheme();
+
+  const { currentStep, setCurrentStep } = useOnboarding();
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -68,6 +71,9 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
     if (device === "desktop") {
       inputRef.current?.click();
     } else {
+      if (currentStep === ONBOARDING_STEPS.NAVBAR_SEARCH) {
+        setCurrentStep(ONBOARDING_STEPS.CHOOSE_SOURCE);
+      }
       setShowImageSourceModal(true);
     }
   };
@@ -81,6 +87,23 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
       "fixed inset-x-0 z-50 flex justify-center pointer-events-none transition-all duration-700",
       scrolled ? "top-4 px-4" : "top-0"
     )}>
+      {/* Stable hidden inputs for file selection/camera */}
+      <input 
+        type="file" 
+        accept="image/*" 
+        ref={inputRef} 
+        className="hidden" 
+        onChange={handleUploadImage} 
+      />
+      <input 
+        type="file" 
+        accept="image/*" 
+        capture="camera" 
+        ref={cameraInputRef} 
+        className="hidden" 
+        onChange={handleUploadImage} 
+      />
+
       <motion.nav 
         initial={false}
         animate={{
@@ -104,8 +127,6 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
           <NavBranding 
             scrolled={scrolled}
             device={device}
-            currentLang={currentLang}
-            onLanguageToggle={handleLanguageToggle}
             theme={theme}
             onThemeToggle={toggleTheme}
             navigate={navigate}
@@ -115,15 +136,14 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             scrolled={scrolled}
             onSearchClick={handleSearchWithImageClick}
             t={t}
-            inputRef={inputRef}
-            cameraInputRef={cameraInputRef}
-            handleUploadImage={handleUploadImage}
           />
 
           <NavAuth 
             user={user}
             isLoggedIn={isLoggedIn}
             scrolled={scrolled}
+            currentLang={currentLang}
+            onLanguageToggle={handleLanguageToggle}
             navigationBlocked={navigationBlocked}
             onProfileClick={() => setIsSideBarOpen(true)}
             onLoginClick={() => navigate("/registration", { state: { form: "login" } })}
@@ -140,15 +160,15 @@ export default function Navbar({ navigationBlocked, setIsSideBarOpen }) {
             setImageURL={setImageURL}
           />
         )}
-
-        <ImageSourceDialog 
-          open={showImageSourceModal}
-          onOpenChange={setShowImageSourceModal}
-          t={tHome}
-          cameraInputRef={cameraInputRef}
-          inputRef={inputRef}
-        />
       </motion.nav>
+
+      <ImageSourceDialog 
+        open={showImageSourceModal}
+        onOpenChange={setShowImageSourceModal}
+        t={tHome}
+        cameraInputRef={cameraInputRef}
+        inputRef={inputRef}
+      />
     </div>
   );
 }

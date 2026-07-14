@@ -15,13 +15,7 @@ export default function UserLayout() {
 
   return (
     <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background text-foreground transition-colors duration-500">
-      <a 
-        href="#main-content" 
-        className="absolute -left-[999px] top-auto w-1 h-1 overflow-hidden z-[9999] bg-background text-foreground p-2 focus:left-4 focus:top-4 focus:w-auto focus:h-auto focus:outline-none focus:ring-2 focus:ring-primary rounded-md shadow-lg"
-      >
-        {t("skipToMainContent")}
-      </a>
-      
+
       <header className="w-full z-40 fixed top-0" role="banner">
         <Navbar
           navigationBlocked={navigationBlocked}
@@ -33,10 +27,10 @@ export default function UserLayout() {
         <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen} />
       )}
 
-      <main 
-        id="main-content" 
-        className="flex-1 flex flex-col no-scrollbar pt-0" 
-        tabIndex={-1} 
+      <main
+        id="main-content"
+        className="flex-1 flex flex-col no-scrollbar pt-0"
+        tabIndex={-1}
         role="main"
       >
         <div className="flex-1 relative">

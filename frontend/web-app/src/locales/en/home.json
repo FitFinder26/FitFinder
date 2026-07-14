@@ -4,7 +4,7 @@
     "branding": "PERFECT FIT",
     "description": "Find the best fit for your style across global online stores and seamlessly coordinate your existing wardrobe pieces with our neural intelligence engine.",
     "searchWithImage": "SEARCH WITH IMAGE",
-    "join": "ENTER ARCHIVE",
+    "join": "JOIN US",
     "demo": "HOW IT WORKS",
     "aiPowered": "AI POWERED",
     "liveSegmentation": "LIVE SEGMENTATION",
@@ -45,15 +45,23 @@
     "message": "Exclusive lookbooks, AI updates, and archival releases on our Instagram.",
     "instagramTag": "@FITFINDER_CSED"
   },
-  "modals": {
-    "chooseSource": "SELECT SOURCE",
-    "selectMethod": "Choose how you want to input your visual context.",
-    "takePhoto": "TAKE PHOTO",
-    "instantCapture": "LIVE CAMERA",
-    "uploadFromDevice": "UPLOAD FROM DEVICE",
-    "archivalUpload": "LOCAL FILE",
-    "cancel": "ABORT SELECTION"
-  },
+    "modals": {
+      "chooseSource": "SELECT SOURCE",
+      "selectMethod": "Choose how you want to input your visual context.",
+      "takePhoto": "TAKE PHOTO",
+      "instantCapture": "LIVE CAMERA",
+      "uploadFromDevice": "UPLOAD",
+      "archivalUpload": "LOCAL FILE",
+      "cancel": "ABORT SELECTION",
+      "imageSource": {
+        "title": "SELECT SOURCE",
+        "subtitle": "How would you like to provide the image?",
+        "camera": "TAKE PHOTO",
+        "cameraDesc": "Capture using device camera",
+        "gallery": "UPLOAD IMAGE",
+        "galleryDesc": "Select from your gallery"
+      }
+    },
   "stores": {
     "title": "GLOBAL COLLABORATORS",
     "subtitle": "SUPPORTED STORES"

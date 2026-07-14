@@ -37,8 +37,8 @@ export default function PreferenceSurvey({ onClose }) {
 
     return (
         <Dialog open={open} onOpenChange={handleClose}>
-            <DialogContent className="max-w-2xl p-0 overflow-hidden border-none rounded-[4rem] bg-background/60 backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.4)] md:min-h-[700px] flex flex-col justify-center">
-                <div className="relative p-12 md:p-20 space-y-16">
+            <DialogContent className="max-w-2xl p-0 overflow-hidden border-none rounded-[2.5rem] sm:rounded-[4rem] bg-background/60 backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.4)] md:min-h-[700px] flex flex-col justify-center">
+                <div className="relative p-8 sm:p-12 md:p-20 space-y-10 sm:space-y-16">
 
                     {/* Close absolute */}
                     <Button variant="ghost" size="icon" className="absolute top-10 right-10 rounded-full hover:bg-muted w-12 h-12" onClick={handleClose}>

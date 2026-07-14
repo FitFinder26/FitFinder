@@ -1,5 +1,5 @@
 {
-  "filters": "عوامل التصفية",
+  "filters": "الفلاتر",
   "show": "إظهار",
   "hide": "إخفاء",
   "category": "الفئة",
@@ -33,5 +33,12 @@
   "rank": "المرتبة #{{rank}}",
   "rateThisProduct": "قيم هذا التطابق",
   "viewDetails": "عرض التفاصيل",
-  "switchToDiscovery": "تقييم نسبة التشابه"
+  "switchToDiscovery": "تقييم نسبة التشابه",
+  "customRequest": "طلب مخصص",
+  "activePrompt": "الوصف",
+  "swipeToBrowse": "اسحب للتصفح",
+  "ratingSuccess": "شكراً لملاحظاتك!",
+  "gratitudeTitle": "تم تطوير الذكاء",
+  "gratitudeDesc": "ملاحظاتك تساعد في تحسين محرك البحث العصبي",
+  "yourRating": "تقييمك للمطابقة"
 }

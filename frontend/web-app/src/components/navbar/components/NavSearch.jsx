@@ -2,23 +2,26 @@ import React from "react";
 import { Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useOnboarding, ONBOARDING_STEPS } from "../../../providers/OnboardingProvider";
+import { useDevice } from "../../../providers/DeviceProvider";
 
 export default function NavSearch({ 
   scrolled, 
   onSearchClick, 
-  t, 
-  inputRef, 
-  cameraInputRef, 
-  handleUploadImage 
+  t
 }) {
+  const handleSearchClick = (e) => {
+    e.preventDefault();
+    onSearchClick();
+  };
+
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-      <input type="file" accept="image/*" ref={inputRef} className="hidden" onChange={handleUploadImage} />
-      <input type="file" accept="image/*" capture="camera" ref={cameraInputRef} className="hidden" onChange={handleUploadImage} />
-      
       <Button 
+        id="navbar-search-button"
         variant="outline" 
-        onClick={onSearchClick}
+        onClick={handleSearchClick}
+        type="button"
         className={cn(
             "group relative border-2 font-black uppercase tracking-widest text-[10px] transition-all duration-700 italic flex items-center justify-center overflow-hidden",
             scrolled 

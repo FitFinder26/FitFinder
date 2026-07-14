@@ -29,6 +29,19 @@ export default function ProductDetails({ title, price, seller, features, paragra
                     </Badge>
                 </div>
             </div>
+            <div className="lg:hidden flex flex-col gap-6">
+                <Button
+                    className="h-20 rounded-[2.5rem] bg-foreground text-background hover:bg-primary hover:text-white font-black text-xl uppercase tracking-[0.1em] gap-6 shadow-[0_40px_80px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-4 active:translate-y-0 group border-none"
+                    onClick={() => window.open(itemWebURL, "_blank", "noopener,noreferrer")}
+                >
+                    <div className="relative">
+                        <ShoppingBag size={28} strokeWidth={2.5} className="group-hover:rotate-12 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    {t("goToStore")}
+                    {i18n.language === "ar" ? <ChevronLeft size={24} strokeWidth={4} className="group-hover:translate-x-4 transition-transform duration-700" /> : <ChevronRight size={24} strokeWidth={4} className="group-hover:translate-x-4 transition-transform duration-700" />}
+                </Button>
+            </div>
 
             <div className="bg-muted/10 rounded-[4rem] p-8 md:p-10 border-4 border-border/5 space-y-8">
                 <div className="flex items-center justify-between border-b border-border/10 pb-6">

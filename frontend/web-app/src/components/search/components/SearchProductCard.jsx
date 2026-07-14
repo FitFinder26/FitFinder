@@ -4,10 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AiFillHeart } from "react-icons/ai";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { Star, ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "../../../locales/namespaces";
+import { useDevice } from "@/providers/DeviceProvider";
 
 function CardImageWithLoader({ src, alt, t }) {
     const [status, setStatus] = useState("loading");
@@ -36,44 +37,84 @@ function CardImageWithLoader({ src, alt, t }) {
     );
 }
 
-export default function SearchProductCard({ product, idx, onClick }) {
+export default function SearchProductCard({ product, idx, onClick, onRateClick, rating }) {
     const { t, i18n } = useTranslation(NAMESPACES.search);
+    const { device } = useDevice();
 
     return (
         <Card
-            className="group border-none bg-muted/2 hover:bg-background transition-all duration-1000 rounded-[4.5rem] overflow-hidden cursor-pointer shadow-none hover:shadow-[0_80px_120px_rgba(0,0,0,0.2)] hover:-translate-y-6 border border-transparent hover:border-border/10 animate-in slide-in-from-bottom-10 duration-1000"
+            className="group border-none bg-muted/2 hover:bg-background transition-all duration-1000 rounded-[2.5rem] sm:rounded-[4.5rem] overflow-hidden cursor-pointer shadow-none hover:shadow-[0_80px_120px_rgba(0,0,0,0.2)] hover:-translate-y-6 border border-transparent hover:border-border/10 animate-in slide-in-from-bottom-10 duration-1000"
             style={{ animationDelay: `${idx * 0.05}s` }}
             onClick={onClick}
         >
             <div className="relative overflow-hidden">
                 <CardImageWithLoader src={product.imageURL} alt={product.title} t={t} />
 
-                {/* Visual Layer Indicators */}
-                <div className="absolute top-10 left-10 flex flex-col gap-3">
-                    {/* <Badge className="bg-black/40 text-white backdrop-blur-md px-4 py-2 rounded-2xl font-black text-[9px] uppercase tracking-widest italic border-none shadow-2xl">
-                        {t("matchPercent", { percent: 90 + (idx % 10) }) || `MATCH ${90 + (idx % 10)}%`}
-                    </Badge> */}
-                    {product.favorite && (
-                        <div className="bg-rose-500 text-white p-2.5 rounded-2xl shadow-2xl animate-in zoom-in duration-700 w-fit">
-                            <AiFillHeart size={20} />
-                        </div>
-                    )}
+                {/* Top Action Indicators */}
+                <div className="absolute top-6 sm:top-10 inset-x-6 sm:inset-x-10 flex justify-between items-start z-30">
+                    <div className="flex flex-col gap-3">
+                        {product.favorite && (
+                            <div className="bg-rose-500 text-white p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-2xl animate-in zoom-in duration-700 w-fit">
+                                <AiFillHeart size={device === "mobile" ? 16 : 20} />
+                            </div>
+                        )}
+                    </div>
+
+                    <Button 
+                        size="icon"
+                        variant="ghost"
+                        className={cn(
+                            "w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 text-white hover:bg-primary hover:text-white transition-all shadow-2xl group/rate",
+                            Number(rating) > 0 && "bg-primary/20 border-primary/50 text-primary"
+                        )}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onRateClick?.(product);
+                        }}
+                    >
+                        <Star 
+                            size={device === "mobile" ? 16 : 20} 
+                            className={cn(
+                                "fill-current group-hover/rate:scale-110 transition-transform",
+                                Number(rating) > 0 ? "text-yellow-400 fill-yellow-400" : "text-white"
+                            )} 
+                        />
+                    </Button>
                 </div>
 
                 {/* Hover Action Overlay */}
-                <div className="absolute inset-x-10 bottom-10 translate-y-24 group-hover:translate-y-0 transition-all duration-1000 z-20">
-                    <Button className="w-full h-16 bg-white text-black font-black uppercase text-[10px] tracking-widest rounded-3xl shadow-3xl hover:bg-primary hover:text-white transition-all space-x-3">
+                <div className="absolute inset-x-6 sm:inset-x-10 bottom-6 sm:bottom-10 translate-y-32 group-hover:translate-y-0 transition-all duration-1000 z-20">
+                    <Button className="w-full h-14 sm:h-16 bg-white text-black font-black uppercase text-[9px] sm:text-[10px] tracking-widest rounded-2xl sm:rounded-3xl shadow-3xl hover:bg-primary hover:text-white transition-all space-x-3">
                         <span>{t("showProduct") || "SHOW PRODUCT"}</span>
                         {i18n.language === "en" ? <ArrowRight size={16} strokeWidth={3} /> : <ArrowLeft size={16} strokeWidth={3} />}
                     </Button>
                 </div>
             </div>
 
-            <CardContent className="p-12 space-y-6 bg-muted/1">
-                <h4 className="font-black text-2xl line-clamp-2 leading-[0.9] group-hover:text-primary transition-all duration-700 h-[2.5em] tracking-tighter uppercase italic">
+            <CardContent className="p-6 sm:p-12 space-y-4 sm:space-y-6 bg-muted/1">
+                {Number(rating) > 0 && (
+                    <div className="flex items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-700">
+                        <div className="flex gap-1">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <Star
+                                    key={star}
+                                    size={device === "mobile" ? 10 : 14}
+                                    className={cn(
+                                        "transition-all",
+                                        Number(rating) >= star ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/20"
+                                    )}
+                                />
+                            ))}
+                        </div>
+                        <span className="text-[10px] font-black text-primary italic uppercase tracking-tighter opacity-60">
+                            {t("yourRating") || "Your Match Rating"}
+                        </span>
+                    </div>
+                )}
+                <h4 className="font-black text-xl sm:text-2xl line-clamp-2 leading-[0.9] group-hover:text-primary transition-all duration-700 h-[2.5em] tracking-tighter uppercase italic">
                     {product.title}
                 </h4>
-                <div className="flex justify-between items-end pt-8 border-t-2 border-border/5">
+                <div className="flex justify-between items-end pt-4 sm:pt-8 border-t-2 border-border/5">
                     <div className="flex flex-col">
                         <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-20 mb-2 italic">
                             {t("price") || "PRICE"}

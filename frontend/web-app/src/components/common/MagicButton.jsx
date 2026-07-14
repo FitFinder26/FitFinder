@@ -1,10 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Loader2 } from "lucide-react";
 
-export default function MagicButton({ processImage, isDisabled, name, ariaLabelKey }) {
+export default function MagicButton({ processImage, isDisabled, loading, name, ariaLabelKey, id, onClick }) {
   const { t } = useTranslation();
   const label = ariaLabelKey ? t(ariaLabelKey) : t(name);
+
+  const handleButtonClick = (e) => {
+    if (isDisabled || loading) return;
+    if (onClick) {
+      onClick(e);
+    } else if (processImage) {
+      processImage(e);
+    }
+  };
 
   const starPositions = [
     "group-hover:-top-16 group-hover:-left-8 w-6 top-1/4 left-1/4",
@@ -25,21 +34,26 @@ export default function MagicButton({ processImage, isDisabled, name, ariaLabelK
 
   return (
     <button
-        onClick={isDisabled ? undefined : processImage}
+        id={id}
+        onClick={handleButtonClick}
         className={cn(
-            "group relative px-10 h-16 bg-white dark:bg-zinc-950 text-black dark:text-white border-4 border-black dark:border-white rounded-2xl font-black uppercase tracking-widest text-lg transition-all duration-300",
-            isDisabled ? "opacity-50 cursor-not-allowed" : "hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:shadow-[0_0_40px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:-translate-y-1 active:translate-y-0"
+            "group relative px-10 h-16 bg-white dark:bg-zinc-950 text-black dark:text-white border-4 border-black dark:border-white rounded-2xl font-black uppercase tracking-widest text-lg transition-all duration-300 w-full",
+            (isDisabled || loading) ? "opacity-50 cursor-not-allowed" : "hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:shadow-[0_0_40px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:-translate-y-1 active:translate-y-0"
         )}
         aria-label={label}
         type="button"
     >
-        <span className="relative z-10 flex items-center gap-3">
-            <Sparkles className={cn("transition-transform duration-500", !isDisabled && "group-hover:rotate-12 group-hover:scale-125")} size={24} />
+        <span className="relative z-10 flex items-center justify-center gap-3">
+            {loading ? (
+                <Loader2 size={24} className="animate-spin" />
+            ) : (
+                <Sparkles className={cn("transition-transform duration-500", !isDisabled && !loading && "group-hover:rotate-12 group-hover:scale-125")} size={24} />
+            )}
             {t(name)}
         </span>
 
         {/* Dynamic Stars */}
-        {!isDisabled && starPositions.map((pos, i) => (
+        {(!isDisabled && !loading) && starPositions.map((pos, i) => (
             <Star key={i} className={pos} />
         ))}
 

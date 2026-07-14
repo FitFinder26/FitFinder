@@ -30,11 +30,21 @@ export default function SearchResultPage() {
     const [shuffledProducts, setShuffledProducts] = useState([]);
     const [showFilters, setShowFilters] = useState(device !== "mobile");
     const [currentPage, setCurrentPage] = useState(1);
+    const [initialStackIndex, setInitialStackIndex] = useState(0);
+    const [ratings, setRatings] = useState(() => {
+        try {
+            const saved = localStorage.getItem('product_ratings');
+            return saved ? JSON.parse(saved) : {};
+        } catch {
+            return {};
+        }
+    });
     const itemsPerPage = 10;
 
     const location = useLocation();
     const navigate = useNavigate();
-    const searchingPeice = location.state?.searchingPeice || null;
+    const segmented_image_url = location.state?.segmented_image_url || null;
+    const prompt = location.state?.prompt || "";
 
     const [filters, setFilters] = useState({
         category: new Set(),
@@ -74,6 +84,7 @@ export default function SearchResultPage() {
 
             processProductsData(productsWithRank);
             setProducts(productsWithRank);
+            clearRating(); // Clear ratings when new products are loaded
 
             // For stack view, shuffle the products
             const shuffled = [...productsWithRank].sort(() => Math.random() - 0.5);
@@ -136,6 +147,27 @@ export default function SearchResultPage() {
         currentPage * itemsPerPage
     );
 
+    const handleRateProduct = (product) => {
+        const index = shuffledProducts.findIndex(p => p.item_id === product.item_id);
+        if (index !== -1) {
+            setInitialStackIndex(index);
+            setViewMode("stack");
+        }
+    };
+
+    const handleUpdateRating = (productId, rating) => {
+        setRatings(prev => {
+            const next = { ...prev, [productId]: rating };
+            localStorage.setItem('product_ratings', JSON.stringify(next));
+            return next;
+        });
+    };
+
+    const clearRating = () => {
+        setRatings({});
+        localStorage.removeItem('product_ratings');
+    }
+
     if (viewMode === "stack" && (loading || shuffledProducts.length > 0)) {
         return (
             <SearchCardStackView
@@ -143,30 +175,42 @@ export default function SearchResultPage() {
                 onClose={() => navigate("/")}
                 onSwitchToGrid={() => setViewMode("grid")}
                 navigate={navigate}
-                searchingPeice={searchingPeice}
+                segmented_image_url={segmented_image_url}
+                prompt={prompt}
                 loading={loading}
+                initialIndex={initialStackIndex}
+                ratings={ratings}
+                onRate={handleUpdateRating}
             />
         );
     }
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-24 selection:bg-primary selection:text-white">
-            <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-20">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12 md:py-20">
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-24">
 
-                    <aside className="lg:col-span-3 space-y-16 animate-in slide-in-from-left-20 duration-1000">
-                        <SearchSourcePreview searchingPeice={searchingPeice} visibleCount={visibleProducts.length} />
-
-                        <div className="flex flex-col gap-4">
-                            <Button
-                                onClick={() => setViewMode("stack")}
-                                variant="outline"
-                                className="h-14 rounded-2xl border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white font-black uppercase text-[10px] tracking-widest gap-4 transition-all"
-                            >
-                                <Star size={18} className="fill-current" />
-                                <span>{t("switchToDiscovery") || "Switch to Discovery"}</span>
-                            </Button>
+                    <aside className="lg:col-span-3 space-y-8 lg:space-y-16 animate-in slide-in-from-left-20 duration-1000">
+                        <div className="flex flex-row lg:flex-col items-center lg:items-stretch gap-4 lg:gap-10">
+                            <div className="flex-1 lg:flex-none">
+                                <div className="hidden lg:block">
+                                    <SearchSourcePreview segmented_image_url={segmented_image_url} prompt={prompt} visibleCount={visibleProducts.length} />
+                                </div>
+                                <div className="lg:hidden">
+                                    <SearchSourcePreview compact segmented_image_url={segmented_image_url} prompt={prompt} visibleCount={visibleProducts.length} />
+                                </div>
+                            </div>
+                            <div className="shrink-0 lg:w-full">
+                                <Button
+                                    onClick={() => setViewMode("stack")}
+                                    variant="outline"
+                                    className="h-14 lg:h-16 px-4 sm:px-6 lg:px-0 rounded-2xl border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white font-black uppercase text-[10px] tracking-widest gap-3 sm:gap-4 transition-all w-full lg:shadow-none shadow-xl"
+                                >
+                                    <Star size={18} className="fill-current" />
+                                    <span className="hidden sm:inline">{t("switchToDiscovery") || "Discovery Mode"}</span>
+                                </Button>
+                            </div>
                         </div>
 
                         <SearchFilters
@@ -187,12 +231,13 @@ export default function SearchResultPage() {
                             <SearchEmptyState clearFilters={clearFilters} />
                         ) : (
                             <div className="space-y-24">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 lg:gap-16 pt-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-12 lg:gap-16 pt-4">
                                     {paginatedProducts.map((p, idx) => (
                                         <SearchProductCard
                                             key={p.item_id}
                                             product={p}
                                             idx={idx}
+                                            rating={ratings[p.item_id] || 0}
                                             onClick={() =>
                                                 navigate(`/product/${p.item_id}`, {
                                                     state: {
@@ -201,6 +246,7 @@ export default function SearchResultPage() {
                                                     },
                                                 })
                                             }
+                                            onRateClick={handleRateProduct}
                                         />
                                     ))}
                                 </div>
