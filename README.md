@@ -90,6 +90,14 @@ npm start
 
 ---
 
+## 🧠 Key Findings
+
+- Grounded-SAM segmented well on clear-silhouette, high-contrast garments.
+- OpenCLIP embeddings gave strong similarity matching, particularly on color and shape.
+- CPU-only processing averaged ~6 seconds end-to-end per query.
+- HITL refinement improved segmentation accuracy by ~15% on challenging cases.
+
+
 ## 👨‍💻 Team
 
 - **Creators:**
@@ -100,8 +108,6 @@ npm start
   - [Ali Hassan](https://github.com/alihassann191)
 - **Supervisor:**
   - Dr. Walid Gomaa
-
----
 
 ## 📜 License
 
