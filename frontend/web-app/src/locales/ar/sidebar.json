@@ -1,0 +1,19 @@
+{
+  "guest": "ضيف",
+  "recentSearches": "عمليات البحث الأخيرة",
+  "savedItems": "العناصر المحفوظة",
+  "sendFeedback": "إرسال ملاحظات",
+  "theme": "المظهر",
+  "light": "فاتح",
+  "dark": "داكن",
+  "system": "النظام",
+  "changePassword": "تغيير كلمة المرور",
+  "signOut": "تسجيل الخروج",
+  "profileImageSuccess": "تم تغيير صورة الملف الشخصي بنجاح",
+  "profileImageFailed": "فشل رفع صورة الملف الشخصي",
+  "uploading": "...",
+  "memberSince": "عضو متميز في FitFinder",
+  "welcomeGuest": "اكتشف أسلوبك الخاص",
+  "privacyPolicy": "سياسة الخصوصية والأناقة",
+  "copyright": "© 2026 FitFinder"
+}

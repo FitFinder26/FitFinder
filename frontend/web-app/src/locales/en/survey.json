@@ -1,0 +1,28 @@
+{
+  "heading": "Quick Preferences",
+  "close": "Close",
+  "intro": "Hello new user 👋. A few quick questions to personalize your recommendations.",
+  "genderTitle": "Your gender",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "genderPreferNot": "Prefer not to say",
+  "colorTitle": "Your favorite color",
+  "colors": {
+    "red": "Red",
+    "blue": "Blue",
+    "black": "Black",
+    "white": "White"
+  },
+  "styleTitle": "Your favorite style",
+  "styles": {
+    "streetwear": "Streetwear",
+    "formal": "Formal",
+    "boho": "Boho",
+    "athleisure": "Athleisure"
+  },
+  "styleAlt": "{{style}} example",
+  "thanksTitle": "Thanks!",
+  "thanksText": "Your preferences have been saved.",
+  "skip": "Skip for now",
+  "surveyOptionsLegend": "Survey options group"
+}

@@ -1,0 +1,13 @@
+{
+  "tagline": "Your perfect fit, our mission",
+  "quickLinks": "Quick Links",
+  "home": "Home",
+  "about": "About Us",
+  "contact": "Contact",
+  "contactSubject": "Inquiry about {{appName}}",
+  "contactBody": "Hello, I would like to know more about your platform...",
+  "legal": "Legal",
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Service",
+  "copyright": "© {{year}} {{appName}}. All rights reserved."
+}

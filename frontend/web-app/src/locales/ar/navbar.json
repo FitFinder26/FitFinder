@@ -1,0 +1,13 @@
+{
+  "logoAlt": "{{appName}}",
+  "logoTitle": "الرئيسية",
+  "searchWithImage": "بحث بالصورة",
+  "toggleLanguage": "تبديل اللغة",
+  "login": "تسجيل الدخول",
+  "join": "انضمام",
+  "chooseImageSource": "اختر مصدر الصورة",
+  "takePhoto": "التقاط صورة",
+  "uploadFromDevice": "رفع من الجهاز",
+  "cancel": "إلغاء",
+  "profileButtonTitle": "الملف الشخصي"
+}

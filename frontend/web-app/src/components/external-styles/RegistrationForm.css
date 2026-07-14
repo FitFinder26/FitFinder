@@ -12,6 +12,7 @@
   min-height: 100vh;
   overflow: hidden;
   transition: 0.5s ease-in-out;
+  background-color: var(--bg-color);
 }
 
 .row {
@@ -24,6 +25,10 @@
   width: 50%;
 }
 
+/* Force LTR direction for registration form regardless of language toggle */
+.container {
+  direction: ltr !important;
+}
 a {
   color: var(--links-color);
 }
@@ -38,6 +43,7 @@ a {
 .form-wrapper {
   width: 100%;
   max-width: 28rem;
+  background-color: var(--bg-color);
 }
 
 .form {
@@ -50,6 +56,10 @@ a {
   transition: 0.5s ease-in-out;
   color: var(--text-color);
   box-shadow: 0 12px 30px var(--back-drop-shadow-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-group {
@@ -95,6 +105,9 @@ a {
   font-size: 1.2rem;
   outline: none;
   margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form p {
@@ -217,7 +230,7 @@ a {
 .text.sign-up h2,
 .text.sign-up p,
 .img.sign-up img {
-  transform: translateX(250%);
+  transform: translateX(280%);
 }
 
 .container.sign-in .text.sign-in h2,
@@ -336,6 +349,7 @@ a {
   .container.sign-in .col.sign-in,
   .container.sign-up .col.sign-up {
     transform: translateY(0);
+    background-color: var(--bg-color);
   }
 
   .content-row {
@@ -432,6 +446,7 @@ a {
 
 .signupButton {
   background-color: var(--secondary-color);
+  justify-self: center;
 }
 
 .loginButton:hover,

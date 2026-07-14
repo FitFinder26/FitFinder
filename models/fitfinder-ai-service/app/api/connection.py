@@ -1,11 +1,9 @@
-import redis
-from rq import Queue
+from fastapi import APIRouter
 
-# Connect to Redis (default host and port)
-redis_conn = redis.Redis(host="localhost", port=6379, db=0)
+route= APIRouter()
 
-# Create a queue for segmentation jobs
-segment_queue = Queue("segment_jobs", connection=redis_conn)
+@route.get("/")
+async def check_service_health():
+    return {"status": "ok", "message": "Service is still alive LOL.", "service": "fitfinder-ai"}
 
-# Create a queue for re-segmentation jobs
-resegment_queue = Queue("resegment_jobs", connection=redis_conn)
+

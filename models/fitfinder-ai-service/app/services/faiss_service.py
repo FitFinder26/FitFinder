@@ -2,10 +2,12 @@ import os
 import faiss
 import numpy as np
 from typing import Tuple
+from huggingface_hub import hf_hub_download
 
 
 EMBEDDING_DIM = 512
-FAISS_DIR = "app/faiss_indexes"
+FAISS_DIR =  "/data"
+
 os.makedirs(FAISS_DIR, exist_ok=True)
 
 INDEX_PATHS = {
@@ -32,8 +34,14 @@ class FaissService:
             print(f"[FAISS] Loading index: {self.index_path}")
             index = faiss.read_index(self.index_path)
         else:
-            print(f"[FAISS] Creating new index: {self.index_path}")
-            index = faiss.IndexFlatL2(EMBEDDING_DIM)
+            print("⬇️ Downloading FAISS index from Hugging Face...")
+            hf_hub_download(
+                repo_id="FitFinder/faiss-storage",
+                filename="faiss_stored_items.index",
+                local_dir="/data",
+                local_dir_use_symlinks=False
+            )
+            index = faiss.read_index(self.index_path)
 
         if index.d != EMBEDDING_DIM:
             raise ValueError(
@@ -53,8 +61,9 @@ class FaissService:
                 f"expected (*, {EMBEDDING_DIM})"
             )
 
+        # IMPORTANT for cosine similarity
+        faiss.normalize_L2(embedding)
         return embedding
-
 
     def add_embedding(self, embedding: np.ndarray) -> int:
         embedding = self._normalize_embedding(embedding)
@@ -66,12 +75,12 @@ class FaissService:
     def search_top_k_similar(
         self, embedding: np.ndarray, k: int = 5
     ) -> Tuple[np.ndarray, np.ndarray]:
-        
+
+        if self.index.ntotal == 0:
+            return np.array([]), np.array([])
+
         embedding = self._normalize_embedding(embedding)
-
-        distances, indices = self.index.search(embedding, k)
-
-        return distances, indices
+        return self.index.search(embedding, k)
 
     def save_index(self) -> None:
         faiss.write_index(self.index, self.index_path)

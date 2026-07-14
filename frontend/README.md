@@ -44,9 +44,11 @@ frontend/
 │   │   ├── components/    # Web-specific UI components
 │   │   ├── pages/         # Login, Signup, etc.
 │   │   ├── layouts/       # Layouts like Navbars
-│   │   ├── styles/        # Tailwind or CSS modules
+│   │   ├── providers/     # Providers like auth, deviceDetector
+│   │   ├── locales/       # Locales translations (Internationalization)
 │   │   ├── App.jsx
-│   │   └── main.jsx
+│   │   ├── main.jsx
+|   |   └── index.css
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json

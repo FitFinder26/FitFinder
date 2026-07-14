@@ -1,0 +1,23 @@
+{
+  "productFallbackTitle": "عنصر {{id}}",
+  "fallbackDescription": "يشير التحليل العصبي إلى عدم توفر وصف مفصل حاليًا في المنتج النشط. انتقل إلى البحث عن التجزئة للحصول على التوثيق الكامل.",
+  "sellerLabel": "{{seller}}",
+  "unknownSeller": "أرشيف غير معروف",
+  "back": "رجوع",
+  "goToStore": "الذهاب إلى المتجر",
+  "similarProducts": "منتجات مماثلة",
+  "soldBy": "يباع بواسطة {{seller}}",
+  "favoriteError": "فشل المزامنة: تعذر تحديث أرشيف المفضلة.",
+  "like": "تميز كمفضل",
+  "unlike": "إزالة من المنتج",
+  "linkCopied": "تم نسخ رابط النمط في الحافظة",
+  "curatedLookbook": "كتالوج منسق",
+  "retailValue": "السعر",
+  "technicalArchive": "المنتج التقني",
+  "productDetails": "المواصفات والمواد",
+  "safeCheckout": "إعادة توجيه آمنة",
+  "exploreAll": "عرض المنتج بالكامل",
+  "viewProduct": "فتح المنتج",
+  "archivalItem": "عنصر #{{id}}",
+  "matchPercent": "تطابق {{percent}}%"
+}

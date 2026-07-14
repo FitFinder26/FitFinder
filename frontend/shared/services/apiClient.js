@@ -1,6 +1,6 @@
 import { tokenService } from "./tokenService";
 import { authService } from "./authService";
-import { API_BASE_URL } from "../config/env";
+import { API_BASE_URL } from "@shared/config/env";
 
 const buildUrl = (base, path) => {
   try {

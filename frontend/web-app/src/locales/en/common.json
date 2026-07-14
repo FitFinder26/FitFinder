@@ -1,0 +1,22 @@
+{
+  "appName": "FitFinder",
+  "loading": "Loading...",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "ctaGetStarted": "Get started",
+  "welcome": "Welcome",
+  "login": "Login",
+  "logout": "Logout",
+  "save": "Save",
+  "cancel": "Cancel",
+  "submit": "Submit",
+  "edit": "Edit",
+  "delete": "Delete",
+  "confirm": "Confirm",
+  "close": "Close",
+  "error404": "404! This is an empty page",
+  "goHome": "Go Home",
+  "back": "Back",
+  "error": "Error"
+  ,
+  "skipToMainContent": "Skip to main content"
+}

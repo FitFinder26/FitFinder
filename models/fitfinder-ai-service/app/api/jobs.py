@@ -7,7 +7,6 @@ from pydantic import BaseModel
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, Query, Request
 
 from app.services.simulator import image_resegment_job, image_segment_job, download_image
-from app.services.faiss_service import search_top_k_similar
 from app.db import get_items_by_faiss_ids
 import io
 from PIL import Image
@@ -55,14 +54,6 @@ async def create_segment_job(
             detail=f"Invalid image_url. Must be a secure URL from {TRUSTED_HOST}"
         )
 
-    sam_service = request.app.state.sam_service
-
-    if not sam_service:
-        raise HTTPException(
-            status_code=500,
-            detail="SAM service is not initialized."
-        )
-
     # Enqueue the background task
     background_tasks.add_task(
         image_segment_job,
@@ -70,8 +61,7 @@ async def create_segment_job(
         sam_instance=sam_service,
         image_url=image_url,
         callback_url=callback_url,
-        TRUSTED_HOST=TRUSTED_HOST,
-        sam_instance=sam_service
+        TRUSTED_HOST=TRUSTED_HOST
     )
 
 
@@ -186,27 +176,37 @@ async def search_job(
     try:
         embedding = clip_service.get_image_embedding(segmented_image_result)
 
-        distances, indices = search_top_k_similar(
+        FAISS_service = getattr(request.app.state, "faiss_service", None)
+        if FAISS_service is None:
+            raise HTTPException(
+                status_code=503,
+                detail="FAISS service not available"
+            )
+
+        distances, indices = FAISS_service.search_top_k_similar(
             embedding,
-            index_type="store_item",
             k=10
         )
-        
-        items = get_items_by_faiss_ids(indices.tolist())
-        
+
+        flat_distances = distances[0]
+        flat_indices = indices[0]
+
+        # Pass the flattened indices to your DB function
+        # items = get_items_by_faiss_ids(flat_indices.tolist())
+
         return {
                 "job_id": body.job_id,
                 "results": [
                     {
-                        "item": item,
+                        "faiss_id": int(item),
                         "distance": float(dist)
                     }
-                    for item, dist in zip(items, distances)
+                    # FIX: Zip the flattened lists
+                    for item, dist in zip(flat_indices, flat_distances)
                 ],
                 "status": "completed",
                 "service": "fitfinder-ai"
             }
-
     except Exception as e:
         raise HTTPException(
             status_code=500,

@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "welcomeTo": "DISCOVER YOUR",
+    "branding": "PERFECT FIT",
+    "description": "Find the best fit for your style across global online stores and seamlessly coordinate your existing wardrobe pieces with our neural intelligence engine.",
+    "searchWithImage": "SEARCH WITH IMAGE",
+    "join": "ENTER ARCHIVE",
+    "demo": "HOW IT WORKS",
+    "aiPowered": "AI POWERED",
+    "liveSegmentation": "LIVE SEGMENTATION",
+    "neuralEngine": "NEURAL ENGINE ACTIVE",
+    "smartExtract": "SMART EXTRACT",
+    "aiVisionEngine": "AI VISION ENGINE 5.0",
+    "descriptionShort": "AI-Driven Precision. High-End Curation. Your Style, Decoded.",
+    "aiAnalysis": "AI ANALYSIS",
+    "styleMatch": "STYLE MATCH",
+    "neuralSearch": "NEURAL SEARCH",
+    "fitEngine": "FIT ENGINE"
+  },
+  "features": {
+    "secureSearch": "SECURE SEARCH",
+    "secureSearchDesc": "Where your uploaded images are 100% secure and private.",
+    "instantLookup": "INSTANT LOOKUP",
+    "instantLookupDesc": "Fast segmentation and search results ranging between 5 to 10 seconds.",
+    "learnable": "LEARNABLE",
+    "learnableDesc": "Our model continuously learns from new searches and feedback across the world."
+  },
+  "recommendations": {
+    "title": "MOST SEARCHED",
+    "neuralCuration": "PERSONALIZED PICKS",
+    "collections": "{{count}} COLLECTIONS",
+    "piecesAuthenticated": "{{count}} PIECES",
+    "exploreCollection": "EXPLORE COLLECTION",
+    "loading": "Loading recommendations…",
+    "collectionLabel": "COLLECTION"
+  },
+  "feedback": {
+    "title": "SHARE YOUR VISION",
+    "communityInsights": "COMMUNITY INSIGHTS",
+    "message": "Your voice shapes the future of ",
+    "submitReview": "SUBMIT REVIEW"
+  },
+  "social": {
+    "title": "JOIN THE FOLD",
+    "message": "Exclusive lookbooks, AI updates, and archival releases on our Instagram.",
+    "instagramTag": "@FITFINDER_CSED"
+  },
+  "modals": {
+    "chooseSource": "SELECT SOURCE",
+    "selectMethod": "Choose how you want to input your visual context.",
+    "takePhoto": "TAKE PHOTO",
+    "instantCapture": "LIVE CAMERA",
+    "uploadFromDevice": "UPLOAD FROM DEVICE",
+    "archivalUpload": "LOCAL FILE",
+    "cancel": "ABORT SELECTION"
+  },
+  "stores": {
+    "title": "GLOBAL COLLABORATORS",
+    "subtitle": "SUPPORTED STORES"
+  }
+}

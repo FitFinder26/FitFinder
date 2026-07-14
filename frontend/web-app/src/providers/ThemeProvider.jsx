@@ -14,7 +14,11 @@ export function ThemeProvider({ children }) {
     const resolvedTheme =
       theme === "system" ? (systemDark ? "dark" : "light") : theme;
 
-    document.documentElement.setAttribute("data-theme", resolvedTheme);
+    if (resolvedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
 

@@ -234,6 +234,13 @@ class SAM_service():
         """
         Removes single-dimensional entries from the mask array.
         """
+        if len(mask.shape) == 2:
+            return mask
+        if len(mask.shape) == 4:
+            return np.squeeze(mask, axis=1)
+        if len(mask.shape) == 1:
+            raise ValueError("Invalid mask shape: 1D array")
+
         M = mask.shape[0]
         weights = np.arange(1, M + 1)[:, np.newaxis, np.newaxis]
         Y = np.sum(mask * weights, axis=0)

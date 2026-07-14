@@ -6,6 +6,8 @@ from .api.connection import route as health_api
 from .api.jobs import router as jobs_api
 from .services.sam_service import SAM_service
 from .services.clip_service import CLIPService
+from app.services.faiss_service import FaissService
+
 import torch
 
 
@@ -51,11 +53,14 @@ async def lifespan(app: FastAPI):
     app.state.clip_service = CLIPService(device=device, sam_instance=app.state.sam_service)
     print("CLIP Model Loaded Successfully.")
 
+    app.state.faiss_service = FaissService(index_type="stored_item")
+    print("FAISS Service initialized.")
     yield
 
     print("Shutting down the FitFinder AI Service...")
     app.state.sam_service = None
     app.state.clip_service = None
+    app.state.faiss_service = None
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 

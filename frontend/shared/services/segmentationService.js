@@ -10,7 +10,7 @@ let maskListeners = [];
 
 export const segmentationService = {
   connect: () => {
-    ws = new WebSocket(`${API_BASE_URL.replace(/^https/, "wss")}/ws`);
+    ws = new WebSocket(`${API_BASE_URL.replace(/^https/, "wss")}ws`);
 
     ws.onopen = () => {
       console.log("WebSocket Connected");
@@ -138,7 +138,7 @@ export const segmentationService = {
       body: JSON.stringify({
         job_id: jobId,
         mask_json: mask,
-        // prompt: prompt
+        prompt: prompt
       }),
       headers: {
         "Content-Type": "application/json",

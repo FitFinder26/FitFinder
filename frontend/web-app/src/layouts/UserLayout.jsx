@@ -1,47 +1,49 @@
 import { Outlet } from "react-router-dom";
-// Assuming Navbar, Footer, and styled are imported correctly
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import styled from "styled-components";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 import { useState } from "react";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/sideBar/SideBar";
+import { useAuthContext } from "../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 export default function UserLayout() {
   const [navigationBlocked, setNavigationBlocked] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const { isAuthenticated } = useAuthContext();
+  const { t } = useTranslation("common");
 
   return (
-    <Container>
-      <Navbar
-        navigationBlocked={navigationBlocked}
-        setIsSideBarOpen={setIsSideBarOpen}
-      />
-      <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen}>
-        <div />
-      </SideBar>
+    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background text-foreground transition-colors duration-500">
+      <a 
+        href="#main-content" 
+        className="absolute -left-[999px] top-auto w-1 h-1 overflow-hidden z-[9999] bg-background text-foreground p-2 focus:left-4 focus:top-4 focus:w-auto focus:h-auto focus:outline-none focus:ring-2 focus:ring-primary rounded-md shadow-lg"
+      >
+        {t("skipToMainContent")}
+      </a>
+      
+      <header className="w-full z-40 fixed top-0" role="banner">
+        <Navbar
+          navigationBlocked={navigationBlocked}
+          setIsSideBarOpen={setIsSideBarOpen}
+        />
+      </header>
 
-      {/* WRAP THE OUTLET in a styled component to apply flex-grow: 1 */}
-      <MainContent>
-        <Outlet context={{ setNavigationBlocked }} />
+      {isAuthenticated() && (
+        <SideBar isOpen={isSideBarOpen} setIsOpen={setIsSideBarOpen} />
+      )}
+
+      <main 
+        id="main-content" 
+        className="flex-1 flex flex-col no-scrollbar pt-0" 
+        tabIndex={-1} 
+        role="main"
+      >
+        <div className="flex-1 relative">
+          <Outlet context={{ setNavigationBlocked }} />
+        </div>
         <Footer navigationBlocked={navigationBlocked} />
-      </MainContent>
-    </Container>
+      </main>
+    </div>
   );
 }
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* full viewport height, not min-height */
-  overflow: hidden;
-  background-color: var(--bg-color);
-  transition: 0.5s ease-in-out;
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-  overflow-y: auto; /* internal scrolling here */
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;

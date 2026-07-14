@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { useAuth } from "../../../shared/hooks/useAuth";
+import { useAuth } from "@shared/hooks/useAuth";
 
 const AuthContext = createContext();
 
