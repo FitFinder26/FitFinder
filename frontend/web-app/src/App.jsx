@@ -13,12 +13,9 @@ function App() {
       <Route path='/' element={<UserLayout/>}>
         <Route index element={<HomePage />} />
         <Route path='/registration' element={<RegistrationPage />} />
-        <Route path='*' element={<EmptyPage/>}/>
-      <Route path='/' element={<UserLayout />}>
-        <Route index element={<RegistrationPage />} />
         <Route path='search-result' element={<SearchResultPage />} />
         <Route path='product/:id' element={<ProductPage />} />
-        <Route path='*' element={<EmptyPage />} />
+        <Route path='*' element={<EmptyPage/>}/>
       </Route>
     )
   );
