@@ -7,3 +7,4 @@ data/raw/*.json
 *__pycache__/
 *.env.example
 scraper/.env
+

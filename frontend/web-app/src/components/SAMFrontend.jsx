@@ -168,6 +168,8 @@ export default function SAMFrontend({
       .then((data) => {
         if (data && data.error) {
           Notifier.notifyError(`Segmentation failed: ${data.error}`);
+          setSegmentationStatus("idle");
+          setLoading(false);
         }
       })
       .catch(() => {
@@ -363,22 +365,26 @@ export default function SAMFrontend({
           />
           {loading && (
             <Overlay>
-              <HashLoader size={50} color="#fff" />
-              {segmentationStatus === "uploading" && <p>Uploading image...</p>}
-              {segmentationStatus === "segmenting" && (
-                <p>Segmenting image, please wait...</p>
-              )}
-              <Button
-                onClick={() => {
-                  setLoading(false);
-                  segmentationService.endSession();
-                  setSegmentationStatus("idle");
-                }}
-                bgColor="orange"
-                bgColorHover="red"
-              >
-                Cancel
-              </Button>
+              <StatusLoader>
+                <HashLoader size={50} color="#fff" />
+                {segmentationStatus === "uploading" && (
+                  <p>Uploading image...</p>
+                )}
+                {segmentationStatus === "segmenting" && (
+                  <p>Segmenting image, please wait...</p>
+                )}
+                <Button
+                  onClick={() => {
+                    setLoading(false);
+                    segmentationService.endSession();
+                    setSegmentationStatus("idle");
+                  }}
+                  bgColor="orange"
+                  bgColorHover="red"
+                >
+                  Cancel
+                </Button>
+              </StatusLoader>
             </Overlay>
           )}
         </div>
@@ -464,4 +470,16 @@ const Button = styled.button`
   &:hover {
     background-color: ${(props) => props.bgColorHover || "#6BCB77"};
   }
+`;
+
+const StatusLoader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3e7e9 50%, #e0e7ff 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
 `;
