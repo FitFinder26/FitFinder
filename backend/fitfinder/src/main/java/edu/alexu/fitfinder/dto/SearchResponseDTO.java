@@ -20,4 +20,5 @@ public class SearchResponseDTO {
 
   String job_id;
   Result[] results;
+  String segmented_image_url;
 }

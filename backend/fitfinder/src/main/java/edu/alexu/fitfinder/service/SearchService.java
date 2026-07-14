@@ -2,17 +2,20 @@ package edu.alexu.fitfinder.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import edu.alexu.fitfinder.dto.SearchRequestDTO;
+import edu.alexu.fitfinder.dto.*;
 import edu.alexu.fitfinder.exception.InvalidInputException;
+import edu.alexu.fitfinder.mapper.StoredItemWithVectorIdMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import edu.alexu.fitfinder.dto.SearchResponseDTO;
-import java.util.LinkedList;
-import java.util.List;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SearchService {
 
   @Value("${cloudinary.url}")
@@ -21,13 +24,12 @@ public class SearchService {
   @Value("${forwarding.url}")
   private String forwardingUrl;
 
-  private final WebClient webClient;
+  private final WebClient webClient =
+      WebClient.builder().baseUrl("https://fitfinder-ai-service.hf.space").build();
+  private final StoredItemService storedItemService;
+  private  final StoredItemWithVectorIdMapper storedItemWithVectorIdMapper;
 
-  public SearchService() {
-    this.webClient = WebClient.builder().baseUrl("https://fitfinder-ai-service.hf.space").build();
-  }
-
-  public List<Long> getSimilarIndices(SearchRequestDTO searchInfo)
+  public SimilarItemsDTO getSimilarItems(SearchRequestDTO searchInfo)
       throws InvalidInputException, Exception {
 
     // Validate mask
@@ -58,16 +60,36 @@ public class SearchService {
             .bodyToMono(SearchResponseDTO.class)
             .block();
 
+    return constructSimilarItemsResponse(response);
+  }
+
+  private SimilarItemsDTO constructSimilarItemsResponse(SearchResponseDTO response) {
     // Validate response
-    if (response == null) throw new Exception();
+    if (response == null || response.getResults() == null || response.getResults().length == 0)
+      return new SimilarItemsDTO();
 
-    // No matched elements
+    // collect vectorIds
     LinkedList<Long> vectorIds = new LinkedList<>();
-    if (response.getResults() == null || response.getResults().length == 0) return vectorIds;
-
-    // Extract Vector Ids
     for (SearchResponseDTO.Result result : response.getResults())
       vectorIds.add(result.getFaiss_id());
-    return vectorIds;
+
+    List<StoredItemWithVectorIdDTO> similarItems =
+        storedItemService.getProductsByVectorIds(vectorIds);
+
+    // order with occurrence in vectorIds and remove items duplicate
+    Map<Long, List<StoredItemWithVectorIdDTO>> itemsByVectorId =
+        similarItems.stream()
+            .collect(Collectors.groupingBy(StoredItemWithVectorIdDTO::getVectorId));
+
+    Set<Long> seenItemIds = new HashSet<>();
+
+   List<ItemDTO> items = vectorIds.stream()
+        .distinct()
+        .flatMap(vectorId -> itemsByVectorId.getOrDefault(vectorId, List.of()).stream())
+        .filter(item -> seenItemIds.add(item.getItemId()))
+           .map(storedItemWithVectorIdMapper::toItemDto)
+        .toList();
+
+   return  new SimilarItemsDTO(response.getSegmented_image_url(), items);
   }
 }

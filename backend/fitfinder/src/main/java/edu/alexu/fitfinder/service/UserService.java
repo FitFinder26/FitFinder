@@ -59,7 +59,7 @@ public class UserService {
     return cookie;
   }
 
-  public Map<String, String>DTO user, HttpServletResponse response)
+  public Map<String, String> SignUP(UserDTO user, HttpServletResponse response)
       throws InvalidInputException, UserAlreadyExistsException {
 
     Validator userNameValidator = new UserNameValidator();
@@ -101,9 +101,11 @@ public class UserService {
     response.addCookie(GenerateRefreshCookie(existingUser.getUserId()));
 
     // generate jwt authentication token
-    Map<String, String> jwtToken = new HashMap<>();
-    jwtToken.put("token", jwtService.generateToken(databaseRecord.getUserId() + ""));
-    return jwtToken;
+    Map<String, String> jwtAccessToken = new HashMap<>();
+    String accessToken = jwtService.generateAccessToken(existingUser.getUserId() + "");
+    jwtAccessToken.put("accessToken", accessToken);
+    jwtAccessToken.put("expiresIn", jwtService.extractExpiration(accessToken).toString());
+    return jwtAccessToken;
   }
 
   public Map<String, String> RefreshToken(HttpServletRequest request) throws UnauthorizedException {

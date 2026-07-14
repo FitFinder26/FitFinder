@@ -7,11 +7,9 @@ import edu.alexu.fitfinder.service.JwtService;
 import edu.alexu.fitfinder.service.SearchService;
 import edu.alexu.fitfinder.service.StoredItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -26,15 +24,10 @@ public class SearchController {
   private final StoredItemService storedItemService;
 
   @PostMapping("/search")
-  public ResponseEntity<?> searchByImageMask(
-      @RequestBody SearchRequestDTO searchInfo, @RequestHeader("Authorization") String token)
+  public ResponseEntity<?> searchByImageMask(@RequestBody SearchRequestDTO searchInfo)
       throws Exception {
-
     try {
-      Long userId = jwtService.extractUserFromToken(token);
-      List<Long> vectorIds = searchService.getSimilarIndices(searchInfo);
-      if (vectorIds.isEmpty()) return ResponseEntity.ok().body(new LinkedList<>());
-      return ResponseEntity.ok().body(storedItemService.getProductsByVectorIds(vectorIds, userId));
+      return ResponseEntity.ok().body(searchService.getSimilarItems(searchInfo));
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

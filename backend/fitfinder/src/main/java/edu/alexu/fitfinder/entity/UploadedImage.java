@@ -26,12 +26,9 @@ public class UploadedImage {
   private String croppedImageURL;
   private String name;
 
-  //  private boolean[][] mask;
-
-  public UploadedImage(User user, Long uploadedFAISSId, String imageURL /*, boolean[][] mask*/) {
+  public UploadedImage(User user, Long uploadedFAISSId, String imageURL) {
     this.user = user;
     this.uploadedFAISSId = uploadedFAISSId;
     this.imageURL = imageURL;
-    //    this.mask = mask;
   }
 }

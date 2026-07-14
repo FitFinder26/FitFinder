@@ -1,16 +1,15 @@
 package edu.alexu.fitfinder.service;
 
 import edu.alexu.fitfinder.dto.ItemDTO;
+import edu.alexu.fitfinder.dto.StoredItemWithVectorIdDTO;
+import edu.alexu.fitfinder.mapper.StoredItemWithVectorIdMapper;
+import edu.alexu.fitfinder.repository.projection.StoredItemWithVectorId;
 import edu.alexu.fitfinder.entity.StoredItem;
 import edu.alexu.fitfinder.mapper.ItemMapper;
 import edu.alexu.fitfinder.repository.FavoriteRepo;
 import edu.alexu.fitfinder.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +24,11 @@ public class StoredItemService {
   private final ItemRepo itemRepo;
   private final FavoriteRepo favoriteRepo;
   private final ItemMapper itemMapper;
+  private final StoredItemWithVectorIdMapper storedItemWithVectorIdMapper;
 
-  public List<ItemDTO> getProductsByVectorIds(List<Long> vectorIds, Long userId) {
+  public List<StoredItemWithVectorIdDTO> getProductsByVectorIds(List<Long> vectorIds) {
     if (vectorIds == null || vectorIds.isEmpty()) return Collections.emptyList();
-    List<StoredItem> items = itemRepo.findItemsByVectorIds(vectorIds);
-    return mapItemsToDTOs(items);
+    return storedItemWithVectorIdMapper.toDtoList(itemRepo.findItemsByVectorIds(vectorIds));
   }
 
   public List<ItemDTO> getProducts(List<Long> itemIds, Long userId) {
