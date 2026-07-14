@@ -2,7 +2,8 @@ package edu.alexu.fitfinder.service.signup;
 
 import edu.alexu.fitfinder.dto.UserDTO;
 import edu.alexu.fitfinder.entity.User;
-import edu.alexu.fitfinder.exception.ValidatorException;
+import edu.alexu.fitfinder.exception.InvalidInputException;
+import edu.alexu.fitfinder.exception.UserAlreadyExistsException;
 import edu.alexu.fitfinder.repository.UserRepo;
 import lombok.AllArgsConstructor;
 
