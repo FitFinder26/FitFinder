@@ -347,7 +347,10 @@ body {
         margin: .5rem;
         font-size: 2rem;
     }
+
+
 }
+
 
 .password-requirements {
     /* list-style-type: none; */
@@ -367,6 +370,32 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  color: #666;
+  font-family: system-ui, sans-serif;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+.divider:not(:empty)::before {
+  margin-right: 0.75em;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 0.75em;
+}
+
 
 
 @keyframes fadeIn {
