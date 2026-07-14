@@ -21,7 +21,6 @@ export const useAuth = () => {
 
   const logout = async () => {
     await authService.logout();
-    tokenService.clearToken();
     setToken(null);
     clearTimeout(refreshTimer);
   };
@@ -44,7 +43,7 @@ export const useAuth = () => {
   const scheduleRefresh = () => {
     clearTimeout(refreshTimer);
     const timeLeft = tokenService.getTimeToExpiry();
-    if (timeLeft > 0) {
+    if (timeLeft > 30000) {
       refreshTimer = setTimeout(async () => {
         try {
           await authService.refreshAccessToken();
@@ -52,9 +51,10 @@ export const useAuth = () => {
           scheduleRefresh(); // reschedule after refresh
         } catch (err) {
           console.error("Background refresh failed:", err);
+          alert("Sorry but your session has expired. Please login again!");
           logout();
         }
-      }, timeLeft - tokenService.getTTL() * 1000); // refresh 30s before expiry
+      }, timeLeft - 30000); // refresh 30s before expiry
     }
   };
 

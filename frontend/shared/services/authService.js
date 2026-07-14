@@ -2,40 +2,72 @@ import { apiClient } from "./apiClient";
 import { tokenService } from "./tokenService";
 
 export const authService = {
-  signup: async (username, email, password) => {
-    const data = await apiClient("/auth/signup", {
+  signup: async (userName, email, password) => {
+    const response = await apiClient("/auth/signup", {
       method: "POST",
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ userName, email, password }),
       skipAuth: false,
-    });
+    })
 
+    // Extracting the body to get token
     // The backend sends the access token in JSON,
     // and refresh token in a secure HttpOnly cookie.
-    tokenService.setToken(data.accessToken, data.expiresIn);
-    return data;
+    const data = await response.json();
+
+    // TTL get returned as EET e.g. Fri Oct 31 00:20:00 EET 2025
+    // So this changes it into ISO 8601 e.g. 2025-10-31T01:19:39+02:00
+    // Then pass it as milliseconds
+    const parsedDateString = new Date(Date.parse(data.expiresIn.replace("EET", "GMT+0200")));
+    const expirationDate = new Date (parsedDateString);
+
+    // seting the access token and its TTL
+    tokenService.setToken(data.accessToken, expirationDate.getTime());
+    return response;
   },
 
   login: async (email, password) => {
-    const data = await apiClient("/auth/login", {
+    const response = await apiClient("/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       skipAuth: false,
     });
 
+    // Extracting the body to get token
     // The backend sends the access token in JSON,
     // and refresh token in a secure HttpOnly cookie.
-    tokenService.setToken(data.accessToken, data.expiresIn);
-    return data;
+    const data = await response.json();
+
+    // TTL get returned as EET e.g. Fri Oct 31 00:20:00 EET 2025
+    // So this changes it into ISO 8601 e.g. 2025-10-31T01:19:39+02:00
+    // Then pass it as milliseconds
+    const parsedDateString = new Date(Date.parse(data.expiresIn.replace("EET", "GMT+0200")));
+    const expirationDate = new Date (parsedDateString);
+
+    // seting the access token and its TTL
+    tokenService.setToken(data.accessToken, expirationDate.getTime());
+    return response;
   },
 
   refreshAccessToken: async () => {
-    const data = await apiClient("/auth/refresh", {
+    const response = await apiClient("/auth/refresh", {
       method: "POST",
       skipAuth: true, // don't send old token
     });
 
-    tokenService.setToken(data.accessToken, data.expiresIn);
-    return data.accessToken;
+    // Extracting the body to get token
+    // The backend sends the access token in JSON,
+    // and refresh token in a secure HttpOnly cookie.
+    const data = await response.json();
+
+    // TTL get returned as EET e.g. Fri Oct 31 00:20:00 EET 2025
+    // So this changes it into ISO 8601 e.g. 2025-10-31T01:19:39+02:00
+    // Then pass it as milliseconds
+    const parsedDateString = new Date(Date.parse(data.expiresIn.replace("EET", "GMT+0200")));
+    const expirationDate = new Date (parsedDateString);
+
+    // seting the access token and its TTL
+    tokenService.setToken(data.accessToken, expirationDate.getTime());
+    return response;
   },
 
   logout: async () => {
@@ -47,20 +79,18 @@ export const authService = {
   },
 
   sendCode: async (email) => {
-    const data = await apiClient("/auth/send-code", {
+    return await apiClient("/auth/send-code", {
       method: "POST",
       body: JSON.stringify({ email }),
       skipAuth: false,
     });
-    return data;
   },
 
   updatePassword: async (email, newPassword) => {
-    const data = await apiClient("/auth/update-password", {
+    return await apiClient("/auth/update-password", {
       method: "POST",
       body: JSON.stringify({ email, newPassword }),
       skipAuth: false,
     });
-    return data;
-  },
+  }
 };

@@ -5,7 +5,7 @@ let TTL = null; // time to live in seconds
 export const tokenService = {
     setToken: (token, expiresIn) => {
         accessToken = token;
-        tokenExpiry = Date.now() + expiresIn * 1000; // expiresIn from backend (in seconds)
+        tokenExpiry = Date.now() + expiresIn;
         TTL = expiresIn;
     },
 

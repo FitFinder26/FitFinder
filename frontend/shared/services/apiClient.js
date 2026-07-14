@@ -38,17 +38,11 @@ export const apiClient = async (endpoint, options = {}) => {
     credentials: "include", // always send cookies
   });
 
-  // 401 means the refresh cookie may have expired
-  if (response.status === 401 && !skipAuth) {
+  // 452 means the refresh cookie may have expired
+  if (response.status == 452 && !skipAuth) {
     tokenService.clearToken();
     throw new Error("Unauthorized — session expired");
   }
-
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok) {
-    throw new Error(data?.message || `Request failed: ${response.status}`);
-  }
-
-  return data;
+  
+  return response;
 };
